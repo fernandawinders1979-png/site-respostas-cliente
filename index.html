@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistente de Respostas ao Cliente</title>
+  <meta name="description" content="Ferramenta para sugerir respostas em português e inglês, focadas em retenção de clientes.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Assistente de Respostas ao Cliente</h1>
+    <p class="subtitle">Gere sugestões de resposta focadas em reter o cliente e evitar cancelamentos</p>
+  </header>
+
+  <main class="container">
+
+    <section class="input-section" aria-labelledby="input-title">
+      <h2 id="input-title">Mensagem do Cliente</h2>
+      <label for="customer-message" class="visually-hidden">Cole aqui a mensagem do cliente</label>
+      <textarea
+        id="customer-message"
+        placeholder="Cole aqui a mensagem do cliente..."
+        rows="8"
+      ></textarea>
+
+      <button id="generate-btn" class="btn-primary" type="button">
+        Gerar Resposta
+      </button>
+    </section>
+
+    <section class="results-section" aria-labelledby="results-title">
+      <h2 id="results-title">Sugestões de Resposta</h2>
+
+      <div class="results-grid">
+
+        <article class="result-card" aria-labelledby="pt-title">
+          <div class="result-card-header">
+            <h3 id="pt-title">🇧🇷 Português</h3>
+            <button class="btn-copy" type="button" data-target="response-pt">
+              Copiar
+            </button>
+          </div>
+          <textarea id="response-pt" class="response-output" readonly placeholder="A resposta em português aparecerá aqui..."></textarea>
+        </article>
+
+        <article class="result-card" aria-labelledby="en-title">
+          <div class="result-card-header">
+            <h3 id="en-title">🇺🇸 English</h3>
+            <button class="btn-copy" type="button" data-target="response-en">
+              Copy
+            </button>
+          </div>
+          <textarea id="response-en" class="response-output" readonly placeholder="The English response will appear here..."></textarea>
+        </article>
+
+      </div>
+
+      <p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Assistente de Respostas ao Cliente &mdash; uso interno de atendimento</p>
+    <p class="footer-contact">Contato: suporte@exemplo.com</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
