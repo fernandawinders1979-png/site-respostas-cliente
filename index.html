@@ -3,67 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assistente de Respostas ao Cliente</title>
-  <meta name="description" content="Ferramenta para sugerir respostas em português e inglês, focadas em retenção de clientes.">
+  <title>Dashboard de Atendimento ao Cliente</title>
+  <meta name="description" content="Dashboard para atendentes responderem clientes de forma rápida, profissional e persuasiva, com foco em retenção e redução de cancelamentos.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <header class="site-header">
-    <h1>Assistente de Respostas ao Cliente</h1>
-    <p class="subtitle">Gere sugestões de resposta focadas em reter o cliente e evitar cancelamentos</p>
+    <h1>Dashboard de Atendimento ao Cliente</h1>
+    <p class="subtitle">Templates prontos + sugestão automática de resposta, em português e inglês</p>
   </header>
 
   <main class="container">
 
-    <section class="input-section" aria-labelledby="input-title">
-      <h2 id="input-title">Mensagem do Cliente</h2>
-      <label for="customer-message" class="visually-hidden">Cole aqui a mensagem do cliente</label>
-      <textarea
-        id="customer-message"
-        placeholder="Cole aqui a mensagem do cliente..."
-        rows="8"
-      ></textarea>
-
-      <button id="generate-btn" class="btn-primary" type="button">
-        Gerar Resposta
-      </button>
-    </section>
-
-    <section class="results-section" aria-labelledby="results-title">
-      <h2 id="results-title">Sugestões de Resposta</h2>
-
-      <div class="results-grid">
-
-        <article class="result-card" aria-labelledby="pt-title">
-          <div class="result-card-header">
-            <h3 id="pt-title">🇧🇷 Português</h3>
-            <button class="btn-copy" type="button" data-target="response-pt">
-              Copiar
-            </button>
-          </div>
-          <textarea id="response-pt" class="response-output" readonly placeholder="A resposta em português aparecerá aqui..."></textarea>
-        </article>
-
-        <article class="result-card" aria-labelledby="en-title">
-          <div class="result-card-header">
-            <h3 id="en-title">🇺🇸 English</h3>
-            <button class="btn-copy" type="button" data-target="response-en">
-              Copy
-            </button>
-          </div>
-          <textarea id="response-en" class="response-output" readonly placeholder="The English response will appear here..."></textarea>
-        </article>
-
+    <!-- ============================================================
+         Painel de dados do pedido (primeiro contato)
+         ============================================================ -->
+    <section class="order-panel" aria-labelledby="order-title">
+      <div class="order-panel-header">
+        <h2 id="order-title">Detalhes do Pedido</h2>
+        <button id="load-sample-btn" class="btn-secondary" type="button">
+          Carregar Exemplo
+        </button>
       </div>
 
-      <p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
+      <div class="order-grid">
+        <div class="order-field">
+          <label for="order-nome-cliente">Nome do Cliente</label>
+          <input id="order-nome-cliente" type="text" placeholder="Ex: Maria Silva">
+        </div>
+        <div class="order-field">
+          <label for="order-nome-agente">Nome do Agente</label>
+          <input id="order-nome-agente" type="text" placeholder="Ex: João Souza">
+        </div>
+        <div class="order-field">
+          <label for="order-numero-pedido">Número do Pedido</label>
+          <input id="order-numero-pedido" type="text" placeholder="Ex: #10234">
+        </div>
+        <div class="order-field">
+          <label for="order-data-compra">Data da Compra (DD/MM/AAAA)</label>
+          <input id="order-data-compra" type="text" placeholder="Ex: 10/06/2026">
+        </div>
+        <div class="order-field">
+          <label for="order-produto">Produto</label>
+          <input id="order-produto" type="text" placeholder="Ex: Óleo Essencial 30ml">
+        </div>
+        <div class="order-field">
+          <label for="order-valor-total">Valor Total (US$)</label>
+          <input id="order-valor-total" type="text" placeholder="Ex: 49.90">
+        </div>
+        <div class="order-field">
+          <label for="order-endereco">Endereço de Entrega</label>
+          <input id="order-endereco" type="text" placeholder="Ex: São Paulo, SP">
+        </div>
+        <div class="order-field">
+          <label for="order-status">Status Atual do Pedido</label>
+          <input id="order-status" type="text" placeholder="Ex: Em trânsito">
+        </div>
+      </div>
+
+      <details class="tracking-details">
+        <summary>Informações de rastreamento (opcional, usado no template "Status da entrega")</summary>
+        <div class="order-grid">
+          <div class="order-field">
+            <label for="order-codigo-rastreio">Código de Rastreamento</label>
+            <input id="order-codigo-rastreio" type="text" placeholder="Ex: BR123456789">
+          </div>
+          <div class="order-field">
+            <label for="order-link-rastreio">Link de Rastreamento</label>
+            <input id="order-link-rastreio" type="text" placeholder="Ex: https://rastreio.exemplo.com/BR123456789">
+          </div>
+        </div>
+      </details>
+
+      <p class="welcome-preview-label">Pré-visualização da mensagem de boas-vindas:</p>
+      <p id="welcome-preview" class="welcome-preview">
+        Olá [NOME DO CLIENTE], meu nome é [NOME DO AGENTE] e estarei cuidando do seu atendimento hoje. 🤝
+      </p>
     </section>
+
+    <!-- ============================================================
+         Dashboard: barra lateral de templates + área de resposta
+         ============================================================ -->
+    <div class="dashboard-grid">
+
+      <aside class="template-sidebar" aria-labelledby="templates-title">
+        <h2 id="templates-title">Templates de Resposta</h2>
+        <p class="sidebar-hint">Clique em um template para inserir na resposta abaixo. Você pode editar antes de copiar.</p>
+        <div id="template-categories" class="template-categories"></div>
+      </aside>
+
+      <div class="main-panel">
+
+        <section class="customer-section" aria-labelledby="customer-title">
+          <h2 id="customer-title">Mensagem do Cliente</h2>
+          <label for="customer-message" class="visually-hidden">Cole aqui a mensagem do cliente</label>
+          <textarea
+            id="customer-message"
+            placeholder="Cole aqui a mensagem do cliente..."
+            rows="6"
+          ></textarea>
+
+          <button id="generate-btn" class="btn-primary" type="button">
+            Gerar Resposta com IA
+          </button>
+          <p class="ai-note">🤖 Sugestão automática com base em palavras-chave (placeholder). No futuro pode ser substituída por uma chamada de IA real.</p>
+        </section>
+
+        <section class="results-section" aria-labelledby="results-title">
+          <h2 id="results-title">Resposta do Atendente</h2>
+          <p class="ai-note">🔄 Depois de escolher um template, as respostas abaixo se atualizam automaticamente conforme você edita os Detalhes do Pedido. Se você editar o texto manualmente, finalize os Detalhes do Pedido antes para não perder a edição.</p>
+
+          <div class="results-grid">
+
+            <article class="result-card" aria-labelledby="pt-title">
+              <div class="result-card-header">
+                <h3 id="pt-title">🇧🇷 Português</h3>
+                <button class="btn-copy" type="button" data-target="response-pt">
+                  Copiar
+                </button>
+              </div>
+              <textarea id="response-pt" class="response-output" placeholder="A resposta em português aparecerá aqui..." rows="10"></textarea>
+            </article>
+
+            <article class="result-card" aria-labelledby="en-title">
+              <div class="result-card-header">
+                <h3 id="en-title">🇺🇸 English</h3>
+                <button class="btn-copy" type="button" data-target="response-en">
+                  Copy
+                </button>
+              </div>
+              <textarea id="response-en" class="response-output" placeholder="The English response will appear here..." rows="10"></textarea>
+            </article>
+
+          </div>
+
+          <p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
+        </section>
+
+      </div>
+    </div>
 
   </main>
 
   <footer class="site-footer">
-    <p>Assistente de Respostas ao Cliente &mdash; uso interno de atendimento</p>
+    <p>Dashboard de Atendimento ao Cliente &mdash; uso interno de atendimento</p>
     <p class="footer-contact">Contato: suporte@exemplo.com</p>
   </footer>
 

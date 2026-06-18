@@ -60,7 +60,7 @@ body {
    Layout principal
    =========================================================== */
 .container {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 24px 16px 48px;
   display: flex;
@@ -74,10 +74,215 @@ section h2 {
   color: var(--color-text);
 }
 
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg);
+  border-color: var(--color-primary);
+}
+
 /* ===========================================================
-   Área de input
+   Painel de dados do pedido
    =========================================================== */
-.input-section {
+.order-panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.order-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.order-panel-header h2 {
+  margin: 0;
+}
+
+.order-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.order-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-field label {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.order-field input {
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.order-field input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.15);
+}
+
+.tracking-details {
+  margin-top: 16px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+}
+
+.tracking-details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+.tracking-details .order-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.welcome-preview-label {
+  margin: 16px 0 4px;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.welcome-preview {
+  margin: 0;
+  padding: 12px;
+  background-color: #fafbfc;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+/* ===========================================================
+   Dashboard: sidebar + painel principal
+   =========================================================== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.template-sidebar {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  position: sticky;
+  top: 16px;
+}
+
+.sidebar-hint {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.template-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.template-category {
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--cat-color, var(--color-primary));
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  background-color: var(--color-surface);
+}
+
+.template-category summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.template-category summary::-webkit-details-marker {
+  display: none;
+}
+
+.category-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--cat-color, var(--color-primary));
+  flex-shrink: 0;
+}
+
+.template-category[open] summary {
+  margin-bottom: 6px;
+}
+
+.template-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.template-btn {
+  width: 100%;
+  text-align: left;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.template-btn:hover {
+  background-color: var(--color-bg);
+  border-color: var(--cat-color, var(--color-primary));
+}
+
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ===========================================================
+   Área de input do cliente
+   =========================================================== */
+.customer-section {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -88,7 +293,7 @@ section h2 {
 #customer-message {
   width: 100%;
   resize: vertical;
-  min-height: 140px;
+  min-height: 120px;
   padding: 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -124,9 +329,23 @@ section h2 {
   transform: translateY(1px);
 }
 
+.ai-note {
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
 /* ===========================================================
    Área de resultados
    =========================================================== */
+.results-section {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
 .results-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -134,11 +353,6 @@ section h2 {
 }
 
 .result-card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 16px;
   display: flex;
   flex-direction: column;
 }
@@ -173,7 +387,7 @@ section h2 {
 
 .response-output {
   width: 100%;
-  min-height: 160px;
+  min-height: 220px;
   resize: vertical;
   padding: 12px;
   border: 1px solid var(--color-border);
@@ -210,8 +424,36 @@ section h2 {
 /* ===========================================================
    Responsivo
    =========================================================== */
+@media (max-width: 980px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .template-sidebar {
+    position: static;
+  }
+
+  .template-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .template-btn {
+    width: auto;
+  }
+
+  .order-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 680px) {
   .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .order-grid,
+  .tracking-details .order-grid {
     grid-template-columns: 1fr;
   }
 
