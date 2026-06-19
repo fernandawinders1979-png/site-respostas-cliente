@@ -2,13 +2,14 @@
    Variáveis e reset básico
    =========================================================== */
 :root {
-  --color-bg: #f4f5f7;
+  --color-bg: #f6f8f5;
   --color-surface: #ffffff;
-  --color-border: #e0e2e7;
-  --color-text: #2b2d33;
-  --color-text-light: #6b7280;
-  --color-primary: #2f6fed;
-  --color-primary-hover: #2558c2;
+  --color-border: #dfe5db;
+  --color-text: #1f211d;
+  --color-text-light: #5c6359;
+  --color-primary: #1f9d4c;
+  --color-primary-hover: #18803d;
+  --color-primary-soft: rgba(31, 157, 76, 0.15);
   --color-success: #1f9d55;
   --radius: 8px;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -144,7 +145,7 @@ section h2 {
 .order-field input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.15);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
 }
 
 .tracking-details {
@@ -176,73 +177,6 @@ section h2 {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   font-size: 0.9rem;
-}
-
-/* ===========================================================
-   TESTE: tema "clássico" preto + verde fluorescente
-   só no quadro "Detalhes do Pedido". O verde fica reservado
-   para destaques (título, foco, links) e o texto principal
-   continua claro/neutro para não cansar a vista.
-   =========================================================== */
-.order-panel {
-  background-color: #12150f;
-  border: 1px solid #2a2f24;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-  color: #e6e8e3;
-}
-
-.order-panel-header h2 {
-  color: #39ff14;
-  letter-spacing: 0.3px;
-}
-
-.order-panel .btn-secondary {
-  border-color: #3a4533;
-  color: #b7f7a8;
-}
-
-.order-panel .btn-secondary:hover {
-  background-color: rgba(57, 255, 20, 0.1);
-  border-color: #39ff14;
-  color: #39ff14;
-}
-
-.order-panel .order-field label {
-  color: #8fae84;
-}
-
-.order-panel .order-field input {
-  background-color: #1b2016;
-  border: 1px solid #2a2f24;
-  color: #f1f3ee;
-}
-
-.order-panel .order-field input::placeholder {
-  color: #5f6e57;
-}
-
-.order-panel .order-field input:focus {
-  outline: none;
-  border-color: #39ff14;
-  box-shadow: 0 0 0 3px rgba(57, 255, 20, 0.2);
-}
-
-.order-panel .tracking-details {
-  border-top: 1px solid #2a2f24;
-}
-
-.order-panel .tracking-details summary {
-  color: #8fae84;
-}
-
-.order-panel .welcome-preview-label {
-  color: #8fae84;
-}
-
-.order-panel .welcome-preview {
-  background-color: #161b13;
-  border: 1px solid #2a2f24;
-  color: #f1f3ee;
 }
 
 /* ===========================================================
@@ -372,7 +306,7 @@ section h2 {
 #customer-message:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.15);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
 }
 
 .btn-primary {
