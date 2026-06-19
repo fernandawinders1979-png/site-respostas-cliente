@@ -1964,7 +1964,7 @@ Customer Support Team`,
     {
       id: "reembolso15",
       category: "reembolso",
-      label: "Reembolso 15%",
+      label: "Reembolso 15% (Geral)",
       autoDetect: null,
       pt:
         "Olá {{nomeCliente}},\n" +
@@ -1996,6 +1996,142 @@ Customer Support Team`,
         "Shall I go ahead and process this 15% refund for you now?\n" +
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
+    },
+    {
+      id: "reembolsoEmagrecimento15",
+      category: "reembolso",
+      label: "Reembolso 15% (Emagrecimento)",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+Eu entendo perfeitamente por que você decidiu comprar o {{produto}}: cuidar de si mesma, recuperar energia, melhorar sua autoestima e voltar a se sentir bem no próprio corpo. 💚
+
+Sabemos que o processo de emagrecimento nem sempre acontece da noite para o dia. Não se trata de uma mudança milagrosa ou imediata, mas sim de dar ao seu corpo uma oportunidade real de responder, se adaptar e começar a evoluir de forma natural e respeitosa.
+
+Cada pequeno passo conta.
+
+O {{produto}} foi desenvolvido justamente para apoiar sua rotina, seu bem-estar diário, sua vitalidade e sua confiança ao longo desse processo. Muitas vezes, interromper o uso cedo demais pode impedir que o corpo tenha tempo suficiente para se adaptar e mostrar os benefícios esperados.
+
+Imagine poder olhar no espelho e sentir orgulho do esforço que você está fazendo. Recuperar a liberdade de usar roupas que gosta, sentir-se mais confiante e perceber que está cuidando de si mesma com constância. Esse é o verdadeiro objetivo: ajudar você a continuar avançando no seu projeto, sem pressão e sem soluções temporárias.
+
+Queremos que você se sinta apoiada nessa decisão. Por isso, para tornar esse processo mais leve e mostrar nossa intenção de ajudar, conseguimos oferecer um reembolso administrativo de 15% do valor total dos seus produtos, sem necessidade de devolução.
+
+Essa é uma forma de reduzir parte do seu investimento agora, enquanto você ainda mantém os produtos e pode continuar seu projeto com mais tranquilidade.
+
+Pedimos apenas que pense com carinho antes de interromper sua jornada. Você comprou este produto por um motivo, e ele ainda pode fazer parte de uma nova rotina de cuidado, disciplina e atenção consigo mesma.
+
+Caso aceite essa solução com 15% de reembolso e deseje continuar utilizando os produtos, basta responder a este e-mail confirmando, e seguiremos com o processamento.
+
+Estou à disposição para ajudar no que for necessário.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+I completely understand why you decided to buy the {{produto}}: to take care of yourself, regain energy, improve your self-esteem, and feel good in your own body again. 💚
+
+We know that the weight-loss process doesn't always happen overnight. It's not about a miracle or instant change, but about giving your body a real chance to respond, adapt, and start evolving in a natural and respectful way.
+
+Every small step counts.
+
+The {{produto}} was developed precisely to support your routine, your daily well-being, your vitality, and your confidence throughout this process. Stopping use too early can often prevent your body from having enough time to adapt and show the expected benefits.
+
+Imagine being able to look in the mirror and feel proud of the effort you're putting in. Regaining the freedom to wear the clothes you love, feeling more confident, and realizing you're taking care of yourself consistently. That's the real goal: helping you keep moving forward in your journey, with no pressure and no temporary fixes.
+
+We want you to feel supported in this decision. That's why, to make this process lighter and show our intention to help, we were able to offer an administrative refund of 15% of the total value of your products, with no need to return them.
+
+This is a way to reduce part of your investment now, while you still keep the products and can continue your journey with more peace of mind.
+
+We just ask that you think carefully before stopping your journey. You bought this product for a reason, and it can still be part of a new routine of self-care, discipline, and attention to yourself.
+
+If you accept this 15% refund solution and would like to continue using the products, just reply to this email confirming, and we'll proceed with the processing.
+
+I'm here to help with whatever you need.
+
+Best regards,
+{{nomeAgente}}
+Support Team`,
+    },
+    {
+      id: "reembolsoEmagrecimento15Atestado",
+      category: "reembolso",
+      label: "Reembolso 15% (Troca de Atestado - Emagrecimento)",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}}, espero que esteja bem.
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+Nosso maior compromisso é com o bem-estar de cada pessoa que confia no suplemento. Por isso, quero explicar com calma e total transparência como funciona a nossa política de garantia, para que você se sinta seguro(a) durante todo esse processo. 💛
+
+A nossa garantia é do tipo "satisfação garantida" ✨
+
+Isso significa que o ideal é utilizar o suplemento por pelo menos 30 dias consecutivos, para que o organismo tenha tempo suficiente de adaptação e para que os resultados possam ser avaliados de forma justa.
+
+Caso, após esse período de uso contínuo, você não perceba resultados visíveis, a garantia pode ser analisada conforme os critérios da nossa política.
+
+No entanto, quando o uso é interrompido por uma questão de saúde, possível efeito colateral ou orientação médica, a garantia não pode ser aplicada automaticamente, pois ela foi criada com base na experiência de uso contínuo e na avaliação dos resultados ao longo do tempo.
+
+Ainda assim, entendemos que cada caso precisa ser tratado com atenção e respeito.
+
+✅ Pensando nisso, iremos abrir uma exceção para você.
+
+Em vez de solicitar atestado médico, conseguimos oferecer um reembolso administrativo de 15% do valor total do seu pedido, sem necessidade de devolução dos produtos. Além disso, como o suplemento é 100% natural, você pode presentear alguém, aproveitando o investimento que já fez, sem desperdício. Ressaltamos que nosso suplemento possui total credibilidade e é distribuído por uma empresa confiável, dedicada à saúde e bem-estar de seus clientes.
+
+Dessa forma, você evita:
+
+✔️ Custos de envio
+✔️ Burocracias desnecessárias
+✔️ Possíveis atrasos
+✔️ Processo de devolução física
+✔️ Análise ou inspeção dos produtos
+
+Essa solução torna o processo muito mais simples, rápido e seguro para você.
+
+Caso concorde com essa alternativa de 15% de reembolso, basta responder a este e-mail confirmando, e seguiremos com o procedimento.
+
+Fico à disposição para qualquer dúvida.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}}, I hope you're doing well.
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+Our biggest commitment is to the well-being of everyone who trusts this supplement. That's why I want to calmly and transparently explain how our guarantee policy works, so you feel safe throughout this whole process. 💛
+
+Our guarantee is a "satisfaction guaranteed" type ✨
+
+This means the ideal is to use the supplement for at least 30 consecutive days, so your body has enough time to adapt and the results can be fairly evaluated.
+
+If, after this period of continuous use, you don't notice visible results, the guarantee can be reviewed according to our policy's criteria.
+
+However, when use is interrupted due to a health issue, a possible side effect, or medical guidance, the guarantee can't be applied automatically, since it was created based on the experience of continuous use and the evaluation of results over time.
+
+Even so, we understand that each case needs to be treated with care and respect.
+
+✅ With that in mind, we'll make an exception for you.
+
+Instead of requesting a medical certificate, we're able to offer an administrative refund of 15% of your order's total value, with no need to return the products. Also, since the supplement is 100% natural, you can gift it to someone, making use of the investment you've already made, with no waste. We'd like to reinforce that our supplement is fully credible and distributed by a trustworthy company, dedicated to the health and well-being of its customers.
+
+This way, you avoid:
+
+✔️ Shipping costs
+✔️ Unnecessary paperwork
+✔️ Possible delays
+✔️ The physical return process
+✔️ Product inspection or review
+
+This solution makes the process much simpler, faster, and safer for you.
+
+If you agree with this 15% refund alternative, just reply to this email confirming, and we'll proceed with the procedure.
+
+I'm here for any questions.
+
+Best regards,
+{{nomeAgente}}
+Support Team`,
     },
     {
       id: "reembolso3035",
