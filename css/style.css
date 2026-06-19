@@ -179,6 +179,73 @@ section h2 {
 }
 
 /* ===========================================================
+   TESTE: tema "clássico" preto + verde fluorescente
+   só no quadro "Detalhes do Pedido". O verde fica reservado
+   para destaques (título, foco, links) e o texto principal
+   continua claro/neutro para não cansar a vista.
+   =========================================================== */
+.order-panel {
+  background-color: #12150f;
+  border: 1px solid #2a2f24;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  color: #e6e8e3;
+}
+
+.order-panel-header h2 {
+  color: #39ff14;
+  letter-spacing: 0.3px;
+}
+
+.order-panel .btn-secondary {
+  border-color: #3a4533;
+  color: #b7f7a8;
+}
+
+.order-panel .btn-secondary:hover {
+  background-color: rgba(57, 255, 20, 0.1);
+  border-color: #39ff14;
+  color: #39ff14;
+}
+
+.order-panel .order-field label {
+  color: #8fae84;
+}
+
+.order-panel .order-field input {
+  background-color: #1b2016;
+  border: 1px solid #2a2f24;
+  color: #f1f3ee;
+}
+
+.order-panel .order-field input::placeholder {
+  color: #5f6e57;
+}
+
+.order-panel .order-field input:focus {
+  outline: none;
+  border-color: #39ff14;
+  box-shadow: 0 0 0 3px rgba(57, 255, 20, 0.2);
+}
+
+.order-panel .tracking-details {
+  border-top: 1px solid #2a2f24;
+}
+
+.order-panel .tracking-details summary {
+  color: #8fae84;
+}
+
+.order-panel .welcome-preview-label {
+  color: #8fae84;
+}
+
+.order-panel .welcome-preview {
+  background-color: #161b13;
+  border: 1px solid #2a2f24;
+  color: #f1f3ee;
+}
+
+/* ===========================================================
    Dashboard: sidebar + painel principal
    =========================================================== */
 .dashboard-grid {
