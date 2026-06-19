@@ -440,6 +440,56 @@ Best regards,
 Premium Support Team`,
     },
     {
+      id: "chargebackEnvioProdutos",
+      category: "geral",
+      label: "Chargeback realizado - solicitar envio dos produtos",
+      autoDetect: ["chargeback", "estorno bancario", "estorno bancário", "contestação", "contestacao"],
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Agradecemos por entrar em contato.
+
+Verificamos que sua compra foi cancelada diretamente pelo seu banco. Como cada instituição financeira possui suas próprias regras e procedimentos para cancelamentos e reembolsos, recomendamos que você entre em contato com o seu banco para confirmar os próximos passos.
+
+Além disso, solicitamos que você devolva o produto para o endereço abaixo, para que possamos dar o devido andamento ao seu caso:
+
+📍 Endereço de Devolução:
+11870 62nd St. N
+Largo, FL 33773
+
+👉 Importante: Caso o produto ainda não tenha sido entregue, por favor, recuse a entrega. Ao recusar o pacote, ele será automaticamente retornado à nossa empresa, agilizando o processo de resolução e evitando etapas desnecessárias.
+
+Assim que o produto for devolvido — seja por recusa ou envio para o endereço acima — poderemos dar continuidade à assistência de forma adequada.
+
+Se precisar de informações adicionais ou suporte, não hesite em nos contatar. Estamos à disposição para ajudá-lo(a).
+
+Atenciosamente,
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Thank you for reaching out.
+
+We've verified that your purchase was canceled directly by your bank. Since each financial institution has its own rules and procedures for cancellations and refunds, we recommend contacting your bank to confirm the next steps.
+
+Additionally, we kindly ask that you return the product to the address below so we can move forward with your case:
+
+📍 Return Address:
+11870 62nd St. N
+Largo, FL 33773
+
+👉 Important: If the product hasn't been delivered yet, please refuse the delivery. By refusing the package, it will be automatically returned to our company, speeding up the resolution process and avoiding unnecessary steps.
+
+Once the product has been returned — either by refusal or by shipping it to the address above — we'll be able to continue assisting you appropriately.
+
+If you need any additional information or support, please don't hesitate to contact us. We're happy to help.
+
+Best regards,
+Customer Support Team`,
+    },
+    {
       id: "geral",
       category: "geral",
       label: "Resposta geral / acolhimento",
