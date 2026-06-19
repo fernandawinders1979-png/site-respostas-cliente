@@ -2485,11 +2485,28 @@ Premium Customer Support Team`,
         "- Valor Total: ${{valorTotal}}\n" +
         "- Endereço de Entrega: {{endereco}}\n" +
         "- Status Atual: {{status}}\n\n" +
-        "Como você é um cliente importante para nós e quero resolver isso definitivamente, posso oferecer um reembolso parcial de 70% do valor pago, sem necessidade de devolução do produto.\n" +
-        "Essa é uma condição excepcional, aprovada para garantir sua satisfação.\n" +
-        "Posso confirmar esse reembolso de 70% agora?\n" +
-        "Atenciosamente, {{nomeAgente}}\n" +
-        "Equipe de Suporte",
+        "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n\n" +
+        "Queremos garantir que você tenha a melhor experiência possível e resolver sua solicitação de forma prática, rápida e segura.\n\n" +
+        "Após análise da sua situação, conseguimos aprovar uma opção especial de reembolso imediato de 70% do valor total do pedido, sem necessidade de devolução dos produtos.\n\n" +
+        "💡 Por que esta é a melhor escolha para você:\n\n" +
+        "Evita custos de envio: Devolver os produtos pelo método tradicional gera despesas com transportadora que saem do seu bolso.\n" +
+        "Evita taxa de reposição de 15%: O processo padrão deduz automaticamente uma taxa sobre o valor do reembolso.\n" +
+        "Evita riscos de danos durante o transporte: Caso algum frasco seja danificado no caminho, o valor correspondente não seria reembolsado.\n" +
+        "Processo rápido e sem burocracia: O valor do reembolso é creditado diretamente na sua forma de pagamento original, sem precisar preencher formulários ou aguardar semanas.\n" +
+        "Mantém os produtos com você: Você ainda poderá utilizar os produtos, presentear alguém ou guardá-los para uso futuro — 100% natural e seguro.\n\n" +
+        "Em comparação, o processo tradicional de devolução exige:\n\n" +
+        "Gasto imediato com frete;\n" +
+        "Taxa de reposição de 15%;\n" +
+        "Espera de 10 a 15 dias para o transporte e inspeção;\n" +
+        "Risco de deduções adicionais se os produtos chegarem danificados.\n\n" +
+        "✅ Com o reembolso imediato de 70%, você recebe o valor máximo disponível hoje, sem riscos, sem custos adicionais e sem precisar devolver nada.\n\n" +
+        "Se desejar aproveitar essa solução e garantir 70% do valor de volta na sua conta imediatamente, basta responder a este e-mail com:\n\n" +
+        '"Aceito o reembolso de 70%"\n\n' +
+        "Assim que recebermos sua confirmação, processaremos o reembolso de forma instantânea.\n\n" +
+        "Estamos à disposição para qualquer dúvida e queremos garantir que você tenha a solução mais conveniente e segura.\n\n" +
+        "Atenciosamente,\n" +
+        "{{nomeAgente}}\n" +
+        "Equipe de Suporte ao Cliente Premium",
       en:
         "Hello {{nomeCliente}},\n" +
         "Order Details\n" +
@@ -2499,11 +2516,28 @@ Premium Customer Support Team`,
         "- Total Amount: ${{valorTotal}}\n" +
         "- Shipping Address: {{endereco}}\n" +
         "- Current Status: {{status}}\n\n" +
-        "Since you're an important customer to us and I want to resolve this once and for all, I can offer a partial refund of 70% of the amount paid, with no need to return the product.\n" +
-        "This is an exceptional condition, approved to make sure you're satisfied.\n" +
-        "Shall I confirm this 70% refund now?\n" +
-        "Best regards, {{nomeAgente}}\n" +
-        "Support Team",
+        "My name is {{nomeAgente}} and I'll be assisting you from now on.\n\n" +
+        "We want to make sure you have the best possible experience and resolve your request in a practical, fast, and safe way.\n\n" +
+        "After reviewing your situation, we were able to approve a special option: an immediate refund of 70% of the order's total amount, with no need to return the products.\n\n" +
+        "💡 Why this is the best choice for you:\n\n" +
+        "Avoids shipping costs: Returning the products through the traditional method generates carrier expenses that come out of your own pocket.\n" +
+        "Avoids the 15% restocking fee: The standard process automatically deducts a fee from the refund amount.\n" +
+        "Avoids the risk of transport damage: If a bottle gets damaged along the way, its value wouldn't be refunded.\n" +
+        "Fast process with no paperwork: The refund amount is credited directly to your original payment method, with no forms to fill out or weeks of waiting.\n" +
+        "You keep the products: You can still use the products, gift them to someone, or save them for later — 100% natural and safe.\n\n" +
+        "In comparison, the traditional return process requires:\n\n" +
+        "Immediate shipping expense;\n" +
+        "A 15% restocking fee;\n" +
+        "A 10 to 15 day wait for transport and inspection;\n" +
+        "The risk of additional deductions if the products arrive damaged.\n\n" +
+        "✅ With the immediate 70% refund, you get the maximum amount available today, with no risk, no extra costs, and nothing to return.\n\n" +
+        "If you'd like to take advantage of this solution and secure 70% of the amount back in your account right away, just reply to this email with:\n\n" +
+        '"I accept the 70% refund"\n\n' +
+        "As soon as we receive your confirmation, we'll process the refund instantly.\n\n" +
+        "We're available for any questions and want to make sure you get the most convenient and secure solution.\n\n" +
+        "Best regards,\n" +
+        "{{nomeAgente}}\n" +
+        "Premium Customer Support Team",
     },
     {
       id: "reembolso75",
@@ -2519,11 +2553,15 @@ Premium Customer Support Team`,
         "- Valor Total: ${{valorTotal}}\n" +
         "- Endereço de Entrega: {{endereco}}\n" +
         "- Status Atual: {{status}}\n\n" +
-        "Quero encerrar essa situação da melhor forma possível para você. Por isso, posso oferecer a condição máxima disponível: reembolso parcial de 75% do valor pago, sem necessidade de devolução do produto.\n" +
-        "Essa é a melhor oferta que conseguimos disponibilizar para esse caso.\n" +
-        "Posso confirmar esse reembolso de 75% agora mesmo?\n" +
-        "Atenciosamente, {{nomeAgente}}\n" +
-        "Equipe de Suporte",
+        "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n\n" +
+        "Conversei com a supervisora e conseguimos liberar um reembolso de 75% do valor total do seu pedido.\n\n" +
+        "Dessa forma, você não precisa devolver os produtos, evita gastos com frete e ainda mantém os itens recebidos em casa.\n\n" +
+        "Gostaria de saber o que você acha dessa proposta. Acredito que seja uma solução prática e vantajosa, que garante parte do seu investimento de volta de forma rápida, sem complicações.\n\n" +
+        "Se concordar, basta responder a este e-mail que processaremos o reembolso imediatamente. Tenho certeza de que essa opção é a mais segura e conveniente para você.\n\n" +
+        "Aguardamos seu retorno e estamos à disposição para qualquer dúvida.\n\n" +
+        "Atenciosamente,\n" +
+        "{{nomeAgente}}\n" +
+        "Equipe de Suporte ao Cliente",
       en:
         "Hello {{nomeCliente}},\n" +
         "Order Details\n" +
@@ -2533,11 +2571,15 @@ Premium Customer Support Team`,
         "- Total Amount: ${{valorTotal}}\n" +
         "- Shipping Address: {{endereco}}\n" +
         "- Current Status: {{status}}\n\n" +
-        "I want to close out this situation in the best way possible for you. That's why I can offer the maximum condition available: a partial refund of 75% of the amount paid, with no need to return the product.\n" +
-        "This is the best offer we're able to provide for this case.\n" +
-        "Shall I confirm this 75% refund right now?\n" +
-        "Best regards, {{nomeAgente}}\n" +
-        "Support Team",
+        "My name is {{nomeAgente}} and I'll be assisting you from now on.\n\n" +
+        "I spoke with my supervisor and we were able to release a 75% refund of your order's total amount.\n\n" +
+        "This way, you don't need to return the products, you avoid shipping costs, and you still keep the items you received at home.\n\n" +
+        "I'd like to know what you think of this proposal. I believe it's a practical and advantageous solution that guarantees part of your investment back quickly, with no complications.\n\n" +
+        "If you agree, just reply to this email and we'll process the refund right away. I'm confident this is the safest and most convenient option for you.\n\n" +
+        "We look forward to your reply and remain available for any questions.\n\n" +
+        "Best regards,\n" +
+        "{{nomeAgente}}\n" +
+        "Customer Support Team",
     },
   ];
 
