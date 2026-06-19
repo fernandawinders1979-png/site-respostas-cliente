@@ -627,6 +627,32 @@ Customer Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+    {
+      id: "comoPossoAjudar",
+      category: "geral",
+      label: "Como posso te ajudar",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n\n" +
+        "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n\n" +
+        "Agradecemos por entrar em contato. Esperamos que você esteja bem!\n\n" +
+        "Somos a equipe de suporte do {{produto}} e nosso principal objetivo é garantir que você tenha a melhor experiência possível.\n\n" +
+        "Para que possamos atendê-lo(a) da forma mais eficiente, por favor, compartilhe conosco sua dúvida ou necessidade. Estamos prontos para oferecer todo o suporte necessário e ajudá-lo(a) a encontrar a solução ideal.\n\n" +
+        "Aguardamos seu retorno e permanecemos à disposição para qualquer esclarecimento.\n\n" +
+        "Atenciosamente,\n" +
+        "{{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n\n" +
+        "My name is {{nomeAgente}} and I'll be assisting you from now on.\n\n" +
+        "Thank you for reaching out. We hope you're doing well!\n\n" +
+        "We are the support team for {{produto}}, and our main goal is to make sure you have the best possible experience.\n\n" +
+        "So we can assist you as efficiently as possible, please share your question or need with us. We're ready to provide all the necessary support and help you find the ideal solution.\n\n" +
+        "We look forward to your reply and remain available for any clarification.\n\n" +
+        "Best regards,\n" +
+        "{{nomeAgente}}\n" +
+        "Support Team",
+    },
 
     /* ---- Produtos Memória ---- */
     {
