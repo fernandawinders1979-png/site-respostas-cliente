@@ -2211,9 +2211,13 @@ Premium Customer Support Team`,
         "- Valor Total: ${{valorTotal}}\n" +
         "- Endereço de Entrega: {{endereco}}\n" +
         "- Status Atual: {{status}}\n\n" +
-        "Para resolver isso da melhor forma possível e sem mais transtornos, posso oferecer um reembolso parcial de 50% do valor pago, sem necessidade de devolução do produto.\n" +
-        "Essa é uma condição especial para garantir sua satisfação.\n" +
-        "Posso confirmar esse reembolso de 50% para você agora?\n" +
+        "Entendo a sua posição e quero reforçar que minha intenção é encontrar uma solução que seja justa, prática e vantajosa para você.\n" +
+        "Conversei com minha gerente, expliquei todos os detalhes do seu caso e, considerando a situação, ela me autorizou a oferecer uma condição especial, fora do procedimento padrão.\n" +
+        "Conseguimos liberar um reembolso administrativo de 50% do valor total do seu pedido, e você não precisará devolver nenhum produto.\n" +
+        "Dessa forma, você evita o custo do frete de devolução, evita o processo de inspeção, não corre o risco de deduções adicionais e ainda pode continuar utilizando os produtos que já recebeu, tendo mais tempo para avaliar os benefícios com o uso contínuo.\n" +
+        "O reembolso será processado assim que você responder este e-mail confirmando que aceita essa solução.\n" +
+        "Essa é a melhor condição que consigo liberar para o seu caso neste momento, e acredito que seja uma alternativa bastante vantajosa para evitar custos, espera e todo o processo de devolução física.\n" +
+        "Podemos seguir desta forma?\n" +
         "Atenciosamente, {{nomeAgente}}\n" +
         "Equipe de Suporte",
       en:
@@ -2225,9 +2229,13 @@ Premium Customer Support Team`,
         "- Total Amount: ${{valorTotal}}\n" +
         "- Shipping Address: {{endereco}}\n" +
         "- Current Status: {{status}}\n\n" +
-        "To resolve this in the best possible way and avoid further inconvenience, I can offer a partial refund of 50% of the amount paid, with no need to return the product.\n" +
-        "This is a special condition to make sure you're satisfied.\n" +
-        "Shall I confirm this 50% refund for you now?\n" +
+        "I understand your position, and I want to reinforce that my intention is to find a solution that is fair, practical, and advantageous for you.\n" +
+        "I spoke with my manager, explained every detail of your case, and given the situation, she authorized me to offer a special condition, outside our standard procedure.\n" +
+        "We were able to release an administrative refund of 50% of your order's total amount, and you won't need to return any product.\n" +
+        "This way, you avoid the return shipping cost, avoid the inspection process, don't risk any additional deductions, and can keep using the products you've already received, giving you more time to evaluate the benefits with continued use.\n" +
+        "The refund will be processed as soon as you reply to this email confirming that you accept this solution.\n" +
+        "This is the best condition I'm able to release for your case at this time, and I believe it's a very advantageous alternative to avoid costs, waiting time, and the entire physical return process.\n" +
+        "Can we move forward this way?\n" +
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
