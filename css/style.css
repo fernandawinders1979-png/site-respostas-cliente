@@ -1,18 +1,22 @@
 /* ===========================================================
    Variáveis e reset básico
+   Tema escuro da marca: fundo preto, títulos em verde
+   fluorescente e texto em branco.
    =========================================================== */
 :root {
-  --color-bg: #f6f8f5;
-  --color-surface: #ffffff;
-  --color-border: #dfe5db;
-  --color-text: #1f211d;
-  --color-text-light: #5c6359;
-  --color-primary: #1f9d4c;
-  --color-primary-hover: #18803d;
-  --color-primary-soft: rgba(31, 157, 76, 0.15);
-  --color-success: #1f9d55;
-  --radius: 8px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --color-bg: #070907;
+  --color-surface: #0f130f;
+  --color-surface-alt: #161c15;
+  --color-border: #263322;
+  --color-text: #f5f7f3;
+  --color-text-light: #a9b6a3;
+  --color-primary: #39ff14;
+  --color-primary-hover: #2fe60f;
+  --color-primary-soft: rgba(57, 255, 20, 0.18);
+  --color-success: #39ff14;
+  --radius: 10px;
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(57, 255, 20, 0.05);
+  --glow: 0 0 14px rgba(57, 255, 20, 0.35);
 }
 
 * {
@@ -41,14 +45,17 @@ body {
 .site-header {
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
-  padding: 24px 16px;
+  box-shadow: 0 1px 0 rgba(57, 255, 20, 0.12);
+  padding: 28px 16px;
   text-align: center;
 }
 
 .site-header h1 {
-  margin: 0 0 4px;
-  font-size: 1.6rem;
-  color: var(--color-text);
+  margin: 0 0 6px;
+  font-size: 1.7rem;
+  color: var(--color-primary);
+  text-shadow: 0 0 16px rgba(57, 255, 20, 0.35);
+  letter-spacing: 0.3px;
 }
 
 .site-header .subtitle {
@@ -72,7 +79,8 @@ body {
 section h2 {
   font-size: 1.1rem;
   margin: 0 0 12px;
-  color: var(--color-text);
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.25);
 }
 
 .btn-secondary {
@@ -83,12 +91,13 @@ section h2 {
   padding: 8px 16px;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-bg);
+  background-color: var(--color-primary-soft);
   border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* ===========================================================
@@ -137,9 +146,14 @@ section h2 {
   padding: 8px 10px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+  background-color: var(--color-surface-alt);
   font-family: inherit;
   font-size: 0.9rem;
   color: var(--color-text);
+}
+
+.order-field input::placeholder {
+  color: #5e6b59;
 }
 
 .order-field input:focus {
@@ -173,9 +187,11 @@ section h2 {
 .welcome-preview {
   margin: 0;
   padding: 12px;
-  background-color: #fafbfc;
+  background-color: var(--color-surface-alt);
   border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-primary);
   border-radius: var(--radius);
+  color: var(--color-text);
   font-size: 0.9rem;
 }
 
@@ -216,7 +232,7 @@ section h2 {
   border-left: 4px solid var(--cat-color, var(--color-primary));
   border-radius: var(--radius);
   padding: 8px 10px;
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-alt);
 }
 
 .template-category summary {
@@ -240,6 +256,7 @@ section h2 {
   height: 10px;
   border-radius: 50%;
   background-color: var(--cat-color, var(--color-primary));
+  box-shadow: 0 0 6px var(--cat-color, var(--color-primary));
   flex-shrink: 0;
 }
 
@@ -266,12 +283,13 @@ section h2 {
   padding: 10px 12px;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .template-btn:hover {
-  background-color: var(--color-bg);
+  background-color: var(--color-surface-alt);
   border-color: var(--cat-color, var(--color-primary));
+  box-shadow: 0 0 8px var(--cat-color, var(--color-primary));
 }
 
 .main-panel {
@@ -298,9 +316,14 @@ section h2 {
   padding: 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+  background-color: var(--color-surface-alt);
   font-family: inherit;
   font-size: 0.95rem;
   color: var(--color-text);
+}
+
+#customer-message::placeholder {
+  color: #5e6b59;
 }
 
 #customer-message:focus {
@@ -312,18 +335,20 @@ section h2 {
 .btn-primary {
   margin-top: 16px;
   background-color: var(--color-primary);
-  color: #fff;
+  color: #07130a;
   border: none;
   border-radius: var(--radius);
   padding: 12px 24px;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  box-shadow: var(--glow);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--color-primary-hover);
+  box-shadow: 0 0 22px rgba(57, 255, 20, 0.5);
 }
 
 .btn-primary:active {
@@ -368,6 +393,7 @@ section h2 {
 .result-card-header h3 {
   margin: 0;
   font-size: 1rem;
+  color: var(--color-text);
 }
 
 .btn-copy {
@@ -378,12 +404,13 @@ section h2 {
   padding: 6px 12px;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .btn-copy:hover {
-  background-color: var(--color-bg);
+  background-color: var(--color-primary-soft);
   border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .response-output {
@@ -396,14 +423,14 @@ section h2 {
   font-family: inherit;
   font-size: 0.9rem;
   color: var(--color-text);
-  background-color: #fafbfc;
+  background-color: var(--color-surface-alt);
 }
 
 .copy-feedback {
   margin-top: 12px;
   min-height: 1.2em;
   font-size: 0.9rem;
-  color: var(--color-success);
+  color: var(--color-primary);
   text-align: center;
 }
 
