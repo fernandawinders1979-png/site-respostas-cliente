@@ -1485,6 +1485,84 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+    {
+      id: "memoriaDarChance",
+      category: "memoria",
+      label: "Dar uma chance ao produto",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora. Espero que esteja bem.
+
+Agradeço por sua mensagem e por compartilhar suas preocupações conosco. Entendo perfeitamente que você queira ter cautela antes de investir em um produto, especialmente quando ainda não teve a oportunidade de experimentá-lo. É natural ter dúvidas e querer ter certeza de que está fazendo uma boa escolha.
+
+Gostaria de reforçar um ponto importante antes de qualquer decisão: o produto adquirido foi desenvolvido como um suplemento natural para apoio à memória, foco e clareza mental, com uma proposta gradual e não medicamentosa. Seu objetivo é oferecer suporte progressivo ao organismo, respeitando o tempo de adaptação de cada pessoa.
+
+Muitos clientes também tiveram dúvidas no início, mas decidiram testar o produto com calma e relataram uma experiência positiva ao incluí-lo em sua rotina. Por isso, recomendamos fortemente que você dê uma chance ao produto antes de considerar a devolução.
+
+📊 Experiência Geral dos Clientes (até 30 dias)
+🟢 Clientes Muito Satisfeitos – 68%
+
+██████████████████████████░ 68%
+
+🟡 Satisfação Moderada / Gradual – 27%
+
+███████████████░░░░░░░░░░░ 27%
+
+⚪ Sem Resultados Perceptíveis – 5%
+
+██░░░░░░░░░░░░░░░░░░░░░░░ 5%
+
+📊 95% dos clientes relatam benefícios perceptíveis em até 30 dias, principalmente em relação à melhora da clareza mental, foco e bem-estar cognitivo geral.
+
+Além disso, você conta com uma garantia de satisfação de 60 dias a partir da data da compra, garantindo tempo suficiente para testar o produto, observar sua adaptação e tomar uma decisão informada. Caso não se sinta satisfeito(a) dentro deste período, estaremos à disposição para orientá-lo(a) conforme as condições da garantia.
+
+Nossa sugestão é que você dê uma oportunidade justa ao produto, siga as instruções de uso e observe sua experiência com tranquilidade. Dessa forma, sua decisão será baseada no uso real, e não apenas na primeira impressão.
+
+Estamos aqui para apoiá-lo(a) durante todo esse processo e esclarecer qualquer dúvida para que se sinta seguro(a) em cada etapa.
+
+Fique à vontade para nos contatar caso precise de mais informações ou esclarecimentos.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on. I hope you're doing well.
+
+Thank you for your message and for sharing your concerns with us. I completely understand wanting to be cautious before investing in a product, especially when you haven't had the chance to try it yet. It's natural to have doubts and want to be sure you're making a good choice.
+
+I'd like to highlight an important point before any decision: the product you purchased was developed as a natural supplement to support memory, focus, and mental clarity, with a gradual, non-medicinal approach. Its goal is to offer progressive support to the body, respecting each person's own adaptation time.
+
+Many customers also had doubts at first, but decided to try the product calmly and reported a positive experience after adding it to their routine. That's why we strongly recommend giving the product a fair chance before considering a return.
+
+📊 Overall Customer Experience (within 30 days)
+🟢 Very Satisfied Customers – 68%
+
+██████████████████████████░ 68%
+
+🟡 Moderate / Gradual Satisfaction – 27%
+
+███████████████░░░░░░░░░░░ 27%
+
+⚪ No Noticeable Results – 5%
+
+██░░░░░░░░░░░░░░░░░░░░░░░ 5%
+
+📊 95% of customers report noticeable benefits within 30 days, mainly related to improved mental clarity, focus, and overall cognitive well-being.
+
+In addition, you have a 60-day satisfaction guarantee from the purchase date, giving you enough time to try the product, observe how your body adapts, and make an informed decision. If you're not satisfied within this period, we'll be available to guide you according to the guarantee conditions.
+
+Our suggestion is that you give the product a fair opportunity, follow the usage instructions, and observe your experience calmly. This way, your decision will be based on real use, not just a first impression.
+
+We're here to support you throughout this whole process and answer any questions so you feel confident at every step.
+
+Feel free to contact us if you need more information or clarification.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
 
     /* ---- Produtos Emagrecimento ---- */
     {
