@@ -2002,36 +2002,80 @@ Customer Support Team`,
       category: "reembolso",
       label: "Reembolso 30%/35%",
       autoDetect: null,
-      pt:
-        "Olá {{nomeCliente}},\n" +
-        "Detalhes do Pedido\n" +
-        "- Número do Pedido: {{numeroPedido}}\n" +
-        "- Data da Compra: {{dataCompra}}\n" +
-        "- Produto: {{produto}}\n" +
-        "- Valor Total: ${{valorTotal}}\n" +
-        "- Endereço de Entrega: {{endereco}}\n" +
-        "- Status Atual: {{status}}\n\n" +
-        "Entendo que a oferta anterior não atendeu sua expectativa, e quero buscar uma solução melhor para você.\n" +
-        "Posso aumentar a oferta para um reembolso parcial de {{percentual}}% do valor pago, sem precisar devolver o produto.\n" +
-        "Esse valor já cobre uma boa parte do investimento e você continua podendo usar o {{produto}}.\n" +
-        "Posso seguir com esse reembolso de {{percentual}}% agora mesmo?\n" +
-        "Atenciosamente, {{nomeAgente}}\n" +
-        "Equipe de Suporte",
-      en:
-        "Hello {{nomeCliente}},\n" +
-        "Order Details\n" +
-        "- Order Number: {{numeroPedido}}\n" +
-        "- Purchase Date: {{dataCompra}}\n" +
-        "- Product: {{produto}}\n" +
-        "- Total Amount: ${{valorTotal}}\n" +
-        "- Shipping Address: {{endereco}}\n" +
-        "- Current Status: {{status}}\n\n" +
-        "I understand the previous offer didn't meet your expectations, and I want to find a better solution for you.\n" +
-        "I can increase the offer to a partial refund of {{percentual}}% of the amount paid, with no need to return the product.\n" +
-        "This already covers a good part of your investment and you can keep using the {{produto}}.\n" +
-        "Shall I go ahead with this {{percentual}}% refund right now?\n" +
-        "Best regards, {{nomeAgente}}\n" +
-        "Support Team",
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Agradeço imensamente pelo seu retorno tão sincero e doloroso. Eu consigo, do fundo do meu coração, sentir a angústia da sua situação. [INSERIR A QUEIXA DO CLIENTE]
+
+Minha intenção jamais será faltar com a compaixão ou criar barreiras para você. Somos uma empresa idônea e é justamente por termos total empatia pelo seu momento que preciso lhe apresentar a realidade do sistema para protegê-la de um prejuízo ainda maior.
+
+Quero ser muito transparente sobre o motivo de insistirmos em um acordo digital em vez da devolução física tradicional. O processo convencional de envio para o armazém nunca resulta em um reembolso 100% integral e trará três grandes problemas para você agora:
+
+1️⃣ Gasto imediato do seu bolso: Para devolver os 6 potes pesados, as transportadoras cobrarão uma taxa alta de frete. Esse dinheiro sairá diretamente da sua única renda de aposentadoria hoje e não é reembolsável.
+
+2️⃣ A taxa obrigatória de 15%: A política padrão do nosso centro de distribuição deduz automaticamente uma taxa de reabastecimento de estoque de 15% sobre o valor de qualquer pacote físico que retorna. O sistema já cortaria parte dos seus US$ {{valorTotal}} logo na chegada.
+
+3️⃣ O risco do transporte e da disputa: Se você abrir uma disputa no banco, o processo de análise de fraude pode congelar o seu cadastro e reter o seu dinheiro em auditoria por até 90 dias úteis. Além disso, se a caixa sofrer qualquer dano ou impacto no trajeto dos correios e um frasco quebrar, o armazém descontará o valor dele.
+
+Não queremos que você gaste o dinheiro que não tem em filas de transportadoras, nem que passe meses esperando uma disputa bancária enquanto lida com suas dores. Pensando estritamente em aliviar o seu fardo financeiro hoje, conversei com a nossa diretoria e, em caráter de extrema exceção pela sua situação, conseguimos liberar a nossa proposta máxima de {{percentual}}% de reembolso administrativo.
+
+💎 Por que esta proposta de {{percentual}}% é o caminho mais seguro e humano para você hoje?
+
+Dinheiro garantido na sua conta HOJE: Nós processamos o estorno de US$ [VALOR DO REEMBOLSO] direto no mesmo modo de pagamento da compra do produto. Sem burocracia, sem formulários e sem espera de semanas. O dinheiro entra limpo para ajudar nas suas contas imediatas.
+Você economiza 100% com frete e taxas: Não gasta um único centavo com correios e fica totalmente isenta da taxa de 15% do armazém. Todo o valor do acordo vai direto para o seu bolso.
+Os potes continuam com você de graça: Você não precisa carregar caixas ou ir a lugar nenhum. Os produtos permanecem na sua casa.
+
+Como os potes continuarão com você sem custo nenhum, sugerimos que, nos dias em que a dor estiver mais intensa, você utilize a fórmula misturada ao seu suco ou chá logo no café da manhã, conforme orientamos. Você terá o alívio físico que o seu corpo precisa tanto neste momento de estresse e, ao mesmo tempo, terá garantido um retorno financeiro imediato em seu cartão hoje, com risco zero.
+
+{{nomeCliente}}, por favor, permita-nos ajudar a aliviar um pouco desse peso hoje da forma mais rápida possível.
+
+Se você aceita receber o reembolso de {{percentual}}% ([VALOR DO REEMBOLSO]) direto no seu cartão hoje e manter os produtos com você com total comodidade, basta responder com "Aceito" e eu farei o lançamento no sistema imediatamente.
+
+Caso a sua decisão final seja estritamente arcar com os custos do frete, aceitar a perda da taxa de 15% e assumir o tempo de espera do armazém, informe-nos para que enviemos o endereço de destino.
+
+Continuamos em oração pelo seu lar e pela sua saúde.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Thank you so much for your such sincere and painful reply. I can, from the bottom of my heart, feel the distress of your situation. [INSERT THE CUSTOMER'S COMPLAINT]
+
+My intention will never be to lack compassion or create obstacles for you. We are a trustworthy company, and it's precisely because we have complete empathy for your moment that I need to walk you through the reality of the system, to protect you from an even bigger loss.
+
+I want to be very transparent about why we insist on a digital agreement instead of the traditional physical return. The conventional process of shipping back to the warehouse never results in a 100% full refund, and it will bring three major problems for you right now:
+
+1️⃣ Immediate out-of-pocket expense: To return the 6 heavy bottles, the carriers will charge a high shipping fee. That money will come directly out of your only retirement income today, and it isn't refundable.
+
+2️⃣ The mandatory 15% fee: Our distribution center's standard policy automatically deducts a 15% restocking fee from the value of any physical package that's returned. The system would already cut part of your US$ {{valorTotal}} as soon as it arrives.
+
+3️⃣ The shipping and dispute risk: If you open a dispute with your bank, the fraud-review process can freeze your account and hold your money under audit for up to 90 business days. In addition, if the box is damaged or impacted along the way and a bottle breaks, the warehouse will deduct its value.
+
+We don't want you spending money you don't have on carrier lines, nor spending months waiting on a bank dispute while dealing with your pain. Thinking strictly about easing your financial burden today, I spoke with our management and, as an extreme exception due to your situation, we were able to release our maximum offer of {{percentual}}% in administrative refund.
+
+💎 Why is this {{percentual}}% offer the safest and most humane path for you today?
+
+Guaranteed money in your account TODAY: We process the refund of US$ [REFUND AMOUNT] directly to the same payment method used for the purchase. No paperwork, no forms, and no weeks of waiting. The money arrives clean to help with your immediate bills.
+You save 100% on shipping and fees: You don't spend a single cent on postage and you're fully exempt from the warehouse's 15% fee. The entire agreed amount goes straight into your pocket.
+The bottles stay with you for free: You don't need to carry boxes or go anywhere. The products stay at your home.
+
+Since the bottles will stay with you at no cost, we suggest that, on the days when the pain is more intense, you mix the formula into your juice or tea right at breakfast, as we've guided. You'll get the physical relief your body needs so much during this stressful time, and at the same time, you'll have guaranteed an immediate financial return on your card today, with zero risk.
+
+{{nomeCliente}}, please allow us to help ease some of this burden today in the fastest way possible.
+
+If you agree to receive the {{percentual}}% refund ([REFUND AMOUNT]) directly on your card today and keep the products with you for total convenience, just reply with "I accept" and I'll process it in the system right away.
+
+If your final decision is to strictly cover the shipping costs, accept the loss of the 15% fee, and take on the warehouse's waiting time, let us know so we can send you the return address.
+
+We remain in prayer for your home and your health.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
     },
     {
       id: "reembolso50",
