@@ -2000,7 +2000,7 @@ Customer Support Team`,
     {
       id: "reembolso3035",
       category: "reembolso",
-      label: "Reembolso 30%/35%",
+      label: "Reembolso 30%/35% (Opção A)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
 
@@ -2076,6 +2076,126 @@ We remain in prayer for your home and your health.
 Best regards,
 {{nomeAgente}}
 Customer Support Team`,
+    },
+    {
+      id: "reembolso3035B",
+      category: "reembolso",
+      label: "Reembolso 30%/35% (Opção B)",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Gostaria de começar reforçando algo importante: entendo que você deseja resolver isso da maneira mais justa possível. Meu papel aqui não é criar obstáculos, mas sim garantir que você tenha total clareza antes de tomar uma decisão que possa gerar custos adicionais desnecessários.
+
+Por esse motivo, preciso explicar com mais detalhes como funciona o processo padrão de devolução, conforme descrito em nossa política operacional.
+
+📦 Se optar pela devolução física para obter um reembolso, o processo obrigatoriamente envolve:
+
+O custo do frete de devolução é por conta do cliente:
+O envio deve incluir rastreamento e embalagem adequada para evitar danos durante o transporte.
+Taxa padrão de reabastecimento de 15%:
+Aplicada automaticamente ao valor do reembolso elegível por apólice.
+Tempo de trânsito:
+Em média, de 10 a 15 dias para que o produto chegue ao nosso centro de devoluções.
+Inspeção obrigatória:
+Nenhum reembolso será liberado até que esta verificação seja concluída.
+
+Agora, pontos muito importantes que muitas vezes são negligenciados:
+
+Garrafas abertas não são elegíveis para reembolso:
+Se alguma unidade tiver sido aberta, usada ou tiver o lacre rompido, o valor será automaticamente deduzido do montante final.
+Garrafas danificadas durante o transporte também são deduzidas:
+Se alguma garrafa quebrar, rachar, vazar ou chegar ao centro de devoluções com danos estruturais, o valor correspondente não poderá ser reembolsado.
+Caso a embalagem externa chegue danificada:
+E afete o estado interno dos produtos, poderão ser feitos ajustes adicionais na quantidade final aprovada.
+
+Esses critérios são regras padronizadas para o controle logístico e sanitário. Minha responsabilidade é garantir que você entenda todos os detalhes antes de escolher esse caminho.
+
+Na prática, isso significa:
+✔️ Custo de envio imediato.
+✔️ Dedução automática de 15%.
+✔️ Risco de deduções adicionais por garrafas abertas ou danificadas.
+✔️ Período de espera de várias semanas.
+✔️ Reembolso somente após inspeção e aprovação.
+
+Agora, compare isso com a alternativa que consegui aprovar especificamente para o seu caso:
+
+👉 Reembolso administrativo imediato de {{percentual}}%
+
+Crédito direto para o seu método de pagamento original.
+Não é necessário devolver nenhuma garrafa.
+Sem taxa de reposição de 15%.
+Sem custos de envio.
+Sem inspeção ou risco de deduções.
+Processamento imediato e caso encerrado hoje.
+
+Não estou tentando impedi-lo de devolver o produto. Estou tentando evitar que você enfrente um processo mais longo, mais caro e que acarrete um risco financeiro real. Analisando objetivamente, a opção administrativa elimina incertezas e custos.
+
+Caso deseje aceitar o ajuste administrativo de {{percentual}}%, por favor, confirme por escrito e eu o processarei imediatamente.
+
+Estou aqui para te ajudar a tomar a decisão mais segura possível.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente Premium`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+I'd like to start by reinforcing something important: I understand you want to resolve this in the fairest way possible. My role here isn't to create obstacles, but to make sure you have full clarity before making a decision that could generate unnecessary additional costs.
+
+For that reason, I need to explain in more detail how our standard return process works, as described in our operating policy.
+
+📦 If you choose a physical return to get a refund, the process necessarily involves:
+
+Return shipping cost is the customer's responsibility:
+The shipment must include tracking and proper packaging to avoid damage during transport.
+Standard 15% restocking fee:
+Automatically applied to the refund amount eligible under policy.
+Transit time:
+On average, 10 to 15 days for the product to reach our returns center.
+Mandatory inspection:
+No refund will be released until this check is completed.
+
+Now, some very important points that are often overlooked:
+
+Opened bottles are not eligible for refund:
+If any unit has been opened, used, or has a broken seal, its value will be automatically deducted from the final amount.
+Bottles damaged during transport are also deducted:
+If any bottle breaks, cracks, leaks, or arrives at the returns center with structural damage, the corresponding value cannot be refunded.
+If the outer packaging arrives damaged:
+And it affects the internal condition of the products, additional adjustments may be made to the final approved amount.
+
+These criteria are standardized rules for logistics and sanitary control. My responsibility is to make sure you understand every detail before choosing this path.
+
+In practice, this means:
+✔️ Immediate shipping cost.
+✔️ Automatic 15% deduction.
+✔️ Risk of additional deductions for opened or damaged bottles.
+✔️ A waiting period of several weeks.
+✔️ Refund only after inspection and approval.
+
+Now, compare this with the alternative I was able to approve specifically for your case:
+
+👉 Immediate administrative refund of {{percentual}}%
+
+Direct credit to your original payment method.
+No need to return any bottle.
+No 15% restocking fee.
+No shipping costs.
+No inspection or risk of deductions.
+Immediate processing, case closed today.
+
+I'm not trying to stop you from returning the product. I'm trying to prevent you from facing a longer, more expensive process that carries a real financial risk. Looking at it objectively, the administrative option removes uncertainty and costs.
+
+If you'd like to accept the {{percentual}}% administrative adjustment, please confirm in writing and I'll process it right away.
+
+I'm here to help you make the safest decision possible.
+
+Best regards,
+{{nomeAgente}}
+Premium Customer Support Team`,
     },
     {
       id: "reembolso50",
