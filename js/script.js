@@ -656,6 +656,42 @@ Customer Support Team`,
         "{{nomeAgente}}\n" +
         "Support Team",
     },
+    {
+      id: "enderecoInsuficiente",
+      category: "geral",
+      label: "Pedido voltou para a empresa, endereço insuficiente",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
+        "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n\n" +
+        "Verifiquei na plataforma de transporte e consta que o seu pedido não foi entregue devido a endereço insuficiente. Mas não se preocupe, irei resolver essa questão da melhor forma possível.\n\n" +
+        "O endereço cadastrado é o endereço acima. Esse endereço está correto?\n\n" +
+        "Aguardo o seu retorno para solicitar o reenvio sem custos imediatamente.\n" +
+        "Atenciosamente, {{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
+        "My name is {{nomeAgente}} and I'll be assisting you from now on.\n\n" +
+        "I checked with the shipping carrier and your order was not delivered due to an insufficient address. Don't worry, I'll take care of this for you in the best way possible.\n\n" +
+        "The address on file is the one shown above. Is this address correct?\n\n" +
+        "I'll be looking forward to your reply so I can request a free reshipment right away.\n" +
+        "Best regards, {{nomeAgente}}\n" +
+        "Support Team",
+    },
 
     /* ---- Produtos Memória ---- */
     {
