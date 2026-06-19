@@ -2425,11 +2425,24 @@ Premium Customer Support Team`,
         "- Valor Total: ${{valorTotal}}\n" +
         "- Endereço de Entrega: {{endereco}}\n" +
         "- Status Atual: {{status}}\n\n" +
-        "Quero garantir que você saia satisfeito(a) dessa situação. Por isso, posso oferecer uma condição especial: reembolso parcial de 60% do valor pago, sem precisar devolver o produto.\n" +
-        "Essa é uma das melhores condições que conseguimos oferecer nesse caso.\n" +
-        "Posso processar esse reembolso de 60% agora mesmo?\n" +
-        "Atenciosamente, {{nomeAgente}}\n" +
-        "Equipe de Suporte",
+        "Gostaríamos de reafirmar nosso compromisso em tratar sua solicitação com clareza, respeito e foco na solução mais adequada para você.\n\n" +
+        "Após análise cuidadosa e alinhamento interno, a seguinte opção excepcional foi autorizada:\n\n" +
+        "Reembolso imediato de 60% do valor total do pedido\n" +
+        "Sem necessidade de devolução dos produtos já recebidos\n\n" +
+        "Essa opção proporciona uma solução simples, segura e eficiente, permitindo que você mantenha os produtos sem precisar lidar com etapas adicionais ou custos operacionais.\n\n" +
+        "Para total transparência, destacamos como funcionaria o processo padrão de reembolso, caso fosse considerado:\n\n" +
+        "Aplicação de taxa de reposição de 15% sobre o valor reembolsável;\n" +
+        "Devolução obrigatória dos produtos;\n" +
+        "Inspeção obrigatória ao receber os produtos devolvidos;\n" +
+        "Garrafas abertas, violadas ou danificadas não são elegíveis para reembolso;\n" +
+        "Possíveis deduções adicionais caso ocorra algum dano durante o transporte de devolução;\n" +
+        "O processamento do reembolso começa apenas após a aprovação da inspeção.\n\n" +
+        "Considerando essas condições, o reembolso imediato de 60% sem devolução oferece uma solução muito mais conveniente, previsível e prática.\n\n" +
+        "Se desejar prosseguir, responda a este e-mail confirmando sua aceitação, e o reembolso será processado imediatamente para o mesmo método de pagamento utilizado na compra.\n\n" +
+        "Permanecemos à disposição para quaisquer esclarecimentos adicionais e respeitaremos sua decisão com o mesmo nível de profissionalismo.\n\n" +
+        "Atenciosamente,\n" +
+        "{{nomeAgente}}\n" +
+        "Equipe de Suporte ao Cliente",
       en:
         "Hello {{nomeCliente}},\n" +
         "Order Details\n" +
@@ -2439,11 +2452,24 @@ Premium Customer Support Team`,
         "- Total Amount: ${{valorTotal}}\n" +
         "- Shipping Address: {{endereco}}\n" +
         "- Current Status: {{status}}\n\n" +
-        "I want to make sure you leave this situation satisfied. That's why I can offer a special condition: a partial refund of 60% of the amount paid, with no need to return the product.\n" +
-        "This is one of the best conditions we can offer in this case.\n" +
-        "Shall I process this 60% refund right now?\n" +
-        "Best regards, {{nomeAgente}}\n" +
-        "Support Team",
+        "We'd like to reaffirm our commitment to handling your request with clarity, respect, and a focus on finding the best solution for you.\n\n" +
+        "After careful review and internal alignment, the following exceptional option has been authorized:\n\n" +
+        "Immediate refund of 60% of the order's total amount\n" +
+        "No need to return the products you've already received\n\n" +
+        "This option offers a simple, safe, and efficient solution, letting you keep the products without dealing with extra steps or operational costs.\n\n" +
+        "For full transparency, here's how the standard refund process would work, if it were considered instead:\n\n" +
+        "A 15% restocking fee applied to the refundable amount;\n" +
+        "Mandatory return of the products;\n" +
+        "Mandatory inspection upon receiving the returned products;\n" +
+        "Opened, tampered, or damaged bottles are not eligible for refund;\n" +
+        "Possible additional deductions if any damage occurs during return shipping;\n" +
+        "Refund processing only begins after inspection approval.\n\n" +
+        "Considering these conditions, the immediate 60% refund with no return offers a much more convenient, predictable, and practical solution.\n\n" +
+        "If you'd like to proceed, reply to this email confirming your acceptance, and the refund will be processed immediately to the same payment method used for the purchase.\n\n" +
+        "We remain available for any further clarification and will respect your decision with the same level of professionalism.\n\n" +
+        "Best regards,\n" +
+        "{{nomeAgente}}\n" +
+        "Customer Support Team",
     },
     {
       id: "reembolso70",
