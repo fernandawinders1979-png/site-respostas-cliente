@@ -216,6 +216,13 @@
         "Olá {{nomeCliente}},\n" +
         "Meu nome é {{nomeAgente}} e estarei auxiliando você.\n" +
         "Consegui localizar o pedido:\n\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
         "Informações de Rastreamento\n" +
         "- Código de Rastreamento: {{codigoRastreio}}\n" +
         "- Link de Rastreamento: {{linkRastreio}}\n\n" +
@@ -226,6 +233,13 @@
         "Hello {{nomeCliente}},\n" +
         "My name is {{nomeAgente}} and I'll be assisting you.\n" +
         "I was able to locate your order:\n\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
         "Tracking Information\n" +
         "- Tracking Code: {{codigoRastreio}}\n" +
         "- Tracking Link: {{linkRastreio}}\n\n" +
@@ -276,6 +290,13 @@
       autoDetect: ["engano", "devolver", "devolucao", "devolução", "errado", "return", "mistake"],
       pt:
         "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
         "Lamento o transtorno e entendo perfeitamente que isso possa acontecer.\n" +
         "Nossa política de garantia permite a devolução em até 30 dias corridos a partir da data de compra, desde que o produto esteja lacrado e sem uso.\n" +
         "Pelo que vejo em nosso sistema, seu pedido {{numeroPedido}} foi realizado em {{dataCompra}}, então ainda está dentro do prazo para solicitarmos a devolução.\n" +
@@ -285,6 +306,13 @@
         "Equipe de Suporte",
       en:
         "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
         "I'm sorry for the inconvenience, and I completely understand that this can happen.\n" +
         "Our warranty policy allows returns within 30 calendar days from the purchase date, as long as the product is sealed and unused.\n" +
         "From what I see in our system, your order {{numeroPedido}} was placed on {{dataCompra}}, so it's still within the window to request a return.\n" +
@@ -300,6 +328,13 @@
       autoDetect: ["garantia", "warranty", "vencimento"],
       pt:
         "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
         "Notei que seu pedido {{numeroPedido}} está se aproximando do prazo final de 60 dias da nossa garantia de satisfação.\n" +
         "Antes de prosseguirmos com qualquer solicitação, gostaria de te oferecer uma alternativa: podemos processar um reembolso parcial imediato de 15% caso você queira continuar utilizando o produto.\n" +
         "Vale lembrar que nossos produtos são 100% naturais e os benefícios costumam se intensificar com o uso contínuo. Muitos clientes também aproveitam para presentear alguém querido quando decidem não usar o produto integralmente.\n" +
@@ -308,6 +343,13 @@
         "Equipe de Suporte",
       en:
         "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
         "I noticed your order {{numeroPedido}} is approaching the 60-day deadline of our satisfaction warranty.\n" +
         "Before we move forward with any request, I'd like to offer you an alternative: we can process an immediate partial refund of 15% if you'd like to keep using the product.\n" +
         "It's worth mentioning that our products are 100% natural and the benefits tend to build up with continued use. Many customers also choose to gift the product to a loved one when they decide not to use it fully themselves.\n" +
@@ -322,6 +364,13 @@
       autoDetect: ["não recebi", "nao recebi", "consta como entregue", "marcado como entregue", "not received", "marked as delivered", "never arrived"],
       pt:
         "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
         "Sinto muito pela situação. Verifiquei aqui e o sistema da transportadora indica que o pedido {{numeroPedido}} foi entregue no endereço {{endereco}}.\n" +
         "Às vezes esse tipo de caso acontece quando o pacote é deixado com um porteiro, vizinho ou em uma área comum do prédio/condomínio.\n" +
         "Você poderia, por favor, verificar essas possibilidades e confirmar comigo o resultado? Assim posso te ajudar a resolver isso o quanto antes.\n" +
@@ -329,6 +378,13 @@
         "Equipe de Suporte",
       en:
         "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
         "I'm really sorry about this situation. I checked here and the carrier's system shows that order {{numeroPedido}} was delivered to {{endereco}}.\n" +
         "Sometimes this happens when the package is left with a doorman, a neighbor, or in a common area of the building.\n" +
         "Could you please check those possibilities and let me know the outcome? That way I can help you resolve this as quickly as possible.\n" +
@@ -343,6 +399,14 @@
       pt: `Olá {{nomeCliente}},
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
 
 Agradeço pela sua mensagem — entendo completamente sua frustração e agradeço por ter dedicado um tempo para explicar a sua situação 💛
 
@@ -362,6 +426,14 @@ Equipe de Suporte ao Cliente`,
       en: `Hello {{nomeCliente}},
 
 My name is {{nomeAgente}}, and I will be assisting you from now on.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 Thank you for your message — I completely understand your frustration and appreciate the time you took to explain your situation 💛
 
@@ -387,6 +459,14 @@ Customer Support Team`,
       pt: `Olá {{nomeCliente}},
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
 
 Agradecemos por nos informar sobre o ocorrido e lamentamos sinceramente que o seu pedido não tenha chegado em perfeitas condições. Essa não é a experiência que desejamos oferecer, e fique tranquilo(a): estamos aqui para resolver essa situação da melhor forma possível.
 
@@ -414,6 +494,14 @@ Equipe de Atendimento Premium`,
       en: `Hello {{nomeCliente}},
 
 My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 Thank you for letting us know about this, and we sincerely apologize that your order didn't arrive in perfect condition. This isn't the experience we want to provide, and please don't worry: we're here to resolve this in the best possible way.
 
@@ -512,12 +600,26 @@ Customer Support Team`,
       autoDetect: null,
       pt:
         "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
         "Obrigado por entrar em contato! Meu nome é {{nomeAgente}} e recebi sua mensagem. Vou te ajudar com isso o mais rápido possível.\n" +
         "Pode me dar mais detalhes para que eu possa te auxiliar melhor?\n" +
         "Atenciosamente, {{nomeAgente}}\n" +
         "Equipe de Suporte",
       en:
         "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
         "Thank you for reaching out! My name is {{nomeAgente}} and I've received your message. I'll help you with this as quickly as possible.\n" +
         "Could you share more details so I can assist you better?\n" +
         "Best regards, {{nomeAgente}}\n" +
@@ -693,6 +795,14 @@ Support / Customer Service Team`,
       pt: `Olá {{nomeCliente}},
 Meu nome é {{nomeAgente}} e estarei auxiliando você hoje.
 
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
 Entendo a sua preocupação, mas quero assegurar que nossa empresa e o produto {{produto}} são totalmente confiáveis e não se tratam de fraude. Temos clientes satisfeitos que obtiveram resultados significativos ao usar o {{produto}}, um suplemento natural desenvolvido para melhorar a memória e a função cognitiva.
 
 Para que você possa experimentar o produto com total segurança, convidamos você a testá-lo pelos próximos 30 dias. Caso necessário, você poderá solicitar o reembolso facilmente entrando em contato por e-mail, e eu irei ajudá-la pessoalmente.
@@ -743,6 +853,14 @@ Atenciosamente,
 Equipe de Suporte`,
       en: `Hello {{nomeCliente}},
 My name is {{nomeAgente}} and I'll be assisting you today.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 I understand your concern, but I want to assure you that our company and the {{produto}} are completely trustworthy and not a scam. We have satisfied customers who achieved significant results using the {{produto}}, a natural supplement developed to support memory and cognitive function.
 
@@ -965,6 +1083,14 @@ Specialized Support Team`,
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você hoje. Agradeço imensamente pelo seu retorno e por compartilhar essa informação conosco. A sua saúde e a orientação do seu médico especialista são as nossas prioridades absolutas. Com o coração e a circulação não se brinca, e seguir as recomendações do seu cardiologista é, sem dúvida, a atitude mais responsável e prudente a ser tomada.
 
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
 Dito isso, antes de darmos início aos trâmites postais da devolução física, gostaríamos apenas de trazer um esclarecimento importante: o nosso produto não é um medicamento pesado ou sintético, mas sim um suplemento alimentar purificado. Nosso produto é desenvolvido com ingredientes naturais cuidadosamente selecionados e proporciona excelentes resultados quando usado com segurança. Dito isso, compreendemos perfeitamente que, em determinadas situações de saúde, não utilizar o produto seja a decisão mais responsável.
 
 Muitas vezes, os médicos vetam suplementos de forma preventiva por acreditarem que a fórmula possui estimulantes ou compostos aceleradores (como cafeína ou taurina) que agridem o coração. No entanto, o nosso composto é 100% livre de estimulantes e focado estritamente na nutrição celular sutil e no bem-estar cognitivo.
@@ -1005,6 +1131,14 @@ Equipe de Suporte ao Cliente`,
       en: `Hello {{nomeCliente}},
 
 My name is {{nomeAgente}} and I'll be assisting you today. Thank you so much for getting back to us and sharing this information. Your health and your specialist's guidance are our absolute priorities. The heart and circulation are nothing to take lightly, and following your cardiologist's recommendations is, without a doubt, the most responsible and prudent thing to do.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 That said, before we start the postal return process, we'd just like to clarify something important: our product is not a heavy or synthetic medication, but rather a purified dietary supplement. It's made with carefully selected natural ingredients and delivers excellent results when used safely. With that said, we completely understand that, in certain health situations, not using the product may be the most responsible decision.
 
@@ -1052,6 +1186,14 @@ Customer Support Team`,
       pt: `Olá {{nomeCliente}},
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você hoje. Agradeço imensamente pelo seu retorno e por compartilhar suas informações conosco. A sua saúde e a orientação do seu médico especialista são as nossas prioridades absolutas.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
 
 Entendemos que, em determinadas condições de saúde, não utilizar o suplemento pode ser a decisão mais correta e responsável, e apoiamos totalmente essa escolha. Nosso objetivo é sempre garantir segurança, bem-estar e clareza para que você possa tomar a melhor decisão para si mesma.
 
@@ -1115,6 +1257,14 @@ Equipe de Suporte Premium`,
       en: `Hello {{nomeCliente}},
 
 My name is {{nomeAgente}} and I'll be assisting you today. Thank you so much for getting back to us and sharing your information. Your health and your specialist's guidance are our absolute priorities.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 We understand that, in certain health conditions, not using the supplement may be the correct and responsible decision, and we fully support that choice. Our goal is always to ensure safety, well-being, and clarity so you can make the best decision for yourself.
 
@@ -1185,6 +1335,14 @@ Premium Support Team`,
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
 
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
 Agradeço imensamente pelo seu contato e por compartilhar sua situação conosco. Seu bem-estar e a segurança do seu investimento são nossas prioridades absolutas.
 
 Identificamos que você realizou a compra do {{produto}} recentemente e o produto já chegou até você. Antes de falarmos sobre devoluções ou burocracias, gostaria de entender melhor a sua situação: o que motivou a intenção de devolução? Houve algum imprevisto ou dúvida sobre o uso do produto?
@@ -1236,6 +1394,14 @@ Equipe de Suporte ao Cliente`,
       en: `Hello {{nomeCliente}},
 
 My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 Thank you so much for reaching out and sharing your situation with us. Your well-being and the security of your investment are our absolute priorities.
 
@@ -1295,6 +1461,14 @@ Customer Support Team`,
       autoDetect: null,
       pt: `Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
 
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
 Agradeço imensamente pelo seu contato e por compartilhar sua situação conosco. Seu bem-estar e a segurança do seu investimento são nossas prioridades absolutas.
 
 Identificamos que você realizou a compra do {{produto}} recentemente e o produto já chegou até você. Antes de falarmos sobre devoluções ou burocracias, gostaria de entender melhor a sua situação: o que motivou a intenção de devolução? Houve algum imprevisto ou dúvida sobre o uso do produto?
@@ -1334,6 +1508,14 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 Thank you so much for reaching out and sharing your situation with us. Your well-being and the security of your investment are our absolute priorities.
 
@@ -1383,6 +1565,14 @@ Customer Support Team`,
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
 
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
 Recebemos sua solicitação de reembolso e entendemos completamente sua frustração. Sabemos como é desapontante quando você investe tempo, dinheiro e esperança em algo que não entrega os resultados prometidos.
 
 Mas antes de processarmos seu reembolso, nossa equipe de especialistas analisou seu caso específico e descobriu algo importante: você pode ter perdido componentes essenciais que fazem toda a diferença entre o sucesso e o fracasso na perda de peso.
@@ -1430,6 +1620,14 @@ Equipe de Suporte Especializado`,
       en: `Hello {{nomeCliente}},
 
 My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 We received your refund request and completely understand your frustration. We know how disappointing it is when you invest time, money, and hope into something that doesn't deliver the promised results.
 
@@ -1482,6 +1680,14 @@ Specialized Support Team`,
       label: "Efeitos adversos (protocolo de monitoramento)",
       autoDetect: null,
       pt: `Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora. Agradeço por compartilhar sua experiência com {{produto}}.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
 
 Relatos de sintomas desagradáveis são tratados com atenção técnica, critério profissional e total responsabilidade, pois fazem parte do acompanhamento adequado dentro de protocolos metabólicos estruturados.
 
@@ -1539,6 +1745,14 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `My name is {{nomeAgente}} and I'll be assisting you from now on. Thank you for sharing your experience with {{produto}}.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 Reports of unpleasant symptoms are handled with technical attention, professional judgment, and full responsibility, as they're part of proper monitoring within structured metabolic protocols.
 
@@ -1606,6 +1820,13 @@ Customer Support Team`,
       pt:
         "Olá {{nomeCliente}},\n" +
         "Meu nome é {{nomeAgente}}, da equipe de suporte da FEG. Fico feliz em te ajudar!\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
         "Nossos produtos são desenvolvidos com cuidado para entregar a melhor experiência possível, e nosso time está sempre à disposição para tirar dúvidas sobre o {{produto}} ou qualquer outro item da linha FEG.\n" +
         "Em que posso te ajudar agora?\n" +
         "Atenciosamente, {{nomeAgente}}\n" +
@@ -1613,6 +1834,13 @@ Customer Support Team`,
       en:
         "Hello {{nomeCliente}},\n" +
         "My name is {{nomeAgente}}, from the FEG support team. I'm happy to help!\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
         "Our products are carefully developed to deliver the best possible experience, and our team is always available to answer questions about the {{produto}} or any other item in the FEG line.\n" +
         "How can I help you right now?\n" +
         "Best regards, {{nomeAgente}}\n" +
