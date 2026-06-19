@@ -22,6 +22,7 @@
     status: document.getElementById("order-status"),
     codigoRastreio: document.getElementById("order-codigo-rastreio"),
     linkRastreio: document.getElementById("order-link-rastreio"),
+    percentual: document.getElementById("order-percentual"),
   };
 
   // Template atualmente inserido na resposta (null se nenhum foi escolhido ainda).
@@ -54,6 +55,7 @@
     status: "[STATUS DO PEDIDO]",
     codigoRastreio: "[CÓDIGO DE RASTREAMENTO]",
     linkRastreio: "[LINK DE RASTREAMENTO]",
+    percentual: "[PERCENTUAL]",
   };
 
   const FALLBACKS_EN = {
@@ -67,6 +69,7 @@
     status: "[ORDER STATUS]",
     codigoRastreio: "[TRACKING CODE]",
     linkRastreio: "[TRACKING LINK]",
+    percentual: "[PERCENTAGE]",
   };
 
   /**
@@ -1878,6 +1881,216 @@ Customer Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "FEG Support Team",
     },
+
+    /* ---- Oferta de Reembolso ---- */
+    {
+      id: "reembolso15",
+      category: "reembolso",
+      label: "Reembolso 15%",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
+        "Entendo seu pedido e quero te ajudar da melhor forma possível.\n" +
+        "Como alternativa ao reembolso integral, posso oferecer agora mesmo um reembolso parcial de 15% do valor pago, sem precisar devolver o produto.\n" +
+        "Assim você já fica com o reembolso garantido e ainda pode continuar usando o {{produto}}.\n" +
+        "Posso seguir com esse reembolso de 15% para você agora?\n" +
+        "Atenciosamente, {{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
+        "I understand your request and want to help you in the best way possible.\n" +
+        "As an alternative to a full refund, I can offer right now a partial refund of 15% of the amount paid, with no need to return the product.\n" +
+        "This way you already have the refund guaranteed and can keep using the {{produto}}.\n" +
+        "Shall I go ahead and process this 15% refund for you now?\n" +
+        "Best regards, {{nomeAgente}}\n" +
+        "Support Team",
+    },
+    {
+      id: "reembolso3035",
+      category: "reembolso",
+      label: "Reembolso 30%/35%",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
+        "Entendo que a oferta anterior não atendeu sua expectativa, e quero buscar uma solução melhor para você.\n" +
+        "Posso aumentar a oferta para um reembolso parcial de {{percentual}}% do valor pago, sem precisar devolver o produto.\n" +
+        "Esse valor já cobre uma boa parte do investimento e você continua podendo usar o {{produto}}.\n" +
+        "Posso seguir com esse reembolso de {{percentual}}% agora mesmo?\n" +
+        "Atenciosamente, {{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
+        "I understand the previous offer didn't meet your expectations, and I want to find a better solution for you.\n" +
+        "I can increase the offer to a partial refund of {{percentual}}% of the amount paid, with no need to return the product.\n" +
+        "This already covers a good part of your investment and you can keep using the {{produto}}.\n" +
+        "Shall I go ahead with this {{percentual}}% refund right now?\n" +
+        "Best regards, {{nomeAgente}}\n" +
+        "Support Team",
+    },
+    {
+      id: "reembolso50",
+      category: "reembolso",
+      label: "Reembolso 50%",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
+        "Para resolver isso da melhor forma possível e sem mais transtornos, posso oferecer um reembolso parcial de 50% do valor pago, sem necessidade de devolução do produto.\n" +
+        "Essa é uma condição especial para garantir sua satisfação.\n" +
+        "Posso confirmar esse reembolso de 50% para você agora?\n" +
+        "Atenciosamente, {{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
+        "To resolve this in the best possible way and avoid further inconvenience, I can offer a partial refund of 50% of the amount paid, with no need to return the product.\n" +
+        "This is a special condition to make sure you're satisfied.\n" +
+        "Shall I confirm this 50% refund for you now?\n" +
+        "Best regards, {{nomeAgente}}\n" +
+        "Support Team",
+    },
+    {
+      id: "reembolso60",
+      category: "reembolso",
+      label: "Reembolso 60%",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
+        "Quero garantir que você saia satisfeito(a) dessa situação. Por isso, posso oferecer uma condição especial: reembolso parcial de 60% do valor pago, sem precisar devolver o produto.\n" +
+        "Essa é uma das melhores condições que conseguimos oferecer nesse caso.\n" +
+        "Posso processar esse reembolso de 60% agora mesmo?\n" +
+        "Atenciosamente, {{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
+        "I want to make sure you leave this situation satisfied. That's why I can offer a special condition: a partial refund of 60% of the amount paid, with no need to return the product.\n" +
+        "This is one of the best conditions we can offer in this case.\n" +
+        "Shall I process this 60% refund right now?\n" +
+        "Best regards, {{nomeAgente}}\n" +
+        "Support Team",
+    },
+    {
+      id: "reembolso70",
+      category: "reembolso",
+      label: "Reembolso 70%",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
+        "Como você é um cliente importante para nós e quero resolver isso definitivamente, posso oferecer um reembolso parcial de 70% do valor pago, sem necessidade de devolução do produto.\n" +
+        "Essa é uma condição excepcional, aprovada para garantir sua satisfação.\n" +
+        "Posso confirmar esse reembolso de 70% agora?\n" +
+        "Atenciosamente, {{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
+        "Since you're an important customer to us and I want to resolve this once and for all, I can offer a partial refund of 70% of the amount paid, with no need to return the product.\n" +
+        "This is an exceptional condition, approved to make sure you're satisfied.\n" +
+        "Shall I confirm this 70% refund now?\n" +
+        "Best regards, {{nomeAgente}}\n" +
+        "Support Team",
+    },
+    {
+      id: "reembolso75",
+      category: "reembolso",
+      label: "Reembolso 75%",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n" +
+        "Detalhes do Pedido\n" +
+        "- Número do Pedido: {{numeroPedido}}\n" +
+        "- Data da Compra: {{dataCompra}}\n" +
+        "- Produto: {{produto}}\n" +
+        "- Valor Total: ${{valorTotal}}\n" +
+        "- Endereço de Entrega: {{endereco}}\n" +
+        "- Status Atual: {{status}}\n\n" +
+        "Quero encerrar essa situação da melhor forma possível para você. Por isso, posso oferecer a condição máxima disponível: reembolso parcial de 75% do valor pago, sem necessidade de devolução do produto.\n" +
+        "Essa é a melhor oferta que conseguimos disponibilizar para esse caso.\n" +
+        "Posso confirmar esse reembolso de 75% agora mesmo?\n" +
+        "Atenciosamente, {{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n" +
+        "Order Details\n" +
+        "- Order Number: {{numeroPedido}}\n" +
+        "- Purchase Date: {{dataCompra}}\n" +
+        "- Product: {{produto}}\n" +
+        "- Total Amount: ${{valorTotal}}\n" +
+        "- Shipping Address: {{endereco}}\n" +
+        "- Current Status: {{status}}\n\n" +
+        "I want to close out this situation in the best way possible for you. That's why I can offer the maximum condition available: a partial refund of 75% of the amount paid, with no need to return the product.\n" +
+        "This is the best offer we're able to provide for this case.\n" +
+        "Shall I confirm this 75% refund right now?\n" +
+        "Best regards, {{nomeAgente}}\n" +
+        "Support Team",
+    },
   ];
 
   /* =========================================================
@@ -1891,6 +2104,7 @@ Customer Support Team`,
     { id: "memoria", label: "Produtos Memória", color: "#8a4fd6" },
     { id: "emagrecimento", label: "Produtos Emagrecimento", color: "#e08a1e" },
     { id: "feg", label: "Marca FEG", color: "#1f9d55" },
+    { id: "reembolso", label: "Oferta de Reembolso", color: "#d6334f" },
   ];
 
   /* =========================================================
