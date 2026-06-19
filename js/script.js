@@ -450,6 +450,14 @@ Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
 
 Agradecemos por entrar em contato.
 
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: ${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
 Verificamos que sua compra foi cancelada diretamente pelo seu banco. Como cada instituição financeira possui suas próprias regras e procedimentos para cancelamentos e reembolsos, recomendamos que você entre em contato com o seu banco para confirmar os próximos passos.
 
 Além disso, solicitamos que você devolva o produto para o endereço abaixo, para que possamos dar o devido andamento ao seu caso:
@@ -471,6 +479,14 @@ Equipe de Suporte ao Cliente`,
 My name is {{nomeAgente}} and I'll be assisting you from now on.
 
 Thank you for reaching out.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: ${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
 We've verified that your purchase was canceled directly by your bank. Since each financial institution has its own rules and procedures for cancellations and refunds, we recommend contacting your bank to confirm the next steps.
 
