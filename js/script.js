@@ -561,6 +561,7 @@ Assim que o produto for devolvido — seja por recusa ou envio para o endereço 
 Se precisar de informações adicionais ou suporte, não hesite em nos contatar. Estamos à disposição para ajudá-lo(a).
 
 Atenciosamente,
+{{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello {{nomeCliente}},
 
@@ -591,6 +592,7 @@ Once the product has been returned — either by refusal or by shipping it to th
 If you need any additional information or support, please don't hesitate to contact us. We're happy to help.
 
 Best regards,
+{{nomeAgente}}
 Customer Support Team`,
     },
     {
@@ -1253,6 +1255,7 @@ Nosso compromisso é agir com empatia, responsabilidade e total transparência, 
 Fico no aguardo da sua resposta para seguirmos com a alternativa que fizer mais sentido para você.
 
 Atenciosamente,
+{{nomeAgente}}
 Equipe de Suporte Premium`,
       en: `Hello {{nomeCliente}},
 
@@ -1324,6 +1327,7 @@ Our commitment is to act with empathy, responsibility, and full transparency, re
 I'll be looking forward to your reply so we can move forward with whichever option makes the most sense for you.
 
 Best regards,
+{{nomeAgente}}
 Premium Support Team`,
     },
     {
@@ -1616,6 +1620,7 @@ A escolha é sua: desistir agora ou dar uma última chance científica e estrat�
 Aguardamos sua resposta.
 
 Atenciosamente,
+{{nomeAgente}}
 Equipe de Suporte Especializado`,
       en: `Hello {{nomeCliente}},
 
@@ -1672,6 +1677,7 @@ The choice is yours: give up now, or give yourself one last scientific, strategi
 We look forward to your reply.
 
 Best regards,
+{{nomeAgente}}
 Specialized Support Team`,
     },
     {
