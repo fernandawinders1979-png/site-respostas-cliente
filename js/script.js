@@ -404,7 +404,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -431,7 +431,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -464,7 +464,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -499,7 +499,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -542,7 +542,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -572,7 +572,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -799,7 +799,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -858,7 +858,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -1087,7 +1087,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -1136,7 +1136,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -1191,7 +1191,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -1262,7 +1262,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -1339,7 +1339,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -1399,7 +1399,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -1465,7 +1465,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -1513,7 +1513,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -1569,7 +1569,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -1625,7 +1625,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
@@ -1685,7 +1685,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: ${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
@@ -1750,7 +1750,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: ${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
