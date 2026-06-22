@@ -39,6 +39,7 @@
   const responsePt = document.getElementById("response-pt");
   const responseEn = document.getElementById("response-en");
   const copyFeedback = document.getElementById("copy-feedback");
+  const translationStatus = document.getElementById("translation-status");
 
   /* =========================================================
      Texto de fallback exibido quando um campo do pedido
@@ -139,6 +140,129 @@
       ...data,
       dataCompra: formatDateToEnglish(data.dataCompra),
     };
+  }
+
+  /* =========================================================
+     Tradução automática (português -> inglês) da Resposta do
+     Atendente. Usa a API gratuita do MyMemory (sem chave de API).
+     Disparada com um pequeno atraso (debounce) depois que o
+     atendente para de digitar no campo em português, e é
+     cancelada automaticamente quando um template é aplicado
+     (nesse caso o texto em inglês já escrito à mão é usado).
+     ========================================================= */
+  const MYMEMORY_MAX_CHARS = 480;
+  const TRANSLATE_DEBOUNCE_MS = 700;
+
+  let translateDebounceTimer = null;
+  let translateRequestId = 0;
+
+  /**
+   * Cancela qualquer tradução automática pendente (timer ainda não
+   * disparado ou chamadas à API já em andamento). Chamada sempre que
+   * o texto em português é definido programaticamente (por um
+   * template), para que a tradução automática não sobrescreva o
+   * texto em inglês escrito à mão.
+   */
+  function cancelPendingTranslation() {
+    window.clearTimeout(translateDebounceTimer);
+    translateRequestId++;
+    setTranslationStatus("");
+  }
+
+  function setTranslationStatus(message) {
+    if (!translationStatus) return;
+    translationStatus.textContent = message;
+    window.clearTimeout(setTranslationStatus._timeoutId);
+    if (message && message.startsWith("✅")) {
+      setTranslationStatus._timeoutId = window.setTimeout(() => {
+        translationStatus.textContent = "";
+      }, 2500);
+    }
+  }
+
+  /**
+   * Quebra o texto em português em linhas, preparando cada linha para
+   * tradução. Linhas em branco são preservadas sem tradução. Linhas
+   * muito longas (acima do limite da API) são quebradas em frases.
+   * @param {string} text
+   * @returns {Array<{translate: boolean, parts: string[]}>}
+   */
+  function buildLineChunks(text) {
+    return text.split("\n").map((line) => {
+      if (!line.trim()) return { translate: false, parts: [line] };
+      if (line.length <= MYMEMORY_MAX_CHARS) return { translate: true, parts: [line] };
+
+      const sentences = (line.match(/[^.!?]+[.!?]*\s*/g) || [line]).filter((s) => s.length > 0);
+      return { translate: true, parts: sentences };
+    });
+  }
+
+  /**
+   * Traduz um trecho de texto (até o limite da API) de português para inglês.
+   * @param {string} text
+   * @returns {Promise<string>}
+   */
+  async function translateChunk(text) {
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=pt|en`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Falha na tradução");
+
+    const data = await response.json();
+    const translated = data && data.responseData && data.responseData.translatedText;
+    if (!translated) throw new Error("Tradução vazia");
+    return translated;
+  }
+
+  /**
+   * Traduz todas as partes de uma linha e as junta de volta em uma única linha.
+   * @param {string[]} parts
+   * @returns {Promise<string>}
+   */
+  async function translateLineParts(parts) {
+    const translatedParts = [];
+    for (const part of parts) {
+      if (!part.trim()) {
+        translatedParts.push(part);
+        continue;
+      }
+      translatedParts.push(await translateChunk(part));
+    }
+    return translatedParts.join(" ").replace(/\s+/g, " ").trim();
+  }
+
+  /**
+   * Traduz o texto atual do campo de resposta em português e atualiza
+   * o campo em inglês. Ignora o resultado se o texto em português
+   * mudar de novo (ou um template for aplicado) antes da tradução terminar.
+   */
+  async function translatePtToEn() {
+    const sourceText = responsePt.value;
+
+    if (!sourceText.trim()) {
+      responseEn.value = "";
+      setTranslationStatus("");
+      return;
+    }
+
+    const requestId = ++translateRequestId;
+    setTranslationStatus("🔄 Traduzindo para inglês...");
+
+    const lineChunks = buildLineChunks(sourceText);
+
+    try {
+      const translatedLines = await Promise.all(
+        lineChunks.map((lineChunk) =>
+          lineChunk.translate ? translateLineParts(lineChunk.parts) : lineChunk.parts[0]
+        )
+      );
+
+      if (requestId !== translateRequestId) return;
+      responseEn.value = translatedLines.join("\n");
+      setTranslationStatus("✅ Inglês atualizado automaticamente.");
+    } catch (error) {
+      if (requestId !== translateRequestId) return;
+      setTranslationStatus("⚠️ Não foi possível traduzir agora. Verifique sua internet e edite o texto novamente.");
+    }
   }
 
   /* =========================================================
@@ -2647,6 +2771,7 @@ Premium Customer Support Team`,
     const template = TEMPLATES.find((item) => item.id === templateId);
     if (!template) return;
 
+    cancelPendingTranslation();
     const data = getOrderData();
     responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
     responseEn.value = fillPlaceholders(template.en, toEnglishOrderData(data), FALLBACKS_EN);
@@ -2664,6 +2789,7 @@ Premium Customer Support Team`,
     const template = TEMPLATES.find((item) => item.id === activeTemplateId);
     if (!template) return;
 
+    cancelPendingTranslation();
     const data = getOrderData();
     responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
     responseEn.value = fillPlaceholders(template.en, toEnglishOrderData(data), FALLBACKS_EN);
@@ -2794,6 +2920,12 @@ Premium Customer Support Team`,
       updateWelcomePreview();
       refreshActiveTemplate();
     });
+  });
+
+  responsePt.addEventListener("input", () => {
+    window.clearTimeout(translateDebounceTimer);
+    setTranslationStatus("⌛ Aguardando você terminar de digitar...");
+    translateDebounceTimer = window.setTimeout(translatePtToEn, TRANSLATE_DEBOUNCE_MS);
   });
 
   document.querySelectorAll(".btn-copy").forEach((button) => {

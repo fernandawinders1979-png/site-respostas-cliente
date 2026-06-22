@@ -123,6 +123,7 @@
         <section class="results-section" aria-labelledby="results-title">
           <h2 id="results-title">Resposta do Atendente</h2>
           <p class="ai-note">🔄 Depois de escolher um template, as respostas abaixo se atualizam automaticamente conforme você edita os Detalhes do Pedido. Se você editar o texto manualmente, finalize os Detalhes do Pedido antes para não perder a edição.</p>
+          <p class="ai-note">🌐 Se você editar o texto em português, o texto em inglês é traduzido automaticamente (tradução automática feita por um serviço gratuito online). Revise o resultado antes de enviar ao cliente.</p>
 
           <div class="results-grid">
 
@@ -144,6 +145,7 @@
                 </button>
               </div>
               <textarea id="response-en" class="response-output" placeholder="The English response will appear here..." rows="10"></textarea>
+              <p id="translation-status" class="ai-note" role="status" aria-live="polite"></p>
             </article>
 
           </div>
