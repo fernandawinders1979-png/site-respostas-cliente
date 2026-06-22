@@ -2772,7 +2772,9 @@ Premium Customer Support Team`,
     templateCategoriesEl.innerHTML = "";
 
     CATEGORIES.forEach((category, index) => {
-      const templatesInCategory = TEMPLATES.filter((t) => t.category === category.id);
+      const templatesInCategory = TEMPLATES
+        .filter((t) => t.category === category.id)
+        .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
       if (templatesInCategory.length === 0) return;
 
       const details = document.createElement("details");
