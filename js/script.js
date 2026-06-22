@@ -316,6 +316,7 @@
         "• Valor Total: ${{valorTotal}}\n" +
         "• Endereço de Entrega: {{endereco}}\n" +
         "• Status Atual: {{status}}\n\n" +
+        "Você poderia, por favor, confirmar se este é o pedido correto?\n\n" +
         "Se tiver alguma dúvida ou precisar de mais informações, estou à disposição.\n" +
         "Atenciosamente, {{nomeAgente}}\n" +
         "Equipe de Suporte",
@@ -330,6 +331,7 @@
         "• Total Amount: ${{valorTotal}}\n" +
         "• Shipping Address: {{endereco}}\n" +
         "• Current Status: {{status}}\n\n" +
+        "Could you please confirm if this is the correct order?\n\n" +
         "If you have any questions or need more information, I'm here to help.\n" +
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
