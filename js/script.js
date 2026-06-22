@@ -337,6 +337,48 @@
         "Support Team",
     },
     {
+      id: "pedidoLocalizadoMotivo",
+      category: "geral",
+      label: "Pedido localizado - motivo da devolução",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n\n" +
+        "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n" +
+        "Consegui localizar o seguinte pedido em nosso sistema:\n\n" +
+        "Detalhes do Pedido\n" +
+        "• Número do Pedido: {{numeroPedido}}\n" +
+        "• Data da Compra: {{dataCompra}}\n" +
+        "• Produto: {{produto}}\n" +
+        "• Valor Total: ${{valorTotal}}\n" +
+        "• Endereço de Entrega: {{endereco}}\n" +
+        "• Status Atual: {{status}}\n\n" +
+        "Você poderia, por favor, confirmar se este é o pedido correto?\n\n" +
+        "Além disso, poderia nos informar o que motivou o seu contato hoje? Gostaria de ajudá-lo(a) a encontrar a melhor solução para o seu caso.\n\n" +
+        "Quero assegurar que estou totalmente preparado(a) para ajudá-lo(a) a resolver esta situação o mais rapidamente possível. Assim que o pedido for confirmado, seguirei com os próximos passos para atender à sua solicitação específica.\n\n" +
+        "Se tiver alguma dúvida ou precisar de mais informações, estou à disposição.\n\n" +
+        "Atenciosamente,\n" +
+        "{{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n\n" +
+        "My name is {{nomeAgente}} and I'll be assisting you from now on.\n" +
+        "I was able to locate the following order in our system:\n\n" +
+        "Order Details\n" +
+        "• Order Number: {{numeroPedido}}\n" +
+        "• Purchase Date: {{dataCompra}}\n" +
+        "• Product: {{produto}}\n" +
+        "• Total Amount: ${{valorTotal}}\n" +
+        "• Shipping Address: {{endereco}}\n" +
+        "• Current Status: {{status}}\n\n" +
+        "Could you please confirm if this is the correct order?\n\n" +
+        "Also, could you let us know what prompted your contact today? I'd like to help you find the best solution for your case.\n\n" +
+        "I want to assure you that I'm fully prepared to help you resolve this situation as quickly as possible. Once the order is confirmed, I'll move forward with the next steps to address your specific request.\n\n" +
+        "If you have any questions or need more information, I'm here to help.\n\n" +
+        "Best regards,\n" +
+        "{{nomeAgente}}\n" +
+        "Support Team",
+    },
+    {
       id: "statusEntrega",
       category: "geral",
       label: "Status da entrega",
