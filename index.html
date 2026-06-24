@@ -27,22 +27,6 @@
         </button>
       </div>
 
-      <p class="refund-grid-label">Dados do reembolso (preenchimento automático nas mensagens de reembolso)</p>
-      <div class="order-grid refund-grid">
-        <div class="order-field">
-          <label for="order-percentual">Percentual do Reembolso (%)</label>
-          <input id="order-percentual" type="text" placeholder="Ex: 30">
-        </div>
-        <div class="order-field">
-          <label for="order-valor-reembolso">Valor do Reembolso (US$)</label>
-          <input id="order-valor-reembolso" type="text" placeholder="Ex: 25.00">
-        </div>
-        <div class="order-field">
-          <label for="order-data-reembolso">Data do Reembolso (DD/MM/AAAA)</label>
-          <input id="order-data-reembolso" type="text" placeholder="Ex: 15/06/2026">
-        </div>
-      </div>
-
       <div class="order-grid">
         <div class="order-field">
           <label for="order-nome-cliente">Nome do Cliente</label>
@@ -91,6 +75,30 @@
           </div>
         </div>
       </details>
+
+      <p class="refund-grid-label">Reembolso a ser ofertado (opcional, usado nos templates da categoria "Oferta de Reembolso" — se deixar em branco, usa o valor padrão de cada template)</p>
+      <div class="order-grid refund-grid">
+        <div class="order-field">
+          <label for="order-percentual-oferta">Percentual a Ofertar (%)</label>
+          <input id="order-percentual-oferta" type="text" placeholder="Ex: 30">
+        </div>
+      </div>
+
+      <p class="refund-grid-label">Dados do reembolso confirmado (preenchimento automático no template "Reembolso realizado - confirmação")</p>
+      <div class="order-grid refund-grid">
+        <div class="order-field">
+          <label for="order-percentual-confirmado">Percentual Confirmado (%)</label>
+          <input id="order-percentual-confirmado" type="text" placeholder="Ex: 30">
+        </div>
+        <div class="order-field">
+          <label for="order-valor-reembolso">Valor do Reembolso (US$)</label>
+          <input id="order-valor-reembolso" type="text" placeholder="Ex: 25.00">
+        </div>
+        <div class="order-field">
+          <label for="order-data-reembolso">Data do Reembolso (DD/MM/AAAA)</label>
+          <input id="order-data-reembolso" type="text" placeholder="Ex: 15/06/2026">
+        </div>
+      </div>
 
       <p class="welcome-preview-label">Pré-visualização da mensagem de boas-vindas:</p>
       <p id="welcome-preview" class="welcome-preview">
