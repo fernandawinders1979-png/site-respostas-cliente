@@ -164,8 +164,9 @@ section h2 {
 
 .refund-grid-label {
   margin: 4px 0 0;
-  font-size: 0.8rem;
-  color: var(--color-text-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 .refund-grid.order-grid {
@@ -184,7 +185,8 @@ section h2 {
 .tracking-details summary {
   cursor: pointer;
   font-size: 0.85rem;
-  color: var(--color-text-light);
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 .tracking-details .order-grid {
