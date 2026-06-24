@@ -1372,45 +1372,36 @@ Specialized Support Team`,
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
 
-Meu nome é {{nomeAgente}} e estarei auxiliando você hoje. Agradeço imensamente pelo seu retorno e por compartilhar essa informação conosco. A sua saúde e a orientação do seu médico especialista são as nossas prioridades absolutas. Com o coração e a circulação não se brinca, e seguir as recomendações do seu cardiologista é, sem dúvida, a atitude mais responsável e prudente a ser tomada.
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora. Agradeço imensamente pelo seu retorno e por compartilhar essa informação conosco. A sua saúde e a orientação do seu médico especialista são as nossas prioridades absolutas.
 
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-
-Dito isso, antes de darmos início aos trâmites postais da devolução física, gostaríamos apenas de trazer um esclarecimento importante: o nosso produto não é um medicamento pesado ou sintético, mas sim um suplemento alimentar purificado. Nosso produto é desenvolvido com ingredientes naturais cuidadosamente selecionados e proporciona excelentes resultados quando usado com segurança. Dito isso, compreendemos perfeitamente que, em determinadas situações de saúde, não utilizar o produto seja a decisão mais responsável.
+Dito isso, antes de darmos início aos trâmites postais da devolução física, gostaríamos apenas de trazer um esclarecimento importante: o nosso produto não é um medicamento pesado ou sintético, mas sim um suplemento alimentar purificado. Desenvolvido com ingredientes naturais cuidadosamente selecionados, proporciona excelentes resultados quando usado com segurança. Compreendemos perfeitamente que, em determinadas situações de saúde, não utilizar o produto seja a decisão mais responsável.
 
 Muitas vezes, os médicos vetam suplementos de forma preventiva por acreditarem que a fórmula possui estimulantes ou compostos aceleradores (como cafeína ou taurina) que agridem o coração. No entanto, o nosso composto é 100% livre de estimulantes e focado estritamente na nutrição celular sutil e no bem-estar cognitivo.
 
-Por esse motivo, antes de enfrentar a burocracia das transportadoras, enfrentar filas e arcar com os custos de frete de retorno do próprio bolso, sugerimos uma alternativa simples: leve a lista de ingredientes naturais do produto ao seu médico na próxima consulta ou envie uma mensagem para ele. Quando os especialistas analisam a tabela nutricional limpa e vegetal do nosso suplemento, a enorme maioria deles percebe que a fórmula não interfere nos remédios de pressão e autoriza o uso.
+Por esse motivo, antes de enfrentar a burocracia das transportadoras, enfrentar filas e arcar com os custos de frete de retorno do próprio bolso, sugerimos uma alternativa simples: leve a lista de ingredientes naturais do produto ao seu médico na próxima consulta ou envie uma mensagem para ele. Quando os especialistas analisam a tabela nutricional limpa e vegetal do nosso suplemento, a enorme maioria percebe que a fórmula não interfere nos remédios de pressão e autoriza o uso.
 
 🧠 Benefícios do suplemento para memória
 
 Nosso suplemento foi desenvolvido para apoiar a saúde cerebral de forma natural e promover melhorias cognitivas importantes. Seus principais benefícios incluem:
 
-Suporte à memória e retenção de informações — ajuda a lembrar compromissos, nomes e tarefas do dia a dia.
-Aumento da concentração e foco mental — contribui para maior produtividade e atenção.
-Estimula a clareza cognitiva — mente mais alerta, rápida e eficiente.
-Auxílio na circulação e oxigenação cerebral — favorece o fluxo sanguíneo para o cérebro, melhorando o desempenho cognitivo.
-Promove uma mente ativa e saudável — contribui para o envelhecimento cerebral saudável e proteção cognitiva a longo prazo.
+✔️ Suporte à memória e retenção de informações — ajuda a lembrar compromissos, nomes e tarefas do dia a dia.
+✔️ Aumento da concentração e foco mental — contribui para maior produtividade e atenção.
+✔️ Estímulo à clareza cognitiva — mente mais alerta, rápida e eficiente.
+✔️ Auxílio na circulação e oxigenação cerebral — favorece o fluxo sanguíneo para o cérebro, melhorando o desempenho cognitivo.
+✔️ Promove uma mente ativa e saudável — contribui para o envelhecimento cerebral saudável e proteção cognitiva a longo prazo.
 
 🔬 Qualidade do produto e satisfação do cliente
 
 Embora o produto possa não ser adequado para a sua situação específica neste exato momento, gostaríamos de compartilhar, de forma transparente, a experiência geral de clientes que o utilizam com segurança:
 
 📊 Satisfação do cliente em 30 dias:
-
 🟢 Clientes altamente satisfeitos: 68%
 🟡 Satisfação Moderada/Gradual: 27%
 ⚫ Sem resultados visíveis: 5%
 
 95% dos clientes relatam satisfação, principalmente relacionada ao bem-estar geral, equilíbrio e apoio a um estilo de vida mais saudável, quando usado de forma responsável.
 
-Como a sua garantia de satisfação continua 100% ativa e protegida em nosso sistema pelas próximas semanas, você não corre risco nenhum de perder os seus direitos. Vale muito a pena manter os frascos guardados em local seco e fresco por mais alguns dias e fazer essa dupla checagem com o seu médico, permitindo-se a chance de desfrutar dessa transformação com total segurança.
+Como a sua garantia de satisfação continua 100% ativa e protegida em nosso sistema pelas próximas semanas, você não corre risco algum de perder os seus direitos. Vale muito a pena manter os frascos guardados em local seco e fresco por mais alguns dias e fazer essa dupla checagem com o seu médico, permitindo-se a chance de desfrutar dessa transformação com total segurança.
 
 Se, após apresentar os ingredientes, o seu cardiologista mantiver a restrição, responda a este e-mail e nós forneceremos imediatamente todos os dados necessários para o envio seguro ao armazém.
 
@@ -1421,17 +1412,9 @@ Atenciosamente,
 Equipe de Suporte ao Cliente`,
       en: `Hello {{nomeCliente}},
 
-My name is {{nomeAgente}} and I'll be assisting you today. Thank you so much for getting back to us and sharing this information. Your health and your specialist's guidance are our absolute priorities. The heart and circulation are nothing to take lightly, and following your cardiologist's recommendations is, without a doubt, the most responsible and prudent thing to do.
+My name is {{nomeAgente}} and I'll be assisting you from now on. Thank you so much for getting back to us and for sharing this information. Your health and your specialist's guidance are our absolute priorities.
 
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-
-That said, before we start the postal return process, we'd just like to clarify something important: our product is not a heavy or synthetic medication, but rather a purified dietary supplement. It's made with carefully selected natural ingredients and delivers excellent results when used safely. With that said, we completely understand that, in certain health situations, not using the product may be the most responsible decision.
+That said, before we start the postal return process, we'd just like to bring up an important clarification: our product is not a heavy or synthetic medication, but rather a purified dietary supplement. Made with carefully selected natural ingredients, it delivers excellent results when used safely. We completely understand that, in certain health situations, not using the product may be the most responsible decision.
 
 Doctors often restrict supplements as a precaution, believing the formula contains stimulants or accelerating compounds (like caffeine or taurine) that could strain the heart. However, our formula is 100% stimulant-free and focused strictly on gentle cellular nutrition and cognitive well-being.
 
@@ -1441,18 +1424,17 @@ For that reason, before dealing with carrier bureaucracy, lines, and paying for 
 
 Our supplement was developed to naturally support brain health and promote important cognitive improvements. Its main benefits include:
 
-Support for memory and information retention — helps you remember appointments, names, and daily tasks.
-Increased concentration and mental focus — supports greater productivity and attention.
-Stimulates cognitive clarity — a more alert, quick, and efficient mind.
-Supports brain circulation and oxygenation — helps blood flow to the brain, improving cognitive performance.
-Promotes an active and healthy mind — supports healthy brain aging and long-term cognitive protection.
+✔️ Support for memory and information retention — helps you remember appointments, names, and daily tasks.
+✔️ Increased concentration and mental focus — supports greater productivity and attention.
+✔️ Stimulates cognitive clarity — a more alert, quick, and efficient mind.
+✔️ Supports brain circulation and oxygenation — helps blood flow to the brain, improving cognitive performance.
+✔️ Promotes an active and healthy mind — supports healthy brain aging and long-term cognitive protection.
 
 🔬 Product quality and customer satisfaction
 
 While the product may not be right for your specific situation at this exact moment, we'd like to transparently share the overall experience of customers who use it safely:
 
 📊 Customer satisfaction within 30 days:
-
 🟢 Highly satisfied customers: 68%
 🟡 Moderate/gradual satisfaction: 27%
 ⚫ No visible results: 5%
