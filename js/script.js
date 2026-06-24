@@ -2849,6 +2849,58 @@ Premium Customer Support Team`,
         "{{nomeAgente}}\n" +
         "Customer Support Team",
     },
+    {
+      id: "reembolsoNaoAceitouOfertaFrascosFotos",
+      category: "reembolso",
+      label: "Não aceitou oferta 30% e quantos frascos usou e fotos",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Para darmos continuidade à sua solicitação, precisamos confirmar algumas informações importantes, conforme nossa política interna.
+
+Por gentileza, poderia nos informar:
+
+1. Quantos frascos já foram utilizados e quantos ainda permanecem lacrados;
+2. Fotos claras dos produtos, incluindo:
+   - a parte frontal de todos os frascos;
+   - os lacres visíveis;
+   - a quantidade total recebida (em uma ou mais imagens, desde que fique claro);
+3. Uma confirmação por escrito de que você leu nossa política de devolução e compreende as taxas e custos aplicáveis ao processo;
+4. A confirmação de que os produtos foram armazenados corretamente, em local adequado, conforme as orientações do fabricante.
+
+Essas informações são necessárias para que possamos analisar o seu caso e dar andamento ao processo.
+
+Assim que recebermos tudo, retornaremos com os próximos passos.
+
+Ficamos no aguardo.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+To move forward with your request, we need to confirm some important information, in accordance with our internal policy.
+
+Could you please provide us with:
+
+1. How many bottles have already been used and how many remain sealed;
+2. Clear photos of the products, including:
+   - the front of all bottles;
+   - the visible seals;
+   - the total quantity received (in one or more images, as long as it's clear);
+3. Written confirmation that you have read our return policy and understand the fees and costs that apply to the process;
+4. Confirmation that the products have been stored correctly, in a suitable place, according to the manufacturer's guidelines.
+
+This information is necessary so we can review your case and move forward with the process.
+
+As soon as we receive everything, we'll get back to you with the next steps.
+
+We look forward to hearing from you.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
   ];
 
   /* =========================================================
