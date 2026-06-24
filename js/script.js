@@ -381,7 +381,7 @@
     {
       id: "enderecoConfirmadoEnvioHoje",
       category: "geral",
-      label: "ENDEREÇO CONFIRMADO E CORRETO",
+      label: "Endereço confirmado e correto",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
 
