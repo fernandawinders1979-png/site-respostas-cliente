@@ -23,6 +23,7 @@
     codigoRastreio: document.getElementById("order-codigo-rastreio"),
     linkRastreio: document.getElementById("order-link-rastreio"),
     percentual: document.getElementById("order-percentual"),
+    dataReembolso: document.getElementById("order-data-reembolso"),
   };
 
   // Template atualmente inserido na resposta (null se nenhum foi escolhido ainda).
@@ -57,6 +58,7 @@
     codigoRastreio: "[CÓDIGO DE RASTREAMENTO]",
     linkRastreio: "[LINK DE RASTREAMENTO]",
     percentual: "[PERCENTUAL]",
+    dataReembolso: "[DATA DO REEMBOLSO]",
   };
 
   const FALLBACKS_EN = {
@@ -71,6 +73,7 @@
     codigoRastreio: "[TRACKING CODE]",
     linkRastreio: "[TRACKING LINK]",
     percentual: "[PERCENTAGE]",
+    dataReembolso: "[REFUND DATE]",
   };
 
   /**
@@ -156,6 +159,7 @@
     return {
       ...data,
       dataCompra: formatDateToEnglish(data.dataCompra),
+      dataReembolso: formatDateToEnglish(data.dataReembolso),
     };
   }
 
@@ -932,6 +936,34 @@ Customer Support Team`,
         "I'll be looking forward to your reply so I can request a free reshipment right away.\n" +
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
+    },
+    {
+      id: "reembolsoRealizadoConfirmacao",
+      category: "geral",
+      label: "Reembolso realizado - confirmação",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Gostaríamos de informar que o reembolso de {{percentual}}% do valor total do seu pedido foi realizado no dia {{dataReembolso}}.
+
+O valor será creditado na mesma forma de pagamento utilizada na compra. Por favor, note que o tempo necessário para que o reembolso apareça em sua conta pode variar de acordo com as políticas do seu banco ou operadora de cartão, podendo levar alguns dias úteis.
+
+Se tiver qualquer dúvida adicional ou precisar de suporte, estamos à disposição.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+We'd like to let you know that the {{percentual}}% refund of your order's total amount was processed on {{dataReembolso}}.
+
+The amount will be credited to the same payment method used for the purchase. Please note that the time it takes for the refund to appear in your account may vary depending on your bank's or card issuer's policies, and it may take a few business days.
+
+If you have any further questions or need support, we're happy to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
     },
 
     /* ---- Produtos Memória ---- */
