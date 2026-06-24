@@ -86,6 +86,23 @@
   }
 
   /**
+   * Igual a getOrderData(), mas aplica o percentual padrão do template
+   * (template.defaultPercentual) quando o campo "Percentual" do painel
+   * de dados do pedido estiver em branco. Permite que cada template de
+   * reembolso já venha com sua taxa própria, mas continue podendo ser
+   * sobrescrito manualmente pelo atendente.
+   * @param {Object} template
+   * @returns {Object}
+   */
+  function getOrderDataForTemplate(template) {
+    const data = getOrderData();
+    if (!data.percentual && template.defaultPercentual) {
+      data.percentual = template.defaultPercentual;
+    }
+    return data;
+  }
+
+  /**
    * Substitui os placeholders {{campo}} de um texto pelos valores do
    * pedido. Quando o campo está vazio, usa o texto entre colchetes
    * (ex: [NOME DO CLIENTE]) como indicação para o atendente preencher.
@@ -2208,6 +2225,7 @@ Customer Support Team`,
       category: "reembolso",
       label: "Reembolso 15% (Geral)",
       autoDetect: null,
+      defaultPercentual: "15",
       pt:
         "Olá {{nomeCliente}},\n" +
         "Detalhes do Pedido\n" +
@@ -2218,9 +2236,9 @@ Customer Support Team`,
         "- Endereço de Entrega: {{endereco}}\n" +
         "- Status Atual: {{status}}\n\n" +
         "Entendo seu pedido e quero te ajudar da melhor forma possível.\n" +
-        "Como alternativa ao reembolso integral, posso oferecer agora mesmo um reembolso parcial de 15% do valor pago, sem precisar devolver o produto.\n" +
+        "Como alternativa ao reembolso integral, posso oferecer agora mesmo um reembolso parcial de {{percentual}}% do valor pago, sem precisar devolver o produto.\n" +
         "Assim você já fica com o reembolso garantido e ainda pode continuar usando o {{produto}}.\n" +
-        "Posso seguir com esse reembolso de 15% para você agora?\n" +
+        "Posso seguir com esse reembolso de {{percentual}}% para você agora?\n" +
         "Atenciosamente, {{nomeAgente}}\n" +
         "Equipe de Suporte",
       en:
@@ -2233,9 +2251,9 @@ Customer Support Team`,
         "- Shipping Address: {{endereco}}\n" +
         "- Current Status: {{status}}\n\n" +
         "I understand your request and want to help you in the best way possible.\n" +
-        "As an alternative to a full refund, I can offer right now a partial refund of 15% of the amount paid, with no need to return the product.\n" +
+        "As an alternative to a full refund, I can offer right now a partial refund of {{percentual}}% of the amount paid, with no need to return the product.\n" +
         "This way you already have the refund guaranteed and can keep using the {{produto}}.\n" +
-        "Shall I go ahead and process this 15% refund for you now?\n" +
+        "Shall I go ahead and process this {{percentual}}% refund for you now?\n" +
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
@@ -2244,6 +2262,7 @@ Customer Support Team`,
       category: "reembolso",
       label: "Reembolso 15% (Emagrecimento)",
       autoDetect: null,
+      defaultPercentual: "15",
       pt: `Olá {{nomeCliente}},
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
@@ -2257,13 +2276,13 @@ O {{produto}} foi desenvolvido justamente para apoiar sua rotina, seu bem-estar 
 
 Imagine poder olhar no espelho e sentir orgulho do esforço que você está fazendo. Recuperar a liberdade de usar roupas que gosta, sentir-se mais confiante e perceber que está cuidando de si mesma com constância. Esse é o verdadeiro objetivo: ajudar você a continuar avançando no seu projeto, sem pressão e sem soluções temporárias.
 
-Queremos que você se sinta apoiada nessa decisão. Por isso, para tornar esse processo mais leve e mostrar nossa intenção de ajudar, conseguimos oferecer um reembolso administrativo de 15% do valor total dos seus produtos, sem necessidade de devolução.
+Queremos que você se sinta apoiada nessa decisão. Por isso, para tornar esse processo mais leve e mostrar nossa intenção de ajudar, conseguimos oferecer um reembolso administrativo de {{percentual}}% do valor total dos seus produtos, sem necessidade de devolução.
 
 Essa é uma forma de reduzir parte do seu investimento agora, enquanto você ainda mantém os produtos e pode continuar seu projeto com mais tranquilidade.
 
 Pedimos apenas que pense com carinho antes de interromper sua jornada. Você comprou este produto por um motivo, e ele ainda pode fazer parte de uma nova rotina de cuidado, disciplina e atenção consigo mesma.
 
-Caso aceite essa solução com 15% de reembolso e deseje continuar utilizando os produtos, basta responder a este e-mail confirmando, e seguiremos com o processamento.
+Caso aceite essa solução com {{percentual}}% de reembolso e deseje continuar utilizando os produtos, basta responder a este e-mail confirmando, e seguiremos com o processamento.
 
 Estou à disposição para ajudar no que for necessário.
 
@@ -2283,13 +2302,13 @@ The {{produto}} was developed precisely to support your routine, your daily well
 
 Imagine being able to look in the mirror and feel proud of the effort you're putting in. Regaining the freedom to wear the clothes you love, feeling more confident, and realizing you're taking care of yourself consistently. That's the real goal: helping you keep moving forward in your journey, with no pressure and no temporary fixes.
 
-We want you to feel supported in this decision. That's why, to make this process lighter and show our intention to help, we were able to offer an administrative refund of 15% of the total value of your products, with no need to return them.
+We want you to feel supported in this decision. That's why, to make this process lighter and show our intention to help, we were able to offer an administrative refund of {{percentual}}% of the total value of your products, with no need to return them.
 
 This is a way to reduce part of your investment now, while you still keep the products and can continue your journey with more peace of mind.
 
 We just ask that you think carefully before stopping your journey. You bought this product for a reason, and it can still be part of a new routine of self-care, discipline, and attention to yourself.
 
-If you accept this 15% refund solution and would like to continue using the products, just reply to this email confirming, and we'll proceed with the processing.
+If you accept this {{percentual}}% refund solution and would like to continue using the products, just reply to this email confirming, and we'll proceed with the processing.
 
 I'm here to help with whatever you need.
 
@@ -2302,6 +2321,7 @@ Support Team`,
       category: "reembolso",
       label: "Reembolso 15% (Troca de Atestado - Emagrecimento)",
       autoDetect: null,
+      defaultPercentual: "15",
       pt: `Olá {{nomeCliente}}, espero que esteja bem.
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
@@ -2319,7 +2339,7 @@ Ainda assim, entendemos que cada caso precisa ser tratado com atenção e respei
 
 ✅ Pensando nisso, iremos abrir uma exceção para você.
 
-Em vez de solicitar atestado médico, conseguimos oferecer um reembolso administrativo de 15% do valor total do seu pedido, sem necessidade de devolução dos produtos. Além disso, como o suplemento é 100% natural, você pode presentear alguém, aproveitando o investimento que já fez, sem desperdício. Ressaltamos que nosso suplemento possui total credibilidade e é distribuído por uma empresa confiável, dedicada à saúde e bem-estar de seus clientes.
+Em vez de solicitar atestado médico, conseguimos oferecer um reembolso administrativo de {{percentual}}% do valor total do seu pedido, sem necessidade de devolução dos produtos. Além disso, como o suplemento é 100% natural, você pode presentear alguém, aproveitando o investimento que já fez, sem desperdício. Ressaltamos que nosso suplemento possui total credibilidade e é distribuído por uma empresa confiável, dedicada à saúde e bem-estar de seus clientes.
 
 Dessa forma, você evita:
 
@@ -2331,7 +2351,7 @@ Dessa forma, você evita:
 
 Essa solução torna o processo muito mais simples, rápido e seguro para você.
 
-Caso concorde com essa alternativa de 15% de reembolso, basta responder a este e-mail confirmando, e seguiremos com o procedimento.
+Caso concorde com essa alternativa de {{percentual}}% de reembolso, basta responder a este e-mail confirmando, e seguiremos com o procedimento.
 
 Fico à disposição para qualquer dúvida.
 
@@ -2355,7 +2375,7 @@ Even so, we understand that each case needs to be treated with care and respect.
 
 ✅ With that in mind, we'll make an exception for you.
 
-Instead of requesting a medical certificate, we're able to offer an administrative refund of 15% of your order's total value, with no need to return the products. Also, since the supplement is 100% natural, you can gift it to someone, making use of the investment you've already made, with no waste. We'd like to reinforce that our supplement is fully credible and distributed by a trustworthy company, dedicated to the health and well-being of its customers.
+Instead of requesting a medical certificate, we're able to offer an administrative refund of {{percentual}}% of your order's total value, with no need to return the products. Also, since the supplement is 100% natural, you can gift it to someone, making use of the investment you've already made, with no waste. We'd like to reinforce that our supplement is fully credible and distributed by a trustworthy company, dedicated to the health and well-being of its customers.
 
 This way, you avoid:
 
@@ -2367,7 +2387,7 @@ This way, you avoid:
 
 This solution makes the process much simpler, faster, and safer for you.
 
-If you agree with this 15% refund alternative, just reply to this email confirming, and we'll proceed with the procedure.
+If you agree with this {{percentual}}% refund alternative, just reply to this email confirming, and we'll proceed with the procedure.
 
 I'm here for any questions.
 
@@ -2580,6 +2600,7 @@ Premium Customer Support Team`,
       category: "reembolso",
       label: "Reembolso 50%",
       autoDetect: null,
+      defaultPercentual: "50",
       pt:
         "Olá {{nomeCliente}},\n" +
         "Detalhes do Pedido\n" +
@@ -2591,7 +2612,7 @@ Premium Customer Support Team`,
         "- Status Atual: {{status}}\n\n" +
         "Entendo a sua posição e quero reforçar que minha intenção é encontrar uma solução que seja justa, prática e vantajosa para você.\n" +
         "Conversei com minha gerente, expliquei todos os detalhes do seu caso e, considerando a situação, ela me autorizou a oferecer uma condição especial, fora do procedimento padrão.\n" +
-        "Conseguimos liberar um reembolso administrativo de 50% do valor total do seu pedido, e você não precisará devolver nenhum produto.\n" +
+        "Conseguimos liberar um reembolso administrativo de {{percentual}}% do valor total do seu pedido, e você não precisará devolver nenhum produto.\n" +
         "Dessa forma, você evita o custo do frete de devolução, evita o processo de inspeção, não corre o risco de deduções adicionais e ainda pode continuar utilizando os produtos que já recebeu, tendo mais tempo para avaliar os benefícios com o uso contínuo.\n" +
         "O reembolso será processado assim que você responder este e-mail confirmando que aceita essa solução.\n" +
         "Essa é a melhor condição que consigo liberar para o seu caso neste momento, e acredito que seja uma alternativa bastante vantajosa para evitar custos, espera e todo o processo de devolução física.\n" +
@@ -2609,7 +2630,7 @@ Premium Customer Support Team`,
         "- Current Status: {{status}}\n\n" +
         "I understand your position, and I want to reinforce that my intention is to find a solution that is fair, practical, and advantageous for you.\n" +
         "I spoke with my manager, explained every detail of your case, and given the situation, she authorized me to offer a special condition, outside our standard procedure.\n" +
-        "We were able to release an administrative refund of 50% of your order's total amount, and you won't need to return any product.\n" +
+        "We were able to release an administrative refund of {{percentual}}% of your order's total amount, and you won't need to return any product.\n" +
         "This way, you avoid the return shipping cost, avoid the inspection process, don't risk any additional deductions, and can keep using the products you've already received, giving you more time to evaluate the benefits with continued use.\n" +
         "The refund will be processed as soon as you reply to this email confirming that you accept this solution.\n" +
         "This is the best condition I'm able to release for your case at this time, and I believe it's a very advantageous alternative to avoid costs, waiting time, and the entire physical return process.\n" +
@@ -2622,6 +2643,7 @@ Premium Customer Support Team`,
       category: "reembolso",
       label: "Reembolso 60%",
       autoDetect: null,
+      defaultPercentual: "60",
       pt:
         "Olá {{nomeCliente}},\n" +
         "Detalhes do Pedido\n" +
@@ -2633,7 +2655,7 @@ Premium Customer Support Team`,
         "- Status Atual: {{status}}\n\n" +
         "Gostaríamos de reafirmar nosso compromisso em tratar sua solicitação com clareza, respeito e foco na solução mais adequada para você.\n\n" +
         "Após análise cuidadosa e alinhamento interno, a seguinte opção excepcional foi autorizada:\n\n" +
-        "Reembolso imediato de 60% do valor total do pedido\n" +
+        "Reembolso imediato de {{percentual}}% do valor total do pedido\n" +
         "Sem necessidade de devolução dos produtos já recebidos\n\n" +
         "Essa opção proporciona uma solução simples, segura e eficiente, permitindo que você mantenha os produtos sem precisar lidar com etapas adicionais ou custos operacionais.\n\n" +
         "Para total transparência, destacamos como funcionaria o processo padrão de reembolso, caso fosse considerado:\n\n" +
@@ -2643,7 +2665,7 @@ Premium Customer Support Team`,
         "Garrafas abertas, violadas ou danificadas não são elegíveis para reembolso;\n" +
         "Possíveis deduções adicionais caso ocorra algum dano durante o transporte de devolução;\n" +
         "O processamento do reembolso começa apenas após a aprovação da inspeção.\n\n" +
-        "Considerando essas condições, o reembolso imediato de 60% sem devolução oferece uma solução muito mais conveniente, previsível e prática.\n\n" +
+        "Considerando essas condições, o reembolso imediato de {{percentual}}% sem devolução oferece uma solução muito mais conveniente, previsível e prática.\n\n" +
         "Se desejar prosseguir, responda a este e-mail confirmando sua aceitação, e o reembolso será processado imediatamente para o mesmo método de pagamento utilizado na compra.\n\n" +
         "Permanecemos à disposição para quaisquer esclarecimentos adicionais e respeitaremos sua decisão com o mesmo nível de profissionalismo.\n\n" +
         "Atenciosamente,\n" +
@@ -2660,7 +2682,7 @@ Premium Customer Support Team`,
         "- Current Status: {{status}}\n\n" +
         "We'd like to reaffirm our commitment to handling your request with clarity, respect, and a focus on finding the best solution for you.\n\n" +
         "After careful review and internal alignment, the following exceptional option has been authorized:\n\n" +
-        "Immediate refund of 60% of the order's total amount\n" +
+        "Immediate refund of {{percentual}}% of the order's total amount\n" +
         "No need to return the products you've already received\n\n" +
         "This option offers a simple, safe, and efficient solution, letting you keep the products without dealing with extra steps or operational costs.\n\n" +
         "For full transparency, here's how the standard refund process would work, if it were considered instead:\n\n" +
@@ -2670,7 +2692,7 @@ Premium Customer Support Team`,
         "Opened, tampered, or damaged bottles are not eligible for refund;\n" +
         "Possible additional deductions if any damage occurs during return shipping;\n" +
         "Refund processing only begins after inspection approval.\n\n" +
-        "Considering these conditions, the immediate 60% refund with no return offers a much more convenient, predictable, and practical solution.\n\n" +
+        "Considering these conditions, the immediate {{percentual}}% refund with no return offers a much more convenient, predictable, and practical solution.\n\n" +
         "If you'd like to proceed, reply to this email confirming your acceptance, and the refund will be processed immediately to the same payment method used for the purchase.\n\n" +
         "We remain available for any further clarification and will respect your decision with the same level of professionalism.\n\n" +
         "Best regards,\n" +
@@ -2682,6 +2704,7 @@ Premium Customer Support Team`,
       category: "reembolso",
       label: "Reembolso 70%",
       autoDetect: null,
+      defaultPercentual: "70",
       pt:
         "Olá {{nomeCliente}},\n" +
         "Detalhes do Pedido\n" +
@@ -2693,7 +2716,7 @@ Premium Customer Support Team`,
         "- Status Atual: {{status}}\n\n" +
         "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n\n" +
         "Queremos garantir que você tenha a melhor experiência possível e resolver sua solicitação de forma prática, rápida e segura.\n\n" +
-        "Após análise da sua situação, conseguimos aprovar uma opção especial de reembolso imediato de 70% do valor total do pedido, sem necessidade de devolução dos produtos.\n\n" +
+        "Após análise da sua situação, conseguimos aprovar uma opção especial de reembolso imediato de {{percentual}}% do valor total do pedido, sem necessidade de devolução dos produtos.\n\n" +
         "💡 Por que esta é a melhor escolha para você:\n\n" +
         "Evita custos de envio: Devolver os produtos pelo método tradicional gera despesas com transportadora que saem do seu bolso.\n" +
         "Evita taxa de reposição de 15%: O processo padrão deduz automaticamente uma taxa sobre o valor do reembolso.\n" +
@@ -2705,9 +2728,9 @@ Premium Customer Support Team`,
         "Taxa de reposição de 15%;\n" +
         "Espera de 10 a 15 dias para o transporte e inspeção;\n" +
         "Risco de deduções adicionais se os produtos chegarem danificados.\n\n" +
-        "✅ Com o reembolso imediato de 70%, você recebe o valor máximo disponível hoje, sem riscos, sem custos adicionais e sem precisar devolver nada.\n\n" +
-        "Se desejar aproveitar essa solução e garantir 70% do valor de volta na sua conta imediatamente, basta responder a este e-mail com:\n\n" +
-        '"Aceito o reembolso de 70%"\n\n' +
+        "✅ Com o reembolso imediato de {{percentual}}%, você recebe o valor máximo disponível hoje, sem riscos, sem custos adicionais e sem precisar devolver nada.\n\n" +
+        "Se desejar aproveitar essa solução e garantir {{percentual}}% do valor de volta na sua conta imediatamente, basta responder a este e-mail com:\n\n" +
+        '"Aceito o reembolso de {{percentual}}%"\n\n' +
         "Assim que recebermos sua confirmação, processaremos o reembolso de forma instantânea.\n\n" +
         "Estamos à disposição para qualquer dúvida e queremos garantir que você tenha a solução mais conveniente e segura.\n\n" +
         "Atenciosamente,\n" +
@@ -2724,7 +2747,7 @@ Premium Customer Support Team`,
         "- Current Status: {{status}}\n\n" +
         "My name is {{nomeAgente}} and I'll be assisting you from now on.\n\n" +
         "We want to make sure you have the best possible experience and resolve your request in a practical, fast, and safe way.\n\n" +
-        "After reviewing your situation, we were able to approve a special option: an immediate refund of 70% of the order's total amount, with no need to return the products.\n\n" +
+        "After reviewing your situation, we were able to approve a special option: an immediate refund of {{percentual}}% of the order's total amount, with no need to return the products.\n\n" +
         "💡 Why this is the best choice for you:\n\n" +
         "Avoids shipping costs: Returning the products through the traditional method generates carrier expenses that come out of your own pocket.\n" +
         "Avoids the 15% restocking fee: The standard process automatically deducts a fee from the refund amount.\n" +
@@ -2736,9 +2759,9 @@ Premium Customer Support Team`,
         "A 15% restocking fee;\n" +
         "A 10 to 15 day wait for transport and inspection;\n" +
         "The risk of additional deductions if the products arrive damaged.\n\n" +
-        "✅ With the immediate 70% refund, you get the maximum amount available today, with no risk, no extra costs, and nothing to return.\n\n" +
-        "If you'd like to take advantage of this solution and secure 70% of the amount back in your account right away, just reply to this email with:\n\n" +
-        '"I accept the 70% refund"\n\n' +
+        "✅ With the immediate {{percentual}}% refund, you get the maximum amount available today, with no risk, no extra costs, and nothing to return.\n\n" +
+        "If you'd like to take advantage of this solution and secure {{percentual}}% of the amount back in your account right away, just reply to this email with:\n\n" +
+        '"I accept the {{percentual}}% refund"\n\n' +
         "As soon as we receive your confirmation, we'll process the refund instantly.\n\n" +
         "We're available for any questions and want to make sure you get the most convenient and secure solution.\n\n" +
         "Best regards,\n" +
@@ -2750,6 +2773,7 @@ Premium Customer Support Team`,
       category: "reembolso",
       label: "Reembolso 75%",
       autoDetect: null,
+      defaultPercentual: "75",
       pt:
         "Olá {{nomeCliente}},\n" +
         "Detalhes do Pedido\n" +
@@ -2760,7 +2784,7 @@ Premium Customer Support Team`,
         "- Endereço de Entrega: {{endereco}}\n" +
         "- Status Atual: {{status}}\n\n" +
         "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n\n" +
-        "Conversei com a supervisora e conseguimos liberar um reembolso de 75% do valor total do seu pedido.\n\n" +
+        "Conversei com a supervisora e conseguimos liberar um reembolso de {{percentual}}% do valor total do seu pedido.\n\n" +
         "Dessa forma, você não precisa devolver os produtos, evita gastos com frete e ainda mantém os itens recebidos em casa.\n\n" +
         "Gostaria de saber o que você acha dessa proposta. Acredito que seja uma solução prática e vantajosa, que garante parte do seu investimento de volta de forma rápida, sem complicações.\n\n" +
         "Se concordar, basta responder a este e-mail que processaremos o reembolso imediatamente. Tenho certeza de que essa opção é a mais segura e conveniente para você.\n\n" +
@@ -2778,7 +2802,7 @@ Premium Customer Support Team`,
         "- Shipping Address: {{endereco}}\n" +
         "- Current Status: {{status}}\n\n" +
         "My name is {{nomeAgente}} and I'll be assisting you from now on.\n\n" +
-        "I spoke with my supervisor and we were able to release a 75% refund of your order's total amount.\n\n" +
+        "I spoke with my supervisor and we were able to release a {{percentual}}% refund of your order's total amount.\n\n" +
         "This way, you don't need to return the products, you avoid shipping costs, and you still keep the items you received at home.\n\n" +
         "I'd like to know what you think of this proposal. I believe it's a practical and advantageous solution that guarantees part of your investment back quickly, with no complications.\n\n" +
         "If you agree, just reply to this email and we'll process the refund right away. I'm confident this is the safest and most convenient option for you.\n\n" +
@@ -2856,7 +2880,7 @@ Premium Customer Support Team`,
     if (!template) return;
 
     cancelPendingTranslation();
-    const data = getOrderData();
+    const data = getOrderDataForTemplate(template);
     responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
     responseEn.value = fillPlaceholders(template.en, toEnglishOrderData(data), FALLBACKS_EN);
     activeTemplateId = templateId;
@@ -2874,7 +2898,7 @@ Premium Customer Support Team`,
     if (!template) return;
 
     cancelPendingTranslation();
-    const data = getOrderData();
+    const data = getOrderDataForTemplate(template);
     responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
     responseEn.value = fillPlaceholders(template.en, toEnglishOrderData(data), FALLBACKS_EN);
   }
