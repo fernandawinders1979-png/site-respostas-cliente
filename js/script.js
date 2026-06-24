@@ -379,6 +379,62 @@
         "Support Team",
     },
     {
+      id: "enderecoConfirmadoEnvioHoje",
+      category: "geral",
+      label: "Endereço confirmado - pedido será enviado hoje",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Obrigado por confirmar o endereço!
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora. Consegui localizar o seguinte pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Está tudo perfeito por aqui. Seu pedido já está sendo preparado pela nossa equipe e será enviado hoje, conforme planejado.
+
+Assim que o pacote for enviado, você receberá outro e-mail com o número de rastreamento (em até 2 dias) para que possa acompanhar a entrega até a sua porta.
+
+Enquanto isso, não se esqueça de conferir seu presente especial em nossa área exclusiva para membros, usando o link fornecido no e-mail anterior.
+
+Estamos muito felizes em tê-lo(a) conosco nesta jornada. Se precisar de algo mais ou tiver alguma dúvida sobre como utilizar o suplemento, entre em contato conosco.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}},
+
+Thank you for confirming your address!
+
+My name is {{nomeAgente}} and I'll be assisting you from now on. I was able to locate the following order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+Everything looks perfect on our end. Your order is already being prepared by our team and will be shipped today, as planned.
+
+As soon as the package ships, you'll receive another email with the tracking number (within 2 business days) so you can follow the delivery all the way to your door.
+
+In the meantime, don't forget to check out your special gift in our exclusive members area, using the link provided in our previous email.
+
+We're very happy to have you with us on this journey. If you need anything else or have any questions about how to use the supplement, please reach out to us.
+
+Best regards,
+{{nomeAgente}}
+Support Team`,
+    },
+    {
       id: "statusEntrega",
       category: "geral",
       label: "Status da entrega",
