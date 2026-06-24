@@ -24,6 +24,7 @@
     linkRastreio: document.getElementById("order-link-rastreio"),
     percentual: document.getElementById("order-percentual"),
     dataReembolso: document.getElementById("order-data-reembolso"),
+    valorReembolso: document.getElementById("order-valor-reembolso"),
   };
 
   // Template atualmente inserido na resposta (null se nenhum foi escolhido ainda).
@@ -59,6 +60,7 @@
     linkRastreio: "[LINK DE RASTREAMENTO]",
     percentual: "[PERCENTUAL]",
     dataReembolso: "[DATA DO REEMBOLSO]",
+    valorReembolso: "[VALOR DO REEMBOLSO]",
   };
 
   const FALLBACKS_EN = {
@@ -74,6 +76,7 @@
     linkRastreio: "[TRACKING LINK]",
     percentual: "[PERCENTAGE]",
     dataReembolso: "[REFUND DATE]",
+    valorReembolso: "[REFUND AMOUNT]",
   };
 
   /**
@@ -944,7 +947,7 @@ Customer Support Team`,
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
 
-Gostaríamos de informar que o reembolso de {{percentual}}% do valor total do seu pedido foi realizado no dia {{dataReembolso}}.
+Gostaríamos de informar que o reembolso de {{percentual}}% do valor total do seu pedido, no valor de \${{valorReembolso}}, foi realizado no dia {{dataReembolso}}.
 
 O valor será creditado na mesma forma de pagamento utilizada na compra. Por favor, note que o tempo necessário para que o reembolso apareça em sua conta pode variar de acordo com as políticas do seu banco ou operadora de cartão, podendo levar alguns dias úteis.
 
@@ -955,7 +958,7 @@ Atenciosamente,
 Equipe de Suporte ao Cliente`,
       en: `Hello {{nomeCliente}},
 
-We'd like to let you know that the {{percentual}}% refund of your order's total amount was processed on {{dataReembolso}}.
+We'd like to let you know that the {{percentual}}% refund of your order's total amount, in the amount of \${{valorReembolso}}, was processed on {{dataReembolso}}.
 
 The amount will be credited to the same payment method used for the purchase. Please note that the time it takes for the refund to appear in your account may vary depending on your bank's or card issuer's policies, and it may take a few business days.
 
