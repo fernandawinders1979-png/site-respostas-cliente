@@ -971,6 +971,62 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+    {
+      id: "naoAceitouNenhumaPropostaReembolso",
+      category: "geral",
+      label: "Não aceitou nenhuma proposta de reembolso",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Vamos seguir então com o processo de devolução para posterior reembolso. Por favor, siga as instruções abaixo para proceder com a devolução dos itens.
+
+📦 Como devolver seu pedido:
+
+1. Produtos lacrados e sem uso: Os produtos devem ser lacrados e em perfeitas condições, sem sinais de uso. Produtos abertos ou usados não serão aceitos para reembolso.
+2. Endereço para devolução:
+11870 62nd St. N
+Largo, FL 33773
+3. Anote o número do seu pedido {{numeroPedido}} na etiqueta de devolução para facilitar o processamento.
+4. Após o envio, nos envie o código de rastreamento para que possamos acompanhar a devolução.
+
+⚠️ Informações Importantes:
+
+- Custos de devolução: Você será responsável pelos custos de envio e manuseio da devolução. O valor da devolução será pago diretamente na transportadora ou Correios.
+- Processamento do reembolso: O reembolso total será realizado após o recebimento e inspeção dos produtos na nossa fábrica. O prazo para processamento é de até 7 dias úteis após a conferência.
+- Frascos abertos ou vazios não serão reembolsados. Se você os enviar mesmo assim, pagará pelo peso do envio e, ao serem inspecionados, esses frascos não contarão para o valor do reembolso.
+- Ao processarmos seu reembolso, será descontada uma taxa de reestocagem de 15%. Essa taxa cobre os custos de recebimento, inspeção e reintegração do produto ao nosso estoque.
+
+Se precisar de ajuda adicional durante o processo de devolução, estamos à disposição para orientá-la.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}},
+
+Let's proceed then with the return process for a subsequent refund. Please follow the instructions below to return the items.
+
+📦 How to return your order:
+
+1. Sealed, unused products: The products must be sealed and in perfect condition, with no signs of use. Opened or used products will not be accepted for a refund.
+2. Return address:
+11870 62nd St. N
+Largo, FL 33773
+3. Write your order number {{numeroPedido}} on the return label to make processing easier.
+4. After shipping, please send us the tracking code so we can follow the return.
+
+⚠️ Important information:
+
+- Return costs: You will be responsible for the shipping and handling costs of the return. The return shipping fee is paid directly to the carrier or postal service.
+- Refund processing: The full refund will be issued after the products are received and inspected at our facility. Processing takes up to 7 business days after the review.
+- Opened or empty bottles will not be refunded. If you send them anyway, you'll still pay for the shipping weight, and once inspected, those bottles won't count toward the refund amount.
+- A 15% restocking fee will be deducted when we process your refund. This fee covers the costs of receiving, inspecting, and restocking the product.
+
+If you need any further help during the return process, we're happy to guide you.
+
+Best regards,
+{{nomeAgente}}
+Support Team`,
+    },
 
     /* ---- Produtos Memória ---- */
     {
