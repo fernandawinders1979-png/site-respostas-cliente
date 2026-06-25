@@ -422,6 +422,42 @@
         "Support Team",
     },
     {
+      id: "detalheDoPedido",
+      category: "geral",
+      label: "Detalhe do Pedido",
+      autoDetect: null,
+      pt:
+        "Olá {{nomeCliente}},\n\n" +
+        "Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.\n\n" +
+        "Consegui localizar o seguinte pedido em nosso sistema.\n\n" +
+        "Detalhes do Pedido\n" +
+        "• Número do Pedido: {{numeroPedido}}\n" +
+        "• Data da Compra: {{dataCompra}}\n" +
+        "• Produto: {{produto}}\n" +
+        "• Valor Total: ${{valorTotal}}\n" +
+        "• Endereço de Entrega: {{endereco}}\n" +
+        "• Status Atual: {{status}}\n\n" +
+        "Se tiver alguma dúvida ou precisar de mais informações, estou à disposição para ajudar.\n\n" +
+        "Atenciosamente,\n" +
+        "{{nomeAgente}}\n" +
+        "Equipe de Suporte",
+      en:
+        "Hello {{nomeCliente}},\n\n" +
+        "My name is {{nomeAgente}} and I'll be assisting you from now on.\n\n" +
+        "I was able to locate the following order in our system.\n\n" +
+        "Order Details\n" +
+        "• Order Number: {{numeroPedido}}\n" +
+        "• Purchase Date: {{dataCompra}}\n" +
+        "• Product: {{produto}}\n" +
+        "• Total Amount: ${{valorTotal}}\n" +
+        "• Shipping Address: {{endereco}}\n" +
+        "• Current Status: {{status}}\n\n" +
+        "If you have any questions or need more information, I'm here to help.\n\n" +
+        "Best regards,\n" +
+        "{{nomeAgente}}\n" +
+        "Support Team",
+    },
+    {
       id: "pedidoLocalizadoMotivo",
       category: "geral",
       label: "Pedido localizado - motivo da devolução",
