@@ -156,16 +156,74 @@
   }
 
   /**
-   * Monta os dados do pedido prontos para o template em inglês,
-   * convertendo os campos de data para o formato em inglês.
+   * Monta uma versão "imediata" dos dados do pedido para o template em
+   * inglês, só com as datas convertidas. Usada como preview instantâneo
+   * enquanto a tradução de produto/status (que depende de uma chamada de
+   * rede) ainda não voltou.
    * @param {Object} data
    * @returns {Object}
    */
-  function toEnglishOrderData(data) {
+  function toEnglishOrderDataPreview(data) {
     return {
       ...data,
       dataCompra: formatDateToEnglish(data.dataCompra),
       dataReembolso: formatDateToEnglish(data.dataReembolso),
+    };
+  }
+
+  // Campos de texto livre dos Detalhes do Pedido que precisam ser traduzidos
+  // para inglês (ex: "Em trânsito" -> "In transit"). Os demais campos
+  // (nomes, números, códigos, links, endereço) são mantidos como estão,
+  // pois não devem ser traduzidos.
+  const TRANSLATABLE_ORDER_FIELDS = ["produto", "status"];
+
+  // Cache de traduções já feitas (campo + texto original -> texto em inglês),
+  // para não chamar a API de novo para o mesmo valor.
+  const orderFieldTranslationCache = {};
+
+  /**
+   * Traduz o valor de um campo do pedido (ex: produto, status) de
+   * português para inglês, usando a mesma API de tradução do campo de
+   * Resposta do Atendente. Se a tradução falhar (ex: sem internet),
+   * devolve o texto original em português em vez de travar a tela.
+   * @param {string} field
+   * @param {string} text
+   * @returns {Promise<string>}
+   */
+  async function translateOrderFieldToEnglish(field, text) {
+    if (!text || !text.trim()) return text;
+
+    const cacheKey = `${field}::${text}`;
+    if (orderFieldTranslationCache[cacheKey]) {
+      return orderFieldTranslationCache[cacheKey];
+    }
+
+    try {
+      const translated = await translateChunk(text);
+      orderFieldTranslationCache[cacheKey] = translated;
+      return translated;
+    } catch (error) {
+      return text;
+    }
+  }
+
+  /**
+   * Monta os dados do pedido prontos para o template em inglês,
+   * convertendo os campos de data para o formato em inglês e traduzindo
+   * os campos de texto livre (produto, status) para inglês.
+   * @param {Object} data
+   * @returns {Promise<Object>}
+   */
+  async function toEnglishOrderData(data) {
+    const translatedEntries = await Promise.all(
+      TRANSLATABLE_ORDER_FIELDS.map((field) =>
+        translateOrderFieldToEnglish(field, data[field]).then((value) => [field, value])
+      )
+    );
+
+    return {
+      ...toEnglishOrderDataPreview(data),
+      ...Object.fromEntries(translatedEntries),
     };
   }
 
@@ -3016,6 +3074,44 @@ Customer Support Team`,
     });
   }
 
+  // Evita que uma chamada de tradução de campo do pedido (produto/status)
+  // que demorou para responder sobrescreva uma atualização mais recente.
+  let orderFieldTranslationRequestId = 0;
+  // Debounce da tradução dos campos do pedido: evita chamar a API a cada
+  // letra digitada nos campos de Detalhes do Pedido.
+  let orderFieldTranslateDebounceTimer = null;
+  const ORDER_FIELD_TRANSLATE_DEBOUNCE_MS = 600;
+
+  /**
+   * Atualiza a caixa de resposta em inglês com o template preenchido.
+   * Primeiro mostra um preview imediato (com produto/status ainda em
+   * português, só com as datas já convertidas) e, em seguida, busca a
+   * tradução de produto/status e atualiza a caixa de novo quando ela
+   * chegar. Se `immediate` for true, a tradução é buscada na hora (ex: ao
+   * clicar em um template); senão, espera o atendente parar de digitar.
+   * @param {Object} template
+   * @param {Object} data
+   * @param {{immediate: boolean}} options
+   */
+  function updateResponseEnFromTemplate(template, data, { immediate }) {
+    responseEn.value = fillPlaceholders(template.en, toEnglishOrderDataPreview(data), FALLBACKS_EN);
+
+    window.clearTimeout(orderFieldTranslateDebounceTimer);
+    const requestId = ++orderFieldTranslationRequestId;
+
+    const runTranslation = async () => {
+      const translatedData = await toEnglishOrderData(data);
+      if (requestId !== orderFieldTranslationRequestId) return;
+      responseEn.value = fillPlaceholders(template.en, translatedData, FALLBACKS_EN);
+    };
+
+    if (immediate) {
+      runTranslation();
+    } else {
+      orderFieldTranslateDebounceTimer = window.setTimeout(runTranslation, ORDER_FIELD_TRANSLATE_DEBOUNCE_MS);
+    }
+  }
+
   /**
    * Preenche as caixas de resposta (PT/EN) com o texto de um template,
    * substituindo os placeholders pelos dados atuais do pedido.
@@ -3028,8 +3124,8 @@ Customer Support Team`,
     cancelPendingTranslation();
     const data = getOrderDataForTemplate(template);
     responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
-    responseEn.value = fillPlaceholders(template.en, toEnglishOrderData(data), FALLBACKS_EN);
     activeTemplateId = templateId;
+    updateResponseEnFromTemplate(template, data, { immediate: true });
   }
 
   /**
@@ -3046,7 +3142,7 @@ Customer Support Team`,
     cancelPendingTranslation();
     const data = getOrderDataForTemplate(template);
     responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
-    responseEn.value = fillPlaceholders(template.en, toEnglishOrderData(data), FALLBACKS_EN);
+    updateResponseEnFromTemplate(template, data, { immediate: false });
   }
 
   /**
