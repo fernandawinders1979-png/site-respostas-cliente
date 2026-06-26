@@ -2011,6 +2011,101 @@ Best regards,
 Customer Support Team`,
     },
 
+    {
+      id: "memoriaComprouPoAchavaCapsula",
+      category: "memoria",
+      label: "Comprou em pó achando que era em cápsula",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Primeiramente, peço desculpas pela confusão e entendo perfeitamente sua frustração ao perceber que o produto não era em goma, mas sim em pó.
+
+Gostaria de te trazer um ponto muito importante antes de prosseguirmos com a devolução.
+
+Nosso produto em formato em pó é a versão mais avançada e eficiente da fórmula, pois possui maior absorção e biodisponibilidade, permitindo que o organismo aproveite melhor os nutrientes ativos. Por esse motivo, ele foi desenvolvido justamente para oferecer resultados mais consistentes quando comparado a outras formas.
+
+Além disso, a empresa possui total credibilidade no mercado, com milhares de clientes satisfeitos que utilizam o produto diariamente dentro da rotina de bem-estar.
+
+🧠 Benefícios do suplemento para memória e foco
+
+Gostaríamos também de reforçar os principais benefícios que muitos clientes relatam ao utilizar o suplemento de forma contínua:
+
+✔️ Melhora da memória e retenção de informações
+✔️ Maior clareza mental e raciocínio mais rápido
+✔️ Aumento da concentração e foco no dia a dia
+✔️ Redução da sensação de "mente cansada"
+✔️ Apoio ao desempenho cognitivo e produtividade
+✔️ Sensação de mente mais ativa, alerta e organizada
+
+Esses efeitos são percebidos gradualmente com o uso contínuo e consistente, permitindo que o organismo se adapte e aproveite melhor os nutrientes da fórmula.
+
+Também quero reforçar que você conta com uma garantia de satisfação de 60 dias, o que significa que você pode experimentar o produto com total tranquilidade e segurança.
+
+Se após esse período você ainda sentir que não é o ideal para você, basta enviar um e-mail e eu pessoalmente irei te auxiliar com todo o processo de reembolso, sem complicações.
+
+Como forma de apoio à sua experiência, estou lhe enviando um material bônus exclusivo, normalmente vendido em nossa plataforma, mas que estamos disponibilizando gratuitamente para você. Esse conteúdo já ajudou milhares de pessoas a alcançarem melhores resultados e pode ser um grande complemento para sua jornada.
+
+Além disso, como um cliente VIP, você receberá 3 ebooks exclusivos 📚 criados para potencializar seus resultados:
+
+📕 Easy Weight Loss – Estratégias para melhorar a circulação e oxigenação, auxiliando no equilíbrio do peso e na clareza mental
+📘 Healing an Anxiety Disorder – Técnicas para reduzir o estresse e a ansiedade que podem impactar a memória e o foco
+📗 Brain Booster – Um guia passo a passo para aumentar o foco, a motivação e a capacidade de memória
+
+Gostaria muito que você desse uma chance ao produto antes de tomar a decisão final, pois acreditamos sinceramente no potencial da fórmula quando utilizada corretamente.
+
+Fico à disposição para te ajudar no que for necessário.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+First of all, I apologize for the confusion and I completely understand your frustration upon realizing the product was not in gummy form, but in powder form.
+
+I'd like to bring up a very important point before we proceed with the return.
+
+Our powder format product is the most advanced and efficient version of the formula, as it has greater absorption and bioavailability, allowing the body to make better use of the active nutrients. For this reason, it was specifically developed to deliver more consistent results compared to other forms.
+
+In addition, the company has full credibility in the market, with thousands of satisfied customers who use the product daily as part of their wellness routine.
+
+🧠 Benefits of the memory and focus supplement
+
+We'd also like to highlight the main benefits that many customers report when using the supplement continuously:
+
+✔️ Improved memory and information retention
+✔️ Greater mental clarity and faster thinking
+✔️ Increased concentration and daily focus
+✔️ Reduction of the "mental fatigue" feeling
+✔️ Support for cognitive performance and productivity
+✔️ A more active, alert and organized mind
+
+These effects are gradually noticed with continuous and consistent use, allowing the body to adapt and better absorb the nutrients in the formula.
+
+I also want to remind you that you have a 60-day satisfaction guarantee, which means you can try the product with complete peace of mind and safety.
+
+If after that period you still feel it's not right for you, simply send an email and I will personally assist you through the entire refund process, hassle-free.
+
+As a gesture of support for your experience, I am sending you an exclusive bonus material, normally sold on our platform, but which we are making available to you for free. This content has already helped thousands of people achieve better results and can be a great complement to your journey.
+
+In addition, as a VIP customer, you will receive 3 exclusive ebooks 📚 created to enhance your results:
+
+📕 Easy Weight Loss – Strategies to improve circulation and oxygenation, helping with weight balance and mental clarity
+📘 Healing an Anxiety Disorder – Techniques to reduce stress and anxiety that can impact memory and focus
+📗 Brain Booster – A step-by-step guide to increase focus, motivation and memory capacity
+
+I truly hope you'll give the product a chance before making a final decision, as we sincerely believe in the potential of the formula when used correctly.
+
+I am available to help you with whatever you need.
+
+Sincerely,
+{{nomeAgente}}
+Support Team`,
+    },
+
     /* ---- Produtos Emagrecimento ---- */
     {
       id: "emagrecimentoCancelarEngano",
