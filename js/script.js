@@ -1122,6 +1122,47 @@ Best regards,
 Support Team`,
     },
 
+    {
+      id: "pedidoErradoMaisFrascos",
+      category: "geral",
+      label: "Pedido errado com mais frasco que solicitado",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Quando a compra é finalizada, o sistema sempre exibe de forma clara todos os detalhes do pedido antes da confirmação. Em nosso registro, o seu pedido foi processado corretamente, conforme selecionado no momento da compra.
+
+Entendemos sua preocupação, no entanto, o pedido foi registrado exatamente conforme finalizado na plataforma.
+
+Gostaria também de lembrar que você possui uma garantia de satisfação de 60 dias, que permite testar o produto com tranquilidade. Caso após esse período você ainda sinta necessidade de reavaliar sua decisão, basta entrar em contato por e-mail que nossa equipe estará pronta para te auxiliar com o processo de reembolso dentro das condições da garantia.
+
+Como um gesto de apoio à sua experiência, estou também lhe enviando como bônus um material exclusivo, normalmente vendido em nossa plataforma, mas que estamos disponibilizando gratuitamente para você. Esse conteúdo já ajudou milhares de pessoas a alcançarem seus objetivos e pode complementar sua jornada com o produto de forma muito positiva.
+
+Se tiver qualquer dúvida, estou à disposição para ajudar você em cada etapa.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+When a purchase is completed, the system always clearly displays all order details before confirmation. In our records, your order was processed correctly as selected at the time of purchase.
+
+We understand your concern, however, the order was registered exactly as finalized on the platform.
+
+I'd also like to remind you that you have a 60-day satisfaction guarantee, which allows you to try the product with peace of mind. If after that period you still feel the need to reconsider your decision, simply contact us by email and our team will be ready to assist you with the refund process within the terms of the guarantee.
+
+As a gesture of support for your experience, I'm also sending you as a bonus an exclusive material, normally sold on our platform, but which we are making available to you for free. This content has already helped thousands of people achieve their goals and can complement your journey with the product in a very positive way.
+
+If you have any questions, I am available to help you at every step.
+
+Sincerely,
+{{nomeAgente}}
+Support Team`,
+    },
+
     /* ---- Produtos Memória ---- */
     {
       id: "memoriaVendaDuplicada",
