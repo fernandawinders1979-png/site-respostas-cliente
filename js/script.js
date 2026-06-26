@@ -386,6 +386,56 @@
         "Best regards, {{nomeAgente}} 🤝 Customer Support Team",
     },
     {
+      id: "pedidoNaoLocalizadoDadosInformados",
+      category: "geral",
+      label: "Pedido não localizado com os dados informados",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Obrigada pelas informações fornecidas!
+
+Verifiquei em nosso sistema com os dados informados, porém infelizmente não consegui localizar o seu pedido. 🔍
+
+Para que possamos realizar uma nova busca com mais precisão, você poderia, por gentileza, confirmar se a compra pode ter sido realizada com dados diferentes, como:
+
+📧 Outro e-mail utilizado no momento da compra
+👤 Nome diferente no pedido
+🔢 Número do pedido, caso tenha
+📦 Nome do produto adquirido
+
+Se possível, envie também uma 📸 captura de tela do e-mail de confirmação da compra. Isso nos ajudará a localizar o pedido com mais rapidez e evitar novos atrasos.
+
+Fico no aguardo do seu retorno para continuar ajudando da melhor forma possível.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Thank you for the information provided!
+
+I searched our system with the details you gave us, but unfortunately I was unable to locate your order. 🔍
+
+So we can perform a more accurate search, could you please confirm whether the purchase may have been made with different details, such as:
+
+📧 A different email address used at the time of purchase
+👤 A different name on the order
+🔢 The order number, if you have it
+📦 The name of the product purchased
+
+If possible, please also send a 📸 screenshot of the purchase confirmation email. This will help us locate your order more quickly and avoid further delays.
+
+I'll be waiting for your reply to continue helping you in the best way possible.
+
+Sincerely,
+{{nomeAgente}}
+Support Team`,
+    },
+    {
       id: "pedidoLocalizado",
       category: "geral",
       label: "Pedido localizado",
