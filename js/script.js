@@ -1195,6 +1195,63 @@ Sincerely,
 Support Team`,
     },
 
+    {
+      id: "pedidoNaoEnviadoProblemaLogistica",
+      category: "geral",
+      label: "Pedido não enviado - Problema logística",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Lamento saber que você ainda não recebeu seu pedido. Vou verificar sua solicitação e resolver essa situação imediatamente para você.
+
+Para que possamos prosseguir com o suporte, poderia por gentileza confirmar se o endereço abaixo está correto?
+
+📍 {{endereco}}
+
+Assim que receber sua confirmação, irei solicitar o reenvio do pedido sem custos adicionais e agilizar todo o processo o mais rápido possível.
+
+Fico no aguardo do seu retorno para dar continuidade imediatamente.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you from now on.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+I'm sorry to hear that you haven't received your order yet. I'll review your request and resolve this situation immediately for you.
+
+In order to proceed with the support, could you please confirm if the address below is correct?
+
+📍 {{endereco}}
+
+As soon as I receive your confirmation, I'll request a free reshipment of your order and speed up the entire process as quickly as possible.
+
+I'll be waiting for your reply to move forward immediately.
+
+Sincerely,
+{{nomeAgente}}
+Support Team`,
+    },
+
     /* ---- Produtos Memória ---- */
     {
       id: "memoriaVendaDuplicada",
