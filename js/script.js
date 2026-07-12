@@ -361,7 +361,7 @@
   const TEMPLATES = [
     {
       id: "naoLocalizado",
-      category: "outros",
+      category: "geral",
       label: "Cliente não localizado",
       autoDetect: null,
       pt:
@@ -387,7 +387,7 @@
     },
     {
       id: "pedidoNaoLocalizadoDadosInformados",
-      category: "outros",
+      category: "geral",
       label: "Pedido não localizado com os dados informados",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -437,7 +437,7 @@ Support Team`,
     },
     {
       id: "pedidoLocalizado",
-      category: "outros",
+      category: "geral",
       label: "Pedido localizado",
       autoDetect: null,
       pt:
@@ -473,7 +473,7 @@ Support Team`,
     },
     {
       id: "detalheDoPedido",
-      category: "outros",
+      category: "geral",
       label: "Detalhe do Pedido",
       autoDetect: null,
       pt:
@@ -509,7 +509,7 @@ Support Team`,
     },
     {
       id: "pedidoLocalizadoMotivo",
-      category: "outros",
+      category: "geral",
       label: "Pedido localizado - motivo da devolução",
       autoDetect: null,
       pt:
@@ -551,7 +551,7 @@ Support Team`,
     },
     {
       id: "enderecoConfirmadoEnvioHoje",
-      category: "outros",
+      category: "geral",
       label: "Endereço confirmado e correto",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -607,7 +607,7 @@ Support Team`,
     },
     {
       id: "statusEntrega",
-      category: "outros",
+      category: "geral",
       label: "Status da entrega",
       autoDetect: ["entrega", "rastreio", "rastreamento", "chegou", "tracking", "delivery", "shipping"],
       pt:
@@ -647,7 +647,7 @@ Support Team`,
     },
     {
       id: "cancelarSemReceber",
-      category: "outros",
+      category: "geral",
       label: "Cancelar sem ter recebido",
       autoDetect: ["cancelar", "cancelamento", "cancel"],
       pt:
@@ -683,7 +683,7 @@ Support Team`,
     },
     {
       id: "devolucaoEngano",
-      category: "outros",
+      category: "geral",
       label: "Compra por engano (devolução)",
       autoDetect: ["engano", "devolver", "devolucao", "devolução", "errado", "return", "mistake"],
       pt:
@@ -721,7 +721,7 @@ Support Team`,
     },
     {
       id: "garantiaVencendo",
-      category: "outros",
+      category: "geral",
       label: "Garantia próxima do vencimento",
       autoDetect: ["garantia", "warranty", "vencimento"],
       pt:
@@ -757,7 +757,7 @@ Support Team`,
     },
     {
       id: "naoRecebidoMarcadoEntregue",
-      category: "outros",
+      category: "geral",
       label: "Não recebeu, mas consta entregue",
       autoDetect: ["não recebi", "nao recebi", "consta como entregue", "marcado como entregue", "not received", "marked as delivered", "never arrived"],
       pt:
@@ -791,7 +791,7 @@ Support Team`,
     },
     {
       id: "garantiaVencida",
-      category: "outros",
+      category: "geral",
       label: "Garantia já vencida (negar reembolso)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -851,7 +851,7 @@ Customer Support Team`,
     },
     {
       id: "produtoDanificado",
-      category: "outros",
+      category: "geral",
       label: "Produto chegou danificado",
       autoDetect: ["danificado", "quebrado", "avariado", "damaged", "broken"],
       pt: `Olá {{nomeCliente}},
@@ -927,7 +927,7 @@ Premium Support Team`,
     },
     {
       id: "chargebackEnvioProdutos",
-      category: "outros",
+      category: "geral",
       label: "Chargeback realizado - solicitar envio dos produtos",
       autoDetect: ["chargeback", "estorno bancario", "estorno bancário", "contestação", "contestacao"],
       pt: `Olá {{nomeCliente}},
@@ -995,7 +995,7 @@ Customer Support Team`,
     },
     {
       id: "geral",
-      category: "outros",
+      category: "geral",
       label: "Resposta geral / acolhimento",
       autoDetect: null,
       pt:
@@ -1027,7 +1027,7 @@ Customer Support Team`,
     },
     {
       id: "comoPossoAjudar",
-      category: "outros",
+      category: "geral",
       label: "Como posso te ajudar",
       autoDetect: null,
       pt:
@@ -1053,7 +1053,7 @@ Customer Support Team`,
     },
     {
       id: "enderecoInsuficiente",
-      category: "outros",
+      category: "geral",
       label: "Pedido voltou para a empresa, endereço insuficiente",
       autoDetect: null,
       pt:
@@ -1089,7 +1089,7 @@ Customer Support Team`,
     },
     {
       id: "reembolsoRealizadoConfirmacao",
-      category: "outros",
+      category: "geral",
       label: "Reembolso realizado - confirmação",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -1133,7 +1133,7 @@ Customer Support Team`,
     },
     {
       id: "naoAceitouNenhumaPropostaReembolso",
-      category: "outros",
+      category: "geral",
       label: "Não aceitou nenhuma proposta de reembolso",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -1190,7 +1190,7 @@ Support Team`,
 
     {
       id: "pedidoErradoMaisFrascos",
-      category: "outros",
+      category: "geral",
       label: "Pedido errado com mais frasco que solicitado",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -1247,7 +1247,7 @@ Support Team`,
 
     {
       id: "pedidoNaoEnviadoProblemaLogistica",
-      category: "outros",
+      category: "geral",
       label: "Pedido não enviado - Problema logística",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -1305,7 +1305,7 @@ Support Team`,
     /* ---- Produtos Memória ---- */
     {
       id: "memoriaVendaDuplicada",
-      category: "outros",
+      category: "memoria",
       label: "Venda duplicada (oferta promocional)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -1465,7 +1465,7 @@ Support / Customer Service Team`,
     },
     {
       id: "memoriaFraudeCancelar",
-      category: "outros",
+      category: "memoria",
       label: "Cancelamento - alega fraude (produto em posse)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -1589,7 +1589,7 @@ Support Team`,
     },
     {
       id: "memoriaSemResultados",
-      category: "outros",
+      category: "memoria",
       label: "Sem resultados (protocolo extra de cortesia)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}}, tudo bem? Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
@@ -1752,7 +1752,7 @@ Specialized Support Team`,
 
     {
       id: "memoriaMedicoEsclarecimento",
-      category: "outros",
+      category: "memoria",
       label: "Médico não autorizou (esclarecimento sobre o produto)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -1854,7 +1854,7 @@ Customer Support Team`,
     },
     {
       id: "memoriaMedicoReembolso",
-      category: "outros",
+      category: "memoria",
       label: "Médico não autorizou (doação ou reembolso 20%)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -2004,7 +2004,7 @@ Premium Support Team`,
     },
     {
       id: "memoriaMudouIdeiaEngano",
-      category: "outros",
+      category: "memoria",
       label: "Mudou de ideia / comprou por engano (teste de 30 dias)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -2130,7 +2130,7 @@ Customer Support Team`,
     },
     {
       id: "memoriaDarChance",
-      category: "outros",
+      category: "memoria",
       label: "Dar uma chance ao produto",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -2225,7 +2225,7 @@ Customer Support Team`,
 
     {
       id: "memoriaComprouPoAchavaCapsula",
-      category: "outros",
+      category: "memoria",
       label: "Comprou em pó achando que era em cápsula",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -2337,7 +2337,7 @@ Support Team`,
     /* ---- Produtos Emagrecimento ---- */
     {
       id: "emagrecimentoCancelarEngano",
-      category: "outros",
+      category: "emagrecimento",
       label: "Cancelar / comprou por engano (desafio 30 dias)",
       autoDetect: null,
       pt: `Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.
@@ -2439,7 +2439,7 @@ Customer Support Team`,
     },
     {
       id: "emagrecimentoSemResultados",
-      category: "outros",
+      category: "emagrecimento",
       label: "Sem resultados (programa de resgate)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -2559,7 +2559,7 @@ Specialized Support Team`,
     },
     {
       id: "emagrecimentoEfeitosAdversos",
-      category: "outros",
+      category: "emagrecimento",
       label: "Efeitos adversos (protocolo de monitoramento)",
       autoDetect: null,
       pt: `Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora. Agradeço por compartilhar sua experiência com {{produto}}.
@@ -2733,7 +2733,7 @@ Customer Support Team`,
     /* ---- Oferta de Reembolso ---- */
     {
       id: "reembolso15",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 15% (Geral)",
       autoDetect: null,
       defaultPercentual: "15",
@@ -2770,7 +2770,7 @@ Customer Support Team`,
     },
     {
       id: "reembolsoEmagrecimento15",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 15% (Emagrecimento)",
       autoDetect: null,
       defaultPercentual: "15",
@@ -2847,7 +2847,7 @@ Support Team`,
     },
     {
       id: "reembolsoEmagrecimento15Atestado",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 15% (Troca de Atestado - Emagrecimento)",
       autoDetect: null,
       defaultPercentual: "15",
@@ -2944,7 +2944,7 @@ Support Team`,
     },
     {
       id: "reembolso3035",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 30%/35% (Opção A)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -3040,7 +3040,7 @@ Customer Support Team`,
     },
     {
       id: "reembolso3035B",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 30%/35% (Opção B)",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -3176,7 +3176,7 @@ Premium Customer Support Team`,
     },
     {
       id: "reembolso50",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 50%",
       autoDetect: null,
       defaultPercentual: "50",
@@ -3219,7 +3219,7 @@ Premium Customer Support Team`,
     },
     {
       id: "reembolso60",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 60%",
       autoDetect: null,
       defaultPercentual: "60",
@@ -3280,7 +3280,7 @@ Premium Customer Support Team`,
     },
     {
       id: "reembolso70",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 70%",
       autoDetect: null,
       defaultPercentual: "70",
@@ -3349,7 +3349,7 @@ Premium Customer Support Team`,
     },
     {
       id: "reembolso75",
-      category: "outros",
+      category: "reembolso",
       label: "Reembolso 75%",
       autoDetect: null,
       defaultPercentual: "75",
@@ -3392,7 +3392,7 @@ Premium Customer Support Team`,
     },
     {
       id: "reembolsoNaoAceitouOfertaFrascosFotos",
-      category: "outros",
+      category: "reembolso",
       label: "Não aceitou oferta 30% e quantos frascos usou e fotos",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -3678,12 +3678,63 @@ Best,
      ========================================================= */
   const CATEGORIES = [
     { id: "feg", label: "FEG BRAND", color: "#1f9d55", featured: true },
-    { id: "outros", label: "FEG DIRECT RESPONSE", color: "#6b7280" },
+  ];
+
+  /* =========================================================
+     Grupo "FEG DIRECT RESPONSE": pasta única que reúne as
+     categorias de uso menos frequente, cada uma em sua própria
+     subpasta (aberta dentro da pasta principal do grupo).
+     ========================================================= */
+  const CATEGORY_GROUPS = [
+    {
+      id: "fegDirectResponse",
+      label: "FEG DIRECT RESPONSE",
+      color: "#6b7280",
+      subcategories: [
+        { id: "geral", label: "Templates Geral", color: "#2f6fed" },
+        { id: "memoria", label: "Templates Memória", color: "#8a4fd6" },
+        { id: "emagrecimento", label: "Template Emagrecimento", color: "#e08a1e" },
+        { id: "reembolso", label: "Oferta de Reembolso", color: "#d6334f" },
+      ],
+    },
   ];
 
   /* =========================================================
      Renderização da barra lateral de templates
      ========================================================= */
+  function buildCategoryDetails(category, templatesInCategory, openByDefault) {
+    const details = document.createElement("details");
+    details.className = category.featured
+      ? "template-category template-category--featured"
+      : "template-category";
+    details.style.setProperty("--cat-color", category.color);
+    if (openByDefault) details.open = true;
+
+    const summary = document.createElement("summary");
+    const dot = document.createElement("span");
+    dot.className = "category-dot";
+    summary.appendChild(dot);
+    summary.appendChild(document.createTextNode(category.label));
+    details.appendChild(summary);
+
+    const list = document.createElement("ul");
+    list.className = "template-list";
+
+    templatesInCategory.forEach((template) => {
+      const li = document.createElement("li");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "template-btn";
+      button.textContent = template.label;
+      button.addEventListener("click", () => handleTemplateClick(template.id));
+      li.appendChild(button);
+      list.appendChild(li);
+    });
+
+    details.appendChild(list);
+    return details;
+  }
+
   function renderTemplateSidebar() {
     templateCategoriesEl.innerHTML = "";
 
@@ -3693,36 +3744,37 @@ Best,
         .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
       if (templatesInCategory.length === 0) return;
 
-      const details = document.createElement("details");
-      details.className = category.featured
-        ? "template-category template-category--featured"
-        : "template-category";
-      details.style.setProperty("--cat-color", category.color);
-      if (index === 0) details.open = true;
+      const details = buildCategoryDetails(category, templatesInCategory, index === 0);
+      templateCategoriesEl.appendChild(details);
+    });
+
+    CATEGORY_GROUPS.forEach((group) => {
+      const groupDetails = document.createElement("details");
+      groupDetails.className = "template-category template-category--group";
+      groupDetails.style.setProperty("--cat-color", group.color);
 
       const summary = document.createElement("summary");
       const dot = document.createElement("span");
       dot.className = "category-dot";
       summary.appendChild(dot);
-      summary.appendChild(document.createTextNode(category.label));
-      details.appendChild(summary);
+      summary.appendChild(document.createTextNode(group.label));
+      groupDetails.appendChild(summary);
 
-      const list = document.createElement("ul");
-      list.className = "template-list";
+      const subcategoriesWrap = document.createElement("div");
+      subcategoriesWrap.className = "template-subcategories";
 
-      templatesInCategory.forEach((template) => {
-        const li = document.createElement("li");
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "template-btn";
-        button.textContent = template.label;
-        button.addEventListener("click", () => handleTemplateClick(template.id));
-        li.appendChild(button);
-        list.appendChild(li);
+      group.subcategories.forEach((subcategory) => {
+        const templatesInSubcategory = TEMPLATES
+          .filter((t) => t.category === subcategory.id)
+          .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
+        if (templatesInSubcategory.length === 0) return;
+
+        const subDetails = buildCategoryDetails(subcategory, templatesInSubcategory, false);
+        subcategoriesWrap.appendChild(subDetails);
       });
 
-      details.appendChild(list);
-      templateCategoriesEl.appendChild(details);
+      groupDetails.appendChild(subcategoriesWrap);
+      templateCategoriesEl.appendChild(groupDetails);
     });
   }
 
