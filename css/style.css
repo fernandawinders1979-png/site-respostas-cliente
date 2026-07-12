@@ -289,6 +289,8 @@ section h2 {
   font-size: 1.05rem;
   font-weight: 800;
   letter-spacing: 0.02em;
+  color: var(--cat-color, var(--color-primary));
+  text-shadow: 0 0 8px var(--cat-color, var(--color-primary));
 }
 
 .template-category--featured .category-dot {

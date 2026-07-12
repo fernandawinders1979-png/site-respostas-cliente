@@ -3677,7 +3677,7 @@ Best,
      "category" dos templates que pertencem a ela.
      ========================================================= */
   const CATEGORIES = [
-    { id: "feg", label: "FEG BRAND", color: "#1f9d55", featured: true },
+    { id: "feg", label: "FEG BRAND", color: "#39ff14", featured: true },
   ];
 
   /* =========================================================
