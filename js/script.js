@@ -3678,7 +3678,7 @@ Best,
      ========================================================= */
   const CATEGORIES = [
     { id: "feg", label: "FEG BRAND", color: "#1f9d55", featured: true },
-    { id: "outros", label: "Outros Templates", color: "#6b7280" },
+    { id: "outros", label: "FEG DIRECT RESPONSE", color: "#6b7280" },
   ];
 
   /* =========================================================
