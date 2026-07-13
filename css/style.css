@@ -142,7 +142,8 @@ section h2 {
   color: var(--color-text-light);
 }
 
-.order-field input {
+.order-field input,
+.order-field select {
   padding: 8px 10px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -156,7 +157,8 @@ section h2 {
   color: #5e6b59;
 }
 
-.order-field input:focus {
+.order-field input:focus,
+.order-field select:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px var(--color-primary-soft);

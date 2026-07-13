@@ -35,6 +35,7 @@
 
   const loadSampleBtn = document.getElementById("load-sample-btn");
   const welcomePreview = document.getElementById("welcome-preview");
+  const orderAssinatura = document.getElementById("order-assinatura");
 
   const templateCategoriesEl = document.getElementById("template-categories");
   const messageInput = document.getElementById("customer-message");
@@ -3975,6 +3976,16 @@ Best,
       refreshActiveTemplate();
     });
   });
+
+  // Ao escolher se o pedido tem assinatura (Sim/Não), leva o atendente
+  // direto para o campo de Mensagem do Cliente, para agilizar o atendimento.
+  if (orderAssinatura) {
+    orderAssinatura.addEventListener("change", () => {
+      if (!orderAssinatura.value) return;
+      messageInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      messageInput.focus();
+    });
+  }
 
   responsePt.addEventListener("input", () => {
     window.clearTimeout(translateDebounceTimer);
