@@ -988,6 +988,150 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegEtiquetaCriada",
+      category: "feg",
+      label: "Cliente relata que a etiqueta ainda aparece somente como criada",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: Etiqueta criada
+
+Obrigado(a) por entrar em contato! Entendo perfeitamente a sua ansiedade em acompanhar cada passo da entrega — principalmente quando estamos animados para começar a usar um novo produto na nossa rotina de bem-estar.
+
+Verifiquei aqui e posso te explicar exatamente o que está acontecendo: nessa etapa, o rastreamento mostra apenas "Etiqueta criada", o que significa simplesmente que o pacote já está no processo de envio pela transportadora e aguarda a próxima leitura. Isso não indica nenhum problema — é uma etapa normal do processo logístico.
+
+As informações de rastreamento devem ser atualizadas em breve, assim que a UPS receber e escanear o pacote em uma de suas instalações. A partir daí, você já conseguirá acompanhar o andamento da entrega até o seu endereço em tempo real, por aqui: {{linkRastreio}}.
+
+Fico à disposição para acompanhar isso com você. Se em alguns dias o status ainda não tiver mudado, é só me avisar que já investigo diretamente com a transportadora.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Agradecemos muito a sua paciência! Qualquer outra dúvida, não hesite em entrar em contato.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Shipping Address: {{endereco}}
+• Current Status: Label created
+
+Thank you for reaching out! I completely understand your eagerness to track every step of the delivery — especially when we're excited to start using a new product in our wellness routine.
+
+I checked here and I can explain exactly what's happening: at this stage, tracking only shows "Label created," which simply means the package is already in the carrier's shipping process and awaiting its next scan. This doesn't indicate any problem — it's a normal step in the logistics process.
+
+The tracking information should update soon, as soon as UPS receives and scans the package at one of its facilities. From there, you'll be able to follow the delivery progress to your address in real time, right here: {{linkRastreio}}.
+
+I'm here to follow up on this with you. If the status hasn't changed in a few days, just let me know and I'll look into it directly with the carrier.
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Thank you so much for your patience! If you have any other questions, please don't hesitate to reach out.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegEfeitosAdversosSintomas",
+      category: "feg",
+      label: "Cliente apresentou efeitos adversos – Sintomas",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+
+Muito obrigado(a) por entrar em contato e compartilhar isso com a gente. Lamento muito saber que você teve uma reação adversa após utilizar nosso {{produto}}. Sua saúde, segurança e bem-estar são nossa maior prioridade, e ficamos genuinamente preocupados ao saber disso.
+
+Por favor, interrompa imediatamente o uso do produto. Como a química do corpo é única para cada pessoa, recomendamos fortemente que você consulte um profissional de saúde ou médico sobre os sintomas apresentados — eles são quem melhor conhece seu histórico de saúde e podem te orientar com segurança.
+
+Para sua total tranquilidade, já processei o reembolso integral do seu pedido. Você não precisa se preocupar em nos devolver o produto.
+
+Para ajudar nossa equipe de Qualidade e Segurança a investigar esse lote específico e manter os mais altos padrões para toda a nossa comunidade, você poderia nos ajudar, quando se sentir à vontade, com as seguintes informações?
+• Número do lote (geralmente localizado na parte inferior ou traseira da embalagem)
+• Quais sintomas específicos você apresentou
+
+Não há nenhuma pressa — pode nos responder no seu tempo.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Por favor, cuide-se bem hoje, e me avise se precisar de mais alguma coisa. Estou à disposição.
+
+Com carinho e cuidado,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+
+Thank you so much for reaching out and sharing this with us. I'm truly sorry to hear you experienced an adverse reaction after using our {{produto}}. Your health, safety, and wellbeing are our top priority, and we're genuinely concerned to hear about this.
+
+Please stop using the product immediately. Since everyone's body chemistry is unique, we strongly recommend consulting a healthcare professional or doctor about the symptoms you've experienced — they know your health history best and can safely guide you.
+
+For your complete peace of mind, I've already processed a full refund for your order. You don't need to worry about returning the product to us.
+
+To help our Quality and Safety team investigate this specific batch and maintain the highest standards for our whole community, would you be able to help us with the following information, whenever you feel comfortable?
+• The batch/lot number (usually located on the bottom or back of the packaging)
+• Which specific symptoms you experienced
+
+There's no rush at all — you can reply whenever it's convenient for you.
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Please take good care of yourself today, and let me know if you need anything else. I'm here for you.
+
+With care,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
