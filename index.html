@@ -17,7 +17,6 @@
       <span class="brand-mark" aria-hidden="true">FEG</span>
       <h1>FEG BRANDS — Dashboard de Atendimento</h1>
       <p class="subtitle">Templates prontos + sugestão automática de resposta, em português e inglês</p>
-      <span class="page-badge">Wellness · Clientes EUA</span>
       <a class="nav-pill" href="direct-response.html">Painel FEG Direct Response →</a>
     </div>
   </header>
@@ -77,6 +76,20 @@
           </select>
         </div>
       </div>
+
+      <details class="tracking-details">
+        <summary>Informações de rastreamento (preenche automaticamente na mensagem gerada)</summary>
+        <div class="order-grid">
+          <div class="order-field">
+            <label for="order-codigo-rastreio">Código de Rastreamento</label>
+            <input id="order-codigo-rastreio" type="text" placeholder="Ex: BR123456789">
+          </div>
+          <div class="order-field">
+            <label for="order-link-rastreio">Link de Rastreamento</label>
+            <input id="order-link-rastreio" type="text" placeholder="Ex: https://rastreio.exemplo.com/BR123456789">
+          </div>
+        </div>
+      </details>
 
       <p class="welcome-preview-label">Pré-visualização da mensagem de boas-vindas:</p>
       <p id="welcome-preview" class="welcome-preview">
