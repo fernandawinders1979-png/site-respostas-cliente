@@ -622,10 +622,26 @@
       .catch(() => showFeedback("Não foi possível copiar automaticamente. Selecione o texto manualmente."));
   }
 
+  /**
+   * Preenche o campo "Nome do Cliente" a partir de um parâmetro na URL
+   * (ex: index.html?nomeCliente=Maria%20Silva), usado pela integração
+   * com o Freshdesk: o app da barra lateral do chamado abre o painel
+   * já com o nome do contato preenchido, sem precisar digitar.
+   */
+  function applyPrefillFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const nomeCliente = params.get("nomeCliente");
+    if (nomeCliente && orderFields.nomeCliente) {
+      orderFields.nomeCliente.value = nomeCliente;
+    }
+  }
+
   /* =========================================================
      Eventos
      ========================================================= */
   renderTemplateSidebar();
+  applyPrefillFromUrl();
+  updateWelcomePreview();
 
   generateBtn.addEventListener("click", handleGenerateClick);
   loadSampleBtn.addEventListener("click", loadSampleOrder);
