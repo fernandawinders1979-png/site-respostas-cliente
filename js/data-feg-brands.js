@@ -1370,6 +1370,67 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegMedicoNaoAutorizouReembolsoRecusarEntrega",
+      category: "feg",
+      label: "Médico não autorizou cliente com o produto – Realiza reembolso e solicita para recusar a entrega",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Agradeço por entrar em contato conosco e por compartilhar essa informação. Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+Entendo perfeitamente — quando se trata da sua saúde, a orientação do seu médico deve sempre vir em primeiro lugar, e apoiamos totalmente essa decisão.
+
+Fique tranquilo(a): você está dentro do prazo da nossa garantia de satisfação de 30 dias, então já processei o reembolso integral do valor pago.
+
+Verifiquei também que o produto já havia sido processado e está atualmente em trânsito, então, infelizmente, não conseguimos interromper o envio neste momento.
+
+Para resolver isso da forma mais simples possível, quando o pacote chegar até você, pedimos que recuse o recebimento diretamente com o entregador. Dessa forma, o pedido retorna automaticamente para a nossa empresa, sem que você precise se preocupar com nenhuma outra ação, custo ou postagem adicional.
+
+O reembolso será direcionado ao seu método de pagamento original, e o valor deve aparecer em até 10 dias úteis. Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer no ciclo atual ou no seguinte, conforme os prazos definidos pelo seu banco ou operadora de cartão.
+
+Agradecemos muito por ter feito parte da nossa comunidade. Se um dia sua saúde permitir e você quiser voltar a experimentar nossos produtos, será um verdadeiro prazer atendê-la novamente.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+Thank you for reaching out to us and sharing this information. I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+I completely understand — when it comes to your health, your doctor's guidance should always come first, and we fully support that decision.
+
+Rest assured: you're within our 30-day satisfaction guarantee window, so I've already processed a full refund of the amount paid.
+
+I also checked and the product has already been processed and is currently in transit, so unfortunately we're unable to stop the shipment at this time.
+
+To resolve this in the simplest way possible, when the package arrives, please refuse the delivery directly with the carrier. This way, the order will automatically be returned to our company, and you won't need to worry about any other action, cost, or additional shipping.
+
+The refund will be issued to your original payment method, and the amount should appear within 10 business days. Depending on your statement closing date, the credit may appear in the current or the following billing cycle, according to the timeframes set by your bank or card issuer.
+
+We're truly grateful you were part of our community. If your health allows and you'd like to try our products again someday, it would be a genuine pleasure to serve you again.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
