@@ -455,6 +455,287 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegNaoRecebeuQuerReembolsoEntregue",
+      category: "feg",
+      label: "Cliente relata que não recebeu pedido e quer reembolso – Consta como entregue",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: Entregue (conforme rastreio)
+
+Sei que é frustrante esperar por um produto e não recebê-lo — entendo sua preocupação. Verifiquei aqui e a plataforma de rastreio indica que o pedido foi entregue em [data/hora], conforme o código de rastreio {{codigoRastreio}} ({{linkRastreio}}). Às vezes isso acontece por detalhes simples — como o pacote ter sido deixado com um vizinho, na portaria, ou em um endereço próximo. Vale a pena conferir, caso ainda não tenha feito isso.
+
+Para resolver isso rapidamente, posso:
+1. Reenviar o pedido com prioridade, sem custo adicional; ou
+2. Processar o reembolso diretamente.
+
+É só me confirmar qual opção prefere. Se optar pelo reenvio, preciso que confirme seu endereço completo (rua, número, complemento, bairro, cidade, estado e CEP).
+
+Fico no aguardo do seu retorno!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, from the FEG Customer Support team.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: Delivered (per tracking)
+
+I know it's frustrating to wait for a product and not receive it — I understand your concern. I checked here and the tracking platform shows the order was delivered on [date/time], under tracking code {{codigoRastreio}} ({{linkRastreio}}). Sometimes this happens for simple reasons — like the package being left with a neighbor, at the front desk, or at a nearby address. It's worth double-checking, in case you haven't already.
+
+To resolve this quickly, I can:
+1. Reship your order as a priority, at no additional cost; or
+2. Process a refund directly.
+
+Just let me know which option you prefer. If you choose reshipment, I'll need you to confirm your full address (street, number, apartment/unit, neighborhood, city, state, and ZIP code).
+
+I'll be looking forward to your reply!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegNaoRecebeuEntregueSemReembolso",
+      category: "feg",
+      label: "Cliente relata que não recebeu pedido – Consta como entregue (sem falar de reembolso)",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: Entregue (conforme rastreio)
+
+Sei que é frustrante esperar por um produto e não recebê-lo — entendo sua preocupação, e vamos resolver isso juntos(as).
+
+Verifiquei aqui e a plataforma de rastreio indica que o pedido foi entregue em [data/hora], conforme o código de rastreio {{codigoRastreio}} ({{linkRastreio}}). Às vezes isso acontece por detalhes simples — como o pacote ter sido deixado com um vizinho, na portaria, ou em um endereço próximo. Vale a pena conferir, caso ainda não tenha feito isso.
+
+Para resolver isso rapidamente, vou solicitar o reenvio do seu pedido com prioridade, sem custo adicional. Para garantir que chegue corretamente dessa vez, você poderia confirmar seu endereço completo (rua, número, complemento, bairro, cidade, estado e CEP)?
+
+Assim que eu receber essa confirmação, já dou andamento imediatamente.
+
+Fico no aguardo do seu retorno!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, from the FEG Customer Support team.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: Delivered (per tracking)
+
+I know it's frustrating to wait for a product and not receive it — I understand your concern, and we'll sort this out together.
+
+I checked here and the tracking platform shows the order was delivered on [date/time], under tracking code {{codigoRastreio}} ({{linkRastreio}}). Sometimes this happens for simple reasons — like the package being left with a neighbor, at the front desk, or at a nearby address. It's worth double-checking, in case you haven't already.
+
+To resolve this quickly, I'll request a priority reshipment of your order at no additional cost. To make sure it arrives correctly this time, could you confirm your full address (street, number, apartment/unit, neighborhood, city, state, and ZIP code)?
+
+As soon as I receive that confirmation, I'll move forward right away.
+
+I'll be looking forward to your reply!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegDetalhesDaEntrega",
+      category: "feg",
+      label: "Detalhes da entrega",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar, então vou te trazer todas as informações com precisão.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Verifiquei aqui e posso confirmar que seu pedido está dentro do prazo estimado de entrega e atualmente a caminho do seu endereço. Você pode acompanhar cada etapa através das informações abaixo:
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
+
+Fico à disposição para acompanhar isso com você. Se por algum motivo a entrega não chegar dentro do prazo estimado, ou se surgir qualquer outra dúvida, é só me responder este e-mail — estarei aqui para te ajudar.
+
+Fico no aguardo, e desejo que o {{produto}} chegue rapidinho até você!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+Thank you for reaching out to us. I know how nice it is to closely track the arrival of a product that's part of your wellness routine, so I'll bring you all the details with precision.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+I checked here and can confirm your order is within the estimated delivery window and currently on its way to your address. You can follow each step using the information below:
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
+
+I'm here to follow up on this with you. If for any reason the delivery doesn't arrive within the estimated window, or if any other question comes up, just reply to this email — I'll be here to help.
+
+I'll be looking forward to it, and I hope your {{produto}} reaches you soon!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegNovoCodigoRastreioReenvio",
+      category: "feg",
+      label: "Novo código de rastreio – Reenvio",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Como prometido, estou entrando em contato para fornecer as informações de rastreamento atualizadas do seu reenvio, para que você possa acompanhar o andamento da entrega diretamente com a UPS.
+
+Informações de Rastreamento
+• Número de rastreamento da UPS: {{codigoRastreio}}
+• Link de rastreamento: {{linkRastreio}}
+
+Você pode usar esse número para acompanhar as últimas atualizações e a previsão de entrega do seu pacote.
+
+Vale lembrar que as informações de rastreamento podem levar um pouco de tempo para serem atualizadas assim que a encomenda entra no sistema da transportadora — isso é normal e não indica nenhum problema.
+
+Vou continuar acompanhando esse envio de perto para garantir que dessa vez tudo corra bem. Caso tenha qualquer dúvida ou precise de ajuda adicional em relação à sua entrega, não hesite em responder a este e-mail — terei o maior prazer em ajudar.
+
+Agradeço muito a sua paciência e compreensão durante esse processo.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+As promised, I'm reaching out to share the updated tracking information for your reshipment, so you can follow the delivery progress directly with UPS.
+
+Tracking Information
+• UPS Tracking Number: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
+
+You can use this number to check the latest updates and estimated delivery date for your package.
+
+Please keep in mind that tracking information can take a little while to update once the package enters the carrier's system — this is normal and doesn't indicate any issue.
+
+I'll keep a close eye on this shipment to make sure everything goes smoothly this time. If you have any questions or need additional help with your delivery, don't hesitate to reply to this email — I'll be more than happy to help.
+
+Thank you so much for your patience and understanding throughout this process.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegCancelarAssinaturaSemMotivo",
+      category: "feg",
+      label: "Cliente pedindo para cancelar assinatura recorrente – Sem falar motivo",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Agradeço por entrar em contato conosco. Localizei sua assinatura em nosso sistema:
+
+Detalhes da Assinatura
+• Número da Assinatura: {{numeroPedido}}
+• Plano Atual: {{produto}}
+• Data da Última Cobrança: [Data]
+• Próxima Cobrança Prevista: [Data]
+• Status Atual: Ativa
+
+Obrigado(a) por nos avisar sobre o cancelamento. Entendo perfeitamente — às vezes a rotina muda, as prioridades mudam, e isso é totalmente normal. Fique à vontade para seguir com o cancelamento; a decisão é sua.
+
+Antes de finalizar, se você se sentir à vontade, poderia nos contar brevemente o motivo do cancelamento? Pode ser algo relacionado ao produto, aos resultados, ao valor, à frequência das entregas, ou simplesmente uma mudança na sua rotina. Essa informação é totalmente opcional, e serve apenas para nos ajudar a melhorar cada vez mais a experiência dos nossos clientes.
+
+Se, após compartilhar (ou mesmo sem compartilhar), você continuar preferindo não seguir com o tratamento, sem problema algum — o cancelamento será processado imediatamente, sem nenhuma taxa e sem burocracia, e você não será cobrado(a) novamente a partir de [data].
+
+De qualquer forma, agradecemos sinceramente por ter feito parte da sua jornada de bem-estar até aqui. Se um dia sentir vontade de retomar o tratamento conosco, suas informações ficam guardadas, e o processo de reativação é simples e rápido.
+
+Fico no aguardo do seu retorno para seguirmos com o que fizer mais sentido para você.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+Thank you for reaching out to us. I located your subscription in our system:
+
+Subscription Details
+• Subscription Number: {{numeroPedido}}
+• Current Plan: {{produto}}
+• Last Billing Date: [Date]
+• Next Expected Billing Date: [Date]
+• Current Status: Active
+
+Thank you for letting us know about the cancellation. I completely understand — routines change, priorities change, and that's totally normal. Feel free to go ahead with the cancellation; it's entirely your decision.
+
+Before we finalize it, if you're comfortable sharing, could you briefly tell us the reason for the cancellation? It could be related to the product, the results, the price, the delivery frequency, or simply a change in your routine. This information is completely optional and only helps us keep improving the experience for our customers.
+
+If, after sharing (or even without sharing), you'd still prefer not to continue, no problem at all — the cancellation will be processed immediately, with no fees and no hassle, and you won't be charged again starting on [date].
+
+Either way, we sincerely thank you for being part of your wellness journey with us so far. If you ever feel like resuming treatment with us, your information stays on file, and the reactivation process is quick and simple.
+
+I'll be looking forward to your reply so we can move forward with whatever makes the most sense for you.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
