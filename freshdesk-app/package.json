@@ -1,7 +1,7 @@
 {
-  "name": "common-starter-template",
+  "name": "feg-brands-freshdesk-app",
   "version": "1.0.0",
-  "description": "Common starter template with vitest",
+  "description": "FEG BRANDS - abre o Dashboard com o nome do cliente ja preenchido",
   "dependencies": {},
   "devDependencies": {
     "@vitest/coverage-v8": "~2.1.8",
