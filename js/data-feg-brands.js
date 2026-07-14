@@ -1246,6 +1246,130 @@ Warm regards,
 {{nomeAgente}}
 Support Center — FEG`,
     },
+
+    {
+      id: "fegNaoGostouSabor",
+      category: "feg",
+      label: "Não gostou do sabor",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Antes de mais nada, obrigado(a) por compartilhar sua experiência com a gente — isso é muito importante para continuarmos melhorando. Sinto muito que o sabor do produto não tenha agradado; entendo que isso pode ser bem incômodo, especialmente quando o objetivo é incorporar o suplemento na sua rotina diária.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Sabemos que sabor é algo bem pessoal, e por isso oferecemos garantia de reembolso de 30 dias na sua primeira compra — sem burocracia.
+
+Para dar andamento ao seu reembolso, basta responder este e-mail confirmando que deseja seguir com a solicitação. Assim que recebermos sua confirmação, nossa equipe processa tudo rapidamente e te mantém informado(a) em cada etapa.
+
+Se por acaso você quiser tentar outra opção antes — como um sabor diferente da linha ou dicas de como consumir o produto de um jeito mais agradável (por exemplo, misturado com suco ou iogurte) — também posso te ajudar com isso. Sem compromisso, é só me avisar o que preferir.
+
+Estou à disposição para o que você precisar. Nosso objetivo é que sua experiência com a gente seja sempre positiva, do início ao fim. Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Fico no aguardo do seu retorno!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente – FEG`,
+      en: `Hello, {{nomeCliente}}!
+How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+First of all, thank you for sharing your experience with us — this is really important for us to keep improving. I'm sorry the taste of the product didn't work for you; I understand that can be quite frustrating, especially when the goal is to make the supplement part of your daily routine.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+We know taste is very personal, which is why we offer a 30-day refund guarantee on your first purchase — no red tape.
+
+To move forward with your refund, just reply to this email confirming you'd like to proceed with the request. As soon as we receive your confirmation, our team will process everything quickly and keep you informed every step of the way.
+
+If you'd like to try another option first — such as a different flavor from our line, or tips on how to make the product more enjoyable to take (for example, mixed with juice or yogurt) — I can help with that too. No obligation, just let me know what you'd prefer.
+
+I'm here for whatever you need. Our goal is for your experience with us to always be positive, from start to finish. I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+I'll be looking forward to your reply!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team – FEG`,
+    },
+
+    {
+      id: "fegMedicoNaoAutorizouReembolsoSemDevolucao",
+      category: "feg",
+      label: "Médico não autorizou – Realiza reembolso e não solicita devolução",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Agradeço por entrar em contato conosco e por compartilhar essa informação. Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+Entendo perfeitamente — quando se trata da sua saúde, a orientação do seu médico deve sempre vir em primeiro lugar, e apoiamos totalmente essa decisão.
+
+Fique tranquilo(a): você está dentro do prazo da nossa garantia de satisfação de 30 dias, então já processei o reembolso integral do valor pago. Você não precisa se preocupar em nos devolver o produto — pode ficar com ele, como preferir, sem nenhum custo ou compromisso adicional.
+
+O reembolso será direcionado ao seu método de pagamento original, e o valor deve aparecer em até 10 dias úteis. Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer no ciclo atual ou no seguinte, conforme os prazos definidos pelo seu banco ou operadora de cartão.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Qualquer dúvida sobre o reembolso, é só me responder este e-mail.
+
+Agradecemos muito por ter feito parte da nossa comunidade. Se um dia sua saúde permitir e você quiser voltar a experimentar nossos produtos, será um verdadeiro prazer atendê-la novamente.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+Thank you for reaching out to us and sharing this information. I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+I completely understand — when it comes to your health, your doctor's guidance should always come first, and we fully support that decision.
+
+Rest assured: you're within our 30-day satisfaction guarantee window, so I've already processed a full refund of the amount paid. You don't need to worry about returning the product to us — you're welcome to keep it, at no additional cost or obligation.
+
+The refund will be issued to your original payment method, and the amount should appear within 10 business days. Depending on your statement closing date, the credit may appear in the current or the following billing cycle, according to the timeframes set by your bank or card issuer.
+
+I'll keep following your case until it's fully resolved. If you have any questions about the refund, just reply to this email.
+
+We're truly grateful you were part of our community. If your health allows and you'd like to try our products again someday, it would be a genuine pleasure to serve you again.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
