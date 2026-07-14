@@ -807,6 +807,187 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegCancelarAssinaturaCompraUnica",
+      category: "feg",
+      label: "Cliente quer cancelar assinatura, mas foi compra única",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Consegui localizar o seguinte pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Entendo perfeitamente a importância de ter clareza e tranquilidade quando se trata de compras relacionadas ao bem-estar e do receio de cobranças inesperadas. Por isso, quis confirmar essa informação pessoalmente para você.
+
+Gostaria de tranquilizá-lo(a) informando que esta foi uma compra única. Não existe nenhuma assinatura ativa associada a este pedido, o que significa que você não será cobrado(a) automaticamente no futuro, nem receberá envios recorrentes relacionados a esta compra.
+
+Fique tranquilo(a): não é necessário realizar nenhuma ação em relação a assinaturas, pois, como confirmei, não existe nenhuma vinculada a este pedido.
+
+Caso tenha qualquer outra dúvida ou precise de ajuda com qualquer assunto relacionado ao seu pedido, por favor, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+I was able to locate the following order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+I completely understand how important it is to have clarity and peace of mind when it comes to wellness purchases, and the concern about unexpected charges. That's why I wanted to confirm this information personally for you.
+
+I'd like to reassure you that this was a one-time purchase. There is no active subscription associated with this order, which means you won't be charged automatically in the future, nor will you receive recurring shipments related to this purchase.
+
+Rest assured: there's no action needed regarding subscriptions, since, as I confirmed, there is none linked to this order.
+
+If you have any other questions or need help with anything related to your order, please don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegDevolverSemResultadoSemRetencao",
+      category: "feg",
+      label: "Cliente quer devolver – Sem resultado – Sem retenção e não precisa devolver os produtos",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+Obrigado(a) por compartilhar isso comigo. Entendo perfeitamente a sua frustração — quando investimos tempo e expectativa em algo para o nosso bem-estar e não vemos o resultado esperado, é natural sentir que o produto simplesmente não é para você. Isso é totalmente válido.
+
+Fique tranquilo(a): você está dentro do prazo da nossa garantia de satisfação de [X] dias, então já processei o reembolso integral do valor pago com sucesso em nosso sistema.
+
+Você não precisa se preocupar em nos devolver o produto — pode ficar com ele como um presente da nossa empresa, sem nenhum custo ou compromisso adicional.
+
+O reembolso será direcionado à mesma forma de pagamento utilizada na compra, e o valor deve aparecer em até 7 dias úteis. Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer no ciclo atual ou no seguinte, com um prazo adicional que pode variar conforme as políticas do seu banco ou operadora de cartão.
+
+Estou aqui para o que você precisar. Se tiver qualquer dúvida sobre o reembolso, não hesite em responder a este e-mail — ficarei feliz em continuar ajudando.
+
+Agradecemos muito, de coração, a sua confiança em nós, e lamentamos sinceramente que o {{produto}} não tenha atendido às suas expectativas dessa vez. Esperamos ter a oportunidade de recebê-lo(a) novamente em uma próxima compra — nossas portas estarão sempre abertas, sem nenhuma pressa, quando for o momento certo para você.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Com carinho,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+Thank you for reaching out to us and sharing what happened. I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+Thank you for sharing this with me. I completely understand your frustration — when we invest time and hope into something for our wellness and don't see the results we expected, it's natural to feel the product simply isn't for you. That's completely valid.
+
+Rest assured: you're within our [X]-day satisfaction guarantee window, so I've already processed a full refund of the amount paid successfully in our system.
+
+You don't need to worry about returning the product to us — you can keep it as a gift from our company, at no additional cost or obligation.
+
+The refund will be issued to the same payment method used for the purchase, and the amount should appear within 7 business days. Depending on your statement closing date, the credit may appear in the current or the following billing cycle, with an additional timeframe that can vary according to your bank's or card issuer's policies.
+
+I'm here for whatever you need. If you have any questions about the refund, don't hesitate to reply to this email — I'll be happy to keep helping.
+
+We sincerely thank you for trusting us, and we're truly sorry that {{produto}} didn't meet your expectations this time. We hope to have the chance to welcome you back for a future purchase — our doors will always be open, with no rush, whenever the right time comes for you.
+
+I'll keep following your case until it's fully resolved.
+
+Warmly,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegDevolverComProdutoSemMotivoSemRetencao",
+      category: "feg",
+      label: "Cliente quer devolver, está com o produto, mas não fala o motivo (Sem retenção)",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}} e estarei cuidando dessa solicitação para você.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Plano de Assinatura: [Nome do Plano]
+• Status Atual: {{status}}
+
+Obrigado(a) por entrar em contato. Recebi sua solicitação de cancelamento do pedido e da assinatura, e quero que saiba que vou cuidar pessoalmente disso para você — sem burocracia e sem complicação.
+
+Fique tranquilo(a): posso confirmar que tanto o pedido quanto a assinatura serão cancelados, e você não será cobrado(a) novamente a partir de agora.
+
+Antes de concluirmos, você poderia me contar rapidamente o motivo do cancelamento? Pode ser algo relacionado ao produto, à frequência de entrega, ao valor, ou qualquer outro ponto. Essa informação não é obrigatória para seguirmos com o cancelamento — é só para eu entender se existe algo simples que possamos ajustar, e também para repassar esse feedback à nossa equipe, que está sempre buscando melhorar a experiência dos nossos clientes.
+
+Se, ao compartilhar o motivo, você achar que ainda vale a pena continuar experimentando o produto por mais um tempo antes de decidir definitivamente, terei o maior prazer em te dar algumas orientações rápidas para aproveitar melhor o {{produto}}. Mas se sua decisão já estiver tomada, sem problema algum: é só me confirmar e eu finalizo o cancelamento imediatamente.
+
+Estou à disposição para o que for mais conveniente para você. Assim que eu receber sua resposta (com ou sem o motivo), já dou andamento ao cancelamento.
+
+Agradecemos muito por ter feito parte da nossa comunidade, e esperamos que, se um dia quiser voltar, nossas portas estejam sempre abertas.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}} and I'll be taking care of this request for you.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Subscription Plan: [Plan Name]
+• Current Status: {{status}}
+
+Thank you for reaching out. I've received your request to cancel the order and the subscription, and I want you to know I'll take care of this personally for you — no red tape, no hassle.
+
+Rest assured: I can confirm that both the order and the subscription will be canceled, and you won't be charged again going forward.
+
+Before we wrap this up, could you quickly tell me the reason for the cancellation? It could be related to the product, the delivery frequency, the price, or anything else. This information isn't required for us to proceed with the cancellation — it just helps me understand if there's something simple we could adjust, and it also helps us pass this feedback along to our team, who's always working to improve the experience for our customers.
+
+If, after sharing the reason, you feel it might still be worth giving the product a bit more time before deciding for good, I'd be more than happy to give you a few quick tips to get the most out of your {{produto}}. But if your decision is already made, no problem at all — just confirm it and I'll finalize the cancellation right away.
+
+I'm here for whatever works best for you. As soon as I hear back from you (with or without the reason), I'll move forward with the cancellation.
+
+We're truly grateful you were part of our community, and we hope that if you ever want to come back, our doors will always be open.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
