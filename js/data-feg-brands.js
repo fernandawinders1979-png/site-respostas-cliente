@@ -255,6 +255,206 @@ If you still have any questions or anything isn't as expected, just reply to thi
 Best,
 {{nomeAgente}} | FEG Support`,
     },
+
+    {
+      id: "fegClienteNaoLocalizado",
+      category: "feg",
+      label: "Cliente não localizado",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Antes de tudo, muito obrigado(a) por entrar em contato conosco. Sei que ter que buscar essas informações pode ser um pouco chato, então quero deixar esse processo o mais rápido e simples possível para você.
+
+Para conseguir localizar seu pedido com precisão e já te ajudar da melhor forma possível, você poderia me confirmar as seguintes informações?
+• Qual produto foi encomendado?
+• Número do pedido (se tiver em mãos)
+• Nome utilizado na compra
+• E-mail utilizado para realizar a compra
+
+Não se preocupe se não tiver todas essas informações agora — qualquer uma delas já me ajuda a começar a busca.
+
+Assim que eu localizar seu pedido, você terá toda a minha atenção para resolvermos isso juntos(as), da forma mais tranquila possível.
+
+Fico no aguardo do seu retorno!
+
+Atenciosamente,
+{{nomeAgente}} 🤝
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+First of all, thank you so much for reaching out to us. I know having to look up this information can be a bit of a hassle, so I want to make this process as quick and simple as possible for you.
+
+To locate your order accurately and help you in the best way possible, could you please confirm the following information?
+• Which product did you order?
+• Order number (if you have it on hand)
+• Name used on the purchase
+• Email used to make the purchase
+
+Don't worry if you don't have all of this information right now — any single one of them already helps me start the search.
+
+As soon as I locate your order, you'll have my full attention so we can resolve this together, in the smoothest way possible.
+
+I'll be looking forward to your reply!
+
+Best regards,
+{{nomeAgente}} 🤝
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegComoPossoAjudar",
+      category: "feg",
+      label: "Como posso te ajudar",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+Agradeço muito por entrar em contato conosco. Quero que você se sinta à vontade para compartilhar exatamente o que precisa — estou aqui para te ouvir e ajudar da melhor forma possível.
+
+Poderia me contar um pouco mais sobre sua dúvida ou necessidade em relação a esse pedido? Assim que eu entender melhor a sua situação, terei todo o cuidado necessário para te ajudar a encontrar a solução ideal, com toda a atenção que você merece.
+
+Fico no aguardo do seu retorno e permaneço à disposição para qualquer esclarecimento!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+Thank you so much for reaching out to us. I want you to feel comfortable sharing exactly what you need — I'm here to listen and help in the best way possible.
+
+Could you tell me a bit more about your question or need regarding this order? Once I better understand your situation, I'll take all the care needed to help you find the ideal solution, with all the attention you deserve.
+
+I'll be looking forward to your reply and remain available for any clarification!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegDetalhesDoPedido",
+      category: "feg",
+      label: "Detalhes do Pedido",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Obrigado(a) por entrar em contato! Fico feliz em te ajudar a esclarecer exatamente o que você pediu conosco.
+
+Consegui localizar o seu pedido em nosso sistema, e aqui estão todos os detalhes:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Se esses detalhes não corresponderem ao que você esperava, ou se tiver qualquer dúvida sobre o produto, o status da entrega ou qualquer outra informação, é só me avisar — terei todo o prazer em esclarecer tudo para você.
+
+Estou à disposição para o que precisar!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+Thank you for reaching out! I'm happy to help clarify exactly what you asked us about.
+
+I was able to locate your order in our system, and here are all the details:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+If these details don't match what you expected, or if you have any questions about the product, the delivery status, or anything else, just let me know — I'll be glad to clarify everything for you.
+
+I'm here for whatever you need!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegEnderecoInsuficiente",
+      category: "feg",
+      label: "Cliente não recebeu o pedido – Endereço insuficiente",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Sinto muito pelo transtorno — entendo como é frustrante esperar por um produto e não recebê-lo. Verifiquei aqui e o pedido retornou ao nosso centro de distribuição por uma informação insuficiente no endereço.
+
+Para reenviar imediatamente, com prioridade e sem custo adicional, você poderia confirmar seu endereço completo (rua, número, complemento, bairro, cidade, estado e CEP)?
+
+Assim que eu receber, já dou andamento ao reenvio.
+
+Qualquer dúvida, estou à disposição.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, from the FEG Customer Support team.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+I'm so sorry for the inconvenience — I understand how frustrating it is to wait for a product and not receive it. I checked here and the order was returned to our distribution center due to insufficient address information.
+
+To ship it out again right away, as a priority and at no additional cost, could you please confirm your full address (street, number, apartment/unit, neighborhood, city, state, and ZIP code)?
+
+As soon as I receive it, I'll move forward with the reshipment immediately.
+
+If you have any questions, I'm here to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
