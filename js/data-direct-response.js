@@ -1,364 +1,11 @@
 /**
- * Dashboard de Atendimento ao Cliente
- * Responsável por: ler os dados do pedido, montar a lista de templates,
- * inserir templates na resposta, sugerir uma resposta automática (placeholder
- * de IA) e copiar o texto final para a área de transferência.
+ * Dados de templates: FEG DIRECT RESPONSE
+ * Painel separado, de uso interno/secundário.
+ * Carregue este arquivo ANTES de js/core.js.
  */
-
 (function () {
   "use strict";
 
-  /* =========================================================
-     Referências dos elementos do DOM
-     ========================================================= */
-  const orderFields = {
-    nomeCliente: document.getElementById("order-nome-cliente"),
-    nomeAgente: document.getElementById("order-nome-agente"),
-    numeroPedido: document.getElementById("order-numero-pedido"),
-    dataCompra: document.getElementById("order-data-compra"),
-    produto: document.getElementById("order-produto"),
-    valorTotal: document.getElementById("order-valor-total"),
-    endereco: document.getElementById("order-endereco"),
-    status: document.getElementById("order-status"),
-    codigoRastreio: document.getElementById("order-codigo-rastreio"),
-    linkRastreio: document.getElementById("order-link-rastreio"),
-    percentualOferta: document.getElementById("order-percentual-oferta"),
-    percentualConfirmado: document.getElementById("order-percentual-confirmado"),
-    dataReembolso: document.getElementById("order-data-reembolso"),
-    valorReembolso: document.getElementById("order-valor-reembolso"),
-  };
-
-  // Template atualmente inserido na resposta (null se nenhum foi escolhido ainda).
-  // Usado para re-aplicar o template automaticamente quando os Detalhes do
-  // Pedido são editados, sem precisar clicar no template de novo.
-  let activeTemplateId = null;
-
-  const loadSampleBtn = document.getElementById("load-sample-btn");
-  const welcomePreview = document.getElementById("welcome-preview");
-  const orderAssinatura = document.getElementById("order-assinatura");
-
-  const templateCategoriesEl = document.getElementById("template-categories");
-  const messageInput = document.getElementById("customer-message");
-  const generateBtn = document.getElementById("generate-btn");
-  const responsePt = document.getElementById("response-pt");
-  const responseEn = document.getElementById("response-en");
-  const copyFeedback = document.getElementById("copy-feedback");
-  const translationStatus = document.getElementById("translation-status");
-
-  /* =========================================================
-     Texto de fallback exibido quando um campo do pedido
-     ainda não foi preenchido pelo atendente.
-     ========================================================= */
-  const FALLBACKS_PT = {
-    nomeCliente: "[NOME DO CLIENTE]",
-    nomeAgente: "[NOME DO AGENTE]",
-    numeroPedido: "[NÚMERO DO PEDIDO]",
-    dataCompra: "[DATA DA COMPRA]",
-    produto: "[PRODUTO]",
-    valorTotal: "[VALOR TOTAL]",
-    endereco: "[ENDEREÇO DE ENTREGA]",
-    status: "[STATUS DO PEDIDO]",
-    codigoRastreio: "[CÓDIGO DE RASTREAMENTO]",
-    linkRastreio: "[LINK DE RASTREAMENTO]",
-    percentualOferta: "[PERCENTUAL]",
-    percentualConfirmado: "[PERCENTUAL]",
-    dataReembolso: "[DATA DO REEMBOLSO]",
-    valorReembolso: "[VALOR DO REEMBOLSO]",
-  };
-
-  const FALLBACKS_EN = {
-    nomeCliente: "[CUSTOMER NAME]",
-    nomeAgente: "[AGENT NAME]",
-    numeroPedido: "[ORDER NUMBER]",
-    dataCompra: "[PURCHASE DATE]",
-    produto: "[PRODUCT]",
-    valorTotal: "[TOTAL AMOUNT]",
-    endereco: "[SHIPPING ADDRESS]",
-    status: "[ORDER STATUS]",
-    codigoRastreio: "[TRACKING CODE]",
-    linkRastreio: "[TRACKING LINK]",
-    percentualOferta: "[PERCENTAGE]",
-    percentualConfirmado: "[PERCENTAGE]",
-    dataReembolso: "[REFUND DATE]",
-    valorReembolso: "[REFUND AMOUNT]",
-  };
-
-  /**
-   * Lê os valores atuais preenchidos no painel de dados do pedido.
-   * @returns {Object} mapa campo -> valor (string, pode ser vazia)
-   */
-  function getOrderData() {
-    const data = {};
-    for (const [key, el] of Object.entries(orderFields)) {
-      data[key] = el.value.trim();
-    }
-    return data;
-  }
-
-  /**
-   * Igual a getOrderData(), mas aplica o percentual padrão do template
-   * (template.defaultPercentual) quando o campo "Percentual a Ofertar" do
-   * painel de dados do pedido estiver em branco. Permite que cada template
-   * de oferta de reembolso já venha com sua taxa própria, mas continue
-   * podendo ser sobrescrito manualmente pelo atendente.
-   * @param {Object} template
-   * @returns {Object}
-   */
-  function getOrderDataForTemplate(template) {
-    const data = getOrderData();
-    if (!data.percentualOferta && template.defaultPercentual) {
-      data.percentualOferta = template.defaultPercentual;
-    }
-    return data;
-  }
-
-  /**
-   * Substitui os placeholders {{campo}} de um texto pelos valores do
-   * pedido. Quando o campo está vazio, usa o texto entre colchetes
-   * (ex: [NOME DO CLIENTE]) como indicação para o atendente preencher.
-   * @param {string} text
-   * @param {Object} data
-   * @param {Object} fallbacks
-   * @returns {string}
-   */
-  function fillPlaceholders(text, data, fallbacks) {
-    return text.replace(/{{(\w+)}}/g, (match, key) => {
-      return data[key] || fallbacks[key] || match;
-    });
-  }
-
-  /**
-   * Converte uma data digitada no formato brasileiro (dd/mm/aaaa) para o
-   * formato em inglês por extenso (ex: "June 10, 2026"). Usado só nos
-   * templates em inglês, para a data não ficar ambígua para o cliente.
-   * Se o texto não estiver nesse formato, devolve o texto original sem alterar.
-   * @param {string} dateStr
-   * @returns {string}
-   */
-  function formatDateToEnglish(dateStr) {
-    if (!dateStr) return dateStr;
-
-    const match = dateStr.trim().match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
-    if (!match) return dateStr;
-
-    const day = parseInt(match[1], 10);
-    const month = parseInt(match[2], 10);
-    let year = parseInt(match[3], 10);
-    if (year < 100) year += 2000;
-
-    if (month < 1 || month > 12 || day < 1 || day > 31) return dateStr;
-
-    const MONTH_NAMES = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December",
-    ];
-
-    return `${MONTH_NAMES[month - 1]} ${day}, ${year}`;
-  }
-
-  /**
-   * Monta uma versão "imediata" dos dados do pedido para o template em
-   * inglês, só com as datas convertidas. Usada como preview instantâneo
-   * enquanto a tradução de produto/status (que depende de uma chamada de
-   * rede) ainda não voltou.
-   * @param {Object} data
-   * @returns {Object}
-   */
-  function toEnglishOrderDataPreview(data) {
-    return {
-      ...data,
-      dataCompra: formatDateToEnglish(data.dataCompra),
-      dataReembolso: formatDateToEnglish(data.dataReembolso),
-    };
-  }
-
-  // Campos de texto livre dos Detalhes do Pedido que precisam ser traduzidos
-  // para inglês (ex: "Em trânsito" -> "In transit"). Os demais campos
-  // (nomes, números, códigos, links, endereço) são mantidos como estão,
-  // pois não devem ser traduzidos.
-  const TRANSLATABLE_ORDER_FIELDS = ["produto", "status"];
-
-  // Cache de traduções já feitas (campo + texto original -> texto em inglês),
-  // para não chamar a API de novo para o mesmo valor.
-  const orderFieldTranslationCache = {};
-
-  /**
-   * Traduz o valor de um campo do pedido (ex: produto, status) de
-   * português para inglês, usando a mesma API de tradução do campo de
-   * Resposta do Atendente. Se a tradução falhar (ex: sem internet),
-   * devolve o texto original em português em vez de travar a tela.
-   * @param {string} field
-   * @param {string} text
-   * @returns {Promise<string>}
-   */
-  async function translateOrderFieldToEnglish(field, text) {
-    if (!text || !text.trim()) return text;
-
-    const cacheKey = `${field}::${text}`;
-    if (orderFieldTranslationCache[cacheKey]) {
-      return orderFieldTranslationCache[cacheKey];
-    }
-
-    try {
-      const translated = await translateChunk(text);
-      orderFieldTranslationCache[cacheKey] = translated;
-      return translated;
-    } catch (error) {
-      return text;
-    }
-  }
-
-  /**
-   * Monta os dados do pedido prontos para o template em inglês,
-   * convertendo os campos de data para o formato em inglês e traduzindo
-   * os campos de texto livre (produto, status) para inglês.
-   * @param {Object} data
-   * @returns {Promise<Object>}
-   */
-  async function toEnglishOrderData(data) {
-    const translatedEntries = await Promise.all(
-      TRANSLATABLE_ORDER_FIELDS.map((field) =>
-        translateOrderFieldToEnglish(field, data[field]).then((value) => [field, value])
-      )
-    );
-
-    return {
-      ...toEnglishOrderDataPreview(data),
-      ...Object.fromEntries(translatedEntries),
-    };
-  }
-
-  /* =========================================================
-     Tradução automática (português -> inglês) da Resposta do
-     Atendente. Usa a API gratuita do MyMemory (sem chave de API).
-     Disparada com um pequeno atraso (debounce) depois que o
-     atendente para de digitar no campo em português, e é
-     cancelada automaticamente quando um template é aplicado
-     (nesse caso o texto em inglês já escrito à mão é usado).
-     ========================================================= */
-  const MYMEMORY_MAX_CHARS = 480;
-  const TRANSLATE_DEBOUNCE_MS = 700;
-
-  let translateDebounceTimer = null;
-  let translateRequestId = 0;
-
-  /**
-   * Cancela qualquer tradução automática pendente (timer ainda não
-   * disparado ou chamadas à API já em andamento). Chamada sempre que
-   * o texto em português é definido programaticamente (por um
-   * template), para que a tradução automática não sobrescreva o
-   * texto em inglês escrito à mão.
-   */
-  function cancelPendingTranslation() {
-    window.clearTimeout(translateDebounceTimer);
-    translateRequestId++;
-    setTranslationStatus("");
-  }
-
-  function setTranslationStatus(message) {
-    if (!translationStatus) return;
-    translationStatus.textContent = message;
-    window.clearTimeout(setTranslationStatus._timeoutId);
-    if (message && message.startsWith("✅")) {
-      setTranslationStatus._timeoutId = window.setTimeout(() => {
-        translationStatus.textContent = "";
-      }, 2500);
-    }
-  }
-
-  /**
-   * Quebra o texto em português em linhas, preparando cada linha para
-   * tradução. Linhas em branco são preservadas sem tradução. Linhas
-   * muito longas (acima do limite da API) são quebradas em frases.
-   * @param {string} text
-   * @returns {Array<{translate: boolean, parts: string[]}>}
-   */
-  function buildLineChunks(text) {
-    return text.split("\n").map((line) => {
-      if (!line.trim()) return { translate: false, parts: [line] };
-      if (line.length <= MYMEMORY_MAX_CHARS) return { translate: true, parts: [line] };
-
-      const sentences = (line.match(/[^.!?]+[.!?]*\s*/g) || [line]).filter((s) => s.length > 0);
-      return { translate: true, parts: sentences };
-    });
-  }
-
-  /**
-   * Traduz um trecho de texto (até o limite da API) de português para inglês.
-   * @param {string} text
-   * @returns {Promise<string>}
-   */
-  async function translateChunk(text) {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=pt|en`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Falha na tradução");
-
-    const data = await response.json();
-    const translated = data && data.responseData && data.responseData.translatedText;
-    if (!translated) throw new Error("Tradução vazia");
-    return translated;
-  }
-
-  /**
-   * Traduz todas as partes de uma linha e as junta de volta em uma única linha.
-   * @param {string[]} parts
-   * @returns {Promise<string>}
-   */
-  async function translateLineParts(parts) {
-    const translatedParts = [];
-    for (const part of parts) {
-      if (!part.trim()) {
-        translatedParts.push(part);
-        continue;
-      }
-      translatedParts.push(await translateChunk(part));
-    }
-    return translatedParts.join(" ").replace(/\s+/g, " ").trim();
-  }
-
-  /**
-   * Traduz o texto atual do campo de resposta em português e atualiza
-   * o campo em inglês. Ignora o resultado se o texto em português
-   * mudar de novo (ou um template for aplicado) antes da tradução terminar.
-   */
-  async function translatePtToEn() {
-    const sourceText = responsePt.value;
-
-    if (!sourceText.trim()) {
-      responseEn.value = "";
-      setTranslationStatus("");
-      return;
-    }
-
-    const requestId = ++translateRequestId;
-    setTranslationStatus("🔄 Traduzindo para inglês...");
-
-    const lineChunks = buildLineChunks(sourceText);
-
-    try {
-      const translatedLines = await Promise.all(
-        lineChunks.map((lineChunk) =>
-          lineChunk.translate ? translateLineParts(lineChunk.parts) : lineChunk.parts[0]
-        )
-      );
-
-      if (requestId !== translateRequestId) return;
-      responseEn.value = translatedLines.join("\n");
-      setTranslationStatus("✅ Inglês atualizado automaticamente.");
-    } catch (error) {
-      if (requestId !== translateRequestId) return;
-      setTranslationStatus("⚠️ Não foi possível traduzir agora. Verifique sua internet e edite o texto novamente.");
-    }
-  }
-
-  /* =========================================================
-     Templates de resposta.
-     Para adicionar um novo template, basta incluir um novo objeto
-     neste array com: id (único), label (texto do botão), autoDetect
-     (lista de palavras-chave que disparam o template automaticamente
-     no "Gerar Resposta com IA", ou null se for só manual), pt e en
-     (textos com placeholders {{campo}}).
-     ========================================================= */
   const TEMPLATES = [
     {
       id: "naoLocalizado",
@@ -386,6 +33,7 @@
         "I'll be looking forward to your reply!\n" +
         "Best regards, {{nomeAgente}} 🤝 Customer Support Team",
     },
+
     {
       id: "pedidoNaoLocalizadoDadosInformados",
       category: "geral",
@@ -436,6 +84,7 @@ Sincerely,
 {{nomeAgente}}
 Support Team`,
     },
+
     {
       id: "pedidoLocalizado",
       category: "geral",
@@ -472,6 +121,7 @@ Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "detalheDoPedido",
       category: "geral",
@@ -508,6 +158,7 @@ Support Team`,
         "{{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "pedidoLocalizadoMotivo",
       category: "geral",
@@ -550,6 +201,7 @@ Support Team`,
         "{{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "enderecoConfirmadoEnvioHoje",
       category: "geral",
@@ -606,6 +258,7 @@ Best regards,
 {{nomeAgente}}
 Support Team`,
     },
+
     {
       id: "statusEntrega",
       category: "geral",
@@ -646,6 +299,7 @@ Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "cancelarSemReceber",
       category: "geral",
@@ -682,6 +336,7 @@ Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "devolucaoEngano",
       category: "geral",
@@ -720,6 +375,7 @@ Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "garantiaVencendo",
       category: "geral",
@@ -756,6 +412,7 @@ Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "naoRecebidoMarcadoEntregue",
       category: "geral",
@@ -790,6 +447,7 @@ Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "garantiaVencida",
       category: "geral",
@@ -850,6 +508,7 @@ Sincerely,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
     {
       id: "produtoDanificado",
       category: "geral",
@@ -926,6 +585,7 @@ Best regards,
 {{nomeAgente}}
 Premium Support Team`,
     },
+
     {
       id: "chargebackEnvioProdutos",
       category: "geral",
@@ -994,6 +654,7 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
     {
       id: "geral",
       category: "geral",
@@ -1026,6 +687,7 @@ Customer Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "comoPossoAjudar",
       category: "geral",
@@ -1052,6 +714,7 @@ Customer Support Team`,
         "{{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "enderecoInsuficiente",
       category: "geral",
@@ -1088,6 +751,7 @@ Customer Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "reembolsoRealizadoConfirmacao",
       category: "geral",
@@ -1132,6 +796,7 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
     {
       id: "naoAceitouNenhumaPropostaReembolso",
       category: "geral",
@@ -1303,7 +968,6 @@ Sincerely,
 Support Team`,
     },
 
-    /* ---- Produtos Memória ---- */
     {
       id: "memoriaVendaDuplicada",
       category: "memoria",
@@ -1464,6 +1128,7 @@ Best regards,
 {{nomeAgente}}
 Support / Customer Service Team`,
     },
+
     {
       id: "memoriaFraudeCancelar",
       category: "memoria",
@@ -1588,6 +1253,7 @@ Best regards,
 {{nomeAgente}}
 Support Team`,
     },
+
     {
       id: "memoriaSemResultados",
       category: "memoria",
@@ -1853,6 +1519,7 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
     {
       id: "memoriaMedicoReembolso",
       category: "memoria",
@@ -2003,6 +1670,7 @@ Best regards,
 {{nomeAgente}}
 Premium Support Team`,
     },
+
     {
       id: "memoriaMudouIdeiaEngano",
       category: "memoria",
@@ -2129,6 +1797,7 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
     {
       id: "memoriaDarChance",
       category: "memoria",
@@ -2335,7 +2004,6 @@ Sincerely,
 Support Team`,
     },
 
-    /* ---- Produtos Emagrecimento ---- */
     {
       id: "emagrecimentoCancelarEngano",
       category: "emagrecimento",
@@ -2438,6 +2106,7 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
     {
       id: "emagrecimentoSemResultados",
       category: "emagrecimento",
@@ -2558,6 +2227,7 @@ Best regards,
 {{nomeAgente}}
 Specialized Support Team`,
     },
+
     {
       id: "emagrecimentoEfeitosAdversos",
       category: "emagrecimento",
@@ -2695,43 +2365,6 @@ Best regards,
 Customer Support Team`,
     },
 
-    /* ---- Marca FEG (placeholder inicial — substitua pelo texto real da marca) ---- */
-    {
-      id: "fegApresentacao",
-      category: "feg",
-      label: "Apresentação da marca FEG",
-      autoDetect: null,
-      pt:
-        "Olá {{nomeCliente}},\n" +
-        "Meu nome é {{nomeAgente}}, da equipe de suporte da FEG. Fico feliz em te ajudar!\n" +
-        "Detalhes do Pedido\n" +
-        "- Número do Pedido: {{numeroPedido}}\n" +
-        "- Data da Compra: {{dataCompra}}\n" +
-        "- Produto: {{produto}}\n" +
-        "- Valor Total: ${{valorTotal}}\n" +
-        "- Endereço de Entrega: {{endereco}}\n" +
-        "- Status Atual: {{status}}\n\n" +
-        "Nossos produtos são desenvolvidos com cuidado para entregar a melhor experiência possível, e nosso time está sempre à disposição para tirar dúvidas sobre o {{produto}} ou qualquer outro item da linha FEG.\n" +
-        "Em que posso te ajudar agora?\n" +
-        "Atenciosamente, {{nomeAgente}}\n" +
-        "Equipe de Suporte FEG",
-      en:
-        "Hello {{nomeCliente}},\n" +
-        "My name is {{nomeAgente}}, from the FEG support team. I'm happy to help!\n" +
-        "Order Details\n" +
-        "- Order Number: {{numeroPedido}}\n" +
-        "- Purchase Date: {{dataCompra}}\n" +
-        "- Product: {{produto}}\n" +
-        "- Total Amount: ${{valorTotal}}\n" +
-        "- Shipping Address: {{endereco}}\n" +
-        "- Current Status: {{status}}\n\n" +
-        "Our products are carefully developed to deliver the best possible experience, and our team is always available to answer questions about the {{produto}} or any other item in the FEG line.\n" +
-        "How can I help you right now?\n" +
-        "Best regards, {{nomeAgente}}\n" +
-        "FEG Support Team",
-    },
-
-    /* ---- Oferta de Reembolso ---- */
     {
       id: "reembolso15",
       category: "reembolso",
@@ -2769,6 +2402,7 @@ Customer Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "reembolsoEmagrecimento15",
       category: "reembolso",
@@ -2846,6 +2480,7 @@ Best regards,
 {{nomeAgente}}
 Support Team`,
     },
+
     {
       id: "reembolsoEmagrecimento15Atestado",
       category: "reembolso",
@@ -2943,6 +2578,7 @@ Best regards,
 {{nomeAgente}}
 Support Team`,
     },
+
     {
       id: "reembolso3035",
       category: "reembolso",
@@ -3039,6 +2675,7 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
     {
       id: "reembolso3035B",
       category: "reembolso",
@@ -3175,6 +2812,7 @@ Best regards,
 {{nomeAgente}}
 Premium Customer Support Team`,
     },
+
     {
       id: "reembolso50",
       category: "reembolso",
@@ -3218,6 +2856,7 @@ Premium Customer Support Team`,
         "Best regards, {{nomeAgente}}\n" +
         "Support Team",
     },
+
     {
       id: "reembolso60",
       category: "reembolso",
@@ -3279,6 +2918,7 @@ Premium Customer Support Team`,
         "{{nomeAgente}}\n" +
         "Customer Support Team",
     },
+
     {
       id: "reembolso70",
       category: "reembolso",
@@ -3348,6 +2988,7 @@ Premium Customer Support Team`,
         "{{nomeAgente}}\n" +
         "Premium Customer Support Team",
     },
+
     {
       id: "reembolso75",
       category: "reembolso",
@@ -3391,6 +3032,7 @@ Premium Customer Support Team`,
         "{{nomeAgente}}\n" +
         "Customer Support Team",
     },
+
     {
       id: "reembolsoNaoAceitouOfertaFrascosFotos",
       category: "reembolso",
@@ -3459,544 +3101,18 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
-
-    /* ---- Marca FEG ---- */
-    {
-      id: "fegAtrasoEntrega",
-      category: "feg",
-      label: "Atraso na entrega do produto",
-      autoDetect: null,
-      pt: `Olá {{nomeCliente}},
-
-Obrigado por avisar sobre o atraso no seu pedido — entendo que isso é frustrante, ainda mais quando você está esperando para começar a usar o produto.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-
-Verifiquei aqui e houve um atraso no processamento do seu pedido. Vou acompanhar pessoalmente e te aviso assim que houver qualquer atualização.
-
-Se o pedido não chegar em breve, é só responder este e-mail que resolvemos juntos, incluindo possibilidade de reembolso ou reenvio.
-
-Conte comigo,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Thank you for letting us know about the delay in your order — I understand this is frustrating, especially when you're eager to start using the product.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-
-I checked here and there has been a delay in processing your order. I'll personally follow up and let you know as soon as there's any update.
-
-If the order doesn't arrive soon, just reply to this email and we'll sort it out together, including the possibility of a refund or reshipment.
-
-Count on me,
-{{nomeAgente}} | FEG Support`,
-    },
-    {
-      id: "fegSemResultado",
-      category: "feg",
-      label: "Cliente sem resultado esperado com o produto",
-      autoDetect: null,
-      pt: `Olá {{nomeCliente}},
-
-Muito obrigado por compartilhar isso comigo — sei que não é fácil escrever quando a expectativa não foi atendida, e quero te ajudar a entender o que pode estar acontecendo.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-
-Antes de mais nada, pode me confirmar há quanto tempo você está usando o produto e com que frequência? Isso me ajuda a te dar uma orientação mais precisa.
-
-Quero deixar claro que resultados podem variar de pessoa para pessoa, e não posso garantir um resultado específico — mas posso te ajudar a usar o produto da melhor forma possível e, se fizer sentido, avaliar outras opções com você.
-
-Fico no aguardo da sua resposta,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Thank you so much for sharing this with me — I know it's not easy to write when your expectations haven't been met, and I want to help you understand what might be happening.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-
-First of all, could you confirm how long you've been using the product and how often? This will help me give you more accurate guidance.
-
-I want to be clear that results can vary from person to person, and I can't guarantee a specific outcome — but I can help you use the product in the best possible way and, if it makes sense, explore other options with you.
-
-Looking forward to your reply,
-{{nomeAgente}} | FEG Support`,
-    },
-    {
-      id: "fegDuvidaUso",
-      category: "feg",
-      label: "Dúvida sobre uso correto do produto",
-      autoDetect: null,
-      pt: `Olá {{nomeCliente}},
-
-Ótima pergunta! Aqui está o passo a passo de como usar o {{produto}} corretamente:
-
-1. [Passo 1 — descreva o modo de uso aqui]
-2. [Passo 2]
-3. [Passo 3]
-
-Uma dica extra: para melhores resultados, mantenha o uso regular conforme indicado na embalagem.
-
-Qualquer dúvida durante o uso, é só me chamar.
-
-Abraço,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Great question! Here is the step-by-step guide on how to use {{produto}} correctly:
-
-1. [Step 1 — describe the usage instructions here]
-2. [Step 2]
-3. [Step 3]
-
-A helpful tip: for best results, maintain regular use as indicated on the packaging.
-
-If you have any questions while using it, just reach out.
-
-Best,
-{{nomeAgente}} | FEG Support`,
-    },
-    {
-      id: "fegEfeitosSaude",
-      category: "feg",
-      label: "Cliente ansioso sobre efeitos na saúde",
-      autoDetect: null,
-      pt: `Olá {{nomeCliente}},
-
-Entendo sua preocupação, e é importante que você se sinta seguro(a) usando qualquer produto de saúde.
-
-Não sou profissional de saúde, então não posso te orientar clinicamente sobre sintomas específicos. O que posso te dizer é que o {{produto}} é formulado com ingredientes naturais e passou por controle de qualidade rigoroso.
-
-Para qualquer dúvida sobre como o produto pode estar afetando você especificamente, recomendo fortemente conversar com seu médico ou profissional de saúde, que pode avaliar seu caso com mais segurança.
-
-Se precisar de mais alguma informação sobre o produto em si, estou aqui para ajudar.
-
-Estou à disposição,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-I understand your concern, and it's important that you feel safe using any health product.
-
-I'm not a healthcare professional, so I can't give you clinical guidance about specific symptoms. What I can tell you is that {{produto}} is formulated with natural ingredients and has gone through rigorous quality control.
-
-For any questions about how the product might be affecting you specifically, I strongly recommend speaking with your doctor or healthcare professional, who can assess your case with greater confidence.
-
-If you need any more information about the product itself, I'm here to help.
-
-I'm at your disposal,
-{{nomeAgente}} | FEG Support`,
-    },
-    {
-      id: "fegErroCobranca",
-      category: "feg",
-      label: "Reclamação de cobrança / erro de fatura",
-      autoDetect: null,
-      pt: `Olá {{nomeCliente}},
-
-Obrigado por trazer isso à nossa atenção. Já estou verificando os detalhes da sua conta.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-
-[Se for erro da empresa: Identifiquei a divergência e já corrigi o valor. O reembolso da diferença deve aparecer em até 5 dias úteis na sua forma de pagamento original.]
-
-[Se não for erro: Aqui está o detalhamento da cobrança para você conferir — [explique o valor]. Se ainda achar que há algo errado, me conta que a gente resolve juntos.]
-
-Qualquer coisa, estou à disposição,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Thank you for bringing this to our attention. I'm already reviewing your account details.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-
-[If it's a company error: I identified the discrepancy and have already corrected the amount. The refund of the difference should appear within 5 business days to your original payment method.]
-
-[If there's no error: Here is a breakdown of the charge for you to review — [explain the amount]. If you still believe something is wrong, let me know and we'll sort it out together.]
-
-I'm at your disposal,
-{{nomeAgente}} | FEG Support`,
-    },
-    {
-      id: "fegFollowUp",
-      category: "feg",
-      label: "Follow-up após resolução",
-      autoDetect: null,
-      pt: `Olá {{nomeCliente}},
-
-Passando rapidinho para confirmar que tudo ficou resolvido com o seu pedido {{numeroPedido}}.
-
-Se ainda tiver qualquer dúvida ou algo não estiver como esperado, é só responder este e-mail — vou continuar acompanhando até você ficar satisfeito(a).
-
-Um abraço,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Just checking in to confirm that everything was resolved with your order {{numeroPedido}}.
-
-If you still have any questions or anything isn't as expected, just reply to this email — I'll keep following up until you're fully satisfied.
-
-Best,
-{{nomeAgente}} | FEG Support`,
-    },
   ];
 
-  /* =========================================================
-     Categorias da barra lateral. Cada categoria tem uma cor própria
-     para facilitar a identificação visual. Para adicionar uma nova
-     categoria, inclua um objeto aqui e use o mesmo "id" no campo
-     "category" dos templates que pertencem a ela.
-     ========================================================= */
   const CATEGORIES = [
-    { id: "feg", label: "FEG BRAND", color: "#39ff14", featured: true },
+    { id: "geral", label: "Templates Geral", color: "#2f6fed" },
+    { id: "memoria", label: "Templates Memória", color: "#8a4fd6" },
+    { id: "emagrecimento", label: "Template Emagrecimento", color: "#e08a1e" },
+    { id: "reembolso", label: "Oferta de Reembolso", color: "#d6334f" },
   ];
 
-  /* =========================================================
-     Grupo "FEG DIRECT RESPONSE": pasta única que reúne as
-     categorias de uso menos frequente, cada uma em sua própria
-     subpasta (aberta dentro da pasta principal do grupo).
-     ========================================================= */
-  const CATEGORY_GROUPS = [
-    {
-      id: "fegDirectResponse",
-      label: "FEG DIRECT RESPONSE",
-      color: "#6b7280",
-      subcategories: [
-        { id: "geral", label: "Templates Geral", color: "#2f6fed" },
-        { id: "memoria", label: "Templates Memória", color: "#8a4fd6" },
-        { id: "emagrecimento", label: "Template Emagrecimento", color: "#e08a1e" },
-        { id: "reembolso", label: "Oferta de Reembolso", color: "#d6334f" },
-      ],
-    },
-  ];
+  const CATEGORY_GROUPS = [];
 
-  /* =========================================================
-     Renderização da barra lateral de templates
-     ========================================================= */
-  function buildCategoryDetails(category, templatesInCategory, openByDefault) {
-    const details = document.createElement("details");
-    details.className = category.featured
-      ? "template-category template-category--featured"
-      : "template-category";
-    details.style.setProperty("--cat-color", category.color);
-    if (openByDefault) details.open = true;
-
-    const summary = document.createElement("summary");
-    const dot = document.createElement("span");
-    dot.className = "category-dot";
-    summary.appendChild(dot);
-    summary.appendChild(document.createTextNode(category.label));
-    details.appendChild(summary);
-
-    const list = document.createElement("ul");
-    list.className = "template-list";
-
-    templatesInCategory.forEach((template) => {
-      const li = document.createElement("li");
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "template-btn";
-      button.textContent = template.label;
-      button.addEventListener("click", () => handleTemplateClick(template.id));
-      li.appendChild(button);
-      list.appendChild(li);
-    });
-
-    details.appendChild(list);
-    return details;
-  }
-
-  function renderTemplateSidebar() {
-    templateCategoriesEl.innerHTML = "";
-
-    CATEGORIES.forEach((category, index) => {
-      const templatesInCategory = TEMPLATES
-        .filter((t) => t.category === category.id)
-        .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
-      if (templatesInCategory.length === 0) return;
-
-      const details = buildCategoryDetails(category, templatesInCategory, index === 0);
-      templateCategoriesEl.appendChild(details);
-    });
-
-    CATEGORY_GROUPS.forEach((group) => {
-      const groupDetails = document.createElement("details");
-      groupDetails.className = "template-category template-category--group";
-      groupDetails.style.setProperty("--cat-color", group.color);
-
-      const summary = document.createElement("summary");
-      const dot = document.createElement("span");
-      dot.className = "category-dot";
-      summary.appendChild(dot);
-      summary.appendChild(document.createTextNode(group.label));
-      groupDetails.appendChild(summary);
-
-      const subcategoriesWrap = document.createElement("div");
-      subcategoriesWrap.className = "template-subcategories";
-
-      group.subcategories.forEach((subcategory) => {
-        const templatesInSubcategory = TEMPLATES
-          .filter((t) => t.category === subcategory.id)
-          .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
-        if (templatesInSubcategory.length === 0) return;
-
-        const subDetails = buildCategoryDetails(subcategory, templatesInSubcategory, false);
-        subcategoriesWrap.appendChild(subDetails);
-      });
-
-      groupDetails.appendChild(subcategoriesWrap);
-      templateCategoriesEl.appendChild(groupDetails);
-    });
-  }
-
-  // Evita que uma chamada de tradução de campo do pedido (produto/status)
-  // que demorou para responder sobrescreva uma atualização mais recente.
-  let orderFieldTranslationRequestId = 0;
-  // Debounce da tradução dos campos do pedido: evita chamar a API a cada
-  // letra digitada nos campos de Detalhes do Pedido.
-  let orderFieldTranslateDebounceTimer = null;
-  const ORDER_FIELD_TRANSLATE_DEBOUNCE_MS = 600;
-
-  /**
-   * Atualiza a caixa de resposta em inglês com o template preenchido.
-   * Primeiro mostra um preview imediato (com produto/status ainda em
-   * português, só com as datas já convertidas) e, em seguida, busca a
-   * tradução de produto/status e atualiza a caixa de novo quando ela
-   * chegar. Se `immediate` for true, a tradução é buscada na hora (ex: ao
-   * clicar em um template); senão, espera o atendente parar de digitar.
-   * @param {Object} template
-   * @param {Object} data
-   * @param {{immediate: boolean}} options
-   */
-  function updateResponseEnFromTemplate(template, data, { immediate }) {
-    responseEn.value = fillPlaceholders(template.en, toEnglishOrderDataPreview(data), FALLBACKS_EN);
-
-    window.clearTimeout(orderFieldTranslateDebounceTimer);
-    const requestId = ++orderFieldTranslationRequestId;
-
-    const runTranslation = async () => {
-      const translatedData = await toEnglishOrderData(data);
-      if (requestId !== orderFieldTranslationRequestId) return;
-      responseEn.value = fillPlaceholders(template.en, translatedData, FALLBACKS_EN);
-    };
-
-    if (immediate) {
-      runTranslation();
-    } else {
-      orderFieldTranslateDebounceTimer = window.setTimeout(runTranslation, ORDER_FIELD_TRANSLATE_DEBOUNCE_MS);
-    }
-  }
-
-  /**
-   * Preenche as caixas de resposta (PT/EN) com o texto de um template,
-   * substituindo os placeholders pelos dados atuais do pedido.
-   * @param {string} templateId
-   */
-  function applyTemplate(templateId) {
-    const template = TEMPLATES.find((item) => item.id === templateId);
-    if (!template) return;
-
-    cancelPendingTranslation();
-    const data = getOrderDataForTemplate(template);
-    responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
-    activeTemplateId = templateId;
-    updateResponseEnFromTemplate(template, data, { immediate: true });
-  }
-
-  /**
-   * Re-aplica o template ativo (se houver um) usando os valores atuais
-   * do pedido. Chamada sempre que um campo de Detalhes do Pedido muda,
-   * para que a resposta fique sempre sincronizada automaticamente.
-   */
-  function refreshActiveTemplate() {
-    if (!activeTemplateId) return;
-
-    const template = TEMPLATES.find((item) => item.id === activeTemplateId);
-    if (!template) return;
-
-    cancelPendingTranslation();
-    const data = getOrderDataForTemplate(template);
-    responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
-    updateResponseEnFromTemplate(template, data, { immediate: false });
-  }
-
-  /**
-   * Lida com o clique em um template da barra lateral.
-   * Pede confirmação antes de sobrescrever uma resposta já editada.
-   * @param {string} templateId
-   */
-  function handleTemplateClick(templateId) {
-    const hasContent = responsePt.value.trim() || responseEn.value.trim();
-
-    if (hasContent) {
-      const confirmed = window.confirm(
-        "Já existe uma resposta no campo. Deseja substituir pelo template selecionado?"
-      );
-      if (!confirmed) return;
-    }
-
-    applyTemplate(templateId);
-  }
-
-  /**
-   * Detecta, por palavras-chave, qual template combina com a mensagem
-   * do cliente. Templates com autoDetect: null (ex: "naoLocalizado",
-   * "pedidoLocalizado") não entram nessa busca automática, pois dependem
-   * de uma decisão do atendente, não do conteúdo da mensagem do cliente.
-   * @param {string} text
-   * @returns {string} id do template (cai em "geral" se nada combinar)
-   */
-  function detectTemplateId(text) {
-    const normalized = text.toLowerCase();
-
-    for (const template of TEMPLATES) {
-      if (!template.autoDetect) continue;
-      if (template.autoDetect.some((word) => normalized.includes(word))) {
-        return template.id;
-      }
-    }
-    return "geral";
-  }
-
-  /**
-   * Lida com o clique no botão "Gerar Resposta com IA".
-   * ESTE É UM PLACEHOLDER baseado em palavras-chave. Para conectar a uma
-   * IA real (ex: Claude), substitua o corpo desta função por uma chamada
-   * assíncrona à API, usando o texto retornado no lugar do template local.
-   */
-  function handleGenerateClick() {
-    const text = messageInput.value.trim();
-
-    if (!text) {
-      showFeedback("Cole a mensagem do cliente antes de gerar a resposta.");
-      messageInput.focus();
-      return;
-    }
-
-    const templateId = detectTemplateId(text);
-    applyTemplate(templateId);
-  }
-
-  /* =========================================================
-     Pré-visualização da mensagem de boas-vindas
-     ========================================================= */
-  function updateWelcomePreview() {
-    const data = getOrderData();
-    const nomeCliente = data.nomeCliente || FALLBACKS_PT.nomeCliente;
-    const nomeAgente = data.nomeAgente || FALLBACKS_PT.nomeAgente;
-    welcomePreview.textContent = `Olá ${nomeCliente}, meu nome é ${nomeAgente} e estarei cuidando do seu atendimento hoje. 🤝`;
-  }
-
-  /**
-   * Preenche o painel de pedido com dados de exemplo, só para
-   * demonstrar o funcionamento do dashboard sem um sistema real conectado.
-   */
-  function loadSampleOrder() {
-    orderFields.nomeCliente.value = "Maria Silva";
-    orderFields.nomeAgente.value = "João Souza";
-    orderFields.numeroPedido.value = "#10234";
-    orderFields.dataCompra.value = "10/06/2026";
-    orderFields.produto.value = "Óleo Essencial 30ml";
-    orderFields.valorTotal.value = "49.90";
-    orderFields.endereco.value = "São Paulo, SP";
-    orderFields.status.value = "Em trânsito";
-    orderFields.codigoRastreio.value = "BR123456789";
-    orderFields.linkRastreio.value = "https://rastreio.exemplo.com/BR123456789";
-    updateWelcomePreview();
-    refreshActiveTemplate();
-  }
-
-  /* =========================================================
-     Cópia para a área de transferência
-     ========================================================= */
-  function showFeedback(message) {
-    copyFeedback.textContent = message;
-    window.clearTimeout(showFeedback._timeoutId);
-    showFeedback._timeoutId = window.setTimeout(() => {
-      copyFeedback.textContent = "";
-    }, 2500);
-  }
-
-  function copyResponseToClipboard(targetId) {
-    const target = document.getElementById(targetId);
-    const text = target.value;
-
-    if (!text) {
-      showFeedback("Não há resposta gerada para copiar ainda.");
-      return;
-    }
-
-    navigator.clipboard
-      .writeText(text)
-      .then(() => showFeedback("Resposta copiada para a área de transferência!"))
-      .catch(() => showFeedback("Não foi possível copiar automaticamente. Selecione o texto manualmente."));
-  }
-
-  /* =========================================================
-     Eventos
-     ========================================================= */
-  renderTemplateSidebar();
-
-  generateBtn.addEventListener("click", handleGenerateClick);
-  loadSampleBtn.addEventListener("click", loadSampleOrder);
-
-  Object.values(orderFields).forEach((input) => {
-    input.addEventListener("input", () => {
-      updateWelcomePreview();
-      refreshActiveTemplate();
-    });
-  });
-
-  // Ao escolher se o pedido tem assinatura (Sim/Não), leva o atendente
-  // direto para o campo de Mensagem do Cliente, para agilizar o atendimento.
-  if (orderAssinatura) {
-    orderAssinatura.addEventListener("change", () => {
-      if (!orderAssinatura.value) return;
-      messageInput.scrollIntoView({ behavior: "smooth", block: "center" });
-      messageInput.focus();
-    });
-  }
-
-  responsePt.addEventListener("input", () => {
-    window.clearTimeout(translateDebounceTimer);
-    setTranslationStatus("⌛ Aguardando você terminar de digitar...");
-    translateDebounceTimer = window.setTimeout(translatePtToEn, TRANSLATE_DEBOUNCE_MS);
-  });
-
-  document.querySelectorAll(".btn-copy").forEach((button) => {
-    button.addEventListener("click", () => {
-      const targetId = button.getAttribute("data-target");
-      copyResponseToClipboard(targetId);
-    });
-  });
+  window.TEMPLATES = TEMPLATES;
+  window.CATEGORIES = CATEGORIES;
+  window.CATEGORY_GROUPS = CATEGORY_GROUPS;
 })();

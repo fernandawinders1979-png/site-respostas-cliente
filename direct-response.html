@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FEG BRANDS — Dashboard de Atendimento</title>
-  <meta name="description" content="Dashboard de atendimento da FEG Brands para clientes de wellness, com templates prontos e sugestão automática de resposta em português e inglês.">
+  <title>FEG Direct Response — Dashboard de Atendimento</title>
+  <meta name="description" content="Painel interno de atendimento com templates de retenção, reembolso e suporte geral. Uso separado do painel FEG Brands.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -12,13 +12,13 @@
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="site-header site-header--muted">
     <div class="site-header-inner">
-      <span class="brand-mark" aria-hidden="true">FEG</span>
-      <h1>FEG BRANDS — Dashboard de Atendimento</h1>
-      <p class="subtitle">Templates prontos + sugestão automática de resposta, em português e inglês</p>
-      <span class="page-badge">Wellness · Clientes EUA</span>
-      <a class="nav-pill" href="direct-response.html">Painel FEG Direct Response →</a>
+      <span class="brand-mark" aria-hidden="true">DR</span>
+      <h1>FEG Direct Response — Dashboard de Atendimento</h1>
+      <p class="subtitle">Templates de retenção, reembolso e suporte geral, em português e inglês</p>
+      <span class="page-badge">Painel interno</span>
+      <a class="nav-pill" href="index.html">← Voltar para o painel FEG Brands</a>
     </div>
   </header>
 
@@ -75,6 +75,44 @@
             <option value="sim">Sim</option>
             <option value="nao">Não</option>
           </select>
+        </div>
+      </div>
+
+      <details class="tracking-details">
+        <summary>Informações de rastreamento (opcional, usado no template "Status da entrega")</summary>
+        <div class="order-grid">
+          <div class="order-field">
+            <label for="order-codigo-rastreio">Código de Rastreamento</label>
+            <input id="order-codigo-rastreio" type="text" placeholder="Ex: BR123456789">
+          </div>
+          <div class="order-field">
+            <label for="order-link-rastreio">Link de Rastreamento</label>
+            <input id="order-link-rastreio" type="text" placeholder="Ex: https://rastreio.exemplo.com/BR123456789">
+          </div>
+        </div>
+      </details>
+
+      <p class="refund-grid-label">Reembolso a ser ofertado (opcional, usado nos templates de oferta de reembolso — se deixar em branco, usa o valor padrão de cada template)</p>
+      <div class="order-grid refund-grid">
+        <div class="order-field">
+          <label for="order-percentual-oferta">Percentual a Ofertar (%)</label>
+          <input id="order-percentual-oferta" type="text" placeholder="Ex: 30">
+        </div>
+      </div>
+
+      <p class="refund-grid-label">Dados do reembolso confirmado (preenchimento automático no template "Reembolso realizado - confirmação")</p>
+      <div class="order-grid refund-grid">
+        <div class="order-field">
+          <label for="order-percentual-confirmado">Percentual Confirmado (%)</label>
+          <input id="order-percentual-confirmado" type="text" placeholder="Ex: 30">
+        </div>
+        <div class="order-field">
+          <label for="order-valor-reembolso">Valor do Reembolso (US$)</label>
+          <input id="order-valor-reembolso" type="text" placeholder="Ex: 25.00">
+        </div>
+        <div class="order-field">
+          <label for="order-data-reembolso">Data do Reembolso (DD/MM/AAAA)</label>
+          <input id="order-data-reembolso" type="text" placeholder="Ex: 15/06/2026">
         </div>
       </div>
 
@@ -151,12 +189,12 @@
   </main>
 
   <footer class="site-footer">
-    <p>FEG BRANDS &mdash; Dashboard de Atendimento ao Cliente &mdash; uso interno de atendimento</p>
+    <p>FEG Direct Response &mdash; Dashboard de Atendimento ao Cliente &mdash; uso interno de atendimento</p>
     <p class="footer-contact">Contato: suporte@exemplo.com</p>
-    <p><a class="nav-pill" href="direct-response.html">Ir para o painel FEG Direct Response →</a></p>
+    <p><a class="nav-pill" href="index.html">← Voltar para o painel FEG Brands</a></p>
   </footer>
 
-  <script src="js/data-feg-brands.js"></script>
+  <script src="js/data-direct-response.js"></script>
   <script src="js/core.js"></script>
 </body>
 </html>
