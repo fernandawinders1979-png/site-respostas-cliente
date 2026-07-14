@@ -1132,6 +1132,120 @@ With care,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegNaoReconheceCompraSemRastreio",
+      category: "feg",
+      label: "Cliente não reconhece a compra – Sem o código de rastreio",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: Cancelado
+
+Agradecemos por nos alertar imediatamente sobre isso. Levamos a segurança financeira e as cobranças não autorizadas muito a sério, e entendemos perfeitamente o quanto pode ser estressante ver uma cobrança desconhecida em seu extrato. Fique tranquilo(a): estou aqui para te ajudar a resolver essa situação o mais rápido possível.
+
+Cancelei imediatamente o pedido, suspendi a conta vinculada a ele e processei o reembolso integral. Os fundos serão devolvidos com segurança à sua instituição financeira em até 3 dias úteis.
+
+Se posteriormente você identificar que se tratava de um familiar ou de uma assinatura esquecida, e desejar retornar com segurança, nossas portas estarão sempre abertas para você.
+
+Desejando-lhe segurança e tranquilidade,
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: Canceled
+
+Thank you for alerting us right away about this. We take financial security and unauthorized charges very seriously, and we completely understand how stressful it can be to see an unfamiliar charge on your statement. Rest assured: I'm here to help you resolve this as quickly as possible.
+
+I immediately canceled the order, suspended the account linked to it, and processed a full refund. The funds will be safely returned to your financial institution within 3 business days.
+
+If you later find out this was a family member's purchase or a forgotten subscription, and you'd like to come back safely, our doors will always be open to you.
+
+Wishing you safety and peace of mind,
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegReembolsoRealizado",
+      category: "feg",
+      label: "Reembolso realizado",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Reembolsado: \${{valorReembolso}}
+
+Tenho uma ótima notícia: sua solicitação de estorno foi processada com sucesso em nosso sistema no dia {{dataReembolso}}.
+
+Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer na fatura atual ou na do mês seguinte (prazo médio de 30 a 60 dias, conforme definido pela sua operadora/banco).
+
+Se precisar de qualquer confirmação adicional para acompanhar esse processo junto ao seu banco, ou tiver qualquer outra dúvida, é só me responder este e-mail — estarei à disposição.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Agradecemos muito pela sua confiança, e esperamos ter a oportunidade de atendê-lo(a) novamente em breve.
+
+Abraços,
+{{nomeAgente}}
+Central de Suporte — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Refunded Amount: \${{valorReembolso}}
+
+I have great news: your refund request was successfully processed in our system on {{dataReembolso}}.
+
+Depending on your statement closing date, the credit may appear on your current statement or the following month's (typical timeframe of 30 to 60 days, as set by your card issuer/bank).
+
+If you need any additional confirmation to follow up on this with your bank, or have any other questions, just reply to this email — I'll be at your disposal.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Thank you so much for your trust, and we hope to have the opportunity to serve you again soon.
+
+Warm regards,
+{{nomeAgente}}
+Support Center — FEG`,
+    },
   ];
 
   const CATEGORIES = [
