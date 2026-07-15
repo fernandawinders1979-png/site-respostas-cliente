@@ -552,7 +552,8 @@ section h2 {
 .response-output {
   width: 100%;
   min-height: 220px;
-  resize: vertical;
+  resize: none;
+  overflow: hidden;
   padding: 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);

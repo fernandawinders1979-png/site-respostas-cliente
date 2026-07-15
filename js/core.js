@@ -49,6 +49,31 @@
   const copyFeedback = document.getElementById("copy-feedback");
   const translationStatus = document.getElementById("translation-status");
 
+  /**
+   * Ajusta a altura de uma textarea de resposta ao tamanho do seu
+   * conteúdo, para que a mensagem inteira (PT ou EN) apareça sem
+   * barra de rolagem. Chamada sempre que o texto é preenchido, seja
+   * por um template, pela tradução automática ou pelo atendente digitando.
+   * @param {HTMLTextAreaElement} el
+   */
+  function autosizeResponse(el) {
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }
+
+  /**
+   * Define o valor de uma caixa de resposta (PT ou EN) e reajusta a
+   * altura dela imediatamente, para nunca deixar texto escondido atrás
+   * de uma barra de rolagem.
+   * @param {HTMLTextAreaElement} el
+   * @param {string} value
+   */
+  function setResponseValue(el, value) {
+    el.value = value;
+    autosizeResponse(el);
+  }
+
   /* =========================================================
      Texto de fallback exibido quando um campo do pedido
      ainda não foi preenchido pelo atendente.
@@ -329,7 +354,7 @@
     const sourceText = responsePt.value;
 
     if (!sourceText.trim()) {
-      responseEn.value = "";
+      setResponseValue(responseEn, "");
       setTranslationStatus("");
       return;
     }
@@ -347,7 +372,7 @@
       );
 
       if (requestId !== translateRequestId) return;
-      responseEn.value = translatedLines.join("\n");
+      setResponseValue(responseEn, translatedLines.join("\n"));
       setTranslationStatus("✅ Inglês atualizado automaticamente.");
     } catch (error) {
       if (requestId !== translateRequestId) return;
@@ -454,7 +479,7 @@
    * @param {{immediate: boolean}} options
    */
   function updateResponseEnFromTemplate(template, data, { immediate }) {
-    responseEn.value = fillPlaceholders(template.en, toEnglishOrderDataPreview(data), FALLBACKS_EN);
+    setResponseValue(responseEn, fillPlaceholders(template.en, toEnglishOrderDataPreview(data), FALLBACKS_EN));
 
     window.clearTimeout(orderFieldTranslateDebounceTimer);
     const requestId = ++orderFieldTranslationRequestId;
@@ -462,7 +487,7 @@
     const runTranslation = async () => {
       const translatedData = await toEnglishOrderData(data);
       if (requestId !== orderFieldTranslationRequestId) return;
-      responseEn.value = fillPlaceholders(template.en, translatedData, FALLBACKS_EN);
+      setResponseValue(responseEn, fillPlaceholders(template.en, translatedData, FALLBACKS_EN));
     };
 
     if (immediate) {
@@ -483,7 +508,7 @@
 
     cancelPendingTranslation();
     const data = getOrderDataForTemplate(template);
-    responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
+    setResponseValue(responsePt, fillPlaceholders(template.pt, data, FALLBACKS_PT));
     activeTemplateId = templateId;
     updateResponseEnFromTemplate(template, data, { immediate: true });
   }
@@ -501,7 +526,7 @@
 
     cancelPendingTranslation();
     const data = getOrderDataForTemplate(template);
-    responsePt.value = fillPlaceholders(template.pt, data, FALLBACKS_PT);
+    setResponseValue(responsePt, fillPlaceholders(template.pt, data, FALLBACKS_PT));
     updateResponseEnFromTemplate(template, data, { immediate: false });
   }
 
@@ -665,9 +690,14 @@
   }
 
   responsePt.addEventListener("input", () => {
+    autosizeResponse(responsePt);
     window.clearTimeout(translateDebounceTimer);
     setTranslationStatus("⌛ Aguardando você terminar de digitar...");
     translateDebounceTimer = window.setTimeout(translatePtToEn, TRANSLATE_DEBOUNCE_MS);
+  });
+
+  responseEn.addEventListener("input", () => {
+    autosizeResponse(responseEn);
   });
 
   document.querySelectorAll(".btn-copy").forEach((button) => {
