@@ -548,24 +548,43 @@
     applyTemplate(templateId);
   }
 
+  // Template usado quando a mensagem do cliente não bate com nenhuma
+  // palavra-chave conhecida: pede mais detalhes em vez de não fazer nada.
+  const FALLBACK_TEMPLATE_ID = "fegComoPossoAjudar";
+
   /**
    * Detecta, por palavras-chave, qual template combina com a mensagem
-   * do cliente. Templates com autoDetect: null (ex: "naoLocalizado",
-   * "pedidoLocalizado") não entram nessa busca automática, pois dependem
-   * de uma decisão do atendente, não do conteúdo da mensagem do cliente.
+   * do cliente. Cada palavra-chave encontrada soma um ponto para o
+   * template dela; vence quem tiver mais pontos (não só o primeiro que
+   * bater uma palavra), para escolher o template mais específico quando
+   * mais de um combina com a mensagem.
+   * Templates com autoDetect: null (ex: "Cliente não localizado",
+   * "Como posso te ajudar") não entram nessa busca automática, pois
+   * dependem de uma decisão do atendente, não do conteúdo da mensagem.
    * @param {string} text
-   * @returns {string} id do template (cai em "geral" se nada combinar)
+   * @returns {string} id do template (cai no FALLBACK_TEMPLATE_ID se nada combinar)
    */
   function detectTemplateId(text) {
     const normalized = text.toLowerCase();
 
+    let bestId = null;
+    let bestScore = 0;
+
     for (const template of TEMPLATES) {
       if (!template.autoDetect) continue;
-      if (template.autoDetect.some((word) => normalized.includes(word))) {
-        return template.id;
+
+      const score = template.autoDetect.reduce(
+        (count, word) => (normalized.includes(word) ? count + 1 : count),
+        0
+      );
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestId = template.id;
       }
     }
-    return "geral";
+
+    return bestId || FALLBACK_TEMPLATE_ID;
   }
 
   /**

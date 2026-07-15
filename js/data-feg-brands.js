@@ -46,7 +46,11 @@
       id: "fegAtrasoEntrega",
       category: "feg",
       label: "Atraso na entrega do produto",
-      autoDetect: null,
+      autoDetect: [
+        "atraso", "atrasado", "demorando", "demora pra chegar", "demora para chegar",
+        "ainda não chegou", "não chegou ainda", "cadê meu pedido", "cadê o pedido",
+        "onde está meu pedido", "passou do prazo", "meu pedido não chegou",
+      ],
       pt: `Olá {{nomeCliente}},
 
 Obrigado por avisar sobre o atraso no seu pedido — entendo que isso é frustrante, ainda mais quando você está esperando para começar a usar o produto.
@@ -89,7 +93,10 @@ Count on me,
       id: "fegSemResultado",
       category: "feg",
       label: "Cliente sem resultado esperado com o produto",
-      autoDetect: null,
+      autoDetect: [
+        "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
+        "não vi resultado", "não notei diferença", "não senti diferença", "não deu resultado",
+      ],
       pt: `Olá {{nomeCliente}},
 
 Muito obrigado por compartilhar isso comigo — sei que não é fácil escrever quando a expectativa não foi atendida, e quero te ajudar a entender o que pode estar acontecendo.
@@ -130,7 +137,10 @@ Looking forward to your reply,
       id: "fegDuvidaUso",
       category: "feg",
       label: "Dúvida sobre uso correto do produto",
-      autoDetect: null,
+      autoDetect: [
+        "como uso", "como usar", "como tomar", "como tomo", "modo de uso",
+        "como aplicar", "quantas vezes por dia", "como devo usar", "instruções de uso",
+      ],
       pt: `Olá {{nomeCliente}},
 
 Ótima pergunta! Aqui está o passo a passo de como usar o {{produto}} corretamente:
@@ -165,7 +175,11 @@ Best,
       id: "fegEfeitosSaude",
       category: "feg",
       label: "Cliente ansioso sobre efeitos na saúde",
-      autoDetect: null,
+      autoDetect: [
+        "é seguro", "tem contraindicação", "pode fazer mal", "é perigoso",
+        "estou grávida", "amamentando", "interage com remédio", "tomo remédio controlado",
+        "tenho pressão alta", "tenho receio de tomar", "tenho medo de tomar",
+      ],
       pt: `Olá {{nomeCliente}},
 
 Entendo sua preocupação, e é importante que você se sinta seguro(a) usando qualquer produto de saúde.
@@ -196,7 +210,11 @@ I'm at your disposal,
       id: "fegErroCobranca",
       category: "feg",
       label: "Reclamação de cobrança / erro de fatura",
-      autoDetect: null,
+      autoDetect: [
+        "cobrança errada", "cobraram errado", "valor errado", "cobrado duas vezes",
+        "cobrança duplicada", "fatura errada", "cobrança indevida", "cobraram duas vezes",
+        "cobraram a mais",
+      ],
       pt: `Olá {{nomeCliente}},
 
 Obrigado por trazer isso à nossa atenção. Já estou verificando os detalhes da sua conta.
@@ -460,7 +478,12 @@ Customer Support Team — FEG`,
       id: "fegNaoRecebeuQuerReembolsoEntregue",
       category: "feg",
       label: "Cliente relata que não recebeu pedido e quer reembolso – Consta como entregue",
-      autoDetect: null,
+      autoDetect: [
+        "não recebi meu pedido", "não recebi o pedido", "meu pedido não chegou",
+        "aparece como entregue mas não recebi", "diz que foi entregue mas não recebi",
+        "quero reembolso", "quero meu dinheiro de volta", "quero o dinheiro de volta",
+        "quero cancelar e reembolso", "exijo reembolso",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
 
@@ -519,7 +542,11 @@ Customer Support Team — FEG`,
       id: "fegNaoRecebeuEntregueSemReembolso",
       category: "feg",
       label: "Cliente relata que não recebeu pedido – Consta como entregue (sem falar de reembolso)",
-      autoDetect: null,
+      autoDetect: [
+        "não recebi meu pedido", "não recebi o pedido", "meu pedido não chegou",
+        "aparece como entregue mas não recebi", "diz que foi entregue mas não recebi",
+        "não chegou nada",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
 
@@ -578,7 +605,11 @@ Customer Support Team — FEG`,
       id: "fegDetalhesDaEntrega",
       category: "feg",
       label: "Detalhes da entrega",
-      autoDetect: null,
+      autoDetect: [
+        "quando vai chegar", "previsão de chegada", "qual é o status da entrega",
+        "quero rastrear meu pedido", "como acompanho meu pedido", "código de rastreio",
+        "rastreamento do pedido", "link de rastreio",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
@@ -684,7 +715,11 @@ Customer Support Team — FEG`,
       id: "fegCancelarAssinaturaSemMotivo",
       category: "feg",
       label: "Cliente pedindo para cancelar assinatura recorrente – Sem falar motivo",
-      autoDetect: null,
+      autoDetect: [
+        "cancelar assinatura", "quero cancelar minha assinatura", "cancelar minha assinatura",
+        "não quero mais receber", "parar de receber", "cancelar o plano",
+        "quero parar a assinatura", "cancelar a recorrência",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
@@ -867,7 +902,12 @@ Customer Support Team — FEG`,
       id: "fegDevolverSemResultadoSemRetencao",
       category: "feg",
       label: "Cliente quer devolver – Sem resultado – Sem retenção e não precisa devolver os produtos",
-      autoDetect: null,
+      autoDetect: [
+        "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
+        "não vi resultado", "não notei diferença", "não senti diferença", "não deu resultado",
+        "quero devolver", "quero devolução", "quero reembolso", "quero meu dinheiro de volta",
+        "quero o dinheiro de volta", "quero cancelar e reembolso",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
@@ -932,7 +972,10 @@ Customer Support Team — FEG`,
       id: "fegDevolverComProdutoSemMotivoSemRetencao",
       category: "feg",
       label: "Cliente quer devolver, está com o produto, mas não fala o motivo (Sem retenção)",
-      autoDetect: null,
+      autoDetect: [
+        "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
+        "tenho o produto e quero cancelar", "quero devolver o produto e cancelar",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}} e estarei cuidando dessa solicitação para você.
 
@@ -993,7 +1036,11 @@ Customer Support Team — FEG`,
       id: "fegEtiquetaCriada",
       category: "feg",
       label: "Cliente relata que a etiqueta ainda aparece somente como criada",
-      autoDetect: null,
+      autoDetect: [
+        "etiqueta criada", "só aparece etiqueta criada", "rastreio não atualiza",
+        "rastreio parado", "rastreamento parado", "status não muda",
+        "ainda está como etiqueta criada",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
@@ -1062,7 +1109,11 @@ Customer Support Team — FEG`,
       id: "fegEfeitosAdversosSintomas",
       category: "feg",
       label: "Cliente apresentou efeitos adversos – Sintomas",
-      autoDetect: null,
+      autoDetect: [
+        "tive uma reação", "tive reação alérgica", "me deu alergia", "passei mal",
+        "tive enjoo", "tive náusea", "tive dor de cabeça depois de tomar",
+        "fiquei mal depois de usar", "tive efeito colateral", "me fez mal",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
@@ -1137,7 +1188,11 @@ Customer Support Team — FEG`,
       id: "fegNaoReconheceCompraSemRastreio",
       category: "feg",
       label: "Cliente não reconhece a compra – Sem o código de rastreio",
-      autoDetect: null,
+      autoDetect: [
+        "não reconheço essa compra", "não fiz essa compra", "cobrança que não reconheço",
+        "não autorizei essa compra", "fraude no meu cartão", "compra que eu não fiz",
+        "alguém usou meu cartão", "cobrança suspeita", "não fui eu que comprei",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
@@ -1196,7 +1251,10 @@ Customer Support Team — FEG`,
       id: "fegReembolsoRealizado",
       category: "feg",
       label: "Reembolso realizado",
-      autoDetect: null,
+      autoDetect: [
+        "já caiu meu reembolso", "quando recebo o reembolso", "meu reembolso ainda não caiu",
+        "status do meu reembolso", "cadê meu reembolso",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
@@ -1251,7 +1309,10 @@ Support Center — FEG`,
       id: "fegNaoGostouSabor",
       category: "feg",
       label: "Não gostou do sabor",
-      autoDetect: null,
+      autoDetect: [
+        "não gostei do sabor", "gosto ruim", "sabor horrível", "não gostei do gosto",
+        "o gosto é muito ruim", "sabor desagradável", "gosto muito forte",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
@@ -1318,7 +1379,10 @@ Customer Support Team – FEG`,
       id: "fegMedicoNaoAutorizouReembolsoSemDevolucao",
       category: "feg",
       label: "Médico não autorizou – Realiza reembolso e não solicita devolução",
-      autoDetect: null,
+      autoDetect: [
+        "meu médico não autorizou", "médico não recomendou", "médico não liberou",
+        "meu médico disse para não tomar", "médico não aprovou o uso",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
@@ -1375,7 +1439,10 @@ Customer Support Team — FEG`,
       id: "fegMedicoNaoAutorizouReembolsoRecusarEntrega",
       category: "feg",
       label: "Médico não autorizou cliente com o produto – Realiza reembolso e solicita para recusar a entrega",
-      autoDetect: null,
+      autoDetect: [
+        "meu médico não autorizou", "médico não recomendou", "médico não liberou",
+        "meu médico disse para não tomar", "médico não aprovou o uso",
+      ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
