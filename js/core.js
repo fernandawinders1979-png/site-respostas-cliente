@@ -372,12 +372,14 @@
   }
 
   /**
-   * Traduz um trecho de texto (até o limite da API) de português para inglês.
+   * Traduz um trecho de texto (até o limite da API) usando o par de idiomas
+   * informado (ex: "pt|en" ou "en|pt").
    * @param {string} text
+   * @param {string} langpair
    * @returns {Promise<string>}
    */
-  async function translateChunk(text) {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=pt|en`;
+  async function translateChunk(text, langpair = "pt|en") {
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langpair}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error("Falha na tradução");
 
@@ -390,16 +392,17 @@
   /**
    * Traduz todas as partes de uma linha e as junta de volta em uma única linha.
    * @param {string[]} parts
+   * @param {string} langpair
    * @returns {Promise<string>}
    */
-  async function translateLineParts(parts) {
+  async function translateLineParts(parts, langpair = "pt|en") {
     const translatedParts = [];
     for (const part of parts) {
       if (!part.trim()) {
         translatedParts.push(part);
         continue;
       }
-      translatedParts.push(await translateChunk(part));
+      translatedParts.push(await translateChunk(part, langpair));
     }
     return translatedParts.join(" ").replace(/\s+/g, " ").trim();
   }
@@ -436,6 +439,58 @@
     } catch (error) {
       if (requestId !== translateRequestId) return;
       setTranslationStatus("⚠️ Não foi possível traduzir agora. Verifique sua internet e edite o texto novamente.");
+    }
+  }
+
+  /* =========================================================
+     Tradução da Mensagem do Cliente (inglês -> português). Usa a
+     mesma API gratuita do MyMemory. Funciona tanto para uma mensagem
+     colada manualmente quanto para uma preenchida automaticamente
+     pela busca do ticket no Freshdesk — o botão sempre traduz o que
+     estiver na caixa no momento do clique.
+     ========================================================= */
+  const translateMessageBtn = document.getElementById("translate-message-btn");
+  const messageTranslateStatus = document.getElementById("message-translate-status");
+
+  let messageTranslateRequestId = 0;
+
+  function setMessageTranslateStatus(message) {
+    if (!messageTranslateStatus) return;
+    messageTranslateStatus.textContent = message;
+    window.clearTimeout(setMessageTranslateStatus._timeoutId);
+    if (message && message.startsWith("✅")) {
+      setMessageTranslateStatus._timeoutId = window.setTimeout(() => {
+        messageTranslateStatus.textContent = "";
+      }, 2500);
+    }
+  }
+
+  async function translateMessageToPortuguese() {
+    const sourceText = messageInput.value;
+
+    if (!sourceText.trim()) {
+      setMessageTranslateStatus("Cole ou busque a mensagem do cliente antes de traduzir.");
+      return;
+    }
+
+    const requestId = ++messageTranslateRequestId;
+    setMessageTranslateStatus("🔄 Traduzindo para português...");
+
+    const lineChunks = buildLineChunks(sourceText);
+
+    try {
+      const translatedLines = await Promise.all(
+        lineChunks.map((lineChunk) =>
+          lineChunk.translate ? translateLineParts(lineChunk.parts, "en|pt") : lineChunk.parts[0]
+        )
+      );
+
+      if (requestId !== messageTranslateRequestId) return;
+      messageInput.value = translatedLines.join("\n");
+      setMessageTranslateStatus("✅ Mensagem traduzida. Revise antes de usar.");
+    } catch (error) {
+      if (requestId !== messageTranslateRequestId) return;
+      setMessageTranslateStatus("⚠️ Não foi possível traduzir agora. Verifique sua internet e tente de novo.");
     }
   }
 
@@ -812,6 +867,7 @@
      Pré-visualização da mensagem de boas-vindas
      ========================================================= */
   function updateWelcomePreview() {
+    if (!welcomePreview) return;
     const data = getOrderData();
     const nomeCliente = data.nomeCliente || FALLBACKS_PT.nomeCliente;
     const nomeAgente = data.nomeAgente || FALLBACKS_PT.nomeAgente;
@@ -1091,6 +1147,10 @@
 
   generateBtn.addEventListener("click", handleGenerateClick);
   loadSampleBtn.addEventListener("click", loadSampleOrder);
+
+  if (translateMessageBtn) {
+    translateMessageBtn.addEventListener("click", translateMessageToPortuguese);
+  }
 
   if (riskBtn) {
     riskBtn.addEventListener("click", handleRiskClick);

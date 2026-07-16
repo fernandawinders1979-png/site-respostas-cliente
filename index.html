@@ -124,10 +124,6 @@
         </div>
       </div>
 
-      <p class="welcome-preview-label">Pré-visualização da mensagem de boas-vindas:</p>
-      <p id="welcome-preview" class="welcome-preview">
-        Olá [NOME DO CLIENTE], meu nome é [NOME DO AGENTE] e estarei cuidando do seu atendimento hoje. 🤝
-      </p>
     </section>
 
     <!-- ============================================================
@@ -157,6 +153,11 @@
             placeholder="Cole aqui a mensagem do cliente..."
             rows="6"
           ></textarea>
+
+          <button id="translate-message-btn" class="btn-secondary" type="button">
+            🌐 Traduzir para Português
+          </button>
+          <p id="message-translate-status" class="ai-note" role="status" aria-live="polite"></p>
 
           <button id="generate-btn" class="btn-primary" type="button">
             Gerar Resposta com IA
