@@ -8,41 +8,6 @@
 
   const TEMPLATES = [
     {
-      id: "fegApresentacao",
-      category: "feg",
-      label: "Apresentação da marca FEG",
-      autoDetect: null,
-      pt:
-        "Olá {{nomeCliente}},\n" +
-        "Meu nome é {{nomeAgente}}, da equipe de suporte da FEG. Fico feliz em te ajudar!\n" +
-        "Detalhes do Pedido\n" +
-        "- Número do Pedido: {{numeroPedido}}\n" +
-        "- Data da Compra: {{dataCompra}}\n" +
-        "- Produto: {{produto}}\n" +
-        "- Valor Total: ${{valorTotal}}\n" +
-        "- Endereço de Entrega: {{endereco}}\n" +
-        "- Status Atual: {{status}}\n\n" +
-        "Nossos produtos são desenvolvidos com cuidado para entregar a melhor experiência possível, e nosso time está sempre à disposição para tirar dúvidas sobre o {{produto}} ou qualquer outro item da linha FEG.\n" +
-        "Em que posso te ajudar agora?\n" +
-        "Atenciosamente, {{nomeAgente}}\n" +
-        "Equipe de Suporte FEG",
-      en:
-        "Hello {{nomeCliente}},\n" +
-        "My name is {{nomeAgente}}, from the FEG support team. I'm happy to help!\n" +
-        "Order Details\n" +
-        "- Order Number: {{numeroPedido}}\n" +
-        "- Purchase Date: {{dataCompra}}\n" +
-        "- Product: {{produto}}\n" +
-        "- Total Amount: ${{valorTotal}}\n" +
-        "- Shipping Address: {{endereco}}\n" +
-        "- Current Status: {{status}}\n\n" +
-        "Our products are carefully developed to deliver the best possible experience, and our team is always available to answer questions about the {{produto}} or any other item in the FEG line.\n" +
-        "How can I help you right now?\n" +
-        "Best regards, {{nomeAgente}}\n" +
-        "FEG Support Team",
-    },
-
-    {
       id: "fegAtrasoEntrega",
       category: "feg",
       label: "Atraso na entrega do produto",
@@ -203,51 +168,6 @@ I'm not a healthcare professional, so I can't give you clinical guidance about s
 For any questions about how the product might be affecting you specifically, I strongly recommend speaking with your doctor or healthcare professional, who can assess your case with greater confidence.
 
 If you need any more information about the product itself, I'm here to help.
-
-I'm at your disposal,
-{{nomeAgente}} | FEG Support`,
-    },
-
-    {
-      id: "fegErroCobranca",
-      category: "feg",
-      label: "Reclamação de cobrança / erro de fatura",
-      autoDetect: [
-        "cobrança errada", "cobraram errado", "valor errado", "cobrado duas vezes",
-        "cobrança duplicada", "fatura errada", "cobrança indevida", "cobraram duas vezes",
-        "cobraram a mais",
-      ],
-      pt: `Olá {{nomeCliente}},
-
-Obrigado por trazer isso à nossa atenção. Já estou verificando os detalhes da sua conta.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-
-[Se for erro da empresa: Identifiquei a divergência e já corrigi o valor. O reembolso da diferença deve aparecer em até 5 dias úteis na sua forma de pagamento original.]
-
-[Se não for erro: Aqui está o detalhamento da cobrança para você conferir — [explique o valor]. Se ainda achar que há algo errado, me conta que a gente resolve juntos.]
-
-Qualquer coisa, estou à disposição,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Thank you for bringing this to our attention. I'm already reviewing your account details.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-
-[If it's a company error: I identified the discrepancy and have already corrected the amount. The refund of the difference should appear within 5 business days to your original payment method.]
-
-[If there's no error: Here is a breakdown of the charge for you to review — [explain the amount]. If you still believe something is wrong, let me know and we'll sort it out together.]
 
 I'm at your disposal,
 {{nomeAgente}} | FEG Support`,
