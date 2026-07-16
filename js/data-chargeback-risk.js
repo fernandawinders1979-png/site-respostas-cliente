@@ -33,6 +33,24 @@
     "file a bbb complaint", "filing a bbb complaint", "complaint with the bbb",
     "bbb.org",
     "credit card company", "paypal dispute", "report to paypal",
+
+    // Produto diferente do que foi anunciado/mostrado no vídeo, ou sem os
+    // ingredientes prometidos — motivo clássico de chargeback por "produto
+    // não corresponde à descrição" (o banco/cartão reconhece isso como
+    // motivo válido de disputa).
+    "não corresponde ao vídeo", "não corresponde ao produto", "mostrado no vídeo",
+    "diferente do vídeo", "não é o mesmo do vídeo", "não é o produto do vídeo",
+    "diferente do anunciado", "não é o que foi anunciado", "não é o que foi prometido",
+    "não contém os ingredientes", "não tem os ingredientes", "ingredientes diferentes",
+    "ingredientes mencionados no vídeo", "não é o produto original", "produto não é original",
+    "propaganda enganosa", "publicidade enganosa", "quero devolver o produto",
+    "precisa ser devolvido", "reembolso integral",
+
+    "not what was shown in the video", "shown in the video", "doesn't match the video",
+    "different from the video", "not as advertised", "not as described",
+    "item not as described", "doesn't contain the ingredients", "missing ingredients",
+    "ingredients don't match", "false advertising", "misleading advertising",
+    "want to return this product", "needs to be returned", "full refund",
   ];
 
   // Peso 2: cliente já demonstra forte insatisfação e pede reembolso/cancelamento
