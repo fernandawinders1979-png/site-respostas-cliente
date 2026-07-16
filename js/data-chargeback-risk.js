@@ -39,8 +39,10 @@
   // de forma incisiva, mas ainda não citou banco/advogado/fraude.
   const MEDIUM_WEIGHT_PHRASES = [
     // Português
-    "quero meu dinheiro de volta", "quero reembolso", "exijo reembolso",
-    "quero o reembolso agora", "cancelem imediatamente", "cancelem já",
+    "quero meu dinheiro de volta", "quero o dinheiro de volta", "quero meu dinheiro",
+    "quero reembolso", "exijo reembolso", "quero o reembolso agora",
+    "reembolso agora", "cancelem imediatamente", "cancele imediatamente",
+    "cancelem já", "cancele já", "cancelem agora", "cancele agora",
     "isso é um absurdo", "péssimo atendimento", "nunca mais compro",
     "produto não chegou e ninguém resolve", "estou muito insatisfeito",
     "estou muito insatisfeita", "vou deixar uma avaliação negativa",
@@ -48,8 +50,9 @@
     "sinto que fui enganada",
 
     // English
-    "i want my money back", "i want a refund", "give me a refund",
-    "refund me now", "cancel my order immediately", "this is ridiculous",
+    "i want my money back", "i want a refund", "i want my refund",
+    "give me a refund", "refund me now", "refund now",
+    "cancel my order immediately", "cancel immediately", "this is ridiculous",
     "terrible service", "never buying again", "worst experience",
     "i feel scammed", "this feels like a scam", "leave a bad review",
     "one star", "i'm very unhappy", "i am very unhappy", "not acceptable",
