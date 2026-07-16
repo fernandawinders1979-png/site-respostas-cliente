@@ -134,7 +134,15 @@
           <button id="generate-btn" class="btn-primary" type="button">
             Gerar Resposta com IA
           </button>
+          <button id="risk-btn" class="btn-secondary" type="button">
+            Analisar Risco de Chargeback
+          </button>
           <p class="ai-note">🤖 Sugestão automática com base em palavras-chave (placeholder). No futuro pode ser substituída por uma chamada de IA real.</p>
+
+          <div id="risk-result" class="risk-result" hidden>
+            <span id="risk-badge" class="risk-badge">Risco: --</span>
+            <p id="risk-explanation" class="risk-explanation"></p>
+          </div>
         </section>
 
         <section class="results-section" aria-labelledby="results-title">
@@ -182,6 +190,7 @@
   </footer>
 
   <script src="js/data-feg-brands.js"></script>
+  <script src="js/data-chargeback-risk.js"></script>
   <script src="js/core.js"></script>
 </body>
 </html>

@@ -48,6 +48,10 @@
   const responseEn = document.getElementById("response-en");
   const copyFeedback = document.getElementById("copy-feedback");
   const translationStatus = document.getElementById("translation-status");
+  const riskBtn = document.getElementById("risk-btn");
+  const riskResult = document.getElementById("risk-result");
+  const riskBadge = document.getElementById("risk-badge");
+  const riskExplanation = document.getElementById("risk-explanation");
 
   /**
    * Ajusta a altura de uma textarea de resposta ao tamanho do seu
@@ -607,6 +611,121 @@
   }
 
   /* =========================================================
+     Análise de risco de chargeback
+     ========================================================= */
+
+  /**
+   * Procura, na mensagem do cliente, as frases de alerta cadastradas em
+   * window.CHARGEBACK_RISK_PHRASES (alto, médio, baixo peso) e devolve
+   * quais frases bateram em cada grupo.
+   * @param {string} text
+   * @returns {{high: string[], medium: string[], low: string[]}}
+   */
+  function findRiskMatches(text) {
+    const normalized = text.toLowerCase();
+    const phrases = window.CHARGEBACK_RISK_PHRASES || { high: [], medium: [], low: [] };
+
+    const matchGroup = (list) => list.filter((phrase) => normalized.includes(phrase));
+
+    return {
+      high: matchGroup(phrases.high),
+      medium: matchGroup(phrases.medium),
+      low: matchGroup(phrases.low),
+    };
+  }
+
+  /**
+   * Calcula o placar de risco (alto vale 3, médio vale 2, baixo vale 1)
+   * e classifica o resultado em "alto", "medio" ou "baixo".
+   * Qualquer frase de alto peso encontrada (menção direta a chargeback,
+   * banco, fraude, advogado, etc.) já classifica como "alto", mesmo que
+   * seja só uma frase — esse tipo de sinal é sério mesmo sozinho.
+   * @param {{high: string[], medium: string[], low: string[]}} matches
+   * @returns {{level: "alto"|"medio"|"baixo", score: number}}
+   */
+  function classifyRisk(matches) {
+    const score = matches.high.length * 3 + matches.medium.length * 2 + matches.low.length * 1;
+
+    let level = "baixo";
+    if (matches.high.length >= 1 || score >= 6) {
+      level = "alto";
+    } else if (score >= 3) {
+      level = "medio";
+    }
+
+    return { level, score };
+  }
+
+  const RISK_LABELS = {
+    alto: "🔴 Risco Alto",
+    medio: "🟡 Risco Médio",
+    baixo: "🟢 Risco Baixo",
+  };
+
+  const RISK_ADVICE = {
+    alto:
+      "⚠️ Sinal forte de chargeback. Priorize resolver rápido: considere oferecer reembolso, " +
+      "solução imediata ou escalar o caso antes que o cliente abra a disputa no banco/cartão.",
+    medio:
+      "Cliente insatisfeito e propenso a pedir reembolso. Responda com empatia, agilidade e " +
+      "uma solução concreta antes que a situação piore.",
+    baixo:
+      "Sem sinais fortes de chargeback. Uma resposta padrão, clara e cordial deve ser suficiente.",
+  };
+
+  /**
+   * Monta o texto explicando quais frases de alerta foram encontradas,
+   * agrupadas por nível, para o atendente entender o motivo do selo.
+   * @param {{high: string[], medium: string[], low: string[]}} matches
+   * @returns {string}
+   */
+  function buildRiskExplanation(matches) {
+    const lines = [];
+
+    if (matches.high.length) {
+      lines.push(`Frases de alerta grave: "${matches.high.join('", "')}"`);
+    }
+    if (matches.medium.length) {
+      lines.push(`Frases de alerta médio: "${matches.medium.join('", "')}"`);
+    }
+    if (matches.low.length) {
+      lines.push(`Frases de alerta leve: "${matches.low.join('", "')}"`);
+    }
+    if (!lines.length) {
+      lines.push("Nenhuma frase de alerta conhecida foi encontrada na mensagem.");
+    }
+
+    const level = classifyRisk(matches).level;
+    lines.push(RISK_ADVICE[level]);
+
+    return lines.join("\n");
+  }
+
+  /**
+   * Lida com o clique no botão "Analisar Risco de Chargeback".
+   * ESTE É UM PLACEHOLDER baseado em palavras-chave (mesma lógica usada
+   * para detectar templates), não uma IA real analisando o contexto.
+   */
+  function handleRiskClick() {
+    if (!riskResult || !riskBadge || !riskExplanation) return;
+
+    const text = messageInput.value.trim();
+    if (!text) {
+      showFeedback("Cole a mensagem do cliente antes de analisar o risco.");
+      messageInput.focus();
+      return;
+    }
+
+    const matches = findRiskMatches(text);
+    const { level } = classifyRisk(matches);
+
+    riskResult.hidden = false;
+    riskBadge.textContent = RISK_LABELS[level];
+    riskBadge.className = `risk-badge risk-${level}`;
+    riskExplanation.textContent = buildRiskExplanation(matches);
+  }
+
+  /* =========================================================
      Pré-visualização da mensagem de boas-vindas
      ========================================================= */
   function updateWelcomePreview() {
@@ -689,6 +808,10 @@
 
   generateBtn.addEventListener("click", handleGenerateClick);
   loadSampleBtn.addEventListener("click", loadSampleOrder);
+
+  if (riskBtn) {
+    riskBtn.addEventListener("click", handleRiskClick);
+  }
 
   Object.values(orderFields).forEach((input) => {
     if (!input) return;

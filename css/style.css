@@ -498,6 +498,50 @@ section h2 {
 }
 
 /* ===========================================================
+   Selo de risco de chargeback
+   =========================================================== */
+.risk-result {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+}
+
+.risk-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.risk-badge.risk-baixo {
+  background-color: rgba(57, 255, 20, 0.18);
+  color: #39ff14;
+  box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.4);
+}
+
+.risk-badge.risk-medio {
+  background-color: rgba(255, 200, 20, 0.18);
+  color: #ffc814;
+  box-shadow: 0 0 0 1px rgba(255, 200, 20, 0.4);
+}
+
+.risk-badge.risk-alto {
+  background-color: rgba(255, 60, 60, 0.18);
+  color: #ff5050;
+  box-shadow: 0 0 0 1px rgba(255, 60, 60, 0.5);
+}
+
+.risk-explanation {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  white-space: pre-line;
+}
+
+/* ===========================================================
    Área de resultados
    =========================================================== */
 .results-section {
