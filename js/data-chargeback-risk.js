@@ -29,6 +29,9 @@
     "unauthorized charge", "unauthorized transaction", "i never authorized",
     "this is fraud", "fraudulent charge", "my lawyer", "legal action",
     "sue you", "report this to", "better business bureau", "bbb complaint",
+    "bbb", "report you to bbb", "report you to the bbb", "reporting you to the bbb",
+    "file a bbb complaint", "filing a bbb complaint", "complaint with the bbb",
+    "bbb.org",
     "credit card company", "paypal dispute", "report to paypal",
   ];
 
