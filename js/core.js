@@ -30,6 +30,7 @@
     percentualConfirmado: document.getElementById("order-percentual-confirmado"),
     dataReembolso: document.getElementById("order-data-reembolso"),
     valorReembolso: document.getElementById("order-valor-reembolso"),
+    assinatura: document.getElementById("order-assinatura"),
   };
 
   // Template atualmente inserido na resposta (null se nenhum foi escolhido ainda).
@@ -145,19 +146,67 @@
     return data;
   }
 
+  // Cabeçalhos usados nos templates para o bloco de dados do pedido/assinatura.
+  // Cobrem todas as variações encontradas nos dois painéis (FEG Brands e
+  // Direct Response). A linha de Assinatura é inserida automaticamente logo
+  // após a última linha "•" desses blocos, em vez de precisar editar cada
+  // template um por um.
+  const ORDER_DETAILS_HEADERS = {
+    pt: ["Detalhes do Pedido", "Detalhes da Assinatura"],
+    en: ["Order Details", "Subscription Details"],
+  };
+
+  const ASSINATURA_LINE_LABEL = { pt: "Assinatura", en: "Subscription" };
+  const ASSINATURA_VALUE_LABELS = {
+    pt: { sim: "Sim", nao: "Não" },
+    en: { sim: "Yes", nao: "No" },
+  };
+  const ASSINATURA_FALLBACK = { pt: "[SIM/NÃO]", en: "[YES/NO]" };
+
+  /**
+   * Insere a linha "Assinatura: Sim/Não" (ou "Subscription: Yes/No") logo
+   * após a última linha "•" do bloco de Detalhes do Pedido/Assinatura,
+   * usando o valor selecionado no campo Assinatura do painel de dados do
+   * pedido. Se o texto não tiver nenhum desses blocos (ex: um template sem
+   * dados de pedido), devolve o texto sem alterar.
+   * @param {string} text
+   * @param {Object} data
+   * @param {"pt"|"en"} lang
+   * @returns {string}
+   */
+  function insertAssinaturaLine(text, data, lang) {
+    const lines = text.split("\n");
+    const headerIndex = lines.findIndex((line) => ORDER_DETAILS_HEADERS[lang].includes(line.trim()));
+    if (headerIndex === -1) return text;
+
+    let insertAt = headerIndex + 1;
+    while (insertAt < lines.length && lines[insertAt].trim().startsWith("•")) {
+      insertAt++;
+    }
+
+    const label = ASSINATURA_VALUE_LABELS[lang][data.assinatura] || ASSINATURA_FALLBACK[lang];
+    lines.splice(insertAt, 0, `• ${ASSINATURA_LINE_LABEL[lang]}: ${label}`);
+
+    return lines.join("\n");
+  }
+
   /**
    * Substitui os placeholders {{campo}} de um texto pelos valores do
    * pedido. Quando o campo está vazio, usa o texto entre colchetes
    * (ex: [NOME DO CLIENTE]) como indicação para o atendente preencher.
+   * Também insere a linha de Assinatura no bloco de Detalhes do Pedido,
+   * quando esse bloco existir no template (ver insertAssinaturaLine).
    * @param {string} text
    * @param {Object} data
    * @param {Object} fallbacks
+   * @param {"pt"|"en"} [lang="pt"]
    * @returns {string}
    */
-  function fillPlaceholders(text, data, fallbacks) {
-    return text.replace(/{{(\w+)}}/g, (match, key) => {
+  function fillPlaceholders(text, data, fallbacks, lang = "pt") {
+    const filled = text.replace(/{{(\w+)}}/g, (match, key) => {
       return data[key] || fallbacks[key] || match;
     });
+    return insertAssinaturaLine(filled, data, lang);
   }
 
   /**
@@ -483,7 +532,7 @@
    * @param {{immediate: boolean}} options
    */
   function updateResponseEnFromTemplate(template, data, { immediate }) {
-    setResponseValue(responseEn, fillPlaceholders(template.en, toEnglishOrderDataPreview(data), FALLBACKS_EN));
+    setResponseValue(responseEn, fillPlaceholders(template.en, toEnglishOrderDataPreview(data), FALLBACKS_EN, "en"));
 
     window.clearTimeout(orderFieldTranslateDebounceTimer);
     const requestId = ++orderFieldTranslationRequestId;
@@ -491,7 +540,7 @@
     const runTranslation = async () => {
       const translatedData = await toEnglishOrderData(data);
       if (requestId !== orderFieldTranslationRequestId) return;
-      setResponseValue(responseEn, fillPlaceholders(template.en, translatedData, FALLBACKS_EN));
+      setResponseValue(responseEn, fillPlaceholders(template.en, translatedData, FALLBACKS_EN, "en"));
     };
 
     if (immediate) {
