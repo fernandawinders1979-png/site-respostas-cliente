@@ -227,6 +227,45 @@ section h2 {
   margin: 0;
 }
 
+.ticket-search {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface-alt);
+}
+
+.ticket-search label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.ticket-search-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ticket-search-row input {
+  flex: 1;
+}
+
+.ticket-search-status {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+
+.ticket-search-status.is-error {
+  color: #ff5050;
+}
+
+.ticket-search-status.is-success {
+  color: var(--color-primary);
+}
+
 .order-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -449,6 +488,47 @@ section h2 {
   background-color: var(--color-surface-alt);
   border-color: var(--cat-color, var(--color-primary));
   box-shadow: 0 0 8px var(--cat-color, var(--color-primary));
+}
+
+.template-btn--suggested {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary);
+}
+
+.template-btn--suggested::after {
+  content: " ✨";
+}
+
+.suggestion-box {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  background-color: var(--color-primary-soft);
+}
+
+.suggestion-text {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.order-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.order-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-light);
+  font-size: 0.75rem;
 }
 
 .main-panel {

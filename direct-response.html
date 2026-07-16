@@ -35,10 +35,25 @@
         </button>
       </div>
 
+      <div class="ticket-search">
+        <label for="ticket-search-input">Buscar dados pelo número do ticket (Freshdesk)</label>
+        <div class="ticket-search-row">
+          <input id="ticket-search-input" type="text" inputmode="numeric" placeholder="Ex: 58214">
+          <button id="ticket-search-btn" class="btn-primary" type="button">
+            Buscar no Freshdesk
+          </button>
+        </div>
+        <p id="ticket-search-status" class="ticket-search-status" role="status" aria-live="polite"></p>
+      </div>
+
       <div class="order-grid">
         <div class="order-field">
           <label for="order-nome-cliente">Nome do Cliente</label>
           <input id="order-nome-cliente" type="text" placeholder="Ex: Maria Silva">
+        </div>
+        <div class="order-field">
+          <label for="order-email">E-mail do Cliente</label>
+          <input id="order-email" type="text" placeholder="Ex: maria@exemplo.com">
         </div>
         <div class="order-field">
           <label for="order-nome-agente">Nome do Agente</label>
@@ -76,7 +91,13 @@
             <option value="nao">Não</option>
           </select>
         </div>
+        <div class="order-field">
+          <label for="order-idioma">Idioma do Atendimento</label>
+          <input id="order-idioma" type="text" placeholder="Ex: pt-BR">
+        </div>
       </div>
+
+      <div id="order-tags" class="order-tags" hidden></div>
 
       <details class="tracking-details">
         <summary>Informações de rastreamento (opcional, usado no template "Status da entrega")</summary>
@@ -130,6 +151,12 @@
       <aside class="template-sidebar" aria-labelledby="templates-title">
         <h2 id="templates-title">Templates de Resposta</h2>
         <p class="sidebar-hint">Clique em um template para inserir na resposta abaixo. Você pode editar antes de copiar.</p>
+        <div id="suggestion-box" class="suggestion-box" hidden>
+          <p id="suggestion-text" class="suggestion-text"></p>
+          <button id="suggestion-use-btn" class="btn-secondary" type="button">
+            Usar este template
+          </button>
+        </div>
         <div id="template-categories" class="template-categories"></div>
       </aside>
 

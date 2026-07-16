@@ -17,6 +17,7 @@
 
   const orderFields = {
     nomeCliente: document.getElementById("order-nome-cliente"),
+    email: document.getElementById("order-email"),
     nomeAgente: document.getElementById("order-nome-agente"),
     numeroPedido: document.getElementById("order-numero-pedido"),
     dataCompra: document.getElementById("order-data-compra"),
@@ -24,6 +25,7 @@
     valorTotal: document.getElementById("order-valor-total"),
     endereco: document.getElementById("order-endereco"),
     status: document.getElementById("order-status"),
+    idioma: document.getElementById("order-idioma"),
     codigoRastreio: document.getElementById("order-codigo-rastreio"),
     linkRastreio: document.getElementById("order-link-rastreio"),
     percentualOferta: document.getElementById("order-percentual-oferta"),
@@ -53,6 +55,10 @@
   const riskResult = document.getElementById("risk-result");
   const riskBadge = document.getElementById("risk-badge");
   const riskExplanation = document.getElementById("risk-explanation");
+  const orderTagsEl = document.getElementById("order-tags");
+  const suggestionBox = document.getElementById("suggestion-box");
+  const suggestionText = document.getElementById("suggestion-text");
+  const suggestionUseBtn = document.getElementById("suggestion-use-btn");
 
   /**
    * Ajusta a altura de uma textarea de resposta ao tamanho do seu
@@ -606,38 +612,66 @@
   const FALLBACK_TEMPLATE_ID = "fegComoPossoAjudar";
 
   /**
-   * Detecta, por palavras-chave, qual template combina com a mensagem
-   * do cliente. Cada palavra-chave encontrada soma um ponto para o
-   * template dela; vence quem tiver mais pontos (não só o primeiro que
-   * bater uma palavra), para escolher o template mais específico quando
-   * mais de um combina com a mensagem.
-   * Templates com autoDetect: null (ex: "Cliente não localizado",
+   * Calcula, para cada template com autoDetect, quantas palavras-chave
+   * batem com o texto informado. Devolve a lista ordenada da maior
+   * pontuação para a menor (mantendo a ordem de TEMPLATES em caso de
+   * empate). Templates com autoDetect: null (ex: "Cliente não localizado",
    * "Como posso te ajudar") não entram nessa busca automática, pois
    * dependem de uma decisão do atendente, não do conteúdo da mensagem.
+   * @param {string} text
+   * @returns {Array<{id: string, score: number}>}
+   */
+  function scoreTemplates(text) {
+    const normalized = text.toLowerCase();
+
+    return TEMPLATES.filter((template) => template.autoDetect)
+      .map((template) => ({
+        id: template.id,
+        score: template.autoDetect.reduce(
+          (count, word) => (normalized.includes(word) ? count + 1 : count),
+          0
+        ),
+      }))
+      .sort((a, b) => b.score - a.score);
+  }
+
+  /**
+   * Detecta, por palavras-chave, qual template combina com a mensagem
+   * do cliente. Vence quem tiver mais pontos (não só o primeiro que
+   * bater uma palavra), para escolher o template mais específico quando
+   * mais de um combina com a mensagem.
    * @param {string} text
    * @returns {string} id do template (cai no FALLBACK_TEMPLATE_ID se nada combinar)
    */
   function detectTemplateId(text) {
-    const normalized = text.toLowerCase();
+    const best = scoreTemplates(text)[0];
+    return (best && best.score > 0 && best.id) || FALLBACK_TEMPLATE_ID;
+  }
 
-    let bestId = null;
-    let bestScore = 0;
+  /**
+   * Igual a detectTemplateId, mas também calcula um "nível de confiança"
+   * (0 a 0.95) para exibir ao atendente antes de aplicar o template.
+   * A confiança sobe quando o template vencedor tem uma vantagem clara
+   * sobre o segundo colocado e quando várias palavras-chave bateram (não
+   * só uma). Usada só na sugestão automática vinda do Freshdesk — não
+   * afeta o botão "Gerar Resposta com IA", que continua usando
+   * detectTemplateId normalmente.
+   * @param {string} text
+   * @returns {{templateId: string|null, confidence: number}}
+   */
+  function detectTemplateWithConfidence(text) {
+    const scored = scoreTemplates(text);
+    const best = scored[0];
 
-    for (const template of TEMPLATES) {
-      if (!template.autoDetect) continue;
-
-      const score = template.autoDetect.reduce(
-        (count, word) => (normalized.includes(word) ? count + 1 : count),
-        0
-      );
-
-      if (score > bestScore) {
-        bestScore = score;
-        bestId = template.id;
-      }
+    if (!best || best.score === 0) {
+      return { templateId: null, confidence: 0 };
     }
 
-    return bestId || FALLBACK_TEMPLATE_ID;
+    const runnerUpScore = (scored[1] && scored[1].score) || 0;
+    const margin = best.score - runnerUpScore;
+    const confidence = Math.min(0.95, 0.5 + margin * 0.15 + Math.min(best.score, 4) * 0.05);
+
+    return { templateId: best.id, confidence };
   }
 
   /**
@@ -835,16 +869,216 @@
   }
 
   /**
-   * Preenche o campo "Nome do Cliente" a partir de um parâmetro na URL
-   * (ex: index.html?nomeCliente=Maria%20Silva), usado pela integração
-   * com o Freshdesk: o app da barra lateral do chamado abre o painel
-   * já com o nome do contato preenchido, sem precisar digitar.
+   * Mostra as tags do chamado (vindas do Freshdesk) como uma lista simples,
+   * só para leitura — contexto extra para o atendente, não um campo do
+   * template.
+   * @param {string[]} tags
+   */
+  function renderTags(tags) {
+    if (!orderTagsEl) return;
+    if (!tags || tags.length === 0) {
+      orderTagsEl.hidden = true;
+      orderTagsEl.innerHTML = "";
+      return;
+    }
+    orderTagsEl.hidden = false;
+    orderTagsEl.innerHTML = tags
+      .map((tag) => `<span class="order-tag">${tag}</span>`)
+      .join("");
+  }
+
+  /**
+   * Mostra a sugestão de template calculada a partir da conversa vinda do
+   * Freshdesk: destaca o botão do template sugerido na barra lateral
+   * (abrindo a categoria dele, se estiver fechada) e exibe um selo com o
+   * nome do template e o nível de confiança. O atendente decide se quer
+   * usar a sugestão (botão "Usar este template") ou clicar em outro
+   * template qualquer, como sempre.
+   * @param {string} text
+   */
+  function showTemplateSuggestion(text) {
+    if (!suggestionBox || !suggestionText) return;
+    if (!text || !text.trim()) {
+      suggestionBox.hidden = true;
+      return;
+    }
+
+    const { templateId, confidence } = detectTemplateWithConfidence(text);
+    if (!templateId) {
+      suggestionBox.hidden = true;
+      return;
+    }
+
+    const template = TEMPLATES.find((item) => item.id === templateId);
+    if (!template) {
+      suggestionBox.hidden = true;
+      return;
+    }
+
+    document.querySelectorAll(".template-btn--suggested").forEach((btn) => {
+      btn.classList.remove("template-btn--suggested");
+    });
+
+    const suggestedButton = Array.from(document.querySelectorAll(".template-btn")).find(
+      (btn) => btn.textContent === template.label
+    );
+    if (suggestedButton) {
+      suggestedButton.classList.add("template-btn--suggested");
+      const details = suggestedButton.closest("details");
+      if (details) details.open = true;
+    }
+
+    suggestionBox.hidden = false;
+    suggestionText.textContent = `Sugestão da IA: ${template.label} (${Math.round(confidence * 100)}% de confiança)`;
+
+    if (suggestionUseBtn) {
+      suggestionUseBtn.onclick = () => handleTemplateClick(templateId);
+    }
+  }
+
+  /**
+   * Aplica no painel todos os dados coletados automaticamente pelo app do
+   * Freshdesk: preenche os campos do pedido, cola a conversa do cliente na
+   * caixa de mensagem, mostra as tags do chamado e sugere um template com
+   * base na conversa. Todos os campos continuam editáveis pelo atendente
+   * depois disso.
+   * @param {Object} payload
+   */
+  function applyFreshdeskPayload(payload) {
+    Object.entries(payload).forEach(([key, value]) => {
+      if (key === "conversationText" || key === "tags") return;
+      if (orderFields[key] && value) {
+        orderFields[key].value = value;
+      }
+    });
+
+    if (payload.conversationText && messageInput) {
+      messageInput.value = payload.conversationText;
+    }
+
+    renderTags(payload.tags);
+    showTemplateSuggestion(payload.conversationText || "");
+  }
+
+  /**
+   * Preenche o campo "Nome do Cliente" a partir de um link antigo
+   * (ex: index.html?nomeCliente=Maria%20Silva), mantido por compatibilidade.
    */
   function applyPrefillFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const nomeCliente = params.get("nomeCliente");
     if (nomeCliente && orderFields.nomeCliente) {
       orderFields.nomeCliente.value = nomeCliente;
+    }
+  }
+
+  /* =========================================================
+     Busca de dados pelo número do ticket (Freshdesk), via o Worker
+     que guarda a API Key em segredo (ver freshdesk-worker/).
+     ========================================================= */
+
+  // Endereço do Worker publicado. Substituir pelo endereço real depois de
+  // rodar `wrangler deploy` (ex: https://freshdesk-proxy.SEU-USUARIO.workers.dev).
+  const FRESHDESK_WORKER_URL = "https://freshdesk-proxy.fernandawinders1979.workers.dev";
+
+  const APP_TOKEN_STORAGE_KEY = "freshdeskAppToken";
+
+  const ticketSearchInput = document.getElementById("ticket-search-input");
+  const ticketSearchBtn = document.getElementById("ticket-search-btn");
+  const ticketSearchStatus = document.getElementById("ticket-search-status");
+
+  /**
+   * Pega a senha de equipe já guardada nesta aba (sessionStorage), ou pede
+   * ao atendente (só uma vez por sessão do navegador — some ao fechar a
+   * aba). Nunca fica salva permanentemente no computador.
+   * @returns {string|null}
+   */
+  function getAppToken() {
+    // Em navegadores/modos que bloqueiam sessionStorage (ex: aba anônima
+    // restrita), segue sem guardar entre buscas em vez de travar a tela —
+    // o atendente só precisa digitar a senha de novo a cada busca.
+    let token = "";
+    try {
+      token = window.sessionStorage.getItem(APP_TOKEN_STORAGE_KEY) || "";
+    } catch (error) {
+      // Sem acesso a sessionStorage: segue sem token salvo.
+    }
+
+    if (!token) {
+      token = window.prompt("Senha de equipe para buscar dados do Freshdesk:");
+      if (token) {
+        try {
+          window.sessionStorage.setItem(APP_TOKEN_STORAGE_KEY, token);
+        } catch (error) {
+          // Sem acesso a sessionStorage: só não persiste, segue com o valor em mãos.
+        }
+      }
+    }
+
+    return token || null;
+  }
+
+  function setTicketSearchStatus(message, kind) {
+    if (!ticketSearchStatus) return;
+    ticketSearchStatus.textContent = message;
+    ticketSearchStatus.className = "ticket-search-status" + (kind ? ` is-${kind}` : "");
+  }
+
+  /**
+   * Busca os dados de um ticket no Worker e aplica no painel (mesma função
+   * usada por qualquer outra fonte de dados do Freshdesk). Se a senha de
+   * equipe estiver errada, limpa a senha guardada para pedir de novo na
+   * próxima tentativa, em vez de ficar travado com uma senha inválida.
+   * @param {string} ticketId
+   */
+  async function fetchFreshdeskTicket(ticketId) {
+    if (!ticketId || !ticketId.trim()) {
+      setTicketSearchStatus("Digite o número do ticket antes de buscar.", "error");
+      return;
+    }
+
+    const token = getAppToken();
+    if (!token) {
+      setTicketSearchStatus("É preciso informar a senha de equipe para buscar.", "error");
+      return;
+    }
+
+    setTicketSearchStatus("🔄 Buscando dados do ticket...");
+    if (ticketSearchBtn) ticketSearchBtn.disabled = true;
+
+    try {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/ticket/${encodeURIComponent(ticketId.trim())}`, {
+        headers: { "X-App-Token": token },
+      });
+
+      if (response.status === 401) {
+        try {
+          window.sessionStorage.removeItem(APP_TOKEN_STORAGE_KEY);
+        } catch (error) {
+          // Sem acesso a sessionStorage: não tinha nada guardado mesmo.
+        }
+        setTicketSearchStatus("Senha de equipe incorreta. Tente buscar de novo para digitar outra vez.", "error");
+        return;
+      }
+
+      if (response.status === 404) {
+        setTicketSearchStatus("Ticket não encontrado com esse número.", "error");
+        return;
+      }
+
+      if (!response.ok) {
+        setTicketSearchStatus("Não foi possível buscar esse ticket agora. Tente de novo em instantes.", "error");
+        return;
+      }
+
+      const payload = await response.json();
+      applyFreshdeskPayload(payload);
+      updateWelcomePreview();
+      setTicketSearchStatus("✅ Dados carregados! Revise os campos antes de responder.", "success");
+    } catch (error) {
+      setTicketSearchStatus("Erro de conexão com o Freshdesk. Verifique sua internet e tente de novo.", "error");
+    } finally {
+      if (ticketSearchBtn) ticketSearchBtn.disabled = false;
     }
   }
 
@@ -860,6 +1094,13 @@
 
   if (riskBtn) {
     riskBtn.addEventListener("click", handleRiskClick);
+  }
+
+  if (ticketSearchBtn && ticketSearchInput) {
+    ticketSearchBtn.addEventListener("click", () => fetchFreshdeskTicket(ticketSearchInput.value));
+    ticketSearchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") fetchFreshdeskTicket(ticketSearchInput.value);
+    });
   }
 
   Object.values(orderFields).forEach((input) => {

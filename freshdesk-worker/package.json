@@ -1,0 +1,15 @@
+{
+  "name": "freshdesk-worker",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Cofre entre o dashboard (GitHub Pages) e a API do Freshdesk: guarda a API Key em segredo e só devolve os dados já prontos para o dashboard.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

@@ -590,7 +590,11 @@ Premium Support Team`,
       id: "chargebackEnvioProdutos",
       category: "geral",
       label: "Chargeback realizado - solicitar envio dos produtos",
-      autoDetect: ["chargeback", "estorno bancario", "estorno bancário", "contestação", "contestacao"],
+      autoDetect: [
+        "chargeback", "estorno bancario", "estorno bancário", "contestação", "contestacao",
+        "vou abrir uma disputa", "abri uma disputa", "contestar a cobrança", "contestar no banco",
+        "chamei o banco", "vou chamar o banco", "chargeback do cartão",
+      ],
       pt: `Olá {{nomeCliente}},
 
 Meu nome é {{nomeAgente}} e estarei auxiliando você a partir de agora.

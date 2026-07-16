@@ -50,6 +50,8 @@
         "atraso", "atrasado", "demorando", "demora pra chegar", "demora para chegar",
         "ainda não chegou", "não chegou ainda", "cadê meu pedido", "cadê o pedido",
         "onde está meu pedido", "passou do prazo", "meu pedido não chegou",
+        "pedido perdido", "perdi meu pedido", "sumiu meu pedido", "pedido sumiu",
+        "pedido extraviado", "extraviado", "extraviou",
       ],
       pt: `Olá {{nomeCliente}},
 
@@ -608,7 +610,8 @@ Customer Support Team — FEG`,
       autoDetect: [
         "quando vai chegar", "previsão de chegada", "qual é o status da entrega",
         "quero rastrear meu pedido", "como acompanho meu pedido", "código de rastreio",
-        "rastreamento do pedido", "link de rastreio",
+        "rastreamento do pedido", "link de rastreio", "rastreio sumiu", "não aparece rastreio",
+        "sem informação de rastreio", "rastreio não encontrado",
       ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
@@ -718,7 +721,8 @@ Customer Support Team — FEG`,
       autoDetect: [
         "cancelar assinatura", "quero cancelar minha assinatura", "cancelar minha assinatura",
         "não quero mais receber", "parar de receber", "cancelar o plano",
-        "quero parar a assinatura", "cancelar a recorrência",
+        "quero parar a assinatura", "cancelar a recorrência", "quero sair da assinatura",
+        "encerrar assinatura", "finalizar assinatura", "cancelar a assinatura",
       ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
@@ -975,6 +979,8 @@ Customer Support Team — FEG`,
       autoDetect: [
         "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
         "tenho o produto e quero cancelar", "quero devolver o produto e cancelar",
+        "já estou com o produto", "estou com o produto em mãos", "recebi o produto e quero devolver",
+        "como faço para devolver o produto que já recebi",
       ],
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}} e estarei cuidando dessa solicitação para você.
