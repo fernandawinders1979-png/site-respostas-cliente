@@ -649,7 +649,7 @@
     let level = "baixo";
     if (matches.high.length >= 1 || score >= 6) {
       level = "alto";
-    } else if (score >= 3) {
+    } else if (score >= 2) {
       level = "medio";
     }
 

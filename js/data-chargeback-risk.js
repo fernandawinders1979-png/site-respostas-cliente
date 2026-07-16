@@ -51,29 +51,38 @@
     "item not as described", "doesn't contain the ingredients", "missing ingredients",
     "ingredients don't match", "false advertising", "misleading advertising",
     "want to return this product", "needs to be returned", "full refund",
-  ];
 
-  // Peso 2: cliente já demonstra forte insatisfação e pede reembolso/cancelamento
-  // de forma incisiva, mas ainda não citou banco/advogado/fraude.
-  const MEDIUM_WEIGHT_PHRASES = [
-    // Português
+    // Pedido urgente/incisivo de reembolso ou cancelamento (ex: "reembolse
+    // imediatamente", "cancele já"). Mesmo sem citar banco/advogado/fraude,
+    // esse tom de urgência sozinho já é tratado como Risco Alto.
     "quero meu dinheiro de volta", "quero o dinheiro de volta", "quero meu dinheiro",
     "quero reembolso", "exijo reembolso", "quero o reembolso agora",
-    "reembolso agora", "cancelem imediatamente", "cancele imediatamente",
+    "reembolso agora", "reembolse imediatamente", "reembolse já", "reembolse agora",
+    "cancelem imediatamente", "cancele imediatamente",
     "cancelem já", "cancele já", "cancelem agora", "cancele agora",
+    "isso é golpe",
+
+    "i want my money back", "i want a refund", "i want my refund",
+    "give me a refund", "refund me now", "refund now", "refund immediately",
+    "cancel my order immediately", "cancel immediately",
+  ];
+
+  // Peso 2: cliente já demonstra forte insatisfação (reclamação incisiva,
+  // ameaça de avaliação negativa, sensação de ter sido enganado) mas ainda
+  // sem pedir reembolso/cancelamento de forma urgente nem citar banco,
+  // fraude ou advogado.
+  const MEDIUM_WEIGHT_PHRASES = [
+    // Português
     "isso é um absurdo", "péssimo atendimento", "nunca mais compro",
     "produto não chegou e ninguém resolve", "estou muito insatisfeito",
     "estou muito insatisfeita", "vou deixar uma avaliação negativa",
-    "vou avisar todo mundo", "isso é golpe", "sinto que fui enganado",
-    "sinto que fui enganada",
+    "vou avisar todo mundo", "sinto que fui enganado", "sinto que fui enganada",
 
     // English
-    "i want my money back", "i want a refund", "i want my refund",
-    "give me a refund", "refund me now", "refund now",
-    "cancel my order immediately", "cancel immediately", "this is ridiculous",
-    "terrible service", "never buying again", "worst experience",
-    "i feel scammed", "this feels like a scam", "leave a bad review",
-    "one star", "i'm very unhappy", "i am very unhappy", "not acceptable",
+    "this is ridiculous", "terrible service", "never buying again",
+    "worst experience", "i feel scammed", "this feels like a scam",
+    "leave a bad review", "one star", "i'm very unhappy", "i am very unhappy",
+    "not acceptable",
   ];
 
   // Peso 1: sinais leves de frustração ou reclamação comum, ainda sem
