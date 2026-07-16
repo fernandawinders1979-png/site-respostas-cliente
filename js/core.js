@@ -717,10 +717,10 @@
     }
 
     const matches = findRiskMatches(text);
-    const { level } = classifyRisk(matches);
+    const { level, score } = classifyRisk(matches);
 
     riskResult.hidden = false;
-    riskBadge.textContent = RISK_LABELS[level];
+    riskBadge.textContent = `${RISK_LABELS[level]} (${score})`;
     riskBadge.className = `risk-badge risk-${level}`;
     riskExplanation.textContent = buildRiskExplanation(matches);
   }
