@@ -982,6 +982,66 @@ section h2 {
   font-weight: 600;
 }
 
+/* Seções recolhíveis do dashboard de métricas: só mostram o gráfico quando
+   o título é clicado — deixa a tela mais limpa pra mostrar pra outras
+   pessoas, em vez de despejar todos os números de uma vez. */
+.metrics-accordion {
+  padding: 0;
+  overflow: hidden;
+}
+
+.metrics-accordion-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.25);
+  list-style: none;
+}
+
+.metrics-accordion-title::-webkit-details-marker {
+  display: none;
+}
+
+.metrics-accordion-title::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--color-text-light);
+  text-shadow: none;
+  transition: transform 0.15s ease;
+}
+
+.metrics-accordion[open] > .metrics-accordion-title::before {
+  transform: rotate(90deg);
+}
+
+.metrics-accordion-title:hover {
+  background-color: var(--color-primary-soft);
+}
+
+.metrics-accordion-hint {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+.metrics-accordion[open] > .metrics-accordion-title .metrics-accordion-hint {
+  display: none;
+}
+
+.metrics-accordion-body {
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 16px;
+}
+
 .ranking-list {
   display: block;
 }
