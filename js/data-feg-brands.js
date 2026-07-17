@@ -2056,6 +2056,165 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegCancelarPedidoAssinaturaAntesEnvio",
+      category: "reembolsoCancelarAssinatura",
+      label: "Cancelar o pedido e a assinatura antes do envio do pedido",
+      autoDetect: null,
+      pt: `Olá!
+
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Analisei seu pedido e tenho uma boa notícia.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: Cancelado
+• Assinatura: Cancelada
+
+Consegui cancelar tanto o seu pedido quanto a sua assinatura, conforme solicitado. Como o pedido foi cancelado antes do envio, o reembolso integral já foi processado para o mesmo método de pagamento utilizado na compra, e você não receberá novos envios ou cobranças automáticas.
+
+Em anexo, segue o comprovante do reembolso para sua conferência. Dependendo da administradora do seu cartão ou da instituição financeira, o crédito poderá levar alguns dias para aparecer em sua conta ou fatura.
+
+Se não se importar em compartilhar, gostaria apenas de saber o motivo do cancelamento. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing your request. I reviewed your order and have good news.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: Canceled
+• Subscription: Canceled
+
+I was able to cancel both your order and your subscription, as requested. Since the order was canceled before shipping, the full refund has already been processed to the same payment method used for the purchase, and you won't receive any further shipments or automatic charges.
+
+Attached, please find the refund receipt for your records. Depending on your card issuer or financial institution, the credit may take a few days to appear on your account or statement.
+
+If you don't mind sharing, I'd just like to know the reason for the cancellation. Your feedback is very important to help us improve our products and service.
+
+I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegCancelarPedidoAssinaturaEmTransito",
+      category: "reembolsoCancelarAssinatura",
+      label: "Cancelar o pedido e a assinatura, o pedido em trânsito",
+      autoDetect: null,
+      pt: `Olá!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Agradeço por entrar em contato conosco e por compartilhar sua solicitação de cancelamento do pedido e da assinatura. Localizei seu pedido em nosso sistema:
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+• Assinatura: Ativa
+
+Entendo sua decisão e isso não é problema algum. Verifiquei que seu pedido já está em trânsito e, por esse motivo, não é mais possível interromper o envio. Quando o produto chegar, pedimos, por gentileza, que recuse a entrega. Assim que a recusa for concluída, basta nos avisar para que possamos dar continuidade ao reembolso integral.
+Quanto à assinatura, antes de prosseguirmos com o cancelamento, gostaria de pedir, se possível, que compartilhe o motivo da sua decisão. Seu feedback é muito importante para nos ajudar a melhorar nossos produtos e atendimento, e assim que recebermos sua resposta, faremos o cancelamento imediatamente.
+Continuaremos acompanhando seu caso até a conclusão. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+Thank you for reaching out to us and sharing your request to cancel the order and the subscription. I located your order in our system:
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+• Subscription: Active
+
+I understand your decision, and that's not a problem at all. I checked and your order is already in transit, so it's no longer possible to stop the shipment. When the product arrives, please kindly refuse the delivery. Once the refusal is completed, just let us know so we can move forward with the full refund.
+As for the subscription, before we proceed with the cancellation, I'd like to ask, if possible, that you share the reason for your decision. Your feedback is very important to help us improve our products and service, and as soon as we receive your reply, we'll cancel it right away.
+We'll keep following your case through to its conclusion. If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
+      category: "reembolsoCancelarAssinatura",
+      label: "Quer devolver e cancelar assinatura – Está com o produto e não fala motivo",
+      autoDetect: null,
+      pt: `Olá!
+
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+• Assinatura: Ativa
+
+Verifiquei que seu pedido está dentro do período da nossa Garantia de Satisfação, portanto podemos prosseguir com a devolução e o reembolso.
+
+Antes de enviarmos as instruções, gostaria de entender o motivo tanto da devolução quanto do cancelamento da assinatura. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
+
+Assim que recebermos sua resposta, enviaremos a autorização de devolução (RMA), o endereço para envio e as demais orientações para dar continuidade ao reembolso, e também faremos o cancelamento da assinatura.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can move forward in the best way possible.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+• Subscription: Active
+
+I checked and your order is within our Satisfaction Guarantee period, so we can proceed with the return and the refund.
+
+Before sending the instructions, I'd like to understand the reason for both the return and the subscription cancellation. Your feedback is very important to help us improve our products and service.
+
+As soon as we receive your reply, we'll send the return authorization (RMA), the shipping address, and the remaining instructions to move forward with the refund, and we'll also cancel the subscription.
+
+I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
@@ -2064,6 +2223,7 @@ Customer Support Team — FEG`,
     { id: "naoReconhece", label: "Cliente não reconhece a compra", color: "#ff5050" },
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
+    { id: "reembolsoCancelarAssinatura", label: "Reembolso do Pedido e Cancelar Assinatura", color: "#4d7cff" },
     { id: "medoReacaoAdversa", label: "Médico e Reação Adversa", color: "#ff8c1a" },
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
