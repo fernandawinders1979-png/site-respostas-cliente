@@ -954,7 +954,7 @@ Customer Support Team — FEG`,
       pt: `Olá!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+Agradeço por entrar em contato conosco e por compartilhar sua dúvida. Analisei seu pedido e posso esclarecer o que está acontecendo.
 
 Localizei seu pedido em nosso sistema:
 
@@ -965,19 +965,18 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: Etiqueta criada
 
-Obrigado(a) por entrar em contato! Entendo perfeitamente a sua ansiedade em acompanhar cada passo da entrega — principalmente quando estamos animados para começar a usar um novo produto na nossa rotina de bem-estar.
+Verifiquei que o rastreamento ainda exibe o status "Etiqueta criada". Isso significa que a etiqueta de envio já foi gerada e o pacote está aguardando a próxima atualização da transportadora. Essa é uma etapa normal do processo de envio e não indica qualquer problema com o seu pedido.
 
-Verifiquei aqui e posso te explicar exatamente o que está acontecendo: nessa etapa, o rastreamento mostra apenas "Etiqueta criada", o que significa simplesmente que o pacote já está no processo de envio pela transportadora e aguarda a próxima leitura. Isso não indica nenhum problema — é uma etapa normal do processo logístico.
+Assim que a transportadora realizar a próxima leitura do pacote, o rastreamento será atualizado automaticamente. Você poderá acompanhar todas as movimentações pelo link abaixo:
+{{linkRastreio}}
 
-As informações de rastreamento devem ser atualizadas em breve, assim que a UPS receber e escanear o pacote em uma de suas instalações. A partir daí, você já conseguirá acompanhar o andamento da entrega até o seu endereço em tempo real, por aqui: {{linkRastreio}}.
+Sabemos que a expectativa para receber o pedido é grande, e esperamos que ele chegue até você muito em breve para que possa iniciar sua experiência com o produto.
 
-Fico à disposição para acompanhar isso com você. Se em alguns dias o status ainda não tiver mudado, é só me avisar que já investigo diretamente com a transportadora.
+Caso o status permaneça inalterado pelos próximos dias, basta responder a este e-mail. Terei prazer em verificar a situação diretamente com a transportadora.
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
-
-Agradecemos muito a sua paciência! Qualquer outra dúvida, não hesite em entrar em contato.
 
 Atenciosamente,
 {{nomeAgente}}
@@ -985,7 +984,7 @@ Equipe de Suporte ao Cliente — FEG`,
       en: `Hello!
 My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+Thank you for reaching out to us and sharing your question. I reviewed your order and can clarify what's happening.
 
 I located your order in our system:
 
@@ -996,19 +995,18 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: Label created
 
-Thank you for reaching out! I completely understand your eagerness to track every step of the delivery — especially when we're excited to start using a new product in our wellness routine.
+I checked and the tracking still shows the status "Label created." This means the shipping label has already been generated and the package is awaiting the carrier's next update. This is a normal step in the shipping process and doesn't indicate any problem with your order.
 
-I checked here and I can explain exactly what's happening: at this stage, tracking only shows "Label created," which simply means the package is already in the carrier's shipping process and awaiting its next scan. This doesn't indicate any problem — it's a normal step in the logistics process.
+As soon as the carrier scans the package again, the tracking will update automatically. You'll be able to follow all the movements through the link below:
+{{linkRastreio}}
 
-The tracking information should update soon, as soon as UPS receives and scans the package at one of its facilities. From there, you'll be able to follow the delivery progress to your address in real time, right here: {{linkRastreio}}.
+We know how eager you are to receive your order, and we hope it arrives very soon so you can start your experience with the product.
 
-I'm here to follow up on this with you. If the status hasn't changed in a few days, just let me know and I'll look into it directly with the carrier.
+If the status remains unchanged over the next few days, just reply to this email. I'll be happy to check the situation directly with the carrier.
 
 I'll keep following your case until it's fully resolved.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
-
-Thank you so much for your patience! If you have any other questions, please don't hesitate to reach out.
 
 Best regards,
 {{nomeAgente}}
@@ -1310,7 +1308,9 @@ Customer Support Team — FEG`,
         "status do meu reembolso", "cadê meu reembolso",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e continuarei acompanhando seu caso.
+
+Tenho uma ótima notícia: o seu reembolso já foi processado com sucesso.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1320,21 +1320,23 @@ Detalhes do Pedido
 • Produto: {{produto}}
 • Valor Reembolsado: \${{valorReembolso}}
 
-Tenho uma ótima notícia: sua solicitação de estorno foi processada com sucesso em nosso sistema no dia {{dataReembolso}}.
+Em anexo, segue o comprovante do reembolso para sua conferência.
 
-Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer na fatura atual ou na do mês seguinte (prazo médio de 30 a 60 dias, conforme definido pela sua operadora/banco).
+Como o pagamento foi realizado por cartão de crédito, o valor será creditado no mesmo método de pagamento utilizado na compra. Dependendo da administradora do seu cartão ou da instituição financeira, o crédito poderá aparecer na fatura atual ou na próxima.
 
-Se precisar de qualquer confirmação adicional para acompanhar esse processo junto ao seu banco, ou tiver qualquer outra dúvida, é só me responder este e-mail — estarei à disposição.
+Lamentamos que sua experiência com o produto não tenha sido a esperada. Ainda assim, agradecemos pela confiança depositada em nossa empresa e esperamos ter a oportunidade de atendê-lo(a) novamente no futuro.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
-Agradecemos muito pela sua confiança, e esperamos ter a oportunidade de atendê-lo(a) novamente em breve.
-
-Abraços,
+Atenciosamente,
 {{nomeAgente}}
-Central de Suporte — FEG`,
+Equipe de Suporte ao Cliente — FEG`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll keep following your case.
+
+I have great news: your refund has already been successfully processed.
 
 I located your order in our system:
 
@@ -1344,19 +1346,102 @@ Order Details
 • Product: {{produto}}
 • Refunded Amount: \${{valorReembolso}}
 
-I have great news: your refund request was successfully processed in our system on {{dataReembolso}}.
+Attached, please find the refund receipt for your records.
 
-Depending on your statement closing date, the credit may appear on your current statement or the following month's (typical timeframe of 30 to 60 days, as set by your card issuer/bank).
+Since the payment was made by credit card, the amount will be credited to the same payment method used for the purchase. Depending on your card issuer or financial institution, the credit may appear on your current statement or the next one.
 
-If you need any additional confirmation to follow up on this with your bank, or have any other questions, just reply to this email — I'll be at your disposal.
+We're sorry your experience with the product wasn't what you expected. Even so, we appreciate your trust in our company and hope to have the opportunity to serve you again in the future.
+
+I'll keep following your case until it's fully resolved.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
-Thank you so much for your trust, and we hope to have the opportunity to serve you again soon.
-
-Warm regards,
+Best regards,
 {{nomeAgente}}
-Support Center — FEG`,
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegProdutoChegouDanificado",
+      category: "reembolso",
+      label: "Produto chegou danificado",
+      autoDetect: ["danificado", "quebrado", "avariado", "damaged", "broken"],
+      pt: `Olá!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+
+Lamento saber que seu pedido chegou danificado. Essa não é a experiência nem o padrão de qualidade que esperamos oferecer aos nossos clientes, e pedimos sinceras desculpas pelo ocorrido.
+
+Além de resolvermos sua solicitação, abriremos uma reclamação junto à transportadora para que o caso seja analisado e possamos evitar que situações como essa aconteçam novamente.
+
+Para darmos continuidade ao seu atendimento, por favor, responda a este e-mail anexando:
+• Uma foto da embalagem;
+• Uma foto do(s) produto(s) danificado(s); e
+• Informando qual das opções abaixo você prefere:
+
+Opção 1 – Reenvio do produto
+Se preferir receber um novo produto, por gentileza, informe o endereço completo onde deseja receber o reenvio.
+
+Opção 2 – Reembolso integral
+Se preferir o reembolso, enviaremos as instruções para a devolução do produto lacrado, para que possamos dar continuidade ao processo.
+
+Assim que recebermos sua resposta, providenciaremos a solução escolhida com prioridade.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+
+I'm sorry to hear your order arrived damaged. This isn't the experience or the quality standard we aim to offer our customers, and we sincerely apologize for what happened.
+
+In addition to resolving your request, we'll file a claim with the carrier so the case can be reviewed and we can help prevent situations like this from happening again.
+
+To move forward with your case, please reply to this email attaching:
+• A photo of the packaging;
+• A photo of the damaged product(s); and
+• Letting us know which of the options below you prefer:
+
+Option 1 – Product reshipment
+If you'd like to receive a new product, please provide the full address where you'd like the reshipment sent.
+
+Option 2 – Full refund
+If you prefer a refund, we'll send instructions for returning the sealed product so we can move forward with the process.
+
+As soon as we receive your reply, we'll arrange the chosen solution as a priority.
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
     },
 
     {
