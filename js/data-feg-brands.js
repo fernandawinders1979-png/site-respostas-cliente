@@ -940,7 +940,6 @@ Lamento saber que você apresentou esses sintomas após utilizar o produto. Sua 
 Como medida de precaução, orientamos que interrompa imediatamente o uso do produto e, caso os sintomas persistam ou causem preocupação, procure um profissional de saúde para uma avaliação adequada.
 
 Para nos ajudar na análise do ocorrido, pedimos, por gentileza, que responda a este e-mail informando:
-• O número do lote do produto (localizado na embalagem);
 • Quais sintomas você apresentou; e
 • Uma foto do produto.
 
@@ -973,7 +972,6 @@ I'm sorry to hear you experienced these symptoms after using the product. Your h
 As a precaution, we recommend that you stop using the product immediately and, if the symptoms persist or cause concern, seek a healthcare professional for a proper evaluation.
 
 To help us look into what happened, could you please reply to this email letting us know:
-• The product's batch/lot number (found on the packaging);
 • Which symptoms you experienced; and
 • A photo of the product.
 
