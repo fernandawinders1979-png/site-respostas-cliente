@@ -1014,6 +1014,75 @@ Customer Support Team — FEG`,
     },
 
     {
+      id: "fegAtrasoAtualizacaoRastreio",
+      category: "logistica",
+      label: "Atraso na atualização do rastreio na transportadora",
+      autoDetect: null,
+      pt: `Olá!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Verifiquei que a atualização do rastreamento está pausada há alguns dias.
+
+Para garantir que sua entrega siga normalmente, já abrimos uma solicitação junto à transportadora para verificar o ocorrido. Eles têm o prazo de até 5 dias úteis para nos fornecer um posicionamento.
+
+Enquanto isso, fique tranquilo(a): continuaremos acompanhando seu pedido de perto e manteremos você informado sobre qualquer novidade.
+
+Esperamos que seu pedido seja localizado e siga viagem o quanto antes, para que você possa recebê-lo e iniciar sua experiência com o produto.
+
+Caso a transportadora confirme que o pacote não foi localizado ou que houve algum problema na entrega, entraremos em contato para apresentar a melhor solução.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing what happened. I'll carefully review your order so we can find the best solution for your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+I checked and the tracking update has been paused for a few days.
+
+To make sure your delivery proceeds normally, we've already opened a request with the carrier to look into what happened. They have up to 5 business days to give us a response.
+
+In the meantime, please don't worry: we'll keep closely monitoring your order and will keep you informed of any updates.
+
+We hope your order is located and continues on its way as soon as possible, so you can receive it and start your experience with the product.
+
+If the carrier confirms that the package couldn't be located or that there was a delivery issue, we'll reach out to present the best solution.
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
       id: "fegEfeitosAdversosSintomas",
       category: "medoReacaoAdversa",
       label: "Relata reação adversa ao produto",
@@ -1485,6 +1554,69 @@ We're sorry the product didn't meet your expectations. Even so, we appreciate yo
 I'll continue following your case until it's fully resolved.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegCancelarPedidoEmTransito",
+      category: "reembolso",
+      label: "Deseja cancelar o pedido – Pedido em trânsito",
+      autoDetect: null,
+      pt: `Olá!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Entendo que você decidiu não prosseguir com a compra, e isso não é um problema. Gostaria apenas de pedir, se possível, que compartilhe o motivo do cancelamento. Seu feedback é muito importante para nos ajudar a melhorar nossos produtos e atendimento.
+
+Verifiquei que seu pedido já está em trânsito e, por esse motivo, não é mais possível interromper o envio.
+
+Quando o produto chegar, pedimos, por gentileza, que recuse a entrega. Assim que a recusa for concluída, basta responder a este e-mail para que possamos dar continuidade ao processo de reembolso.
+
+Esperamos que todo esse processo ocorra da forma mais rápida possível e continuaremos acompanhando seu caso até a sua conclusão.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can find the best solution for your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+I understand you've decided not to proceed with the purchase, and that's not a problem at all. I'd just like to ask, if possible, that you share the reason for the cancellation. Your feedback is very important to help us improve our products and service.
+
+I checked and your order is already in transit, so it's no longer possible to stop the shipment.
+
+When the product arrives, please kindly refuse the delivery. Once the refusal is completed, just reply to this email so we can move forward with the refund process.
+
+We hope this whole process happens as quickly as possible, and we'll keep following your case through to its conclusion.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
 Best regards,
 {{nomeAgente}}
