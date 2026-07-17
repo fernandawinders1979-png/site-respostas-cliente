@@ -962,12 +962,67 @@ section h2 {
   font-weight: 600;
 }
 
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ranking-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 220px) 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.ranking-label {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking-bar-track {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.ranking-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+.ranking-count {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  min-width: 24px;
+  text-align: right;
+}
+
 /* ===========================================================
    Responsivo
    =========================================================== */
 @media (max-width: 980px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+
+  .ranking-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .ranking-label {
+    white-space: normal;
   }
 
   .template-sidebar {

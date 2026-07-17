@@ -629,6 +629,7 @@
     setResponseValue(responsePt, fillPlaceholders(template.pt, data, FALLBACKS_PT));
     activeTemplateId = templateId;
     updateResponseEnFromTemplate(template, data, { immediate: true });
+    recordStatEvent("template", template.id, template.label);
   }
 
   /**
@@ -1217,6 +1218,9 @@
       const payload = await response.json();
       applyFreshdeskPayload(payload);
       updateWelcomePreview();
+      if (payload.motivo) {
+        recordStatEvent("motivo", payload.motivo, payload.motivo);
+      }
       setTicketSearchStatus("✅ Dados carregados! Revise os campos antes de responder.", "success");
     } catch (error) {
       setTicketSearchStatus("Erro de conexão com o Freshdesk. Verifique sua internet e tente de novo.", "error");
@@ -1304,6 +1308,30 @@
     } catch (error) {
       // Sem internet ou Worker fora do ar: a análise de risco em si já foi
       // mostrada ao atendente, só a estatística compartilhada não atualiza.
+    }
+  }
+
+  /**
+   * Avisa o Worker que um valor apareceu numa categoria "aberta" — motivo
+   * de contato ou template usado — para os rankings do dashboard de
+   * métricas. Mesmo padrão silencioso de recordRiskEvent: só dispara se já
+   * houver senha guardada, nunca interrompe o atendimento se falhar.
+   * @param {string} category "motivo" | "template"
+   * @param {string} key
+   * @param {string} label
+   */
+  async function recordStatEvent(category, key, label) {
+    const token = getStoredAppToken();
+    if (!token || !key) return;
+
+    try {
+      await fetch(`${FRESHDESK_WORKER_URL}/stat-event`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Token": token },
+        body: JSON.stringify({ category, key, label }),
+      });
+    } catch (error) {
+      // Sem internet ou Worker fora do ar: ignora, é só estatística extra.
     }
   }
 

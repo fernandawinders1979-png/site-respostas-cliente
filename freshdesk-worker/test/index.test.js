@@ -27,8 +27,8 @@ function postReq(path, body, headers = {}) {
   });
 }
 
-// KV falso em memória, só para os testes: imita as duas funções do Workers
-// KV que o Worker usa (get/put), sem precisar de uma conta Cloudflare real.
+// KV falso em memória, só para os testes: imita as funções do Workers KV
+// que o Worker usa (get/put/list), sem precisar de uma conta Cloudflare real.
 function createMockKv() {
   const store = new Map();
   return {
@@ -37,6 +37,12 @@ function createMockKv() {
     },
     async put(key, value) {
       store.set(key, value);
+    },
+    async list({ prefix } = {}) {
+      const keys = [...store.keys()]
+        .filter((key) => !prefix || key.startsWith(prefix))
+        .map((name) => ({ name }));
+      return { keys, list_complete: true };
     },
   };
 }
@@ -171,6 +177,82 @@ test("/risk-history limita o número máximo de semanas", async () => {
   assert.equal(body.weeks.length, 26);
 });
 
+test("registrar estatística com categoria inválida -> 400", async () => {
+  const res = await worker.fetch(
+    postReq("/stat-event", { category: "outra-coisa", key: "x" }, { "X-App-Token": "senha-correta" }),
+    { ...env, RISK_STATS: createMockKv() },
+  );
+  assert.equal(res.status, 400);
+});
+
+test("registrar estatística sem key -> 400", async () => {
+  const res = await worker.fetch(
+    postReq("/stat-event", { category: "motivo" }, { "X-App-Token": "senha-correta" }),
+    { ...env, RISK_STATS: createMockKv() },
+  );
+  assert.equal(res.status, 400);
+});
+
+test("registrar motivo repetido soma no mesmo contador (ignora acento/maiúscula)", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  await worker.fetch(
+    postReq(
+      "/stat-event",
+      { category: "motivo", key: "Atraso na Entrega", label: "Atraso na Entrega" },
+      { "X-App-Token": "senha-correta" },
+    ),
+    testEnv,
+  );
+  await worker.fetch(
+    postReq(
+      "/stat-event",
+      { category: "motivo", key: "atraso na entrega", label: "Atraso na Entrega" },
+      { "X-App-Token": "senha-correta" },
+    ),
+    testEnv,
+  );
+
+  const res = await worker.fetch(
+    req("/stat-ranking?category=motivo", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res.status, 200);
+  const body = await res.json();
+
+  assert.equal(body.items.length, 1);
+  assert.equal(body.items[0].count, 2);
+  assert.equal(body.items[0].label, "Atraso na Entrega");
+});
+
+test("/stat-ranking ordena do mais frequente para o menos e respeita o limit", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  const record = (key) =>
+    worker.fetch(
+      postReq("/stat-event", { category: "template", key, label: key }, { "X-App-Token": "senha-correta" }),
+      testEnv,
+    );
+
+  await record("Template A");
+  await record("Template B");
+  await record("Template B");
+  await record("Template C");
+  await record("Template C");
+  await record("Template C");
+
+  const res = await worker.fetch(
+    req("/stat-ranking?category=template&limit=2", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const body = await res.json();
+
+  assert.equal(body.items.length, 2);
+  assert.equal(body.items[0].label, "Template C");
+  assert.equal(body.items[0].count, 3);
+  assert.equal(body.items[1].label, "Template B");
+});
+
 test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   globalThis.fetch = async (url) => {
     const { pathname } = new URL(url);
@@ -243,6 +325,7 @@ test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   assert.equal(payload.status, "Pedido retornou");
   assert.equal(payload.idioma, "pt-BR");
   assert.equal(payload.endereco, "São Paulo, SP");
+  assert.equal(payload.motivo, "Sol. Cancelamento - sem pedido ter sido entregue");
   assert.ok(payload.tags.includes("vip"));
   assert.ok(payload.tags.some((t) => t.startsWith("Motivo:")));
   assert.match(payload.conversationText, /Cliente: Quero cancelar/);

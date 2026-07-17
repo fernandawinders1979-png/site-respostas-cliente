@@ -24,11 +24,15 @@
     baixo: { label: "Baixo", color: "#1f9e8c", shape: "triangle", dash: "2,4" },
   };
 
+  const RANKING_LIMIT = 5;
+
   const statusEl = document.getElementById("metrics-status");
   const legendEl = document.getElementById("chart-legend");
   const chartEl = document.getElementById("trend-chart");
   const tooltipEl = document.getElementById("chart-tooltip");
   const tableBodyEl = document.querySelector("#trend-table tbody");
+  const rankingMotivoEl = document.getElementById("ranking-motivo");
+  const rankingTemplateEl = document.getElementById("ranking-template");
 
   const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 
@@ -300,6 +304,52 @@
   }
 
   /* =========================================================
+     Rankings (motivos de contato, templates mais usados) — lista de
+     barras horizontais numa única cor: aqui a cor não identifica nada
+     (não é uma série categórica), só ilustra a magnitude, então o nome
+     de cada item já vem escrito ao lado da barra.
+     ========================================================= */
+  function renderRanking(container, items) {
+    if (!container) return;
+    container.innerHTML = "";
+
+    if (!items || items.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "ai-note";
+      empty.textContent = "Ainda sem dados suficientes nesse período.";
+      container.appendChild(empty);
+      return;
+    }
+
+    const maxCount = Math.max(...items.map((item) => item.count));
+
+    items.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "ranking-row";
+
+      const label = document.createElement("span");
+      label.className = "ranking-label";
+      label.textContent = item.label;
+
+      const barTrack = document.createElement("span");
+      barTrack.className = "ranking-bar-track";
+      const bar = document.createElement("span");
+      bar.className = "ranking-bar-fill";
+      bar.style.width = `${maxCount > 0 ? (item.count / maxCount) * 100 : 0}%`;
+      barTrack.appendChild(bar);
+
+      const count = document.createElement("span");
+      count.className = "ranking-count";
+      count.textContent = String(item.count);
+
+      row.appendChild(label);
+      row.appendChild(barTrack);
+      row.appendChild(count);
+      container.appendChild(row);
+    });
+  }
+
+  /* =========================================================
      Carregamento
      ========================================================= */
   async function loadMetrics() {
@@ -312,34 +362,48 @@
     setStatus("🔄 Carregando métricas...");
 
     try {
-      const [statsRes, historyRes] = await Promise.all([
+      const rankingUrl = (category) =>
+        `${FRESHDESK_WORKER_URL}/stat-ranking?category=${category}&weeks=${HISTORY_WEEKS}&limit=${RANKING_LIMIT}`;
+
+      const [statsRes, historyRes, motivoRes, templateRes] = await Promise.all([
         fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
+        fetch(rankingUrl("template"), { headers: { "X-App-Token": token } }),
       ]);
 
-      if (statsRes.status === 401 || historyRes.status === 401) {
+      const responses = [statsRes, historyRes, motivoRes, templateRes];
+      if (responses.some((res) => res.status === 401)) {
         clearStoredToken();
         setStatus("Senha de equipe incorreta. Recarregue a página para tentar de novo.", "error");
         return;
       }
 
-      if (!statsRes.ok || !historyRes.ok) {
+      if (responses.some((res) => !res.ok)) {
         setStatus("Não foi possível carregar as métricas agora. Tente de novo em instantes.", "error");
         return;
       }
 
       const stats = await statsRes.json();
       const { weeks: history } = await historyRes.json();
+      const motivoRanking = await motivoRes.json();
+      const templateRanking = await templateRes.json();
 
       renderKpis(stats, history);
       renderLegend();
       renderChart(history);
       renderTable(history);
+      renderRanking(rankingMotivoEl, motivoRanking.items);
+      renderRanking(rankingTemplateEl, templateRanking.items);
       setStatus("");
     } catch (error) {
       setStatus("Erro de conexão. Verifique sua internet e recarregue a página.", "error");
     }
   }
+
+  document.querySelectorAll(".ranking-weeks-count").forEach((el) => {
+    el.textContent = String(HISTORY_WEEKS);
+  });
 
   loadMetrics();
 })();

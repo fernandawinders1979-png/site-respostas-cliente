@@ -12,6 +12,10 @@
  *   GET  /risk-stats       — contadores e valores da semana atual
  *   GET  /risk-history     — contadores e valores das últimas N semanas,
  *                            para o gráfico de tendência (dashboard.html)
+ *   POST /stat-event       — soma 1 num contador aberto (motivo de contato
+ *                            ou template usado), por semana
+ *   GET  /stat-ranking     — os valores mais frequentes de uma categoria
+ *                            (motivo ou template) nas últimas N semanas
  * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
@@ -21,8 +25,13 @@ const ALLOWED_ORIGIN = "https://fernandawinders1979-png.github.io";
 // js/core.js -> classifyRisk).
 const RISK_LEVELS = ["baixo", "medio", "alto"];
 
+// Categorias aceitas em /stat-event e /stat-ranking — listas abertas
+// (motivos de contato, templates usados), diferente dos níveis fixos de risco.
+const STAT_CATEGORIES = ["motivo", "template"];
+
 const DEFAULT_HISTORY_WEEKS = 8;
 const MAX_HISTORY_WEEKS = 26;
+const MAX_RANKING_LIMIT = 20;
 
 // Nomes técnicos reais dos campos personalizados do CHAMADO, conferidos via
 // API em GET /api/v2/ticket_fields na conta hebevi.freshdesk.com.
@@ -235,6 +244,7 @@ function buildPayload(ticket, conversations, fullContact, agent) {
     status: pickCustomField(customFields, CUSTOM_FIELD_CANDIDATES.status),
     codigoRastreio: pickCustomField(customFields, CUSTOM_FIELD_CANDIDATES.codigoRastreio),
     idioma: (fullContact && fullContact.language) || "",
+    motivo: pickCustomField(customFields, ["cf_motivo_do_contato"]),
     tags: [...(ticket.tags || []), ...buildContextTags(customFields)],
     conversationText: buildConversationText(ticket, conversations),
   };
@@ -344,6 +354,124 @@ async function handleRiskHistory(env, weeksParam) {
   return jsonResponse({ weeks: history });
 }
 
+/**
+ * Transforma um texto livre (ex: "Atraso na Entrega") numa chave segura
+ * para o KV: minúsculo, sem acento, só letras/números/hífen, tamanho
+ * limitado. Usado para agrupar motivos/templates que só diferem em
+ * maiúscula/acentuação sob a mesma chave.
+ * @param {string} text
+ * @returns {string}
+ */
+function slugify(text) {
+  return String(text)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(new RegExp("[\\u0300-\\u036f]", "g"), "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+}
+
+/**
+ * Soma 1 no contador de uma categoria/semana/valor (motivo de contato ou
+ * template usado). Guarda um JSON { count, label } — o label preserva o
+ * texto original pra exibição, mesmo com a chave "limpa" pelo slugify.
+ * @param {Object} env
+ * @param {string} category
+ * @param {string} week
+ * @param {string} rawKey
+ * @param {string} label
+ */
+async function incrementNamedCounter(env, category, week, rawKey, label) {
+  const slug = slugify(rawKey);
+  if (!slug) return;
+
+  const kvKey = `stat:${category}:${week}:${slug}`;
+  const current = await env.RISK_STATS.get(kvKey);
+  const parsed = current ? JSON.parse(current) : { count: 0, label: label || rawKey };
+  parsed.count += 1;
+  if (label) parsed.label = label;
+  await env.RISK_STATS.put(kvKey, JSON.stringify(parsed));
+}
+
+/**
+ * Trata POST /stat-event: registra uma ocorrência de motivo de contato ou
+ * template usado, para os rankings do dashboard de métricas.
+ * @param {Request} request
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleStatEvent(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (error) {
+    return jsonResponse({ error: "Corpo da requisição inválido." }, 400);
+  }
+
+  if (!STAT_CATEGORIES.includes(body && body.category)) {
+    return jsonResponse({ error: "Categoria inválida. Use motivo ou template." }, 400);
+  }
+
+  const key = typeof body.key === "string" ? body.key.trim().slice(0, 200) : "";
+  if (!key) {
+    return jsonResponse({ error: "Campo key é obrigatório." }, 400);
+  }
+  const label = typeof body.label === "string" ? body.label.trim().slice(0, 120) : "";
+
+  await incrementNamedCounter(env, body.category, getIsoWeekKey(new Date()), key, label);
+  return jsonResponse({ ok: true });
+}
+
+/**
+ * Trata GET /stat-ranking: soma, entre as últimas N semanas, quantas vezes
+ * cada valor apareceu numa categoria (motivo ou template), e devolve os
+ * mais frequentes primeiro.
+ * @param {Object} env
+ * @param {URLSearchParams} searchParams
+ * @returns {Promise<Response>}
+ */
+async function handleStatRanking(env, searchParams) {
+  const category = searchParams.get("category");
+  if (!STAT_CATEGORIES.includes(category)) {
+    return jsonResponse({ error: "Categoria inválida. Use motivo ou template." }, 400);
+  }
+
+  const requestedWeeks = parseInt(searchParams.get("weeks"), 10);
+  const weeks = Math.min(
+    Math.max(Number.isFinite(requestedWeeks) ? requestedWeeks : DEFAULT_HISTORY_WEEKS, 1),
+    MAX_HISTORY_WEEKS,
+  );
+  const requestedLimit = parseInt(searchParams.get("limit"), 10);
+  const limit = Math.min(Math.max(Number.isFinite(requestedLimit) ? requestedLimit : 5, 1), MAX_RANKING_LIMIT);
+
+  const now = new Date();
+  const weekKeys = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    weekKeys.push(getIsoWeekKey(new Date(now.getTime() - i * 7 * 86400000)));
+  }
+
+  const totals = new Map();
+  for (const week of weekKeys) {
+    const { keys } = await env.RISK_STATS.list({ prefix: `stat:${category}:${week}:` });
+    const entries = await Promise.all(keys.map((k) => env.RISK_STATS.get(k.name)));
+
+    keys.forEach((k, index) => {
+      const raw = entries[index];
+      if (!raw) return;
+      const { count, label } = JSON.parse(raw);
+      const slug = k.name.split(":").pop();
+      const existing = totals.get(slug) || { slug, label, count: 0 };
+      existing.count += count;
+      existing.label = label || existing.label;
+      totals.set(slug, existing);
+    });
+  }
+
+  const items = [...totals.values()].sort((a, b) => b.count - a.count).slice(0, limit);
+  return jsonResponse({ category, weeks, items });
+}
+
 export default {
   async fetch(request, env) {
     if (request.method === "OPTIONS") {
@@ -367,6 +495,14 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/risk-history") {
       return handleRiskHistory(env, url.searchParams.get("weeks"));
+    }
+
+    if (request.method === "POST" && url.pathname === "/stat-event") {
+      return handleStatEvent(request, env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/stat-ranking") {
+      return handleStatRanking(env, url.searchParams);
     }
 
     const match = url.pathname.match(/^\/ticket\/(\d+)$/);
