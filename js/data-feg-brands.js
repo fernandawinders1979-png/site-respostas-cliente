@@ -2162,7 +2162,7 @@ Customer Support Team — FEG`,
     {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
       category: "reembolsoCancelarAssinatura",
-      label: "Quer devolver e cancelar assinatura – Está com o produto e não fala motivo",
+      label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá!
 
