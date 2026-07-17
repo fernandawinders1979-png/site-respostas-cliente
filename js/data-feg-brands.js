@@ -1312,15 +1312,17 @@ Customer Support Team – FEG`,
     {
       id: "fegMedicoNaoAutorizouReembolsoSemDevolucao",
       category: "feg",
-      label: "Médico não autorizou – Realiza reembolso e não solicita devolução",
+      label: "Médico não autorizou e está com os produtos",
       autoDetect: [
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
         "meu médico disse para não tomar", "médico não aprovou o uso",
       ],
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar essa informação. Localizei seu pedido em nosso sistema:
+Agradeço por entrar em contato conosco e por compartilhar essa informação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
+
+Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -1329,23 +1331,37 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Status Atual: {{status}}
 
-Entendo perfeitamente — quando se trata da sua saúde, a orientação do seu médico deve sempre vir em primeiro lugar, e apoiamos totalmente essa decisão.
+Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada, e respeitamos totalmente essa recomendação.
 
-Fique tranquilo(a): você está dentro do prazo da nossa garantia de satisfação de 30 dias, então já processei o reembolso integral do valor pago. Você não precisa se preocupar em nos devolver o produto — pode ficar com ele, como preferir, sem nenhum custo ou compromisso adicional.
+Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
 
-O reembolso será direcionado ao seu método de pagamento original, e o valor deve aparecer em até 10 dias úteis. Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer no ciclo atual ou no seguinte, conforme os prazos definidos pelo seu banco ou operadora de cartão.
+Número da Autorização de Devolução (RMA): [Número do RMA]
 
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Qualquer dúvida sobre o reembolso, é só me responder este e-mail.
+📍 Endereço de Devolução:
+11870 62nd St. N
+Largo, FL 33773
 
-Agradecemos muito por ter feito parte da nossa comunidade. Se um dia sua saúde permitir e você quiser voltar a experimentar nossos produtos, será um verdadeiro prazer atendê-la novamente.
+Após realizar o envio, por favor, responda a este e-mail anexando:
+• Uma foto dos produtos que estão sendo devolvidos; e
+• O comprovante de envio, com o número de rastreamento visível e legível.
+
+Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
+
+Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente — FEG`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing this information. I located your order in our system:
+Thank you for reaching out to us and sharing this information. I'll carefully review your order so we can move forward in the best possible way.
+
+I located your order in our system:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -1354,15 +1370,27 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Current Status: {{status}}
 
-I completely understand — when it comes to your health, your doctor's guidance should always come first, and we fully support that decision.
+We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
 
-Rest assured: you're within our 30-day satisfaction guarantee window, so I've already processed a full refund of the amount paid. You don't need to worry about returning the product to us — you're welcome to keep it, at no additional cost or obligation.
+Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
 
-The refund will be issued to your original payment method, and the amount should appear within 10 business days. Depending on your statement closing date, the credit may appear in the current or the following billing cycle, according to the timeframes set by your bank or card issuer.
+Return Merchandise Authorization Number (RMA): [RMA Number]
 
-I'll keep following your case until it's fully resolved. If you have any questions about the refund, just reply to this email.
+📍 Return Address:
+11870 62nd St. N
+Largo, FL 33773
 
-We're truly grateful you were part of our community. If your health allows and you'd like to try our products again someday, it would be a genuine pleasure to serve you again.
+After shipping the return, please reply to this email attaching:
+• A photo of the products being returned; and
+• Proof of shipment, with the tracking number clearly visible and legible.
+
+As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
+
+There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
 Best regards,
 {{nomeAgente}}
