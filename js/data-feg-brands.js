@@ -101,44 +101,6 @@ Looking forward to your reply,
     },
 
     {
-      id: "fegDuvidaUso",
-      category: "feg",
-      label: "Dúvida sobre uso correto do produto",
-      autoDetect: [
-        "como uso", "como usar", "como tomar", "como tomo", "modo de uso",
-        "como aplicar", "quantas vezes por dia", "como devo usar", "instruções de uso",
-      ],
-      pt: `Olá {{nomeCliente}},
-
-Ótima pergunta! Aqui está o passo a passo de como usar o {{produto}} corretamente:
-
-1. [Passo 1 — descreva o modo de uso aqui]
-2. [Passo 2]
-3. [Passo 3]
-
-Uma dica extra: para melhores resultados, mantenha o uso regular conforme indicado na embalagem.
-
-Qualquer dúvida durante o uso, é só me chamar.
-
-Abraço,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Great question! Here is the step-by-step guide on how to use {{produto}} correctly:
-
-1. [Step 1 — describe the usage instructions here]
-2. [Step 2]
-3. [Step 3]
-
-A helpful tip: for best results, maintain regular use as indicated on the packaging.
-
-If you have any questions while using it, just reach out.
-
-Best,
-{{nomeAgente}} | FEG Support`,
-    },
-
-    {
       id: "fegFollowUp",
       category: "feg",
       label: "Follow-up após resolução",
