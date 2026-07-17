@@ -568,11 +568,10 @@ Customer Support Team — FEG`,
       label: "Garantia vencida, mas tem assinatura ativa",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
-Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
-Agradeço por entrar em contato conosco. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG, e vou acompanhar seu caso pessoalmente.
 
-Consegui localizar o seguinte pedido em nosso sistema:
+Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -582,29 +581,20 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
-Entendo perfeitamente como pode ser frustrante solicitar um reembolso e descobrir que existe uma limitação relacionada ao prazo da garantia. Por isso, fiz questão de verificar cuidadosamente o seu pedido em nossa plataforma para te trazer uma resposta clara e correta.
+Entendo como é frustrante esbarrar em uma limitação de prazo ao pedir um reembolso. Verifiquei com cuidado: sua compra foi feita em {{dataCompra}}, coberta por uma garantia de satisfação de [X] dias, que terminou em [DATA LIMITE]. Como o pedido já está fora desse período, infelizmente não consigo processar o reembolso desta compra, e lamento não poder oferecer uma solução diferente.
 
-De acordo com nossos registros, sua compra foi realizada no dia {{dataCompra}}. O pedido é coberto por uma garantia de satisfação de [X] dias, o que significa que o prazo terminou em [data limite].
+Por outro lado, identifiquei uma assinatura ativa vinculada a esse produto. Se você não deseja mais receber envios ou cobranças automáticas, posso cancelá-la agora — é só confirmar por este e-mail.
 
-Como o pedido já se encontra fora desse período, infelizmente não consigo processar o reembolso desta compra. Compreendo sinceramente que essa talvez não seja a resposta que você esperava, e lamento não poder oferecer uma solução diferente em relação ao reembolso.
-
-No entanto, ao analisar sua conta, também identifiquei que existe uma assinatura ativa vinculada a esse produto. Caso você não deseje mais receber futuros envios automáticos ou cobranças recorrentes, posso ajudar com o cancelamento agora mesmo.
-
-Para tornar esse próximo passo o mais simples possível, basta responder a este e-mail confirmando que deseja cancelar a assinatura, e cuidarei dessa solicitação para você.
-
-Quero que saiba que estou aqui para tornar todo o processo o mais claro e tranquilo possível. Caso tenha qualquer dúvida sobre o pedido, o prazo da garantia ou a assinatura, é só me responder este e-mail — ficarei feliz em continuar ajudando pessoalmente.
-
-Agradeço novamente pela sua paciência e compreensão.
+Estou à disposição para qualquer dúvida sobre o pedido, a garantia ou a assinatura.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente — FEG`,
       en: `Hello, {{nomeCliente}}!
-How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
 
-Thank you for reaching out to us. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+My name is {{nomeAgente}}, from the FEG Customer Support team, and I'll be personally following your case.
 
-I was able to locate the following order in our system:
+I located your order in our system:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -614,19 +604,11 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
-I completely understand how frustrating it can be to request a refund and find out there's a limitation related to the warranty period. That's why I made sure to carefully check your order in our system to give you a clear and accurate answer.
+I understand how frustrating it can be to run into a time limitation when requesting a refund. I checked carefully: your purchase was made on {{dataCompra}}, covered by a [X]-day satisfaction guarantee, which ended on [DEADLINE DATE]. Since the order is already outside that period, I'm unfortunately unable to process a refund for this purchase, and I'm sorry I can't offer a different solution.
 
-According to our records, your purchase was made on {{dataCompra}}. This order is covered by a [X]-day satisfaction guarantee, which means the window ended on [deadline date].
+On the other hand, I found an active subscription linked to this product. If you no longer wish to receive automatic shipments or charges, I can cancel it now — just confirm by replying to this email.
 
-Since the order is already outside that period, I'm unfortunately unable to process a refund for this purchase. I sincerely understand this may not be the answer you were hoping for, and I'm sorry I can't offer a different solution regarding the refund.
-
-However, while reviewing your account, I also noticed there's an active subscription linked to this product. If you no longer wish to receive future automatic shipments or recurring charges, I can help you cancel it right away.
-
-To make this next step as simple as possible, just reply to this email confirming you'd like to cancel the subscription, and I'll take care of that request for you.
-
-Please know that I'm here to make this whole process as clear and smooth as possible. If you have any questions about the order, the warranty period, or the subscription, just reply to this email — I'll be happy to keep helping you personally.
-
-Thank you again for your patience and understanding.
+I'm at your disposal for any questions about the order, the warranty, or the subscription.
 
 Best regards,
 {{nomeAgente}}
