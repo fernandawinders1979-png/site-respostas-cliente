@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FEG BRANDS — Métricas de Suporte</title>
+  <meta name="description" content="Métricas de risco de chargeback identificado pelo dashboard de atendimento da FEG Brands: valor em risco e tendência semanal.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <span class="brand-mark" aria-hidden="true">FEG</span>
+      <h1>FEG BRANDS — Métricas de Suporte</h1>
+      <p class="subtitle">Valor em risco de chargeback identificado e tendência semanal</p>
+      <a class="nav-pill" href="index.html">← Voltar ao Dashboard</a>
+    </div>
+  </header>
+
+  <main class="container metrics-container">
+
+    <p id="metrics-status" class="ticket-search-status" role="status" aria-live="polite"></p>
+
+    <!-- ============================================================
+         KPIs: valor identificado em risco alto
+         ============================================================ -->
+    <section class="kpi-row" aria-label="Resumo de valor em risco alto">
+      <article class="kpi-tile">
+        <span class="kpi-label">Valor em risco alto identificado — esta semana</span>
+        <strong id="kpi-valor-semana" class="kpi-value">--</strong>
+        <span id="kpi-casos-semana" class="kpi-sub">--</span>
+      </article>
+      <article class="kpi-tile">
+        <span class="kpi-label">Valor em risco alto identificado — últimas <span id="kpi-periodo-semanas">8</span> semanas</span>
+        <strong id="kpi-valor-periodo" class="kpi-value">--</strong>
+        <span id="kpi-casos-periodo" class="kpi-sub">--</span>
+      </article>
+    </section>
+
+    <!-- ============================================================
+         Gráfico de tendência semanal (alto / médio / baixo)
+         ============================================================ -->
+    <section class="results-section" aria-labelledby="trend-title">
+      <h2 id="trend-title">Tendência semanal de risco identificado</h2>
+      <p class="ai-note">Quantidade de mensagens classificadas em cada nível de risco, por semana. Passe o mouse sobre um ponto para ver os números exatos.</p>
+
+      <div class="chart-legend" id="chart-legend"></div>
+      <div class="chart-wrap">
+        <svg id="trend-chart" class="trend-chart" viewBox="0 0 720 320" role="img" aria-labelledby="trend-title"></svg>
+        <div id="chart-tooltip" class="chart-tooltip" hidden></div>
+      </div>
+
+      <details class="chart-table-details">
+        <summary>Ver como tabela</summary>
+        <div class="table-scroll">
+          <table id="trend-table" class="trend-table">
+            <thead>
+              <tr>
+                <th scope="col">Semana</th>
+                <th scope="col">Alto</th>
+                <th scope="col">Médio</th>
+                <th scope="col">Baixo</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>FEG BRANDS &mdash; Métricas de Suporte &mdash; uso interno de atendimento</p>
+    <p><a class="nav-pill" href="index.html">← Voltar ao Dashboard</a></p>
+  </footer>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

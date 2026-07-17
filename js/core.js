@@ -880,6 +880,32 @@
   }
 
   /**
+   * Converte um valor de moeda digitado livremente (ex: "49,90", "$49.90",
+   * "1.234,56") num número. Usado para somar o valor dos pedidos no painel
+   * de métricas — devolve null quando não dá pra reconhecer um número.
+   * @param {string} raw
+   * @returns {number|null}
+   */
+  function parseCurrencyValue(raw) {
+    if (!raw) return null;
+    const cleaned = String(raw).replace(/[^0-9.,]/g, "");
+    if (!cleaned) return null;
+
+    let normalized = cleaned;
+    if (cleaned.includes(",") && cleaned.includes(".")) {
+      normalized =
+        cleaned.lastIndexOf(",") > cleaned.lastIndexOf(".")
+          ? cleaned.replace(/\./g, "").replace(",", ".")
+          : cleaned.replace(/,/g, "");
+    } else if (cleaned.includes(",")) {
+      normalized = cleaned.replace(",", ".");
+    }
+
+    const value = parseFloat(normalized);
+    return Number.isFinite(value) ? value : null;
+  }
+
+  /**
    * Lida com o clique no botão "Analisar Risco de Chargeback".
    * ESTE É UM PLACEHOLDER baseado em palavras-chave (mesma lógica usada
    * para detectar templates), não uma IA real analisando o contexto.
@@ -906,7 +932,8 @@
       playHighRiskAlertSound();
     }
 
-    recordRiskEvent(level);
+    const valor = parseCurrencyValue(getOrderData().valorTotal);
+    recordRiskEvent(level, valor);
   }
 
   /* =========================================================
@@ -1253,16 +1280,22 @@
    * de estatística — se falhar (sem senha guardada, sem internet, etc.),
    * ignora em silêncio e não afeta o uso normal do site.
    * @param {string} level "baixo" | "medio" | "alto"
+   * @param {number|null} valor valor do pedido (Detalhes do Pedido), quando disponível
    */
-  async function recordRiskEvent(level) {
+  async function recordRiskEvent(level, valor) {
     const token = getStoredAppToken();
     if (!token) return;
 
     try {
+      const body = { level };
+      if (typeof valor === "number" && Number.isFinite(valor)) {
+        body.valor = valor;
+      }
+
       const response = await fetch(`${FRESHDESK_WORKER_URL}/risk-event`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-App-Token": token },
-        body: JSON.stringify({ level }),
+        body: JSON.stringify(body),
       });
 
       if (response.ok) {

@@ -108,6 +108,69 @@ test("registrar risco soma no contador da semana e aparece em /risk-stats", asyn
   assert.match(stats.week, /^\d{4}-W\d{2}$/);
 });
 
+test("registrar risco com valor soma no total da semana", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  await worker.fetch(
+    postReq("/risk-event", { level: "alto", valor: 49.9 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  await worker.fetch(
+    postReq("/risk-event", { level: "alto", valor: 100.1 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  // valor inválido não deve quebrar a requisição nem entrar na soma
+  const res3 = await worker.fetch(
+    postReq("/risk-event", { level: "alto", valor: "não é número" }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res3.status, 200);
+
+  const statsRes = await worker.fetch(req("/risk-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const stats = await statsRes.json();
+
+  assert.equal(stats.alto, 3);
+  assert.equal(stats.altoValor, 150);
+  assert.equal(stats.medioValor, 0);
+});
+
+test("/risk-history sem senha -> 401", async () => {
+  const res = await worker.fetch(req("/risk-history"), { ...env, RISK_STATS: createMockKv() });
+  assert.equal(res.status, 401);
+});
+
+test("/risk-history devolve as semanas certas com os totais acumulados", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  await worker.fetch(
+    postReq("/risk-event", { level: "medio", valor: 30 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+
+  const res = await worker.fetch(
+    req("/risk-history?weeks=4", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res.status, 200);
+  const body = await res.json();
+
+  assert.equal(body.weeks.length, 4);
+  const currentWeek = body.weeks[body.weeks.length - 1];
+  assert.equal(currentWeek.medio, 1);
+  assert.equal(currentWeek.medioValor, 30);
+  assert.equal(body.weeks[0].medio, 0);
+});
+
+test("/risk-history limita o número máximo de semanas", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const res = await worker.fetch(
+    req("/risk-history?weeks=999", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const body = await res.json();
+  assert.equal(body.weeks.length, 26);
+});
+
 test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   globalThis.fetch = async (url) => {
     const { pathname } = new URL(url);

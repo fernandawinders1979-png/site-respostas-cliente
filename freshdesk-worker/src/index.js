@@ -7,8 +7,11 @@
  *
  * Rotas:
  *   GET  /ticket/{numero}  — dados do chamado, para preencher o painel
- *   POST /risk-event       — soma 1 no contador semanal de um nível de risco
- *   GET  /risk-stats       — contadores da semana atual, para o painel
+ *   POST /risk-event       — soma 1 (e o valor do pedido, se informado) no
+ *                            contador semanal de um nível de risco
+ *   GET  /risk-stats       — contadores e valores da semana atual
+ *   GET  /risk-history     — contadores e valores das últimas N semanas,
+ *                            para o gráfico de tendência (dashboard.html)
  * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
@@ -17,6 +20,9 @@ const ALLOWED_ORIGIN = "https://fernandawinders1979-png.github.io";
 // Níveis de risco aceitos pelo painel de estatísticas (mesmos usados em
 // js/core.js -> classifyRisk).
 const RISK_LEVELS = ["baixo", "medio", "alto"];
+
+const DEFAULT_HISTORY_WEEKS = 8;
+const MAX_HISTORY_WEEKS = 26;
 
 // Nomes técnicos reais dos campos personalizados do CHAMADO, conferidos via
 // API em GET /api/v2/ticket_fields na conta hebevi.freshdesk.com.
@@ -235,22 +241,29 @@ function buildPayload(ticket, conversations, fullContact, agent) {
 }
 
 /**
- * Soma 1 no contador da semana atual para o nível de risco informado.
+ * Soma 1 no contador de uma semana para o nível de risco informado, e
+ * opcionalmente soma um valor em R$ no total acumulado da mesma semana.
  * @param {Object} env
+ * @param {string} week chave de semana ISO (ex: "2026-W29")
  * @param {string} level
- * @returns {Promise<number>} o novo valor do contador
+ * @param {number|null} valor
  */
-async function incrementRiskCounter(env, level) {
-  const key = `risk:${getIsoWeekKey(new Date())}:${level}`;
-  const current = Number(await env.RISK_STATS.get(key)) || 0;
-  const next = current + 1;
-  await env.RISK_STATS.put(key, String(next));
-  return next;
+async function incrementRiskCounter(env, week, level, valor) {
+  const countKey = `risk:${week}:${level}`;
+  const currentCount = Number(await env.RISK_STATS.get(countKey)) || 0;
+  await env.RISK_STATS.put(countKey, String(currentCount + 1));
+
+  if (typeof valor === "number" && Number.isFinite(valor) && valor > 0) {
+    const valorKey = `risk:${week}:${level}:valor`;
+    const currentValor = Number(await env.RISK_STATS.get(valorKey)) || 0;
+    await env.RISK_STATS.put(valorKey, String(currentValor + valor));
+  }
 }
 
 /**
  * Trata POST /risk-event: registra que uma mensagem foi classificada com
- * determinado nível de risco, para o painel de estatísticas da semana.
+ * determinado nível de risco (e, se informado, o valor do pedido), para o
+ * painel de estatísticas e o gráfico de tendência.
  * @param {Request} request
  * @param {Object} env
  * @returns {Promise<Response>}
@@ -267,28 +280,68 @@ async function handleRiskEvent(request, env) {
     return jsonResponse({ error: "Nível de risco inválido. Use baixo, medio ou alto." }, 400);
   }
 
-  await incrementRiskCounter(env, body.level);
+  const valor = typeof body.valor === "number" ? body.valor : null;
+  await incrementRiskCounter(env, getIsoWeekKey(new Date()), body.level, valor);
   return jsonResponse({ ok: true });
 }
 
 /**
- * Trata GET /risk-stats: devolve os contadores de risco da semana atual,
- * um por nível, para o painel mostrar no dashboard.
+ * Busca no KV o contador e o valor acumulado de cada nível de risco numa
+ * semana específica.
+ * @param {Object} env
+ * @param {string} week
+ * @returns {Promise<Object>} ex: { week, alto, medio, baixo, altoValor, medioValor, baixoValor }
+ */
+async function readWeekStats(env, week) {
+  const values = await Promise.all(
+    RISK_LEVELS.flatMap((level) => [
+      env.RISK_STATS.get(`risk:${week}:${level}`),
+      env.RISK_STATS.get(`risk:${week}:${level}:valor`),
+    ])
+  );
+
+  const entry = { week };
+  RISK_LEVELS.forEach((level, index) => {
+    entry[level] = Number(values[index * 2]) || 0;
+    entry[`${level}Valor`] = Number(values[index * 2 + 1]) || 0;
+  });
+  return entry;
+}
+
+/**
+ * Trata GET /risk-stats: devolve os contadores e valores de risco da
+ * semana atual, para o painel pequeno mostrar no dashboard principal.
  * @param {Object} env
  * @returns {Promise<Response>}
  */
 async function handleRiskStats(env) {
-  const week = getIsoWeekKey(new Date());
-  const values = await Promise.all(
-    RISK_LEVELS.map((level) => env.RISK_STATS.get(`risk:${week}:${level}`))
+  const stats = await readWeekStats(env, getIsoWeekKey(new Date()));
+  return jsonResponse(stats);
+}
+
+/**
+ * Trata GET /risk-history: devolve os contadores e valores das últimas N
+ * semanas (da mais antiga para a mais recente), para o gráfico de
+ * tendência do dashboard de métricas.
+ * @param {Object} env
+ * @param {string|null} weeksParam
+ * @returns {Promise<Response>}
+ */
+async function handleRiskHistory(env, weeksParam) {
+  const requested = parseInt(weeksParam, 10);
+  const weeks = Math.min(
+    Math.max(Number.isFinite(requested) ? requested : DEFAULT_HISTORY_WEEKS, 1),
+    MAX_HISTORY_WEEKS,
   );
 
-  const stats = { week };
-  RISK_LEVELS.forEach((level, index) => {
-    stats[level] = Number(values[index]) || 0;
-  });
+  const now = new Date();
+  const weekKeys = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    weekKeys.push(getIsoWeekKey(new Date(now.getTime() - i * 7 * 86400000)));
+  }
 
-  return jsonResponse(stats);
+  const history = await Promise.all(weekKeys.map((week) => readWeekStats(env, week)));
+  return jsonResponse({ weeks: history });
 }
 
 export default {
@@ -310,6 +363,10 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/risk-stats") {
       return handleRiskStats(env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/risk-history") {
+      return handleRiskHistory(env, url.searchParams.get("weeks"));
     }
 
     const match = url.pathname.match(/^\/ticket\/(\d+)$/);
