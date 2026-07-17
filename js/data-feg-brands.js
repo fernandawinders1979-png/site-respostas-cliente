@@ -791,6 +791,35 @@ Customer Support Team — FEG`,
     },
 
     {
+      id: "fegAssinaturaCanceladaSucesso",
+      category: "assinatura",
+      label: "Assinatura cancelada com sucesso",
+      autoDetect: null,
+      pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
+
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
+
+Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — será um prazer recebê-lo(a) de volta sempre que for o momento certo para você.
+
+Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Thank you for sharing the reason for the cancellation — your feedback is very important to us.
+
+I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+
+We hope to have the opportunity to serve you again soon — it will be a pleasure to have you back whenever the time feels right for you.
+
+If you have any questions or need anything else, I'm at your disposal — just reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "reembolso",
       label: "Sem resultados",
@@ -1151,6 +1180,35 @@ I'll keep following your case until it's fully resolved.
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
 We wish you a speedy recovery and hope you feel better soon.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegAceitouReenvio",
+      category: "logistica",
+      label: "Aceitou o reenvio",
+      autoDetect: null,
+      pt: `Obrigado por confirmar o endereço para o reenvio. Vou providenciar o envio de um novo produto para o endereço informado.
+
+Assim que o pedido for despachado, enviarei o código de rastreamento para que você possa acompanhar a entrega.
+
+Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
+
+Agradeço pela sua paciência e confiança.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Thank you for confirming the address for the reshipment. I'll arrange for a new product to be sent to the address provided.
+
+As soon as the order ships, I'll send you the tracking code so you can follow the delivery.
+
+If you have any questions or need anything else, I'm at your disposal — just reply to this email.
+
+Thank you for your patience and trust.
 
 Best regards,
 {{nomeAgente}}
