@@ -8,50 +8,6 @@
 
   const TEMPLATES = [
     {
-      id: "fegSemResultado",
-      category: "feg",
-      label: "Cliente sem resultado esperado com o produto",
-      autoDetect: [
-        "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
-        "não vi resultado", "não notei diferença", "não senti diferença", "não deu resultado",
-      ],
-      pt: `Olá {{nomeCliente}},
-
-Muito obrigado por compartilhar isso comigo — sei que não é fácil escrever quando a expectativa não foi atendida, e quero te ajudar a entender o que pode estar acontecendo.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-
-Antes de mais nada, pode me confirmar há quanto tempo você está usando o produto e com que frequência? Isso me ajuda a te dar uma orientação mais precisa.
-
-Quero deixar claro que resultados podem variar de pessoa para pessoa, e não posso garantir um resultado específico — mas posso te ajudar a usar o produto da melhor forma possível e, se fizer sentido, avaliar outras opções com você.
-
-Fico no aguardo da sua resposta,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Thank you so much for sharing this with me — I know it's not easy to write when your expectations haven't been met, and I want to help you understand what might be happening.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-
-First of all, could you confirm how long you've been using the product and how often? This will help me give you more accurate guidance.
-
-I want to be clear that results can vary from person to person, and I can't guarantee a specific outcome — but I can help you use the product in the best possible way and, if it makes sense, explore other options with you.
-
-Looking forward to your reply,
-{{nomeAgente}} | FEG Support`,
-    },
-
-    {
       id: "fegClienteNaoLocalizado",
       category: "feg",
       label: "Cliente não localizado",
