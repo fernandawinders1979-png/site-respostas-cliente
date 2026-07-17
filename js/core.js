@@ -40,6 +40,12 @@
   // Pedido são editados, sem precisar clicar no template de novo.
   let activeTemplateId = null;
 
+  // Marca se o uso do template atual já foi contado no ranking (só conta na
+  // hora de copiar a resposta, não no clique — o atendente pode clicar em
+  // vários templates só pra comparar antes de decidir qual vai usar de
+  // verdade). Reseta sempre que um novo template é aplicado.
+  let activeTemplateStatRecorded = false;
+
   const loadSampleBtn = document.getElementById("load-sample-btn");
   const welcomePreview = document.getElementById("welcome-preview");
   const orderAssinatura = document.getElementById("order-assinatura");
@@ -628,8 +634,8 @@
     const data = getOrderDataForTemplate(template);
     setResponseValue(responsePt, fillPlaceholders(template.pt, data, FALLBACKS_PT));
     activeTemplateId = templateId;
+    activeTemplateStatRecorded = false;
     updateResponseEnFromTemplate(template, data, { immediate: true });
-    recordStatEvent("template", template.id, template.label);
   }
 
   /**
@@ -994,7 +1000,20 @@
 
     navigator.clipboard
       .writeText(text)
-      .then(() => showFeedback("Resposta copiada para a área de transferência!"))
+      .then(() => {
+        showFeedback("Resposta copiada para a área de transferência!");
+        // Só conta o template como "usado" quando a resposta é de fato
+        // copiada — clicar no template só pra ver como fica não deveria
+        // entrar no ranking. Uma vez por template aplicado (copiar PT e
+        // depois EN da mesma resposta não conta como dois usos).
+        if (activeTemplateId && !activeTemplateStatRecorded) {
+          const template = TEMPLATES.find((item) => item.id === activeTemplateId);
+          if (template) {
+            activeTemplateStatRecorded = true;
+            recordStatEvent("template", template.id, template.label);
+          }
+        }
+      })
       .catch(() => showFeedback("Não foi possível copiar automaticamente. Selecione o texto manualmente."));
   }
 
