@@ -1697,9 +1697,9 @@ Customer Support Team — FEG`,
         "o gosto é muito ruim", "sabor desagradável", "gosto muito forte",
       ],
       pt: `Olá!
-Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Antes de mais nada, obrigado(a) por compartilhar sua experiência com a gente — isso é muito importante para continuarmos melhorando. Sinto muito que o sabor do produto não tenha agradado; entendo que isso pode ser bem incômodo, especialmente quando o objetivo é incorporar o suplemento na sua rotina diária.
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1711,25 +1711,38 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
-Sabemos que sabor é algo bem pessoal, e por isso oferecemos garantia de reembolso de 30 dias na sua primeira compra — sem burocracia.
+Lamento saber que o sabor do produto não agradou ao seu paladar. Sabemos que essa é uma preferência muito pessoal e entendemos que isso pode influenciar sua experiência.
 
-Para dar andamento ao seu reembolso, basta responder este e-mail confirmando que deseja seguir com a solicitação. Assim que recebermos sua confirmação, nossa equipe processa tudo rapidamente e te mantém informado(a) em cada etapa.
+Antes de prosseguirmos com a devolução, gostaria apenas de compartilhar uma sugestão que costuma ajudar alguns clientes: consumir o produto misturado a sucos cítricos bem gelados, vitaminas ou chás gelados, o que pode tornar o sabor mais agradável.
 
-Se por acaso você quiser tentar outra opção antes — como um sabor diferente da linha ou dicas de como consumir o produto de um jeito mais agradável (por exemplo, misturado com suco ou iogurte) — também posso te ajudar com isso. Sem compromisso, é só me avisar o que preferir.
+Caso prefira não experimentar outras formas de consumo, não há problema. Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir normalmente com a devolução para realização do reembolso integral.
 
-Estou à disposição para o que você precisar. Nosso objetivo é que sua experiência com a gente seja sempre positiva, do início ao fim. Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+Número da Autorização de Devolução (RMA): [Número do RMA]
+
+Endereço para Devolução:
+📍 Endereço de Devolução:
+11870 62nd St. N
+Largo, FL 33773
+
+Após realizar o envio, por favor, responda a este e-mail anexando:
+• Uma foto dos produtos que estão sendo devolvidos; e
+• O comprovante de envio, com o número de rastreamento visível e legível.
+
+Assim que recebermos essas informações, processaremos o seu reembolso integral para o mesmo método de pagamento utilizado na compra.
+
+Lamentamos que sua experiência não tenha sido a esperada, mas agradecemos por compartilhar seu feedback, pois ele é muito importante para continuarmos aprimorando nossos produtos e a experiência dos nossos clientes.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
-Fico no aguardo do seu retorno!
-
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente – FEG`,
+Equipe de Suporte ao Cliente — FEG`,
       en: `Hello!
-How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
 
-First of all, thank you for sharing your experience with us — this is really important for us to keep improving. I'm sorry the taste of the product didn't work for you; I understand that can be quite frustrating, especially when the goal is to make the supplement part of your daily routine.
+Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
 I located your order in our system:
 
@@ -1741,21 +1754,34 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
-We know taste is very personal, which is why we offer a 30-day refund guarantee on your first purchase — no red tape.
+I'm sorry to hear the taste of the product wasn't to your liking. We know this is a very personal preference and understand it can affect your experience.
 
-To move forward with your refund, just reply to this email confirming you'd like to proceed with the request. As soon as we receive your confirmation, our team will process everything quickly and keep you informed every step of the way.
+Before we move forward with the return, I'd like to share a suggestion that tends to help some customers: mixing the product with well-chilled citrus juices, smoothies, or iced teas, which can make the taste more pleasant.
 
-If you'd like to try another option first — such as a different flavor from our line, or tips on how to make the product more enjoyable to take (for example, mixed with juice or yogurt) — I can help with that too. No obligation, just let me know what you'd prefer.
+If you'd rather not try other ways of taking it, that's not a problem. Since your order is within our Satisfaction Guarantee period, we can proceed normally with the return for a full refund.
 
-I'm here for whatever you need. Our goal is for your experience with us to always be positive, from start to finish. I'll keep following your case until it's fully resolved.
+Return Merchandise Authorization (RMA) Number: [RMA Number]
+
+Return Address:
+📍 Return Address:
+11870 62nd St. N
+Largo, FL 33773
+
+After shipping the return, please reply to this email attaching:
+• A photo of the products being returned; and
+• The shipping receipt, with the tracking number visible and legible.
+
+As soon as we receive this information, we'll process your full refund to the same payment method used for the purchase.
+
+We're sorry your experience wasn't what you expected, but we appreciate you sharing your feedback, as it's very important for us to keep improving our products and our customers' experience.
+
+I'll keep following your case until it's fully resolved.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
-I'll be looking forward to your reply!
-
 Best regards,
 {{nomeAgente}}
-Customer Support Team – FEG`,
+Customer Support Team — FEG`,
     },
 
     {
@@ -1905,6 +1931,73 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegModoDeUsoSistemaDuplo",
+      category: "modoDeUso",
+      label: "Modo de uso – Sistema duplo (Unlock + Rebuild)",
+      autoDetect: null,
+      pt: `Olá!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco. Fico feliz em ajudá-lo(a) a utilizar corretamente o seu produto para aproveitar ao máximo essa experiência.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+O modo de uso recomendado é o seguinte:
+• Tome 1 cápsula de Unlock e 1 cápsula de Rebuild por dia, com um copo de água.
+• Dê preferência ao consumo pela manhã, junto com o café da manhã.
+• O uso deve ser contínuo, sem pausas ou ciclos, para obter os melhores resultados.
+
+A consistência é um dos fatores mais importantes para que o organismo possa aproveitar os benefícios do produto ao longo do tempo. Sempre utilize conforme as orientações e mantenha uma rotina diária de uso.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida durante o uso ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Desejo que você tenha uma excelente experiência com o produto e que sua jornada de bem-estar seja muito positiva.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us. I'm happy to help you use your product correctly so you can get the most out of this experience.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+The recommended usage is as follows:
+• Take 1 Unlock capsule and 1 Rebuild capsule per day, with a glass of water.
+• Preferably take it in the morning, together with breakfast.
+• Use should be continuous, without breaks or cycles, to get the best results.
+
+Consistency is one of the most important factors for your body to take full advantage of the product's benefits over time. Always use it according to the guidelines and keep a daily routine.
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions during use or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+I hope you have an excellent experience with the product and that your wellness journey is very positive.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
@@ -1915,6 +2008,7 @@ Customer Support Team — FEG`,
     { id: "reembolso", label: "Reembolso", color: "#ffc814" },
     { id: "medoReacaoAdversa", label: "Médico e Reação Adversa", color: "#ff8c1a" },
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
+    { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
   ];
 
   const CATEGORY_GROUPS = [];
