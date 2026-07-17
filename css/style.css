@@ -849,6 +849,26 @@ section h2 {
   font-size: 0.8rem;
 }
 
+.kpi-delta {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.kpi-delta.is-good {
+  color: #1f9e8c;
+}
+
+.kpi-delta.is-bad {
+  color: #c73e3a;
+}
+
+.kpi-delta.is-neutral {
+  color: var(--color-text-light);
+  font-weight: 400;
+}
+
 .chart-legend {
   display: flex;
   flex-wrap: wrap;

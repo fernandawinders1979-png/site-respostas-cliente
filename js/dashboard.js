@@ -11,6 +11,10 @@
   const FRESHDESK_WORKER_URL = "https://freshdesk-proxy.fernandawinders1979.workers.dev";
   const APP_TOKEN_STORAGE_KEY = "freshdeskAppToken";
   const HISTORY_WEEKS = 8;
+  // Busca o dobro de semanas: as mais recentes continuam sendo o que já
+  // aparece no gráfico/tabela, as mais antigas só servem de base pra
+  // comparação ("X% em relação ao período anterior") nos KPIs.
+  const COMPARISON_WEEKS = HISTORY_WEEKS * 2;
 
   // Paleta de status validada (skill de dataviz) para o fundo escuro do
   // site: o par vermelho/verde reprova em testes de daltonismo em QUALQUER
@@ -86,15 +90,72 @@
   /* =========================================================
      KPIs (valor identificado em risco alto)
      ========================================================= */
-  function renderKpis(stats, history) {
+
+  /**
+   * Mostra a variação percentual em relação a um valor anterior, num
+   * elemento de texto pequeno abaixo do KPI. Trata os casos em que não dá
+   * pra calcular uma porcentagem honesta (sem dado anterior, ou anterior
+   * era zero) em vez de mostrar contas estranhas tipo "∞%".
+   * @param {string} elementId
+   * @param {number} currentValue
+   * @param {number|null} previousValue null quando não há dado suficiente
+   */
+  function renderDelta(elementId, currentValue, previousValue) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+
+    if (previousValue === null || previousValue === undefined) {
+      el.textContent = "Sem comparação disponível ainda";
+      el.className = "kpi-delta is-neutral";
+      return;
+    }
+
+    if (previousValue === 0) {
+      if (currentValue === 0) {
+        el.textContent = "Sem mudança em relação ao período anterior";
+        el.className = "kpi-delta is-neutral";
+      } else {
+        el.textContent = "↑ Não havia valor identificado no período anterior";
+        el.className = "kpi-delta is-bad";
+      }
+      return;
+    }
+
+    const change = ((currentValue - previousValue) / previousValue) * 100;
+    const rounded = Math.round(Math.abs(change));
+
+    if (rounded === 0) {
+      el.textContent = "Sem mudança em relação ao período anterior";
+      el.className = "kpi-delta is-neutral";
+      return;
+    }
+
+    const isDown = change < 0;
+    el.textContent = `${isDown ? "↓" : "↑"} ${rounded}% em relação ao período anterior`;
+    el.className = `kpi-delta ${isDown ? "is-good" : "is-bad"}`;
+  }
+
+  /**
+   * @param {Object} stats semana atual (GET /risk-stats)
+   * @param {Array} history últimas HISTORY_WEEKS semanas (mais antiga -> mais recente)
+   * @param {Array} previousHistory as HISTORY_WEEKS semanas anteriores a essas, para comparação
+   */
+  function renderKpis(stats, history, previousHistory) {
     document.getElementById("kpi-valor-semana").textContent = formatCurrency(stats.altoValor);
     document.getElementById("kpi-casos-semana").textContent = `${stats.alto} caso(s) de risco alto`;
+
+    const previousWeek = history.length >= 2 ? history[history.length - 2] : null;
+    renderDelta("kpi-delta-semana", stats.altoValor, previousWeek ? previousWeek.altoValor : null);
 
     const totalValor = history.reduce((sum, week) => sum + week.altoValor, 0);
     const totalCasos = history.reduce((sum, week) => sum + week.alto, 0);
     document.getElementById("kpi-valor-periodo").textContent = formatCurrency(totalValor);
     document.getElementById("kpi-casos-periodo").textContent = `${totalCasos} caso(s) de risco alto`;
     document.getElementById("kpi-periodo-semanas").textContent = String(HISTORY_WEEKS);
+
+    const hasFullPreviousPeriod = (previousHistory || []).length >= HISTORY_WEEKS;
+    const previousTotalValor = (previousHistory || []).reduce((sum, week) => sum + week.altoValor, 0);
+    renderDelta("kpi-delta-periodo", totalValor, hasFullPreviousPeriod ? previousTotalValor : null);
   }
 
   /* =========================================================
@@ -417,7 +478,7 @@
 
       const [statsRes, historyRes, motivoRes, templateRes] = await Promise.all([
         fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
-        fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
         fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
         fetch(rankingUrl("template"), { headers: { "X-App-Token": token } }),
       ]);
@@ -435,11 +496,14 @@
       }
 
       const stats = await statsRes.json();
-      const { weeks: history } = await historyRes.json();
+      const { weeks: fullHistory } = await historyRes.json();
       const motivoRanking = await motivoRes.json();
       const templateRanking = await templateRes.json();
 
-      renderKpis(stats, history);
+      const history = fullHistory.slice(-HISTORY_WEEKS);
+      const previousHistory = fullHistory.slice(0, Math.max(0, fullHistory.length - HISTORY_WEEKS));
+
+      renderKpis(stats, history, previousHistory);
       renderLegend();
       renderChart(history);
       renderTable(history);
