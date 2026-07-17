@@ -190,8 +190,8 @@
      Gráfico de tendência (SVG desenhado à mão, sem biblioteca externa)
      ========================================================= */
   const CHART_WIDTH = 720;
-  const CHART_HEIGHT = 320;
-  const MARGIN = { top: 20, right: 20, bottom: 36, left: 34 };
+  const CHART_HEIGHT = 220;
+  const MARGIN = { top: 20, right: 20, bottom: 32, left: 34 };
   const PLOT_WIDTH = CHART_WIDTH - MARGIN.left - MARGIN.right;
   const PLOT_HEIGHT = CHART_HEIGHT - MARGIN.top - MARGIN.bottom;
 
