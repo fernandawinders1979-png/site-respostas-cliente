@@ -1360,6 +1360,118 @@ Support Center — FEG`,
     },
 
     {
+      id: "fegReembolsoProcessadoEvidencias",
+      category: "reembolso",
+      label: "Reembolso processado após envio das evidências",
+      autoDetect: null,
+      pt: `Agradeço por enviar as fotos. Recebemos todas as informações necessárias e está tudo em ordem.
+
+Conforme nossa política de garantia, o seu reembolso foi processado com sucesso.
+
+Detalhes do Reembolso
+• Valor Reembolsado: \${{valorReembolso}}
+• Data: {{dataReembolso}}
+• Horário: [Horário]
+
+O valor foi enviado para o mesmo método de pagamento utilizado na compra. Dependendo da administradora do seu cartão ou da instituição financeira, o crédito poderá levar alguns dias para aparecer.
+
+Lamentamos que o produto não tenha atendido às suas expectativas. Ainda assim, agradecemos pela confiança em nossa empresa e esperamos ter a oportunidade de atendê-lo(a) novamente no futuro. Sempre que precisar, nossa equipe estará à disposição para ajudar.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em responder.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Thank you for sending the photos. We've received all the necessary information and everything is in order.
+
+In accordance with our warranty policy, your refund has been successfully processed.
+
+Refund Details
+• Refunded Amount: \${{valorReembolso}}
+• Date: {{dataReembolso}}
+• Time: [Time]
+
+The amount was sent to the same payment method used for the purchase. Depending on your card issuer or financial institution, the credit may take a few days to appear.
+
+We're sorry the product didn't meet your expectations. Even so, we appreciate your trust in our company and hope to have the opportunity to serve you again in the future. Whenever you need us, our team will be here to help.
+
+I'll continue following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegCancelarPedidoAntesEnvio",
+      category: "reembolso",
+      label: "Cancelar o pedido antes do envio",
+      autoDetect: null,
+      pt: `Olá!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Analisei seu pedido e tenho uma boa notícia.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: Cancelado
+
+Consegui cancelar seu pedido antes do envio e o reembolso integral já foi processado para o mesmo método de pagamento utilizado na compra.
+
+Em anexo, segue o comprovante do reembolso para sua conferência.
+
+Dependendo da administradora do seu cartão ou da instituição financeira, o crédito poderá levar alguns dias para aparecer em sua conta ou fatura.
+
+Se não se importar em compartilhar, gostaria apenas de saber o motivo do cancelamento. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing your request. I reviewed your order and have good news.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: Canceled
+
+I was able to cancel your order before it shipped, and the full refund has already been processed to the same payment method used for the purchase.
+
+Attached, please find the refund receipt for your records.
+
+Depending on your card issuer or financial institution, the credit may take a few days to appear on your account or statement.
+
+If you don't mind sharing, I'd just like to know the reason for the cancellation. Your feedback is very important to help us improve our products and service.
+
+I'll continue following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
       id: "fegNaoGostouSabor",
       category: "reembolso",
       label: "Não gostou do sabor",
