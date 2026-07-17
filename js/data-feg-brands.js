@@ -944,7 +944,7 @@ Customer Support Team — FEG`,
     {
       id: "fegEfeitosAdversosSintomas",
       category: "feg",
-      label: "Cliente apresentou efeitos adversos – Sintomas",
+      label: "Cliente relata reação adversa ao produto",
       autoDetect: [
         "tive uma reação", "tive reação alérgica", "me deu alergia", "passei mal",
         "tive enjoo", "tive náusea", "tive dor de cabeça depois de tomar",
@@ -963,25 +963,24 @@ Detalhes do Pedido
 • Produto: {{produto}}
 • Valor Total: \${{valorTotal}}
 
-Muito obrigado(a) por entrar em contato e compartilhar isso com a gente. Lamento muito saber que você teve uma reação adversa após utilizar nosso {{produto}}. Sua saúde, segurança e bem-estar são nossa maior prioridade, e ficamos genuinamente preocupados ao saber disso.
+Lamento saber que você apresentou esses sintomas após utilizar o produto. Sua saúde e seu bem-estar são muito importantes para nós.
 
-Por favor, interrompa imediatamente o uso do produto. Como a química do corpo é única para cada pessoa, recomendamos fortemente que você consulte um profissional de saúde ou médico sobre os sintomas apresentados — eles são quem melhor conhece seu histórico de saúde e podem te orientar com segurança.
+Como medida de precaução, orientamos que interrompa imediatamente o uso do produto e, caso os sintomas persistam ou causem preocupação, procure um profissional de saúde para uma avaliação adequada.
 
-Para sua total tranquilidade, já processei o reembolso integral do seu pedido. Você não precisa se preocupar em nos devolver o produto.
+Para nos ajudar na análise do ocorrido, pedimos, por gentileza, que responda a este e-mail informando:
+• O número do lote do produto (localizado na embalagem);
+• Quais sintomas você apresentou; e
+• Uma foto do produto.
 
-Para ajudar nossa equipe de Qualidade e Segurança a investigar esse lote específico e manter os mais altos padrões para toda a nossa comunidade, você poderia nos ajudar, quando se sentir à vontade, com as seguintes informações?
-• Número do lote (geralmente localizado na parte inferior ou traseira da embalagem)
-• Quais sintomas específicos você apresentou
-
-Não há nenhuma pressa — pode nos responder no seu tempo.
+Assim que recebermos essas informações, enviaremos as instruções para a devolução do produto e daremos continuidade ao processo de reembolso.
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
-Por favor, cuide-se bem hoje, e me avise se precisar de mais alguma coisa. Estou à disposição.
+Desejamos uma rápida recuperação e esperamos que você se sinta melhor em breve.
 
-Com carinho e cuidado,
+Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente — FEG`,
       en: `Hello, {{nomeCliente}}!
@@ -997,25 +996,24 @@ Order Details
 • Product: {{produto}}
 • Total Amount: \${{valorTotal}}
 
-Thank you so much for reaching out and sharing this with us. I'm truly sorry to hear you experienced an adverse reaction after using our {{produto}}. Your health, safety, and wellbeing are our top priority, and we're genuinely concerned to hear about this.
+I'm sorry to hear you experienced these symptoms after using the product. Your health and wellbeing are very important to us.
 
-Please stop using the product immediately. Since everyone's body chemistry is unique, we strongly recommend consulting a healthcare professional or doctor about the symptoms you've experienced — they know your health history best and can safely guide you.
+As a precaution, we recommend that you stop using the product immediately and, if the symptoms persist or cause concern, seek a healthcare professional for a proper evaluation.
 
-For your complete peace of mind, I've already processed a full refund for your order. You don't need to worry about returning the product to us.
+To help us look into what happened, could you please reply to this email letting us know:
+• The product's batch/lot number (found on the packaging);
+• Which symptoms you experienced; and
+• A photo of the product.
 
-To help our Quality and Safety team investigate this specific batch and maintain the highest standards for our whole community, would you be able to help us with the following information, whenever you feel comfortable?
-• The batch/lot number (usually located on the bottom or back of the packaging)
-• Which specific symptoms you experienced
-
-There's no rush at all — you can reply whenever it's convenient for you.
+As soon as we receive this information, we'll send you instructions for returning the product and proceed with the refund process.
 
 I'll keep following your case until it's fully resolved.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
-Please take good care of yourself today, and let me know if you need anything else. I'm here for you.
+We wish you a speedy recovery and hope you feel better soon.
 
-With care,
+Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
