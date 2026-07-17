@@ -1165,6 +1165,71 @@ Customer Support Team — FEG`,
     },
 
     {
+      id: "fegNaoReconheceCompraEmTransito",
+      category: "feg",
+      label: "Cliente não reconhece a compra – Produto em trânsito",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: Em trânsito
+
+Lamentamos saber que você não reconhece essa compra. Levamos situações como essa muito a sério e faremos o possível para ajudá-lo(a) da forma mais rápida e segura.
+
+Como o pedido já está em trânsito, infelizmente não é mais possível interromper o envio.
+
+Quando a entrega for realizada, pedimos, por gentileza, que recuse o recebimento do pacote. Dessa forma, ele retornará automaticamente para nossa empresa.
+
+Assim que a recusa for concluída, basta responder a este e-mail para que possamos acompanhar o retorno do pedido e dar continuidade ao seu reembolso.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing what happened. I'll carefully review your order so we can find the best solution for your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: In transit
+
+We're sorry to hear you don't recognize this purchase. We take situations like this very seriously and will do everything we can to help you as quickly and safely as possible.
+
+Since the order is already in transit, it's unfortunately no longer possible to stop the shipment.
+
+When the delivery is attempted, please kindly refuse the package. This will cause it to be automatically returned to our company.
+
+Once the refusal is completed, just reply to this email so we can track the order's return and proceed with your refund.
+
+I'll keep following your case until it's fully resolved.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
       id: "fegReembolsoRealizado",
       category: "feg",
       label: "Reembolso realizado",
