@@ -11,6 +11,10 @@ const env = {
   APP_TOKEN: "senha-correta",
 };
 
+const AGENT_RESPONSE = {
+  contact: { name: "João Souza" },
+};
+
 function req(path, headers = {}) {
   return new Request(`https://freshdesk-proxy.example.workers.dev${path}`, { headers });
 }
@@ -52,6 +56,7 @@ test("busca com sucesso -> monta payload certo para o dashboard", async () => {
       return Response.json({
         id: 58214,
         requester_id: 777,
+        responder_id: 888,
         tags: ["vip"],
         created_at: "2026-07-01T10:00:00Z",
         description_text: "Quero cancelar minha assinatura",
@@ -94,6 +99,10 @@ test("busca com sucesso -> monta payload certo para o dashboard", async () => {
       });
     }
 
+    if (pathname === "/api/v2/agents/888") {
+      return Response.json(AGENT_RESPONSE);
+    }
+
     throw new Error("URL inesperada: " + pathname);
   };
 
@@ -103,6 +112,7 @@ test("busca com sucesso -> monta payload certo para o dashboard", async () => {
 
   assert.equal(payload.nomeCliente, "Maria Silva");
   assert.equal(payload.email, "maria@exemplo.com");
+  assert.equal(payload.nomeAgente, "João Souza");
   assert.equal(payload.numeroPedido, "#58214");
   assert.equal(payload.produto, "Óleo Essencial 30ml");
   assert.equal(payload.valorTotal, "49.90");

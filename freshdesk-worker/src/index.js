@@ -176,14 +176,16 @@ async function freshdeskGet(env, path) {
 }
 
 /**
- * Monta o payload combinando os dados do chamado e do contato, no mesmo
- * formato que o dashboard (js/core.js -> applyFreshdeskPayload) espera.
+ * Monta o payload combinando os dados do chamado, do contato e do agente
+ * responsável, no mesmo formato que o dashboard (js/core.js ->
+ * applyFreshdeskPayload) espera.
  * @param {Object} ticket
  * @param {Array} conversations
  * @param {Object|null} fullContact
+ * @param {Object|null} agent
  * @returns {Object}
  */
-function buildPayload(ticket, conversations, fullContact) {
+function buildPayload(ticket, conversations, fullContact, agent) {
   const customFields = ticket.custom_fields || {};
   const contactFields = (fullContact && fullContact.custom_fields) || {};
 
@@ -194,6 +196,7 @@ function buildPayload(ticket, conversations, fullContact) {
   return {
     nomeCliente: (fullContact && fullContact.name) || "",
     email: (fullContact && fullContact.email) || "",
+    nomeAgente: (agent && agent.contact && agent.contact.name) || "",
     numeroPedido: pickOrderField("numeroPedido"),
     produto: pickOrderField("produto"),
     valorTotal: pickOrderField("valorTotal"),
@@ -231,14 +234,17 @@ export default {
     try {
       const ticket = await freshdeskGet(env, `/api/v2/tickets/${ticketId}`);
 
-      const [conversations, fullContact] = await Promise.all([
+      const [conversations, fullContact, agent] = await Promise.all([
         freshdeskGet(env, `/api/v2/tickets/${ticketId}/conversations?per_page=100`).catch(() => []),
         ticket.requester_id
           ? freshdeskGet(env, `/api/v2/contacts/${ticket.requester_id}`).catch(() => null)
           : Promise.resolve(null),
+        ticket.responder_id
+          ? freshdeskGet(env, `/api/v2/agents/${ticket.responder_id}`).catch(() => null)
+          : Promise.resolve(null),
       ]);
 
-      return jsonResponse(buildPayload(ticket, conversations, fullContact));
+      return jsonResponse(buildPayload(ticket, conversations, fullContact, agent));
     } catch (error) {
       if (error.status === 404) {
         return jsonResponse({ error: "Ticket não encontrado nesse número." }, 404);
