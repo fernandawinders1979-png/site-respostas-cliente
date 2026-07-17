@@ -1400,15 +1400,15 @@ Customer Support Team — FEG`,
     {
       id: "fegMedicoNaoAutorizouReembolsoRecusarEntrega",
       category: "feg",
-      label: "Médico não autorizou cliente com o produto – Realiza reembolso e solicita para recusar a entrega",
+      label: "Médico não autorizou o uso do produto – Produto em trânsito – Recusar entrega",
       autoDetect: [
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
         "meu médico disse para não tomar", "médico não aprovou o uso",
       ],
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso pessoalmente.
 
-Agradeço por entrar em contato conosco e por compartilhar essa informação. Localizei seu pedido em nosso sistema:
+Agradeço por entrar em contato conosco e por compartilhar essa informação. Analisei seu pedido para encontrar a melhor forma de prosseguir.
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -1417,25 +1417,23 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Status Atual: {{status}}
 
-Entendo perfeitamente — quando se trata da sua saúde, a orientação do seu médico deve sempre vir em primeiro lugar, e apoiamos totalmente essa decisão.
+Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada, e respeitamos totalmente essa recomendação.
 
-Fique tranquilo(a): você está dentro do prazo da nossa garantia de satisfação de 30 dias, então já processei o reembolso integral do valor pago.
+Seu pedido está dentro do período da nossa Garantia de Satisfação, então podemos prosseguir com o reembolso integral. Porém, o pacote já está em trânsito e não conseguimos interromper ou cancelar o envio neste momento.
 
-Verifiquei também que o produto já havia sido processado e está atualmente em trânsito, então, infelizmente, não conseguimos interromper o envio neste momento.
+Por isso, pedimos que você recuse a entrega quando o pacote chegar — basta não aceitá-lo do entregador. Após fazer isso, por favor responda a este e-mail confirmando, e daremos andamento ao reembolso integral no mesmo método de pagamento utilizado na compra assim que o pacote retornar para nós.
 
-Para resolver isso da forma mais simples possível, quando o pacote chegar até você, pedimos que recuse o recebimento diretamente com o entregador. Dessa forma, o pedido retorna automaticamente para a nossa empresa, sem que você precise se preocupar com nenhuma outra ação, custo ou postagem adicional.
+Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
 
-O reembolso será direcionado ao seu método de pagamento original, e o valor deve aparecer em até 10 dias úteis. Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer no ciclo atual ou no seguinte, conforme os prazos definidos pelo seu banco ou operadora de cartão.
-
-Agradecemos muito por ter feito parte da nossa comunidade. Se um dia sua saúde permitir e você quiser voltar a experimentar nossos produtos, será um verdadeiro prazer atendê-la novamente.
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente — FEG`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be personally responsible for following your case.
 
-Thank you for reaching out to us and sharing this information. I located your order in our system:
+Thank you for reaching out to us and sharing this information. I reviewed your order to find the best way to proceed.
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -1444,17 +1442,15 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Current Status: {{status}}
 
-I completely understand — when it comes to your health, your doctor's guidance should always come first, and we fully support that decision.
+We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
 
-Rest assured: you're within our 30-day satisfaction guarantee window, so I've already processed a full refund of the amount paid.
+Your order is within our Satisfaction Guarantee period, so we can proceed with a full refund. However, the package is already in transit and we're unable to stop or cancel the shipment at this time.
 
-I also checked and the product has already been processed and is currently in transit, so unfortunately we're unable to stop the shipment at this time.
+Because of that, we kindly ask that you refuse the delivery when the package arrives — simply don't accept it from the carrier. After doing so, please reply to this email confirming it, and we'll proceed with the full refund to the same payment method used for the purchase as soon as the package returns to us.
 
-To resolve this in the simplest way possible, when the package arrives, please refuse the delivery directly with the carrier. This way, the order will automatically be returned to our company, and you won't need to worry about any other action, cost, or additional shipping.
+There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
 
-The refund will be issued to your original payment method, and the amount should appear within 10 business days. Depending on your statement closing date, the credit may appear in the current or the following billing cycle, according to the timeframes set by your bank or card issuer.
-
-We're truly grateful you were part of our community. If your health allows and you'd like to try our products again someday, it would be a genuine pleasure to serve you again.
+I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
 Best regards,
 {{nomeAgente}}
