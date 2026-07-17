@@ -304,11 +304,25 @@
   }
 
   /* =========================================================
-     Rankings (motivos de contato, templates mais usados) — lista de
-     barras horizontais numa única cor: aqui a cor não identifica nada
-     (não é uma série categórica), só ilustra a magnitude, então o nome
-     de cada item já vem escrito ao lado da barra.
+     Rankings (motivos de contato, templates mais usados) — gráfico de
+     barras horizontais, com grade e eixo (mesmo estilo visual do gráfico
+     de tendência). Cor única (verde da marca): aqui a cor não identifica
+     nada — não é uma série categórica, só ilustra a magnitude — então o
+     nome de cada item vem escrito diretamente ao lado da barra.
      ========================================================= */
+  const RANKING_CHART_WIDTH = 680;
+  const RANKING_LABEL_WIDTH = 200;
+  const RANKING_ROW_HEIGHT = 34;
+  const RANKING_BAR_HEIGHT = 14;
+  const RANKING_TOP_PAD = 24;
+  const RANKING_RIGHT_PAD = 46;
+  const RANKING_LABEL_MAX_CHARS = 26;
+
+  function truncateLabel(label) {
+    if (label.length <= RANKING_LABEL_MAX_CHARS) return label;
+    return `${label.slice(0, RANKING_LABEL_MAX_CHARS - 1)}…`;
+  }
+
   function renderRanking(container, items) {
     if (!container) return;
     container.innerHTML = "";
@@ -321,32 +335,68 @@
       return;
     }
 
-    const maxCount = Math.max(...items.map((item) => item.count));
+    const plotLeft = RANKING_LABEL_WIDTH;
+    const plotRight = RANKING_CHART_WIDTH - RANKING_RIGHT_PAD;
+    const plotWidth = plotRight - plotLeft;
+    const chartHeight = RANKING_TOP_PAD + items.length * RANKING_ROW_HEIGHT + 4;
 
-    items.forEach((item) => {
-      const row = document.createElement("div");
-      row.className = "ranking-row";
+    const maxCount = Math.max(1, ...items.map((item) => item.count));
+    const scaleX = (value) => plotLeft + (plotWidth * value) / maxCount;
 
-      const label = document.createElement("span");
-      label.className = "ranking-label";
-      label.textContent = item.label;
-
-      const barTrack = document.createElement("span");
-      barTrack.className = "ranking-bar-track";
-      const bar = document.createElement("span");
-      bar.className = "ranking-bar-fill";
-      bar.style.width = `${maxCount > 0 ? (item.count / maxCount) * 100 : 0}%`;
-      barTrack.appendChild(bar);
-
-      const count = document.createElement("span");
-      count.className = "ranking-count";
-      count.textContent = String(item.count);
-
-      row.appendChild(label);
-      row.appendChild(barTrack);
-      row.appendChild(count);
-      container.appendChild(row);
+    const svg = svgEl("svg", {
+      viewBox: `0 0 ${RANKING_CHART_WIDTH} ${chartHeight}`,
+      class: "trend-chart ranking-chart",
+      role: "img",
     });
+
+    // Grade vertical (recessiva) + rótulos do eixo de quantidade, no topo.
+    const gridTicks = 4;
+    for (let i = 0; i <= gridTicks; i++) {
+      const value = Math.round((maxCount * i) / gridTicks);
+      const x = scaleX(value);
+      svg.appendChild(
+        svgEl("line", { x1: x, x2: x, y1: RANKING_TOP_PAD - 6, y2: chartHeight, class: "chart-gridline" }),
+      );
+      const label = svgEl("text", { x, y: 12, class: "chart-axis-label", "text-anchor": "middle" });
+      label.textContent = String(value);
+      svg.appendChild(label);
+    }
+
+    items.forEach((item, index) => {
+      const y = RANKING_TOP_PAD + index * RANKING_ROW_HEIGHT;
+      const barWidth = Math.max(0, scaleX(item.count) - plotLeft);
+
+      const labelText = svgEl("text", {
+        x: plotLeft - 10,
+        y: y + RANKING_BAR_HEIGHT / 2 + 4,
+        class: "chart-axis-label ranking-chart-label",
+        "text-anchor": "end",
+      });
+      labelText.textContent = truncateLabel(item.label);
+      labelText.appendChild(svgEl("title", {})).textContent = item.label;
+
+      const bar = svgEl("rect", {
+        x: plotLeft,
+        y,
+        width: barWidth,
+        height: RANKING_BAR_HEIGHT,
+        rx: 3,
+        class: "ranking-chart-bar",
+      });
+
+      const valueText = svgEl("text", {
+        x: plotLeft + barWidth + 6,
+        y: y + RANKING_BAR_HEIGHT / 2 + 4,
+        class: "chart-direct-label ranking-chart-value",
+      });
+      valueText.textContent = String(item.count);
+
+      svg.appendChild(labelText);
+      svg.appendChild(bar);
+      svg.appendChild(valueText);
+    });
+
+    container.appendChild(svg);
   }
 
   /* =========================================================
