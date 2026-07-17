@@ -239,8 +239,8 @@ section h2 {
   display: block;
   margin-bottom: 6px;
   font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-text-light);
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 .ticket-search-row {
@@ -281,7 +281,8 @@ section h2 {
 
 .order-field label {
   font-size: 0.8rem;
-  color: var(--color-text-light);
+  color: var(--color-text);
+  font-weight: 700;
 }
 
 .order-field input,
