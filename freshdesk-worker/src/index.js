@@ -12,10 +12,13 @@
  *   GET  /risk-stats       — contadores e valores da semana atual
  *   GET  /risk-history     — contadores e valores das últimas N semanas,
  *                            para o gráfico de tendência (dashboard.html)
- *   POST /stat-event       — soma 1 num contador aberto (motivo de contato
- *                            ou template usado), por semana
+ *   POST /stat-event       — soma 1 num contador aberto (motivo de contato,
+ *                            template usado ou resposta copiada), por semana
  *   GET  /stat-ranking     — os valores mais frequentes de uma categoria
  *                            (motivo ou template) nas últimas N semanas
+ *   GET  /stat-history     — histórico semanal de uma chave específica
+ *                            (ex: categoria "resposta", chave "total"), para
+ *                            o gráfico de volume de atendimento
  * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
@@ -25,9 +28,10 @@ const ALLOWED_ORIGIN = "https://fernandawinders1979-png.github.io";
 // js/core.js -> classifyRisk).
 const RISK_LEVELS = ["baixo", "medio", "alto"];
 
-// Categorias aceitas em /stat-event e /stat-ranking — listas abertas
-// (motivos de contato, templates usados), diferente dos níveis fixos de risco.
-const STAT_CATEGORIES = ["motivo", "template"];
+// Categorias aceitas em /stat-event, /stat-ranking e /stat-history. Motivo e
+// template têm uma lista aberta de valores; resposta usa sempre a mesma
+// chave fixa ("total") — é só uma contagem simples por semana.
+const STAT_CATEGORIES = ["motivo", "template", "resposta"];
 
 const DEFAULT_HISTORY_WEEKS = 8;
 const MAX_HISTORY_WEEKS = 26;
@@ -472,6 +476,51 @@ async function handleStatRanking(env, searchParams) {
   return jsonResponse({ category, weeks, items });
 }
 
+/**
+ * Trata GET /stat-history: devolve o histórico semanal (mais antiga ->
+ * mais recente) de UMA chave específica dentro de uma categoria — ex:
+ * category=resposta, key=total, para o gráfico de volume de atendimento.
+ * Mesmo padrão de janela de semanas de handleRiskHistory, generalizado
+ * para categoria/chave em vez dos 3 níveis fixos de risco.
+ * @param {Object} env
+ * @param {URLSearchParams} searchParams
+ * @returns {Promise<Response>}
+ */
+async function handleStatHistory(env, searchParams) {
+  const category = searchParams.get("category");
+  if (!STAT_CATEGORIES.includes(category)) {
+    return jsonResponse({ error: "Categoria inválida. Use motivo, template ou resposta." }, 400);
+  }
+
+  const key = searchParams.get("key");
+  const slug = slugify(key || "");
+  if (!slug) {
+    return jsonResponse({ error: "Campo key é obrigatório." }, 400);
+  }
+
+  const requestedWeeks = parseInt(searchParams.get("weeks"), 10);
+  const weeks = Math.min(
+    Math.max(Number.isFinite(requestedWeeks) ? requestedWeeks : DEFAULT_HISTORY_WEEKS, 1),
+    MAX_HISTORY_WEEKS,
+  );
+
+  const now = new Date();
+  const weekKeys = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    weekKeys.push(getIsoWeekKey(new Date(now.getTime() - i * 7 * 86400000)));
+  }
+
+  const history = await Promise.all(
+    weekKeys.map(async (week) => {
+      const raw = await env.RISK_STATS.get(`stat:${category}:${week}:${slug}`);
+      const count = raw ? JSON.parse(raw).count : 0;
+      return { week, count };
+    }),
+  );
+
+  return jsonResponse({ category, key: slug, weeks: history });
+}
+
 export default {
   async fetch(request, env) {
     if (request.method === "OPTIONS") {
@@ -503,6 +552,10 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/stat-ranking") {
       return handleStatRanking(env, url.searchParams);
+    }
+
+    if (request.method === "GET" && url.pathname === "/stat-history") {
+      return handleStatHistory(env, url.searchParams);
     }
 
     const match = url.pathname.match(/^\/ticket\/(\d+)$/);

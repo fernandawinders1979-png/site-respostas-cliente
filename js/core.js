@@ -1002,6 +1002,14 @@
       .writeText(text)
       .then(() => {
         showFeedback("Resposta copiada para a área de transferência!");
+
+        // Conta como "resposta enviada pelo site", pro gráfico de volume de
+        // atendimento. Nota: copiar PT e depois EN da mesma resposta soma 2
+        // aqui (diferente do ranking de template, que só conta 1 por
+        // template aplicado) — simplificação aceitável, já que na prática
+        // cada atendimento normalmente copia só o idioma que vai usar.
+        recordStatEvent("resposta", "total", "Respostas copiadas");
+
         // Só conta o template como "usado" quando a resposta é de fato
         // copiada — clicar no template só pra ver como fica não deveria
         // entrar no ranking. Uma vez por template aplicado (copiar PT e

@@ -23,8 +23,25 @@
 
   <main class="container metrics-container">
 
-    <p class="ai-note">Valor em risco de chargeback identificado e tendência semanal, motivos de contato mais frequentes e templates mais usados pela equipe.</p>
+    <p class="ai-note">Volume de atendimento, valor em risco de chargeback identificado e tendência semanal, motivos de contato mais frequentes e templates mais usados pela equipe.</p>
     <p id="metrics-status" class="ticket-search-status" role="status" aria-live="polite"></p>
+
+    <!-- ============================================================
+         Volume de atendimento (respostas enviadas pelo site)
+         ============================================================ -->
+    <details class="results-section metrics-accordion">
+      <summary class="metrics-accordion-title">
+        <span>Volume de Atendimento</span>
+        <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
+      </summary>
+      <div class="metrics-accordion-body">
+        <p class="ai-note">Quantas respostas foram enviadas usando o site, contadas a partir do momento em que a resposta é copiada para o cliente.</p>
+        <p id="volume-total-semana" class="kpi-sub">--</p>
+        <div class="chart-wrap">
+          <svg id="volume-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-label="Respostas enviadas por semana"></svg>
+        </div>
+      </div>
+    </details>
 
     <!-- ============================================================
          KPIs: valor identificado em risco alto

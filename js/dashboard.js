@@ -461,6 +461,59 @@
   }
 
   /* =========================================================
+     Volume de atendimento (respostas copiadas, por semana) — gráfico de
+     barras verticais, reaproveitando os eixos/escala do gráfico de
+     tendência (mesmo CHART_WIDTH/CHART_HEIGHT/MARGIN, mesmo viewBox no
+     dashboard.html).
+     ========================================================= */
+  function renderVolumeChart(history) {
+    const svg = document.getElementById("volume-chart");
+    if (!svg) return;
+    svg.innerHTML = "";
+
+    const count = history.length;
+    const maxCount = Math.max(1, ...history.map((week) => week.count));
+
+    const gridTicks = 4;
+    for (let i = 0; i <= gridTicks; i++) {
+      const value = Math.round((maxCount * i) / gridTicks);
+      const y = yForValue(value, maxCount);
+      svg.appendChild(
+        svgEl("line", { x1: MARGIN.left, x2: CHART_WIDTH - MARGIN.right, y1: y, y2: y, class: "chart-gridline" }),
+      );
+      const label = svgEl("text", { x: MARGIN.left - 8, y: y + 3, class: "chart-axis-label", "text-anchor": "end" });
+      label.textContent = String(value);
+      svg.appendChild(label);
+    }
+
+    history.forEach((week, index) => {
+      if (count > 8 && index % 2 !== 0 && index !== count - 1) return;
+      const x = xForIndex(index, count);
+      const label = svgEl("text", { x, y: CHART_HEIGHT - MARGIN.bottom + 18, class: "chart-axis-label", "text-anchor": "middle" });
+      label.textContent = shortWeekLabel(week.week);
+      svg.appendChild(label);
+    });
+
+    const barBottom = CHART_HEIGHT - MARGIN.bottom;
+    const barWidth = count > 0 ? Math.max(8, (PLOT_WIDTH / count) * 0.5) : 20;
+
+    history.forEach((week, index) => {
+      const x = xForIndex(index, count);
+      const yTop = yForValue(week.count, maxCount);
+      const bar = svgEl("rect", {
+        x: x - barWidth / 2,
+        y: yTop,
+        width: barWidth,
+        height: Math.max(0, barBottom - yTop),
+        rx: 3,
+        class: "ranking-chart-bar",
+      });
+      bar.appendChild(svgEl("title", {})).textContent = `${shortWeekLabel(week.week)}: ${week.count}`;
+      svg.appendChild(bar);
+    });
+  }
+
+  /* =========================================================
      Carregamento
      ========================================================= */
   async function loadMetrics() {
@@ -476,14 +529,17 @@
       const rankingUrl = (category) =>
         `${FRESHDESK_WORKER_URL}/stat-ranking?category=${category}&weeks=${HISTORY_WEEKS}&limit=${RANKING_LIMIT}`;
 
-      const [statsRes, historyRes, motivoRes, templateRes] = await Promise.all([
+      const [statsRes, historyRes, motivoRes, templateRes, volumeRes] = await Promise.all([
         fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
         fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
         fetch(rankingUrl("template"), { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/stat-history?category=resposta&key=total&weeks=${HISTORY_WEEKS}`, {
+          headers: { "X-App-Token": token },
+        }),
       ]);
 
-      const responses = [statsRes, historyRes, motivoRes, templateRes];
+      const responses = [statsRes, historyRes, motivoRes, templateRes, volumeRes];
       if (responses.some((res) => res.status === 401)) {
         clearStoredToken();
         setStatus("Senha de equipe incorreta. Recarregue a página para tentar de novo.", "error");
@@ -499,6 +555,7 @@
       const { weeks: fullHistory } = await historyRes.json();
       const motivoRanking = await motivoRes.json();
       const templateRanking = await templateRes.json();
+      const volumeHistory = await volumeRes.json();
 
       const history = fullHistory.slice(-HISTORY_WEEKS);
       const previousHistory = fullHistory.slice(0, Math.max(0, fullHistory.length - HISTORY_WEEKS));
@@ -509,6 +566,14 @@
       renderTable(history);
       renderRanking(rankingMotivoEl, motivoRanking.items);
       renderRanking(rankingTemplateEl, templateRanking.items);
+      renderVolumeChart(volumeHistory.weeks);
+
+      const volumeTotalEl = document.getElementById("volume-total-semana");
+      if (volumeTotalEl) {
+        const thisWeekCount = volumeHistory.weeks[volumeHistory.weeks.length - 1]?.count || 0;
+        volumeTotalEl.textContent = `${thisWeekCount} resposta(s) enviada(s) esta semana`;
+      }
+
       setStatus("");
     } catch (error) {
       setStatus("Erro de conexão. Verifique sua internet e recarregue a página.", "error");

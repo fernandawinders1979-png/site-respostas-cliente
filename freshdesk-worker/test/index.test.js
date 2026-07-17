@@ -253,6 +253,52 @@ test("/stat-ranking ordena do mais frequente para o menos e respeita o limit", a
   assert.equal(body.items[1].label, "Template B");
 });
 
+test("/stat-history categoria inválida -> 400", async () => {
+  const res = await worker.fetch(
+    req("/stat-history?category=outra-coisa&key=total", { "X-App-Token": "senha-correta" }),
+    { ...env, RISK_STATS: createMockKv() },
+  );
+  assert.equal(res.status, 400);
+});
+
+test("/stat-history sem key -> 400", async () => {
+  const res = await worker.fetch(
+    req("/stat-history?category=resposta", { "X-App-Token": "senha-correta" }),
+    { ...env, RISK_STATS: createMockKv() },
+  );
+  assert.equal(res.status, 400);
+});
+
+test("/stat-history devolve o histórico semanal da chave certa", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  const record = () =>
+    worker.fetch(
+      postReq(
+        "/stat-event",
+        { category: "resposta", key: "total", label: "Respostas copiadas" },
+        { "X-App-Token": "senha-correta" },
+      ),
+      testEnv,
+    );
+
+  await record();
+  await record();
+  await record();
+
+  const res = await worker.fetch(
+    req("/stat-history?category=resposta&key=total&weeks=4", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res.status, 200);
+  const body = await res.json();
+
+  assert.equal(body.weeks.length, 4);
+  assert.equal(body.weeks[body.weeks.length - 1].count, 3);
+  assert.equal(body.weeks[0].count, 0);
+  assert.match(body.weeks[0].week, /^\d{4}-W\d{2}$/);
+});
+
 test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   globalThis.fetch = async (url) => {
     const { pathname } = new URL(url);
