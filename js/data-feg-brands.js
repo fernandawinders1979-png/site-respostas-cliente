@@ -2215,6 +2215,74 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegJustificativaCanceladaProdutoTransito",
+      category: "reembolsoCancelarAssinatura",
+      label: "Justificativa do porque o pedido e a assinatura, processo de reembolso e assinatura cancelada - Produto em trânsito",
+      autoDetect: null,
+      pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
+
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
+
+Quanto ao pedido, como ele já está em trânsito, pedimos, por gentileza, que recuse a entrega quando o produto chegar, para que ele retorne para nós. Assim que a recusa for concluída, basta responder a este e-mail nos avisando, e daremos continuidade ao reembolso integral do pedido.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Thank you for sharing your reasons — your feedback is very important to us and will help us improve our products and service.
+
+I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+
+As for the order, since it's already in transit, please kindly refuse the delivery when the product arrives so it can be returned to us. Once the refusal is completed, just reply to this email letting us know, and we'll move forward with the full refund for the order.
+
+I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
+      id: "fegJustificativaCanceladaComProduto",
+      category: "reembolsoCancelarAssinatura",
+      label: "Justificativa do porque o pedido e a assinatura, processo de reembolso e assinatura cancelada - Está com o produto",
+      autoDetect: null,
+      pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
+
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
+
+Quanto ao pedido, para prosseguirmos com o reembolso, por favor devolva o produto para o endereço abaixo:
+
+Endereço de Devolução:
+[Endereço de Devolução]
+
+Assim que você postar o pacote, por favor responda a este e-mail com a foto do comprovante de envio. Assim que recebermos essa confirmação, daremos continuidade ao reembolso integral do pedido.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Thank you for sharing your reasons — your feedback is very important to us and will help us improve our products and service.
+
+I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+
+As for the order, to move forward with the refund, please return the product to the address below:
+
+Return Address:
+[Return Address]
+
+Once you've shipped the package, please reply to this email with a photo of the shipping receipt. As soon as we receive that confirmation, we'll move forward with the full refund for the order.
+
+I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
