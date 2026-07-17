@@ -562,7 +562,7 @@ Customer Support Team — FEG`,
     {
       id: "fegCancelarAssinaturaSemMotivo",
       category: "assinatura",
-      label: "Pedindo para cancelar assinatura recorrente – Sem falar motivo",
+      label: "Cancelar assinatura recorrente sem falar motivo",
       autoDetect: [
         "cancelar assinatura", "quero cancelar minha assinatura", "cancelar minha assinatura",
         "não quero mais receber", "parar de receber", "cancelar o plano",
@@ -677,7 +677,7 @@ Customer Support Team — FEG`,
     {
       id: "fegCancelarAssinaturaCompraUnica",
       category: "assinatura",
-      label: "Quer cancelar assinatura, mas foi compra única",
+      label: "Cancelar assinatura mas foi compra única",
       autoDetect: null,
       pt: `Olá!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
