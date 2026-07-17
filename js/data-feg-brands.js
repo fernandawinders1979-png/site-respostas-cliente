@@ -139,41 +139,6 @@ Best,
     },
 
     {
-      id: "fegEfeitosSaude",
-      category: "feg",
-      label: "Cliente ansioso sobre efeitos na saúde",
-      autoDetect: [
-        "é seguro", "tem contraindicação", "pode fazer mal", "é perigoso",
-        "estou grávida", "amamentando", "interage com remédio", "tomo remédio controlado",
-        "tenho pressão alta", "tenho receio de tomar", "tenho medo de tomar",
-      ],
-      pt: `Olá {{nomeCliente}},
-
-Entendo sua preocupação, e é importante que você se sinta seguro(a) usando qualquer produto de saúde.
-
-Não sou profissional de saúde, então não posso te orientar clinicamente sobre sintomas específicos. O que posso te dizer é que o {{produto}} é formulado com ingredientes naturais e passou por controle de qualidade rigoroso.
-
-Para qualquer dúvida sobre como o produto pode estar afetando você especificamente, recomendo fortemente conversar com seu médico ou profissional de saúde, que pode avaliar seu caso com mais segurança.
-
-Se precisar de mais alguma informação sobre o produto em si, estou aqui para ajudar.
-
-Estou à disposição,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-I understand your concern, and it's important that you feel safe using any health product.
-
-I'm not a healthcare professional, so I can't give you clinical guidance about specific symptoms. What I can tell you is that {{produto}} is formulated with natural ingredients and has gone through rigorous quality control.
-
-For any questions about how the product might be affecting you specifically, I strongly recommend speaking with your doctor or healthcare professional, who can assess your case with greater confidence.
-
-If you need any more information about the product itself, I'm here to help.
-
-I'm at your disposal,
-{{nomeAgente}} | FEG Support`,
-    },
-
-    {
       id: "fegFollowUp",
       category: "feg",
       label: "Follow-up após resolução",
