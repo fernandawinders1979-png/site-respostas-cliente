@@ -908,7 +908,7 @@ Customer Support Team — FEG`,
     {
       id: "fegDevolverComProdutoSemMotivoSemRetencao",
       category: "reembolso",
-      label: "Devolver e está com o produto - não falou motivo",
+      label: "Devolver e está com o produto, não fala o motivo",
       autoDetect: [
         "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
         "tenho o produto e quero cancelar", "quero devolver o produto e cancelar",
@@ -1621,7 +1621,7 @@ Customer Support Team — FEG`,
     {
       id: "fegCancelarPedidoEmTransito",
       category: "reembolso",
-      label: "Cancelar o pedido – Pedido em trânsito",
+      label: "Cancelar pedido – Pedido em trânsito",
       autoDetect: null,
       pt: `Olá!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
