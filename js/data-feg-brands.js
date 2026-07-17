@@ -9,7 +9,7 @@
   const TEMPLATES = [
     {
       id: "fegClienteNaoLocalizado",
-      category: "feg",
+      category: "geral",
       label: "Cliente não localizado",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -56,7 +56,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegComoPossoAjudar",
-      category: "feg",
+      category: "geral",
       label: "Como posso te ajudar",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -105,7 +105,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegDetalhesDoPedido",
-      category: "feg",
+      category: "geral",
       label: "Detalhes do Pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -155,8 +155,67 @@ Customer Support Team — FEG`,
     },
 
     {
+      id: "fegDetalhesDoPedidoComRastreio",
+      category: "geral",
+      label: "Detalhes do Pedido – Com código de rastreio",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Obrigado(a) por entrar em contato! Fico feliz em te ajudar a esclarecer exatamente o que você pediu conosco.
+
+Consegui localizar o seu pedido em nosso sistema, e aqui estão todos os detalhes:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
+
+Se esses detalhes não corresponderem ao que você esperava, ou se tiver qualquer dúvida sobre o produto, o status da entrega ou qualquer outra informação, é só me avisar — terei todo o prazer em esclarecer tudo para você.
+
+Estou à disposição para o que precisar!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+
+Thank you for reaching out! I'm happy to help clarify exactly what you asked us about.
+
+I was able to locate your order in our system, and here are all the details:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
+
+If these details don't match what you expected, or if you have any questions about the product, the delivery status, or anything else, just let me know — I'll be glad to clarify everything for you.
+
+I'm here for whatever you need!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
+
+    {
       id: "fegDetalhesEntregaSemRastreio",
-      category: "feg",
+      category: "logistica",
       label: "Detalhes da entrega – Quando não tem código de rastreio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -211,7 +270,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegEnderecoInsuficiente",
-      category: "feg",
+      category: "logistica",
       label: "Cliente não recebeu o pedido – Endereço insuficiente",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -264,7 +323,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegNaoRecebeuQuerReembolsoEntregue",
-      category: "feg",
+      category: "logistica",
       label: "Cliente relata que não recebeu pedido e quer reembolso – Consta como entregue",
       autoDetect: [
         "não recebi meu pedido", "não recebi o pedido", "meu pedido não chegou",
@@ -328,7 +387,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegNaoRecebeuEntregueSemReembolso",
-      category: "feg",
+      category: "logistica",
       label: "Cliente relata que não recebeu pedido – Consta como entregue (sem falar de reembolso)",
       autoDetect: [
         "não recebi meu pedido", "não recebi o pedido", "meu pedido não chegou",
@@ -391,7 +450,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegDetalhesDaEntrega",
-      category: "feg",
+      category: "logistica",
       label: "Detalhes da entrega",
       autoDetect: [
         "quando vai chegar", "previsão de chegada", "qual é o status da entrega",
@@ -459,7 +518,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegNovoCodigoRastreioReenvio",
-      category: "feg",
+      category: "logistica",
       label: "Novo código de rastreio – Reenvio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -502,7 +561,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegCancelarAssinaturaSemMotivo",
-      category: "feg",
+      category: "assinatura",
       label: "Cliente pedindo para cancelar assinatura recorrente – Sem falar motivo",
       autoDetect: [
         "cancelar assinatura", "quero cancelar minha assinatura", "cancelar minha assinatura",
@@ -564,7 +623,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegGarantiaVencidaAssinaturaAtiva",
-      category: "feg",
+      category: "garantiaVencida",
       label: "Garantia vencida, mas tem assinatura ativa",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -617,7 +676,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegCancelarAssinaturaCompraUnica",
-      category: "feg",
+      category: "assinatura",
       label: "Cliente quer cancelar assinatura, mas foi compra única",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -672,7 +731,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegDevolverSemResultadoSemRetencao",
-      category: "feg",
+      category: "reembolso",
       label: "Cliente sem resultados",
       autoDetect: [
         "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
@@ -758,7 +817,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegDevolverComProdutoSemMotivoSemRetencao",
-      category: "feg",
+      category: "reembolso",
       label: "Cliente quer devolver, com o produto e não fala o motivo",
       autoDetect: [
         "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
@@ -824,7 +883,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegEtiquetaCriada",
-      category: "feg",
+      category: "logistica",
       label: "Cliente relata que a etiqueta ainda aparece somente como criada",
       autoDetect: [
         "etiqueta criada", "só aparece etiqueta criada", "rastreio não atualiza",
@@ -897,7 +956,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegEfeitosAdversosSintomas",
-      category: "feg",
+      category: "medoReacaoAdversa",
       label: "Cliente relata reação adversa ao produto",
       autoDetect: [
         "tive uma reação", "tive reação alérgica", "me deu alergia", "passei mal",
@@ -972,7 +1031,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegNaoReconheceCompraSemRastreio",
-      category: "feg",
+      category: "naoReconhece",
       label: "Cliente não reconhece a compra – Sem o código de rastreio",
       autoDetect: [
         "não reconheço essa compra", "não fiz essa compra", "cobrança que não reconheço",
@@ -1035,7 +1094,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegNaoReconheceCompraComProduto",
-      category: "feg",
+      category: "naoReconhece",
       label: "Cliente não reconhece a compra – Está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1118,7 +1177,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegNaoReconheceCompraEmTransito",
-      category: "feg",
+      category: "naoReconhece",
       label: "Cliente não reconhece a compra – Produto em trânsito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1183,7 +1242,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegReembolsoRealizado",
-      category: "feg",
+      category: "reembolso",
       label: "Reembolso realizado",
       autoDetect: [
         "já caiu meu reembolso", "quando recebo o reembolso", "meu reembolso ainda não caiu",
@@ -1241,7 +1300,7 @@ Support Center — FEG`,
 
     {
       id: "fegNaoGostouSabor",
-      category: "feg",
+      category: "reembolso",
       label: "Não gostou do sabor",
       autoDetect: [
         "não gostei do sabor", "gosto ruim", "sabor horrível", "não gostei do gosto",
@@ -1311,7 +1370,7 @@ Customer Support Team – FEG`,
 
     {
       id: "fegMedicoNaoAutorizouReembolsoSemDevolucao",
-      category: "feg",
+      category: "medoReacaoAdversa",
       label: "Médico não autorizou e está com os produtos",
       autoDetect: [
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
@@ -1399,7 +1458,7 @@ Customer Support Team — FEG`,
 
     {
       id: "fegMedicoNaoAutorizouReembolsoRecusarEntrega",
-      category: "feg",
+      category: "medoReacaoAdversa",
       label: "Médico não autorizou o uso do produto – Produto em trânsito – Recusar entrega",
       autoDetect: [
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
@@ -1459,7 +1518,13 @@ Customer Support Team — FEG`,
   ];
 
   const CATEGORIES = [
-    { id: "feg", label: "FEG BRANDS", color: "#39ff14", featured: true },
+    { id: "geral", label: "Geral", color: "#39ff14", featured: true },
+    { id: "logistica", label: "Logística", color: "#14c8ff" },
+    { id: "naoReconhece", label: "Cliente não reconhece a compra", color: "#ff5050" },
+    { id: "assinatura", label: "Assinatura", color: "#b56bff" },
+    { id: "reembolso", label: "Reembolso", color: "#ffc814" },
+    { id: "medoReacaoAdversa", label: "Médico e Reação Adversa", color: "#ff8c1a" },
+    { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
   ];
 
   const CATEGORY_GROUPS = [];
