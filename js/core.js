@@ -840,6 +840,42 @@
   }
 
   /**
+   * Toca um bipe de alerta (dois tons curtos) quando o risco é alto.
+   * Usa a Web Audio API em vez de um arquivo de áudio, então não depende
+   * de nenhum arquivo externo. Se o navegador bloquear ou não suportar,
+   * falha em silêncio — o selo vermelho piscando continua funcionando.
+   */
+  function playHighRiskAlertSound() {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      const ctx = new AudioContextClass();
+
+      [0, 0.22].forEach((startOffset) => {
+        const oscillator = ctx.createOscillator();
+        const gain = ctx.createGain();
+        oscillator.type = "square";
+        oscillator.frequency.value = 880;
+        oscillator.connect(gain);
+        gain.connect(ctx.destination);
+
+        const startAt = ctx.currentTime + startOffset;
+        const endAt = startAt + 0.16;
+        gain.gain.setValueAtTime(0.0001, startAt);
+        gain.gain.exponentialRampToValueAtTime(0.35, startAt + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.0001, endAt);
+
+        oscillator.start(startAt);
+        oscillator.stop(endAt + 0.02);
+      });
+
+      setTimeout(() => ctx.close(), 800);
+    } catch (error) {
+      // Sem suporte a áudio no navegador: segue só com o alerta visual.
+    }
+  }
+
+  /**
    * Lida com o clique no botão "Analisar Risco de Chargeback".
    * ESTE É UM PLACEHOLDER baseado em palavras-chave (mesma lógica usada
    * para detectar templates), não uma IA real analisando o contexto.
@@ -861,6 +897,10 @@
     riskBadge.textContent = `${RISK_LABELS[level]} (${score})`;
     riskBadge.className = `risk-badge risk-${level}`;
     riskExplanation.textContent = buildRiskExplanation(matches);
+
+    if (level === "alto") {
+      playHighRiskAlertSound();
+    }
   }
 
   /* =========================================================
