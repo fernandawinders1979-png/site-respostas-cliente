@@ -101,29 +101,6 @@ Looking forward to your reply,
     },
 
     {
-      id: "fegFollowUp",
-      category: "feg",
-      label: "Follow-up após resolução",
-      autoDetect: null,
-      pt: `Olá {{nomeCliente}},
-
-Passando rapidinho para confirmar que tudo ficou resolvido com o seu pedido {{numeroPedido}}.
-
-Se ainda tiver qualquer dúvida ou algo não estiver como esperado, é só responder este e-mail — vou continuar acompanhando até você ficar satisfeito(a).
-
-Um abraço,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Just checking in to confirm that everything was resolved with your order {{numeroPedido}}.
-
-If you still have any questions or anything isn't as expected, just reply to this email — I'll keep following up until you're fully satisfied.
-
-Best,
-{{nomeAgente}} | FEG Support`,
-    },
-
-    {
       id: "fegClienteNaoLocalizado",
       category: "feg",
       label: "Cliente não localizado",
