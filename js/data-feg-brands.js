@@ -735,7 +735,7 @@ Customer Support Team — FEG`,
     {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "feg",
-      label: "Cliente quer devolver – Sem resultado – Sem retenção e não precisa devolver os produtos",
+      label: "Cliente sem resultados",
       autoDetect: [
         "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
         "não vi resultado", "não notei diferença", "não senti diferença", "não deu resultado",
@@ -743,9 +743,11 @@ Customer Support Team — FEG`,
         "quero o dinheiro de volta", "quero cancelar e reembolso",
       ],
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Localizei seu pedido em nosso sistema:
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -754,27 +756,35 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Status Atual: {{status}}
 
-Obrigado(a) por compartilhar isso comigo. Entendo perfeitamente a sua frustração — quando investimos tempo e expectativa em algo para o nosso bem-estar e não vemos o resultado esperado, é natural sentir que o produto simplesmente não é para você. Isso é totalmente válido.
+Lamento saber que o produto não atendeu às suas expectativas.
 
-Fique tranquilo(a): você está dentro do prazo da nossa garantia de satisfação de [X] dias, então já processei o reembolso integral do valor pago com sucesso em nosso sistema.
+Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
 
-Você não precisa se preocupar em nos devolver o produto — pode ficar com ele como um presente da nossa empresa, sem nenhum custo ou compromisso adicional.
+Número da Autorização de Devolução (RMA): [Número do RMA]
 
-O reembolso será direcionado à mesma forma de pagamento utilizada na compra, e o valor deve aparecer em até 7 dias úteis. Dependendo da data de fechamento da sua fatura, o crédito poderá aparecer no ciclo atual ou no seguinte, com um prazo adicional que pode variar conforme as políticas do seu banco ou operadora de cartão.
+📍 Endereço de Devolução:
+11870 62nd St. N
+Largo, FL 33773
 
-Estou aqui para o que você precisar. Se tiver qualquer dúvida sobre o reembolso, não hesite em responder a este e-mail — ficarei feliz em continuar ajudando.
+Após realizar o envio, por favor, responda a este e-mail anexando:
+• Uma foto dos produtos que estão sendo devolvidos; e
+• O comprovante de envio, com o número de rastreamento visível e legível.
 
-Agradecemos muito, de coração, a sua confiança em nós, e lamentamos sinceramente que o {{produto}} não tenha atendido às suas expectativas dessa vez. Esperamos ter a oportunidade de recebê-lo(a) novamente em uma próxima compra — nossas portas estarão sempre abertas, sem nenhuma pressa, quando for o momento certo para você.
+Assim que recebermos essas informações, processaremos imediatamente o seu reembolso integral para o mesmo método de pagamento utilizado na compra.
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
-Com carinho,
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente — FEG`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. I located your order in our system:
+Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+
+I located your order in our system:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -783,21 +793,27 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Current Status: {{status}}
 
-Thank you for sharing this with me. I completely understand your frustration — when we invest time and hope into something for our wellness and don't see the results we expected, it's natural to feel the product simply isn't for you. That's completely valid.
+I'm sorry to hear the product didn't meet your expectations.
 
-Rest assured: you're within our [X]-day satisfaction guarantee window, so I've already processed a full refund of the amount paid successfully in our system.
+Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
 
-You don't need to worry about returning the product to us — you can keep it as a gift from our company, at no additional cost or obligation.
+Return Merchandise Authorization Number (RMA): [RMA Number]
 
-The refund will be issued to the same payment method used for the purchase, and the amount should appear within 7 business days. Depending on your statement closing date, the credit may appear in the current or the following billing cycle, with an additional timeframe that can vary according to your bank's or card issuer's policies.
+📍 Return Address:
+11870 62nd St. N
+Largo, FL 33773
 
-I'm here for whatever you need. If you have any questions about the refund, don't hesitate to reply to this email — I'll be happy to keep helping.
+After shipping the return, please reply to this email attaching:
+• A photo of the products being returned; and
+• Proof of shipment, with the tracking number clearly visible and legible.
 
-We sincerely thank you for trusting us, and we're truly sorry that {{produto}} didn't meet your expectations this time. We hope to have the chance to welcome you back for a future purchase — our doors will always be open, with no rush, whenever the right time comes for you.
+As soon as we receive this information, we'll immediately process your full refund to the same payment method used for the purchase.
 
 I'll keep following your case until it's fully resolved.
 
-Warmly,
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
