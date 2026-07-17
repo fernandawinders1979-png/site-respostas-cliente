@@ -55,6 +55,10 @@
   const riskResult = document.getElementById("risk-result");
   const riskBadge = document.getElementById("risk-badge");
   const riskExplanation = document.getElementById("risk-explanation");
+  const riskStatsPanel = document.getElementById("risk-stats-panel");
+  const riskStatsAlto = document.getElementById("risk-stats-alto");
+  const riskStatsMedio = document.getElementById("risk-stats-medio");
+  const riskStatsBaixo = document.getElementById("risk-stats-baixo");
   const orderTagsEl = document.getElementById("order-tags");
   const suggestionBox = document.getElementById("suggestion-box");
   const suggestionText = document.getElementById("suggestion-text");
@@ -901,6 +905,8 @@
     if (level === "alto") {
       playHighRiskAlertSound();
     }
+
+    recordRiskEvent(level);
   }
 
   /* =========================================================
@@ -1114,6 +1120,20 @@
     return token || null;
   }
 
+  /**
+   * Pega a senha de equipe já guardada nesta aba, sem pedir ao atendente.
+   * Usado para ações "de fundo" (estatísticas) que não podem interromper
+   * quem só está usando o site normalmente.
+   * @returns {string|null}
+   */
+  function getStoredAppToken() {
+    try {
+      return window.sessionStorage.getItem(APP_TOKEN_STORAGE_KEY) || null;
+    } catch (error) {
+      return null;
+    }
+  }
+
   function setTicketSearchStatus(message, kind) {
     if (!ticketSearchStatus) return;
     ticketSearchStatus.textContent = message;
@@ -1179,11 +1199,88 @@
   }
 
   /* =========================================================
+     Painel de estatísticas de risco (contagem centralizada, compartilhada
+     entre todos os atendentes, guardada no Worker via Cloudflare KV).
+     ========================================================= */
+
+  const RISK_STATS_LABELS = { alto: "alto", medio: "médio", baixo: "baixo" };
+
+  /**
+   * Atualiza os números mostrados no painel de estatísticas. Passar `null`
+   * volta o painel para "--" (ex: quando ainda não há senha de equipe).
+   * @param {{alto:number, medio:number, baixo:number}|null} stats
+   */
+  function renderRiskStats(stats) {
+    if (!riskStatsPanel) return;
+    if (riskStatsAlto) riskStatsAlto.textContent = stats ? String(stats.alto) : "--";
+    if (riskStatsMedio) riskStatsMedio.textContent = stats ? String(stats.medio) : "--";
+    if (riskStatsBaixo) riskStatsBaixo.textContent = stats ? String(stats.baixo) : "--";
+  }
+
+  /**
+   * Busca os contadores de risco da semana atual no Worker, para mostrar no
+   * painel. Só busca se já existir uma senha de equipe guardada nesta aba —
+   * nunca pede senha aqui, para não interromper quem só está olhando a tela.
+   */
+  async function fetchRiskStats() {
+    if (!riskStatsPanel) return;
+
+    const token = getStoredAppToken();
+    if (!token) {
+      renderRiskStats(null);
+      return;
+    }
+
+    try {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, {
+        headers: { "X-App-Token": token },
+      });
+
+      if (!response.ok) {
+        renderRiskStats(null);
+        return;
+      }
+
+      renderRiskStats(await response.json());
+    } catch (error) {
+      renderRiskStats(null);
+    }
+  }
+
+  /**
+   * Avisa o Worker que uma mensagem foi classificada com determinado nível
+   * de risco, para somar no contador compartilhado da semana. É um "extra"
+   * de estatística — se falhar (sem senha guardada, sem internet, etc.),
+   * ignora em silêncio e não afeta o uso normal do site.
+   * @param {string} level "baixo" | "medio" | "alto"
+   */
+  async function recordRiskEvent(level) {
+    const token = getStoredAppToken();
+    if (!token) return;
+
+    try {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/risk-event`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Token": token },
+        body: JSON.stringify({ level }),
+      });
+
+      if (response.ok) {
+        await fetchRiskStats();
+      }
+    } catch (error) {
+      // Sem internet ou Worker fora do ar: a análise de risco em si já foi
+      // mostrada ao atendente, só a estatística compartilhada não atualiza.
+    }
+  }
+
+  /* =========================================================
      Eventos
      ========================================================= */
   renderTemplateSidebar();
   applyPrefillFromUrl();
   updateWelcomePreview();
+  fetchRiskStats();
 
   generateBtn.addEventListener("click", handleGenerateClick);
   loadSampleBtn.addEventListener("click", loadSampleOrder);

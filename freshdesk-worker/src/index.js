@@ -5,11 +5,18 @@
  * em código — o dashboard nunca fala direto com o Freshdesk, só com este
  * Worker.
  *
- * Rota: GET /ticket/{numero}
- * Header obrigatório: X-App-Token (a senha de equipe)
+ * Rotas:
+ *   GET  /ticket/{numero}  — dados do chamado, para preencher o painel
+ *   POST /risk-event       — soma 1 no contador semanal de um nível de risco
+ *   GET  /risk-stats       — contadores da semana atual, para o painel
+ * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
 const ALLOWED_ORIGIN = "https://fernandawinders1979-png.github.io";
+
+// Níveis de risco aceitos pelo painel de estatísticas (mesmos usados em
+// js/core.js -> classifyRisk).
+const RISK_LEVELS = ["baixo", "medio", "alto"];
 
 // Nomes técnicos reais dos campos personalizados do CHAMADO, conferidos via
 // API em GET /api/v2/ticket_fields na conta hebevi.freshdesk.com.
@@ -42,8 +49,23 @@ function corsHeaders() {
   return {
     "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
     "Access-Control-Allow-Headers": "X-App-Token, Content-Type",
-    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   };
+}
+
+/**
+ * Calcula a chave da semana ISO 8601 de uma data (ex: "2026-W29"), usada
+ * para agrupar os contadores de risco por semana, começando na segunda-feira.
+ * @param {Date} date
+ * @returns {string}
+ */
+function getIsoWeekKey(date) {
+  const current = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const dayNum = current.getUTCDay() || 7;
+  current.setUTCDate(current.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(current.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil((((current - yearStart) / 86400000) + 1) / 7);
+  return `${current.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
 }
 
 function jsonResponse(body, status = 200) {
@@ -212,21 +234,87 @@ function buildPayload(ticket, conversations, fullContact, agent) {
   };
 }
 
+/**
+ * Soma 1 no contador da semana atual para o nível de risco informado.
+ * @param {Object} env
+ * @param {string} level
+ * @returns {Promise<number>} o novo valor do contador
+ */
+async function incrementRiskCounter(env, level) {
+  const key = `risk:${getIsoWeekKey(new Date())}:${level}`;
+  const current = Number(await env.RISK_STATS.get(key)) || 0;
+  const next = current + 1;
+  await env.RISK_STATS.put(key, String(next));
+  return next;
+}
+
+/**
+ * Trata POST /risk-event: registra que uma mensagem foi classificada com
+ * determinado nível de risco, para o painel de estatísticas da semana.
+ * @param {Request} request
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleRiskEvent(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (error) {
+    return jsonResponse({ error: "Corpo da requisição inválido." }, 400);
+  }
+
+  if (!RISK_LEVELS.includes(body && body.level)) {
+    return jsonResponse({ error: "Nível de risco inválido. Use baixo, medio ou alto." }, 400);
+  }
+
+  await incrementRiskCounter(env, body.level);
+  return jsonResponse({ ok: true });
+}
+
+/**
+ * Trata GET /risk-stats: devolve os contadores de risco da semana atual,
+ * um por nível, para o painel mostrar no dashboard.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleRiskStats(env) {
+  const week = getIsoWeekKey(new Date());
+  const values = await Promise.all(
+    RISK_LEVELS.map((level) => env.RISK_STATS.get(`risk:${week}:${level}`))
+  );
+
+  const stats = { week };
+  RISK_LEVELS.forEach((level, index) => {
+    stats[level] = Number(values[index]) || 0;
+  });
+
+  return jsonResponse(stats);
+}
+
 export default {
   async fetch(request, env) {
     if (request.method === "OPTIONS") {
       return new Response(null, { headers: corsHeaders() });
     }
 
-    const url = new URL(request.url);
-    const match = url.pathname.match(/^\/ticket\/(\d+)$/);
-    if (!match) {
-      return jsonResponse({ error: "Rota não encontrada. Use /ticket/{numero}." }, 404);
-    }
-
     const token = request.headers.get("X-App-Token");
     if (!env.APP_TOKEN || token !== env.APP_TOKEN) {
       return jsonResponse({ error: "Senha de equipe inválida ou ausente." }, 401);
+    }
+
+    const url = new URL(request.url);
+
+    if (request.method === "POST" && url.pathname === "/risk-event") {
+      return handleRiskEvent(request, env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/risk-stats") {
+      return handleRiskStats(env);
+    }
+
+    const match = url.pathname.match(/^\/ticket\/(\d+)$/);
+    if (!match) {
+      return jsonResponse({ error: "Rota não encontrada. Use /ticket/{numero}." }, 404);
     }
 
     const ticketId = match[1];

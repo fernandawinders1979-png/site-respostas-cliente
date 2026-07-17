@@ -602,6 +602,55 @@ section h2 {
 }
 
 /* ===========================================================
+   Painel de estatísticas de risco (contagem semanal, compartilhada)
+   =========================================================== */
+.risk-stats-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  padding: 10px 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+}
+
+.risk-stats-title {
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+.risk-stats-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text);
+}
+
+.risk-stats-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.risk-stats-alto .risk-stats-dot {
+  background-color: #ff1a1a;
+  box-shadow: 0 0 6px rgba(255, 0, 30, 0.7);
+}
+
+.risk-stats-medio .risk-stats-dot {
+  background-color: #ffc814;
+  box-shadow: 0 0 6px rgba(255, 200, 20, 0.6);
+}
+
+.risk-stats-baixo .risk-stats-dot {
+  background-color: #39ff14;
+  box-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+}
+
+/* ===========================================================
    Selo de risco de chargeback
    =========================================================== */
 .risk-result {

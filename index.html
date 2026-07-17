@@ -24,6 +24,23 @@
   <main class="container">
 
     <!-- ============================================================
+         Painel de estatísticas de risco (contagem semanal, compartilhada
+         entre todos os atendentes)
+         ============================================================ -->
+    <section id="risk-stats-panel" class="risk-stats-panel" aria-label="Estatísticas de risco de chargeback desta semana">
+      <span class="risk-stats-title">Risco de chargeback nesta semana:</span>
+      <span class="risk-stats-item risk-stats-alto">
+        <span class="risk-stats-dot"></span> Alto: <strong id="risk-stats-alto">--</strong>
+      </span>
+      <span class="risk-stats-item risk-stats-medio">
+        <span class="risk-stats-dot"></span> Médio: <strong id="risk-stats-medio">--</strong>
+      </span>
+      <span class="risk-stats-item risk-stats-baixo">
+        <span class="risk-stats-dot"></span> Baixo: <strong id="risk-stats-baixo">--</strong>
+      </span>
+    </section>
+
+    <!-- ============================================================
          Painel de dados do pedido (primeiro contato)
          ============================================================ -->
     <section class="order-panel" aria-labelledby="order-title">

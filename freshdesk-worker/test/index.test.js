@@ -19,6 +19,28 @@ function req(path, headers = {}) {
   return new Request(`https://freshdesk-proxy.example.workers.dev${path}`, { headers });
 }
 
+function postReq(path, body, headers = {}) {
+  return new Request(`https://freshdesk-proxy.example.workers.dev${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...headers },
+    body: JSON.stringify(body),
+  });
+}
+
+// KV falso em memória, só para os testes: imita as duas funções do Workers
+// KV que o Worker usa (get/put), sem precisar de uma conta Cloudflare real.
+function createMockKv() {
+  const store = new Map();
+  return {
+    async get(key) {
+      return store.has(key) ? store.get(key) : null;
+    },
+    async put(key, value) {
+      store.set(key, value);
+    },
+  };
+}
+
 test("sem senha -> 401", async () => {
   globalThis.fetch = async () => {
     throw new Error("não deveria chamar o Freshdesk sem senha!");
@@ -46,6 +68,44 @@ test("ticket inexistente -> 404", async () => {
 test("rota inválida -> 404", async () => {
   const res = await worker.fetch(req("/qualquer-coisa", { "X-App-Token": "senha-correta" }), env);
   assert.equal(res.status, 404);
+});
+
+test("registrar risco sem senha -> 401", async () => {
+  const res = await worker.fetch(postReq("/risk-event", { level: "alto" }), { ...env, RISK_STATS: createMockKv() });
+  assert.equal(res.status, 401);
+});
+
+test("registrar risco com nível inválido -> 400", async () => {
+  const res = await worker.fetch(
+    postReq("/risk-event", { level: "urgente" }, { "X-App-Token": "senha-correta" }),
+    { ...env, RISK_STATS: createMockKv() },
+  );
+  assert.equal(res.status, 400);
+});
+
+test("registrar risco soma no contador da semana e aparece em /risk-stats", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  const res1 = await worker.fetch(
+    postReq("/risk-event", { level: "alto" }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res1.status, 200);
+
+  const res2 = await worker.fetch(
+    postReq("/risk-event", { level: "alto" }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res2.status, 200);
+
+  const statsRes = await worker.fetch(req("/risk-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal(statsRes.status, 200);
+  const stats = await statsRes.json();
+
+  assert.equal(stats.alto, 2);
+  assert.equal(stats.medio, 0);
+  assert.equal(stats.baixo, 0);
+  assert.match(stats.week, /^\d{4}-W\d{2}$/);
 });
 
 test("busca com sucesso -> monta payload certo para o dashboard", async () => {

@@ -6,3 +6,8 @@ compatibility_date = "2024-09-23"
 # - FRESHDESK_DOMAIN  (ex: hebevi.freshdesk.com)
 # - FRESHDESK_API_KEY (a API Key do Freshdesk)
 # - APP_TOKEN         (a senha de equipe que o site vai pedir ao atendente)
+
+# Guarda os contadores semanais de risco de chargeback (painel de estatísticas).
+[[kv_namespaces]]
+binding = "RISK_STATS"
+id = "adec800009d342f3bfa21634476f69c4"
