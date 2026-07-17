@@ -8,55 +8,6 @@
 
   const TEMPLATES = [
     {
-      id: "fegAtrasoEntrega",
-      category: "feg",
-      label: "Atraso na entrega do produto",
-      autoDetect: [
-        "atraso", "atrasado", "demorando", "demora pra chegar", "demora para chegar",
-        "ainda não chegou", "não chegou ainda", "cadê meu pedido", "cadê o pedido",
-        "onde está meu pedido", "passou do prazo", "meu pedido não chegou",
-        "pedido perdido", "perdi meu pedido", "sumiu meu pedido", "pedido sumiu",
-        "pedido extraviado", "extraviado", "extraviou",
-      ],
-      pt: `Olá {{nomeCliente}},
-
-Obrigado por avisar sobre o atraso no seu pedido — entendo que isso é frustrante, ainda mais quando você está esperando para começar a usar o produto.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-
-Verifiquei aqui e houve um atraso no processamento do seu pedido. Vou acompanhar pessoalmente e te aviso assim que houver qualquer atualização.
-
-Se o pedido não chegar em breve, é só responder este e-mail que resolvemos juntos, incluindo possibilidade de reembolso ou reenvio.
-
-Conte comigo,
-{{nomeAgente}} | Suporte FEG`,
-      en: `Hello {{nomeCliente}},
-
-Thank you for letting us know about the delay in your order — I understand this is frustrating, especially when you're eager to start using the product.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-
-I checked here and there has been a delay in processing your order. I'll personally follow up and let you know as soon as there's any update.
-
-If the order doesn't arrive soon, just reply to this email and we'll sort it out together, including the possibility of a refund or reshipment.
-
-Count on me,
-{{nomeAgente}} | FEG Support`,
-    },
-
-    {
       id: "fegSemResultado",
       category: "feg",
       label: "Cliente sem resultado esperado com o produto",
