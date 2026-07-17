@@ -821,7 +821,7 @@ Customer Support Team — FEG`,
     {
       id: "fegDevolverComProdutoSemMotivoSemRetencao",
       category: "feg",
-      label: "Cliente quer devolver, está com o produto, mas não fala o motivo (Sem retenção)",
+      label: "Cliente quer devolver, com o produto e não fala o motivo",
       autoDetect: [
         "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
         "tenho o produto e quero cancelar", "quero devolver o produto e cancelar",
@@ -829,7 +829,9 @@ Customer Support Team — FEG`,
         "como faço para devolver o produto que já recebi",
       ],
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}} e estarei cuidando dessa solicitação para você.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
 
 Localizei seu pedido em nosso sistema:
 
@@ -837,26 +839,26 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Plano de Assinatura: [Nome do Plano]
+• Valor Total: \${{valorTotal}}
 • Status Atual: {{status}}
 
-Obrigado(a) por entrar em contato. Recebi sua solicitação de cancelamento do pedido e da assinatura, e quero que saiba que vou cuidar pessoalmente disso para você — sem burocracia e sem complicação.
+Verifiquei que seu pedido está dentro do período da nossa Garantia de Satisfação, portanto podemos prosseguir com a devolução e o reembolso.
 
-Fique tranquilo(a): posso confirmar que tanto o pedido quanto a assinatura serão cancelados, e você não será cobrado(a) novamente a partir de agora.
+Antes de enviarmos as instruções, gostaria apenas de entender o motivo da devolução. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
 
-Antes de concluirmos, você poderia me contar rapidamente o motivo do cancelamento? Pode ser algo relacionado ao produto, à frequência de entrega, ao valor, ou qualquer outro ponto. Essa informação não é obrigatória para seguirmos com o cancelamento — é só para eu entender se existe algo simples que possamos ajustar, e também para repassar esse feedback à nossa equipe, que está sempre buscando melhorar a experiência dos nossos clientes.
+Assim que receber sua resposta, enviarei a autorização de devolução (RMA), o endereço para envio e as demais orientações para que possamos dar continuidade ao seu reembolso.
 
-Se, ao compartilhar o motivo, você achar que ainda vale a pena continuar experimentando o produto por mais um tempo antes de decidir definitivamente, terei o maior prazer em te dar algumas orientações rápidas para aproveitar melhor o {{produto}}. Mas se sua decisão já estiver tomada, sem problema algum: é só me confirmar e eu finalizo o cancelamento imediatamente.
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
-Estou à disposição para o que for mais conveniente para você. Assim que eu receber sua resposta (com ou sem o motivo), já dou andamento ao cancelamento.
-
-Agradecemos muito por ter feito parte da nossa comunidade, e esperamos que, se um dia quiser voltar, nossas portas estejam sempre abertas.
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente — FEG`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}} and I'll be taking care of this request for you.
+My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+
+Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can move forward in the best possible way.
 
 I located your order in our system:
 
@@ -864,20 +866,18 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Subscription Plan: [Plan Name]
+• Total Amount: \${{valorTotal}}
 • Current Status: {{status}}
 
-Thank you for reaching out. I've received your request to cancel the order and the subscription, and I want you to know I'll take care of this personally for you — no red tape, no hassle.
+I checked and your order is within our Satisfaction Guarantee period, so we can proceed with the return and refund.
 
-Rest assured: I can confirm that both the order and the subscription will be canceled, and you won't be charged again going forward.
+Before sending the instructions, I'd just like to understand the reason for the return. Your feedback is very important to help us improve our products and service.
 
-Before we wrap this up, could you quickly tell me the reason for the cancellation? It could be related to the product, the delivery frequency, the price, or anything else. This information isn't required for us to proceed with the cancellation — it just helps me understand if there's something simple we could adjust, and it also helps us pass this feedback along to our team, who's always working to improve the experience for our customers.
+As soon as I hear back from you, I'll send the return authorization (RMA), the shipping address, and the remaining instructions so we can proceed with your refund.
 
-If, after sharing the reason, you feel it might still be worth giving the product a bit more time before deciding for good, I'd be more than happy to give you a few quick tips to get the most out of your {{produto}}. But if your decision is already made, no problem at all — just confirm it and I'll finalize the cancellation right away.
+I'll keep following your case until it's fully resolved.
 
-I'm here for whatever works best for you. As soon as I hear back from you (with or without the reason), I'll move forward with the cancellation.
-
-We're truly grateful you were part of our community, and we hope that if you ever want to come back, our doors will always be open.
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
 Best regards,
 {{nomeAgente}}
