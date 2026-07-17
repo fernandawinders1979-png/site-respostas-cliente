@@ -107,6 +107,8 @@
 
       const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       icon.setAttribute("viewBox", "0 0 12 12");
+      icon.setAttribute("width", "12");
+      icon.setAttribute("height", "12");
       icon.setAttribute("class", "chart-legend-icon");
       icon.appendChild(buildMarkerShape(meta.shape, 6, 6, meta.color));
 
