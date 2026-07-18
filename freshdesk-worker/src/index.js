@@ -56,6 +56,17 @@
  *   GET  /aht-stats        — média de minutos até a resolução e
  *                            quantidade de tickets, na semana atual
  *   GET  /aht-history      — mesmos dados das últimas N semanas
+ *   POST /risk-case-start  — registra um caso de risco alto identificado
+ *                            num ticket real, aguardando confirmação manual
+ *                            do resultado (evitado ou virou chargeback)
+ *   GET  /risk-cases-pending — lista os casos de risco alto ainda sem
+ *                            confirmação, para o atendente marcar
+ *   POST /risk-outcome     — confirma o resultado de um caso (evitado ou
+ *                            chargeback) e soma nos contadores semanais de
+ *                            prevenção
+ *   GET  /prevention-stats — contadores de prevenção (evitado/chargeback),
+ *                            valor evitado e taxa (% evitado) da semana atual
+ *   GET  /prevention-history — mesmos dados das últimas N semanas
  * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
@@ -103,6 +114,14 @@ const DURATION_LAST_SYNCED_KEY = "duration:lastSyncedAt";
 const DURATION_SYNC_PER_PAGE = 100;
 const DURATION_SYNC_MAX_PAGES = 10;
 const DURATION_INITIAL_LOOKBACK_DAYS = 30;
+
+// "Fecha o ciclo" do risco de chargeback: diferente de CSAT/FCR/FRT/AHT, o
+// resultado real (o caso virou chargeback de verdade ou foi evitado) não
+// está em nenhum campo do Freshdesk — só quem cuida do caso sabe. Por isso
+// essa confirmação é sempre manual, feita no dashboard de métricas, sem
+// nenhum agendamento automático.
+const RISK_CASE_PREFIX = "riskcase:";
+const RISK_OUTCOMES = ["evitado", "chargeback"];
 
 // Categorias aceitas em /stat-event, /stat-ranking e /stat-history. Motivo e
 // template têm uma lista aberta de valores; resposta usa sempre a mesma
@@ -958,6 +977,174 @@ async function handleDurationHistory(env, metric, weeksParam) {
 }
 
 /**
+ * Trata POST /risk-case-start: registra que um caso de risco alto foi
+ * identificado num ticket real, aguardando confirmação manual depois. Se o
+ * ticket já tiver um caso registrado (ex: a mensagem foi analisada de novo),
+ * mantém o registro original — o horário de detecção não deve mudar.
+ * @param {Request} request
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleRiskCaseStart(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (error) {
+    return jsonResponse({ error: "Corpo da requisição inválido." }, 400);
+  }
+
+  const ticketId = typeof body.ticketId === "string" ? body.ticketId.trim() : "";
+  if (!ticketId || !/^\d+$/.test(ticketId)) {
+    return jsonResponse({ error: "Campo ticketId é obrigatório (número do ticket)." }, 400);
+  }
+
+  const key = `${RISK_CASE_PREFIX}${ticketId}`;
+  const existing = await env.RISK_STATS.get(key);
+  if (!existing) {
+    const valor = typeof body.valor === "number" && Number.isFinite(body.valor) ? body.valor : null;
+    const now = new Date();
+    await env.RISK_STATS.put(
+      key,
+      JSON.stringify({
+        ticketId,
+        valor,
+        week: getIsoWeekKey(now),
+        detectedAt: now.toISOString(),
+        outcome: null,
+      }),
+    );
+  }
+
+  return jsonResponse({ ok: true });
+}
+
+/**
+ * Trata GET /risk-cases-pending: lista os casos de risco alto ainda sem
+ * confirmação de resultado, mais recentes primeiro.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleRiskCasesPending(env) {
+  const { keys } = await env.RISK_STATS.list({ prefix: RISK_CASE_PREFIX });
+  const entries = await Promise.all(keys.map((k) => env.RISK_STATS.get(k.name)));
+
+  const cases = entries
+    .map((raw) => (raw ? JSON.parse(raw) : null))
+    .filter((item) => item && !item.outcome)
+    .sort((a, b) => new Date(b.detectedAt) - new Date(a.detectedAt));
+
+  return jsonResponse({ cases });
+}
+
+/**
+ * Trata POST /risk-outcome: confirma se um caso de risco alto foi evitado
+ * ou virou chargeback de verdade, e soma nos contadores semanais de
+ * prevenção (na semana em que o caso foi DETECTADO, não a de hoje).
+ * @param {Request} request
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleRiskOutcome(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (error) {
+    return jsonResponse({ error: "Corpo da requisição inválido." }, 400);
+  }
+
+  const ticketId = typeof body.ticketId === "string" ? body.ticketId.trim() : "";
+  const outcome = body.outcome;
+  if (!ticketId || !RISK_OUTCOMES.includes(outcome)) {
+    return jsonResponse({ error: "Campos ticketId e outcome (evitado ou chargeback) são obrigatórios." }, 400);
+  }
+
+  const key = `${RISK_CASE_PREFIX}${ticketId}`;
+  const raw = await env.RISK_STATS.get(key);
+  if (!raw) {
+    return jsonResponse({ error: "Caso não encontrado." }, 404);
+  }
+
+  const caseData = JSON.parse(raw);
+  if (caseData.outcome) {
+    return jsonResponse({ error: "Esse caso já foi confirmado antes." }, 409);
+  }
+
+  caseData.outcome = outcome;
+  caseData.resolvedAt = new Date().toISOString();
+  await env.RISK_STATS.put(key, JSON.stringify(caseData));
+
+  const countKey = `prevention:${caseData.week}:${outcome}`;
+  const currentCount = Number(await env.RISK_STATS.get(countKey)) || 0;
+  await env.RISK_STATS.put(countKey, String(currentCount + 1));
+
+  if (outcome === "evitado" && typeof caseData.valor === "number") {
+    const valorKey = `prevention:${caseData.week}:evitadoValor`;
+    const currentValor = Number(await env.RISK_STATS.get(valorKey)) || 0;
+    await env.RISK_STATS.put(valorKey, String(currentValor + caseData.valor));
+  }
+
+  return jsonResponse({ ok: true });
+}
+
+/**
+ * Busca no KV os contadores de prevenção de uma semana e calcula a taxa (%
+ * evitado sobre o total de casos já confirmados).
+ * @param {Object} env
+ * @param {string} week
+ * @returns {Promise<Object>} ex: { week, evitado, chargeback, evitadoValor, total, rate }
+ */
+async function readWeekPrevention(env, week) {
+  const [evitado, chargeback, evitadoValor] = await Promise.all([
+    env.RISK_STATS.get(`prevention:${week}:evitado`),
+    env.RISK_STATS.get(`prevention:${week}:chargeback`),
+    env.RISK_STATS.get(`prevention:${week}:evitadoValor`),
+  ]);
+
+  const entry = {
+    week,
+    evitado: Number(evitado) || 0,
+    chargeback: Number(chargeback) || 0,
+    evitadoValor: Number(evitadoValor) || 0,
+  };
+  entry.total = entry.evitado + entry.chargeback;
+  entry.rate = entry.total > 0 ? Math.round((entry.evitado / entry.total) * 1000) / 10 : null;
+  return entry;
+}
+
+/**
+ * Trata GET /prevention-stats.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handlePreventionStats(env) {
+  const stats = await readWeekPrevention(env, getIsoWeekKey(new Date()));
+  return jsonResponse(stats);
+}
+
+/**
+ * Trata GET /prevention-history.
+ * @param {Object} env
+ * @param {string|null} weeksParam
+ * @returns {Promise<Response>}
+ */
+async function handlePreventionHistory(env, weeksParam) {
+  const requested = parseInt(weeksParam, 10);
+  const weeks = Math.min(
+    Math.max(Number.isFinite(requested) ? requested : DEFAULT_HISTORY_WEEKS, 1),
+    MAX_HISTORY_WEEKS,
+  );
+
+  const now = new Date();
+  const weekKeys = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    weekKeys.push(getIsoWeekKey(new Date(now.getTime() - i * 7 * 86400000)));
+  }
+
+  const history = await Promise.all(weekKeys.map((week) => readWeekPrevention(env, week)));
+  return jsonResponse({ weeks: history });
+}
+
+/**
  * Transforma um texto livre (ex: "Atraso na Entrega") numa chave segura
  * para o KV: minúsculo, sem acento, só letras/números/hífen, tamanho
  * limitado. Usado para agrupar motivos/templates que só diferem em
@@ -1203,6 +1390,26 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/aht-history") {
       return handleDurationHistory(env, "aht", url.searchParams.get("weeks"));
+    }
+
+    if (request.method === "POST" && url.pathname === "/risk-case-start") {
+      return handleRiskCaseStart(request, env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/risk-cases-pending") {
+      return handleRiskCasesPending(env);
+    }
+
+    if (request.method === "POST" && url.pathname === "/risk-outcome") {
+      return handleRiskOutcome(request, env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/prevention-stats") {
+      return handlePreventionStats(env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/prevention-history") {
+      return handlePreventionHistory(env, url.searchParams.get("weeks"));
     }
 
     const match = url.pathname.match(/^\/ticket\/(\d+)$/);

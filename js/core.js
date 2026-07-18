@@ -945,12 +945,18 @@
     riskBadge.className = `risk-badge risk-${level}`;
     riskExplanation.textContent = buildRiskExplanation(matches);
 
-    if (level === "alto") {
-      playHighRiskAlertSound();
-    }
-
     const valor = parseCurrencyValue(getOrderData().valorTotal);
     recordRiskEvent(level, valor);
+
+    if (level === "alto") {
+      playHighRiskAlertSound();
+      // Registra o caso pra "fechar o ciclo" depois no dashboard de
+      // métricas (confirmar se virou chargeback de verdade ou foi
+      // evitado) — só quando o ticket veio de uma busca real no Freshdesk.
+      if (currentTicketId) {
+        recordRiskCaseStart(currentTicketId, valor);
+      }
+    }
   }
 
   /**
@@ -1415,6 +1421,30 @@
         method: "POST",
         headers: { "Content-Type": "application/json", "X-App-Token": token },
         body: JSON.stringify({ ticketId: currentTicketId }),
+      });
+    } catch (error) {
+      // Sem internet ou Worker fora do ar: ignora, é só estatística extra.
+    }
+  }
+
+  /**
+   * Avisa o Worker que um caso de risco alto foi identificado num ticket
+   * real, pra aparecer na lista de "aguardando confirmação" do dashboard
+   * de métricas (ver painel Prevenção de Chargeback). Mesmo padrão
+   * silencioso das outras estatísticas: nunca interrompe o atendimento se
+   * falhar.
+   * @param {string} ticketId
+   * @param {number|null} valor
+   */
+  async function recordRiskCaseStart(ticketId, valor) {
+    const token = getStoredAppToken();
+    if (!token || !ticketId) return;
+
+    try {
+      await fetch(`${FRESHDESK_WORKER_URL}/risk-case-start`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Token": token },
+        body: JSON.stringify({ ticketId, valor }),
       });
     } catch (error) {
       // Sem internet ou Worker fora do ar: ignora, é só estatística extra.

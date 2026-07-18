@@ -66,6 +66,7 @@
   const fcrSyncStatusEl = document.getElementById("fcr-sync-status");
   const durationSyncBtn = document.getElementById("duration-sync-btn");
   const durationSyncStatusEl = document.getElementById("duration-sync-status");
+  const preventionPendingListEl = document.getElementById("prevention-pending-list");
 
   const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 
@@ -264,6 +265,104 @@
     document.getElementById("fcr-total-periodo").textContent =
       totalCasos > 0 ? `${totalCasos} caso(s) finalizado(s) no período` : "Nenhum caso finalizado no período";
     document.getElementById("fcr-periodo-semanas").textContent = String(HISTORY_WEEKS);
+  }
+
+  /**
+   * Mostra a taxa de prevenção já formatada, ou uma mensagem quando ainda
+   * não há nenhum caso confirmado no período (casos "aguardando
+   * confirmação" não contam aqui — só entram quando alguém marca o
+   * resultado).
+   * @param {number|null} rate
+   * @returns {string}
+   */
+  function formatPreventionRate(rate) {
+    return rate === null || rate === undefined ? "Sem casos confirmados" : `${rate}%`;
+  }
+
+  /**
+   * @param {Object} stats semana atual (GET /prevention-stats)
+   * @param {Array} history últimas HISTORY_WEEKS semanas (mais antiga -> mais recente)
+   */
+  function renderPreventionKpis(stats, history) {
+    document.getElementById("prevention-rate-semana").textContent = formatPreventionRate(stats.rate);
+    document.getElementById("prevention-total-semana").textContent =
+      stats.total > 0
+        ? `${stats.total} caso(s) — ${stats.evitado} evitado(s), ${stats.chargeback} virou(viraram) chargeback`
+        : "Nenhum caso confirmado esta semana";
+
+    const totalEvitado = history.reduce((sum, week) => sum + week.evitado, 0);
+    const totalCasos = history.reduce((sum, week) => sum + week.total, 0);
+    const totalValorEvitado = history.reduce((sum, week) => sum + week.evitadoValor, 0);
+    const periodRate = totalCasos > 0 ? Math.round((totalEvitado / totalCasos) * 1000) / 10 : null;
+
+    document.getElementById("prevention-rate-periodo").textContent = formatPreventionRate(periodRate);
+    document.getElementById("prevention-total-periodo").textContent =
+      totalCasos > 0 ? `${totalCasos} caso(s) confirmado(s) no período` : "Nenhum caso confirmado no período";
+    document.getElementById("prevention-valor-periodo").textContent = formatCurrency(totalValorEvitado);
+    document.getElementById("prevention-periodo-semanas").textContent = String(HISTORY_WEEKS);
+  }
+
+  /**
+   * Formata a data de detecção de um caso (ISO) num formato curto pt-BR.
+   * @param {string} iso
+   * @returns {string}
+   */
+  function formatCaseDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString("pt-BR");
+    } catch (error) {
+      return iso;
+    }
+  }
+
+  /**
+   * Renderiza a lista de casos de risco alto aguardando confirmação, cada
+   * um com dois botões ("Evitado" / "Virou chargeback") que chamam
+   * handleRiskOutcomeClick.
+   * @param {Array} cases
+   */
+  function renderPreventionPendingList(cases) {
+    if (!preventionPendingListEl) return;
+    preventionPendingListEl.innerHTML = "";
+
+    if (!cases || cases.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "prevention-empty";
+      empty.textContent = "Nenhum caso aguardando confirmação no momento.";
+      preventionPendingListEl.appendChild(empty);
+      return;
+    }
+
+    cases.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "prevention-case-row";
+
+      const info = document.createElement("span");
+      info.className = "prevention-case-info";
+      const valorTexto = typeof item.valor === "number" ? ` — ${formatCurrency(item.valor)}` : "";
+      info.textContent = `Ticket #${item.ticketId}${valorTexto} — detectado em ${formatCaseDate(item.detectedAt)}`;
+
+      const actions = document.createElement("span");
+      actions.className = "prevention-case-actions";
+
+      const avoidedBtn = document.createElement("button");
+      avoidedBtn.type = "button";
+      avoidedBtn.className = "btn-secondary btn-outcome-evitado";
+      avoidedBtn.textContent = "✅ Evitado";
+      avoidedBtn.addEventListener("click", () => handleRiskOutcomeClick(item.ticketId, "evitado"));
+
+      const chargebackBtn = document.createElement("button");
+      chargebackBtn.type = "button";
+      chargebackBtn.className = "btn-secondary btn-outcome-chargeback";
+      chargebackBtn.textContent = "❌ Virou chargeback";
+      chargebackBtn.addEventListener("click", () => handleRiskOutcomeClick(item.ticketId, "chargeback"));
+
+      actions.appendChild(avoidedBtn);
+      actions.appendChild(chargebackBtn);
+      row.appendChild(info);
+      row.appendChild(actions);
+      preventionPendingListEl.appendChild(row);
+    });
   }
 
   /**
@@ -952,6 +1051,7 @@
         statsRes, historyRes, motivoRes, templateRes, volumeRes,
         csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes,
         frtStatsRes, frtHistoryRes, ahtStatsRes, ahtHistoryRes,
+        preventionStatsRes, preventionHistoryRes, preventionPendingRes,
       ] = await Promise.all([
         fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
@@ -968,12 +1068,16 @@
         fetch(`${FRESHDESK_WORKER_URL}/frt-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/aht-stats`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/aht-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/prevention-stats`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/prevention-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/risk-cases-pending`, { headers: { "X-App-Token": token } }),
       ]);
 
       const responses = [
         statsRes, historyRes, motivoRes, templateRes, volumeRes,
         csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes,
         frtStatsRes, frtHistoryRes, ahtStatsRes, ahtHistoryRes,
+        preventionStatsRes, preventionHistoryRes, preventionPendingRes,
       ];
       if (responses.some((res) => res.status === 401)) {
         clearStoredToken();
@@ -999,6 +1103,9 @@
       const { weeks: frtHistory } = await frtHistoryRes.json();
       const ahtStats = await ahtStatsRes.json();
       const { weeks: ahtHistory } = await ahtHistoryRes.json();
+      const preventionStats = await preventionStatsRes.json();
+      const { weeks: preventionHistory } = await preventionHistoryRes.json();
+      const { cases: preventionPending } = await preventionPendingRes.json();
 
       const history = fullHistory.slice(-HISTORY_WEEKS);
       const previousHistory = fullHistory.slice(0, Math.max(0, fullHistory.length - HISTORY_WEEKS));
@@ -1020,6 +1127,8 @@
       renderDurationChart("frt-chart", frtHistory);
       renderDurationKpis("aht", ahtStats, ahtHistory);
       renderDurationChart("aht-chart", ahtHistory);
+      renderPreventionKpis(preventionStats, preventionHistory);
+      renderPreventionPendingList(preventionPending);
 
       const volumeTotalEl = document.getElementById("volume-total-semana");
       if (volumeTotalEl) {
@@ -1187,6 +1296,41 @@
 
   if (durationSyncBtn) {
     durationSyncBtn.addEventListener("click", handleDurationSyncClick);
+  }
+
+  /**
+   * Confirma o resultado de um caso de risco alto ("evitado" ou
+   * "chargeback") e recarrega as métricas — o caso sai da lista de
+   * pendentes e passa a contar na taxa de prevenção.
+   * @param {string} ticketId
+   * @param {"evitado"|"chargeback"} outcome
+   */
+  async function handleRiskOutcomeClick(ticketId, outcome) {
+    const token = getAppToken();
+    if (!token) return;
+
+    try {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/risk-outcome`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Token": token },
+        body: JSON.stringify({ ticketId, outcome }),
+      });
+
+      if (response.status === 401) {
+        clearStoredToken();
+        setStatus("Senha de equipe incorreta. Recarregue a página para tentar de novo.", "error");
+        return;
+      }
+
+      if (!response.ok) {
+        setStatus("Não foi possível confirmar esse caso agora. Tente de novo em instantes.", "error");
+        return;
+      }
+
+      await loadMetrics();
+    } catch (error) {
+      setStatus("Erro de conexão. Verifique sua internet e tente de novo.", "error");
+    }
   }
 
   document.querySelectorAll(".ranking-weeks-count").forEach((el) => {
