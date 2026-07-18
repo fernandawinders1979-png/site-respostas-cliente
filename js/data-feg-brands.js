@@ -1426,7 +1426,7 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: R\${{valorTotal}}
+• Valor Total: \${{valorTotal}}
 • Status Atual: Em trânsito
 
 Lamentamos saber que você não reconhece essa compra. Levamos situações como essa muito a sério e faremos o possível para ajudá-lo(a) da forma mais rápida e segura.
@@ -1461,7 +1461,7 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: R\${{valorTotal}}
+• Total Amount: \${{valorTotal}}
 • Current Status: In transit
 
 We're sorry to hear you don't recognize this purchase. We take situations like this very seriously and will do everything we can to help you as quickly and safely as possible.
