@@ -62,9 +62,21 @@
     "cancelem já", "cancele já", "cancelem agora", "cancele agora",
     "isso é golpe",
 
+    // Pedido de cancelamento do pedido, mesmo sem palavra de urgência
+    // (ex: "cancelar pedido", "pedido por engano, cancelar pedido") —
+    // cliente já decidiu que não quer mais o produto, tratado como
+    // Risco Alto mesmo em tom neutro.
+    "cancelar pedido", "cancelar o pedido", "cancelar meu pedido",
+    "cancele pedido", "cancele o pedido", "cancele meu pedido",
+    "quero cancelar", "gostaria de cancelar", "cancelar minha compra",
+    "cancelar a compra", "cancelar assinatura", "cancelar minha assinatura",
+
     "i want my money back", "i want a refund", "i want my refund",
     "give me a refund", "refund me now", "refund now", "refund immediately",
     "cancel my order immediately", "cancel immediately",
+    "cancel my order", "cancel the order", "cancel order",
+    "want to cancel", "i'd like to cancel", "cancel my subscription",
+    "cancel subscription",
   ];
 
   // Peso 2: cliente já demonstra forte insatisfação (reclamação incisiva,
