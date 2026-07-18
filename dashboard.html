@@ -65,6 +65,44 @@
     </details>
 
     <!-- ============================================================
+         FCR (First Contact Resolution) — estimativa própria: marca o
+         ticket quando a resposta é copiada, e depois de alguns dias
+         verifica se o cliente voltou a escrever no mesmo ticket. O
+         Freshdesk não expõe pronto o histórico de reabertura nesta conta.
+         ============================================================ -->
+    <details class="results-section metrics-accordion" open>
+      <summary class="metrics-accordion-title">
+        <span>Resolução no Primeiro Contato (FCR)</span>
+        <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
+      </summary>
+      <div class="metrics-accordion-body">
+        <p class="ai-note">Estimativa própria (o Freshdesk não fornece isso pronto nesta conta): quando uma resposta é copiada para um ticket buscado no Freshdesk, o caso fica "aguardando" por 3 dias. Se o cliente não escrever de novo nesse ticket nesse período, conta como resolvido no primeiro contato; se escrever, conta como reaberto. Verifica sozinho 1x por dia — use o botão abaixo para forçar uma verificação imediata (só finaliza os casos cujos 3 dias já passaram).</p>
+
+        <button id="fcr-sync-btn" class="btn-secondary" type="button">🔄 Verificar agora</button>
+        <p id="fcr-sync-status" class="ticket-search-status" role="status" aria-live="polite"></p>
+
+        <section class="kpi-row" aria-label="Resumo de resolução no primeiro contato">
+          <article class="kpi-tile">
+            <span class="kpi-label">Esta semana</span>
+            <strong id="fcr-rate-semana" class="kpi-value">--</strong>
+            <span id="fcr-total-semana" class="kpi-sub">--</span>
+          </article>
+          <article class="kpi-tile">
+            <span class="kpi-label">Últimas <span id="fcr-periodo-semanas">8</span> semanas</span>
+            <strong id="fcr-rate-periodo" class="kpi-value">--</strong>
+            <span id="fcr-total-periodo" class="kpi-sub">--</span>
+          </article>
+        </section>
+
+        <div class="chart-legend" id="fcr-chart-legend"></div>
+        <div class="chart-wrap">
+          <svg id="fcr-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-label="Casos resolvidos no primeiro contato por semana"></svg>
+          <div id="fcr-chart-tooltip" class="chart-tooltip" hidden></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- ============================================================
          Volume de atendimento (respostas enviadas pelo site)
          ============================================================ -->
     <details class="results-section metrics-accordion">

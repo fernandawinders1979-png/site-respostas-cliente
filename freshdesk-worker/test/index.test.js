@@ -38,6 +38,9 @@ function createMockKv() {
     async put(key, value) {
       store.set(key, value);
     },
+    async delete(key) {
+      store.delete(key);
+    },
     async list({ prefix } = {}) {
       const keys = [...store.keys()]
         .filter((key) => !prefix || key.startsWith(prefix))
@@ -384,6 +387,121 @@ test("/csat-history devolve o número certo de semanas", async () => {
     testEnv,
   );
   assert.equal(res.status, 200);
+  const body = await res.json();
+  assert.equal(body.weeks.length, 4);
+});
+
+test("/fcr-start sem senha -> 401", async () => {
+  const res = await worker.fetch(postReq("/fcr-start", { ticketId: "123" }), { ...env, RISK_STATS: createMockKv() });
+  assert.equal(res.status, 401);
+});
+
+test("/fcr-start com ticketId inválido -> 400", async () => {
+  const res = await worker.fetch(
+    postReq("/fcr-start", { ticketId: "não-é-número" }, { "X-App-Token": "senha-correta" }),
+    { ...env, RISK_STATS: createMockKv() },
+  );
+  assert.equal(res.status, 400);
+});
+
+test("/fcr-sync não consulta nem conta tickets ainda dentro da janela de espera", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  await worker.fetch(postReq("/fcr-start", { ticketId: "58214" }, { "X-App-Token": "senha-correta" }), testEnv);
+
+  globalThis.fetch = async () => {
+    throw new Error("não deveria consultar o Freshdesk para ticket ainda dentro da janela!");
+  };
+
+  const res = await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal(res.status, 200);
+  const body = await res.json();
+  assert.equal(body.processed, 0);
+  assert.equal(body.pending, 1);
+
+  assert.ok(await testEnv.RISK_STATS.get("fcr:pending:58214"));
+});
+
+test("/fcr-sync: cliente não respondeu de novo após a janela -> conta como resolvido no 1º contato", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const quatroDiasAtras = new Date(Date.now() - 4 * 86400000).toISOString();
+  await testEnv.RISK_STATS.put("fcr:pending:58214", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
+
+  globalThis.fetch = async (url) => {
+    const { pathname } = new URL(url);
+    assert.equal(pathname, "/api/v2/tickets/58214/conversations");
+    return Response.json([{ incoming: false, created_at: quatroDiasAtras }]);
+  };
+
+  const syncRes = await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.processed, 1);
+  assert.equal(syncBody.pending, 0);
+  assert.equal(await testEnv.RISK_STATS.get("fcr:pending:58214"), null);
+
+  // Soma as últimas 2 semanas para não depender de em qual dia da semana o
+  // teste roda (a semana usada é a do firstResponseAt, não a de hoje).
+  const historyRes = await worker.fetch(
+    req("/fcr-history?weeks=2", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const { weeks } = await historyRes.json();
+  const totalSucesso = weeks.reduce((sum, week) => sum + week.sucesso, 0);
+  const totalReaberto = weeks.reduce((sum, week) => sum + week.reaberto, 0);
+  assert.equal(totalSucesso, 1);
+  assert.equal(totalReaberto, 0);
+});
+
+test("/fcr-sync: cliente respondeu de novo depois da nossa resposta -> conta como reaberto", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const quatroDiasAtras = new Date(Date.now() - 4 * 86400000).toISOString();
+  const tresDiasAtras = new Date(Date.now() - 3.5 * 86400000).toISOString();
+  await testEnv.RISK_STATS.put("fcr:pending:58215", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
+
+  globalThis.fetch = async () =>
+    Response.json([
+      { incoming: false, created_at: quatroDiasAtras },
+      { incoming: true, created_at: tresDiasAtras },
+    ]);
+
+  await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+
+  const historyRes = await worker.fetch(
+    req("/fcr-history?weeks=2", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const { weeks } = await historyRes.json();
+  const totalSucesso = weeks.reduce((sum, week) => sum + week.sucesso, 0);
+  const totalReaberto = weeks.reduce((sum, week) => sum + week.reaberto, 0);
+  assert.equal(totalSucesso, 0);
+  assert.equal(totalReaberto, 1);
+});
+
+test("/fcr-sync erro ao consultar o Freshdesk mantém o ticket pendente para a próxima varredura", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const quatroDiasAtras = new Date(Date.now() - 4 * 86400000).toISOString();
+  await testEnv.RISK_STATS.put("fcr:pending:58216", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
+
+  globalThis.fetch = async () => new Response("erro", { status: 500 });
+
+  const res = await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const body = await res.json();
+  assert.equal(body.processed, 0);
+  assert.equal(body.pending, 1);
+  assert.ok(await testEnv.RISK_STATS.get("fcr:pending:58216"));
+});
+
+test("/fcr-stats sem nenhum ticket finalizado -> rate null", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const res = await worker.fetch(req("/fcr-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const stats = await res.json();
+  assert.equal(stats.total, 0);
+  assert.equal(stats.rate, null);
+});
+
+test("/fcr-history devolve o número certo de semanas", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const res = await worker.fetch(req("/fcr-history?weeks=4", { "X-App-Token": "senha-correta" }), testEnv);
   const body = await res.json();
   assert.equal(body.weeks.length, 4);
 });

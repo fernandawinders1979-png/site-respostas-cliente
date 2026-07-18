@@ -46,6 +46,12 @@
   // verdade). Reseta sempre que um novo template é aplicado.
   let activeTemplateStatRecorded = false;
 
+  // Número do ticket carregado pela última busca no Freshdesk (null se
+  // nenhuma busca foi feita nesta sessão). Usado para marcar o início da
+  // "janela de espera" do FCR (First Contact Resolution) quando a resposta
+  // é copiada — ver recordFcrStart.
+  let currentTicketId = null;
+
   const loadSampleBtn = document.getElementById("load-sample-btn");
   const welcomePreview = document.getElementById("welcome-preview");
   const orderAssinatura = document.getElementById("order-assinatura");
@@ -1010,6 +1016,10 @@
         // cada atendimento normalmente copia só o idioma que vai usar.
         recordStatEvent("resposta", "total", "Respostas copiadas");
 
+        // Marca o início da janela de espera do FCR para o ticket carregado
+        // (se houver um). Ver comentário de recordFcrStart.
+        recordFcrStart();
+
         // Só conta o template como "usado" quando a resposta é de fato
         // copiada — clicar no template só pra ver como fica não deveria
         // entrar no ranking. Uma vez por template aplicado (copiar PT e
@@ -1245,6 +1255,7 @@
       const payload = await response.json();
       applyFreshdeskPayload(payload);
       updateWelcomePreview();
+      currentTicketId = ticketId.trim();
       if (payload.motivo) {
         recordStatEvent("motivo", payload.motivo, payload.motivo);
       }
@@ -1356,6 +1367,30 @@
         method: "POST",
         headers: { "Content-Type": "application/json", "X-App-Token": token },
         body: JSON.stringify({ category, key, label }),
+      });
+    } catch (error) {
+      // Sem internet ou Worker fora do ar: ignora, é só estatística extra.
+    }
+  }
+
+  /**
+   * Avisa o Worker que uma resposta acabou de ser copiada para um ticket
+   * carregado via busca no Freshdesk, para começar a contar a janela de
+   * espera do FCR (First Contact Resolution — ver dashboard de métricas).
+   * Só dispara quando o ticket veio de uma busca real (currentTicketId),
+   * nunca em respostas montadas manualmente sem número de ticket. Mesmo
+   * padrão silencioso das outras estatísticas: nunca interrompe o
+   * atendimento se falhar.
+   */
+  async function recordFcrStart() {
+    const token = getStoredAppToken();
+    if (!token || !currentTicketId) return;
+
+    try {
+      await fetch(`${FRESHDESK_WORKER_URL}/fcr-start`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-App-Token": token },
+        body: JSON.stringify({ ticketId: currentTicketId }),
       });
     } catch (error) {
       // Sem internet ou Worker fora do ar: ignora, é só estatística extra.

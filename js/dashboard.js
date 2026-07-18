@@ -41,6 +41,14 @@
     insatisfeito: { label: "Insatisfeito", color: "#c73e3a", shape: "triangle", dash: "2,4" },
   };
 
+  // Mesma linguagem visual: sucesso reaproveita o verde-azulado de "bom",
+  // reaberto reaproveita o vermelho de "ruim".
+  const FCR_ORDER = ["sucesso", "reaberto"];
+  const FCR_META = {
+    sucesso: { label: "Resolvido no 1º contato", color: "#1f9e8c", shape: "circle", dash: "" },
+    reaberto: { label: "Precisou de novo contato", color: "#c73e3a", shape: "triangle", dash: "2,4" },
+  };
+
   const statusEl = document.getElementById("metrics-status");
   const legendEl = document.getElementById("chart-legend");
   const chartEl = document.getElementById("trend-chart");
@@ -52,6 +60,10 @@
   const csatTooltipEl = document.getElementById("csat-chart-tooltip");
   const csatSyncBtn = document.getElementById("csat-sync-btn");
   const csatSyncStatusEl = document.getElementById("csat-sync-status");
+  const fcrChartEl = document.getElementById("fcr-chart");
+  const fcrTooltipEl = document.getElementById("fcr-chart-tooltip");
+  const fcrSyncBtn = document.getElementById("fcr-sync-btn");
+  const fcrSyncStatusEl = document.getElementById("fcr-sync-status");
 
   const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 
@@ -205,6 +217,38 @@
     document.getElementById("csat-periodo-semanas").textContent = String(HISTORY_WEEKS);
   }
 
+  /**
+   * Mostra a taxa de FCR já formatada, ou uma mensagem quando ainda não há
+   * nenhum caso finalizado no período (casos ainda "aguardando" os 3 dias
+   * não contam aqui — só aparecem quando a janela de espera termina).
+   * @param {number|null} rate
+   * @returns {string}
+   */
+  function formatFcrRate(rate) {
+    return rate === null || rate === undefined ? "Sem casos finalizados" : `${rate}%`;
+  }
+
+  /**
+   * @param {Object} stats semana atual (GET /fcr-stats)
+   * @param {Array} history últimas HISTORY_WEEKS semanas (mais antiga -> mais recente)
+   */
+  function renderFcrKpis(stats, history) {
+    document.getElementById("fcr-rate-semana").textContent = formatFcrRate(stats.rate);
+    document.getElementById("fcr-total-semana").textContent =
+      stats.total > 0
+        ? `${stats.total} caso(s) — ${stats.sucesso} no 1º contato, ${stats.reaberto} precisaram de novo contato`
+        : "Nenhum caso finalizado esta semana";
+
+    const totalSucesso = history.reduce((sum, week) => sum + week.sucesso, 0);
+    const totalCasos = history.reduce((sum, week) => sum + week.total, 0);
+    const periodRate = totalCasos > 0 ? Math.round((totalSucesso / totalCasos) * 1000) / 10 : null;
+
+    document.getElementById("fcr-rate-periodo").textContent = formatFcrRate(periodRate);
+    document.getElementById("fcr-total-periodo").textContent =
+      totalCasos > 0 ? `${totalCasos} caso(s) finalizado(s) no período` : "Nenhum caso finalizado no período";
+    document.getElementById("fcr-periodo-semanas").textContent = String(HISTORY_WEEKS);
+  }
+
   /* =========================================================
      Legenda (ícone com formato + cor + nome escrito — nunca só a cor)
      ========================================================= */
@@ -239,6 +283,10 @@
 
   function renderCsatLegend() {
     renderLegendInto(document.getElementById("csat-chart-legend"), CSAT_ORDER, CSAT_META);
+  }
+
+  function renderFcrLegend() {
+    renderLegendInto(document.getElementById("fcr-chart-legend"), FCR_ORDER, FCR_META);
   }
 
   /* =========================================================
@@ -514,6 +562,116 @@
   }
 
   /* =========================================================
+     Gráfico de tendência de FCR (sucesso/reaberto por semana). Mesma
+     técnica de desenho de novo, mantida separada por segurança (ver
+     comentário em renderCsatChart).
+     ========================================================= */
+  function showFcrTooltip(week, chartX) {
+    if (!fcrTooltipEl || !fcrChartEl) return;
+    fcrTooltipEl.innerHTML = `
+      <strong>${shortWeekLabel(week.week)}</strong><br>
+      🟢 Resolvido no 1º contato: ${week.sucesso}<br>
+      🔴 Precisou de novo contato: ${week.reaberto}<br>
+      Taxa: ${formatFcrRate(week.rate)}
+    `;
+    fcrTooltipEl.hidden = false;
+
+    const chartRect = fcrChartEl.getBoundingClientRect();
+    const relativeX = (chartX / CHART_WIDTH) * chartRect.width;
+    fcrTooltipEl.style.left = `${Math.min(relativeX + 12, chartRect.width - 160)}px`;
+    fcrTooltipEl.style.top = "8px";
+  }
+
+  function hideFcrTooltip() {
+    if (fcrTooltipEl) fcrTooltipEl.hidden = true;
+  }
+
+  function renderFcrChart(history) {
+    if (!fcrChartEl) return;
+    fcrChartEl.innerHTML = "";
+
+    const rawMax = Math.max(1, ...history.flatMap((week) => FCR_ORDER.map((level) => week[level])));
+    const maxValue = Math.ceil(rawMax * 1.15);
+    const count = history.length;
+
+    const gridTicks = 4;
+    for (let i = 0; i <= gridTicks; i++) {
+      const value = Math.round((maxValue * i) / gridTicks);
+      const y = yForValue(value, maxValue);
+      fcrChartEl.appendChild(
+        svgEl("line", { x1: MARGIN.left, x2: CHART_WIDTH - MARGIN.right, y1: y, y2: y, class: "chart-gridline" }),
+      );
+      const label = svgEl("text", { x: MARGIN.left - 8, y: y + 3, class: "chart-axis-label", "text-anchor": "end" });
+      label.textContent = String(value);
+      fcrChartEl.appendChild(label);
+    }
+
+    history.forEach((week, index) => {
+      if (count > 8 && index % 2 !== 0 && index !== count - 1) return;
+      const x = xForIndex(index, count);
+      const label = svgEl("text", { x, y: CHART_HEIGHT - MARGIN.bottom + 18, class: "chart-axis-label", "text-anchor": "middle" });
+      label.textContent = shortWeekLabel(week.week);
+      fcrChartEl.appendChild(label);
+    });
+
+    FCR_ORDER.forEach((level) => {
+      const meta = FCR_META[level];
+      const points = history.map((week, index) => ({
+        x: xForIndex(index, count),
+        y: yForValue(week[level], maxValue),
+        value: week[level],
+      }));
+
+      const pathData = points.map((point, index) => `${index === 0 ? "M" : "L"}${point.x},${point.y}`).join(" ");
+      fcrChartEl.appendChild(
+        svgEl("path", { d: pathData, class: "chart-line", stroke: meta.color, "stroke-dasharray": meta.dash, fill: "none" }),
+      );
+
+      points.forEach((point) => fcrChartEl.appendChild(buildMarkerShape(meta.shape, point.x, point.y, meta.color)));
+
+      const last = points[points.length - 1];
+      const directLabel = svgEl("text", {
+        x: Math.min(last.x + 8, CHART_WIDTH - MARGIN.right + 2),
+        y: last.y + 4,
+        class: "chart-direct-label",
+        fill: meta.color,
+      });
+      directLabel.textContent = `${meta.label} (${last.value})`;
+      fcrChartEl.appendChild(directLabel);
+    });
+
+    const crosshair = svgEl("line", {
+      x1: 0, x2: 0, y1: MARGIN.top, y2: CHART_HEIGHT - MARGIN.bottom, class: "chart-crosshair", visibility: "hidden",
+    });
+    fcrChartEl.appendChild(crosshair);
+
+    const columnWidth = count <= 1 ? PLOT_WIDTH : PLOT_WIDTH / (count - 1);
+    history.forEach((week, index) => {
+      const x = xForIndex(index, count);
+      const hitZone = svgEl("rect", {
+        x: x - columnWidth / 2,
+        y: MARGIN.top,
+        width: columnWidth,
+        height: PLOT_HEIGHT,
+        class: "chart-hit-zone",
+      });
+
+      hitZone.addEventListener("mouseenter", () => {
+        crosshair.setAttribute("x1", x);
+        crosshair.setAttribute("x2", x);
+        crosshair.setAttribute("visibility", "visible");
+        showFcrTooltip(week, x);
+      });
+      hitZone.addEventListener("mouseleave", () => {
+        crosshair.setAttribute("visibility", "hidden");
+        hideFcrTooltip();
+      });
+
+      fcrChartEl.appendChild(hitZone);
+    });
+  }
+
+  /* =========================================================
      Tabela (alternativa acessível ao gráfico, sempre disponível)
      ========================================================= */
   function renderTable(history) {
@@ -697,19 +855,25 @@
       const rankingUrl = (category) =>
         `${FRESHDESK_WORKER_URL}/stat-ranking?category=${category}&weeks=${HISTORY_WEEKS}&limit=${RANKING_LIMIT}`;
 
-      const [statsRes, historyRes, motivoRes, templateRes, volumeRes, csatStatsRes, csatHistoryRes] = await Promise.all([
-        fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
-        fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
-        fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
-        fetch(rankingUrl("template"), { headers: { "X-App-Token": token } }),
-        fetch(`${FRESHDESK_WORKER_URL}/stat-history?category=resposta&key=total&weeks=${HISTORY_WEEKS}`, {
-          headers: { "X-App-Token": token },
-        }),
-        fetch(`${FRESHDESK_WORKER_URL}/csat-stats`, { headers: { "X-App-Token": token } }),
-        fetch(`${FRESHDESK_WORKER_URL}/csat-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
-      ]);
+      const [statsRes, historyRes, motivoRes, templateRes, volumeRes, csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes] =
+        await Promise.all([
+          fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
+          fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
+          fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
+          fetch(rankingUrl("template"), { headers: { "X-App-Token": token } }),
+          fetch(`${FRESHDESK_WORKER_URL}/stat-history?category=resposta&key=total&weeks=${HISTORY_WEEKS}`, {
+            headers: { "X-App-Token": token },
+          }),
+          fetch(`${FRESHDESK_WORKER_URL}/csat-stats`, { headers: { "X-App-Token": token } }),
+          fetch(`${FRESHDESK_WORKER_URL}/csat-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+          fetch(`${FRESHDESK_WORKER_URL}/fcr-stats`, { headers: { "X-App-Token": token } }),
+          fetch(`${FRESHDESK_WORKER_URL}/fcr-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        ]);
 
-      const responses = [statsRes, historyRes, motivoRes, templateRes, volumeRes, csatStatsRes, csatHistoryRes];
+      const responses = [
+        statsRes, historyRes, motivoRes, templateRes, volumeRes,
+        csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes,
+      ];
       if (responses.some((res) => res.status === 401)) {
         clearStoredToken();
         setStatus("Senha de equipe incorreta. Recarregue a página para tentar de novo.", "error");
@@ -728,6 +892,8 @@
       const volumeHistory = await volumeRes.json();
       const csatStats = await csatStatsRes.json();
       const { weeks: csatHistory } = await csatHistoryRes.json();
+      const fcrStats = await fcrStatsRes.json();
+      const { weeks: fcrHistory } = await fcrHistoryRes.json();
 
       const history = fullHistory.slice(-HISTORY_WEEKS);
       const previousHistory = fullHistory.slice(0, Math.max(0, fullHistory.length - HISTORY_WEEKS));
@@ -742,6 +908,9 @@
       renderCsatKpis(csatStats, csatHistory);
       renderCsatLegend();
       renderCsatChart(csatHistory);
+      renderFcrKpis(fcrStats, fcrHistory);
+      renderFcrLegend();
+      renderFcrChart(fcrHistory);
 
       const volumeTotalEl = document.getElementById("volume-total-semana");
       if (volumeTotalEl) {
@@ -805,6 +974,59 @@
 
   if (csatSyncBtn) {
     csatSyncBtn.addEventListener("click", handleCsatSyncClick);
+  }
+
+  /**
+   * Botão "Verificar agora" do FCR: chama POST /fcr-sync (o mesmo processo
+   * que roda sozinho 1x por dia) e recarrega as métricas em seguida. Só
+   * finaliza os casos cuja janela de espera de FCR_WINDOW_DAYS já passou —
+   * clicar logo depois de copiar uma resposta não muda nada ainda.
+   */
+  async function handleFcrSyncClick() {
+    const token = getAppToken();
+    if (!token || !fcrSyncBtn || !fcrSyncStatusEl) return;
+
+    fcrSyncBtn.disabled = true;
+    fcrSyncStatusEl.textContent = "🔄 Verificando com o Freshdesk...";
+    fcrSyncStatusEl.className = "ticket-search-status";
+
+    try {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/fcr-sync`, {
+        method: "POST",
+        headers: { "X-App-Token": token },
+      });
+
+      if (response.status === 401) {
+        clearStoredToken();
+        fcrSyncStatusEl.textContent = "Senha de equipe incorreta. Recarregue a página para tentar de novo.";
+        fcrSyncStatusEl.className = "ticket-search-status is-error";
+        return;
+      }
+
+      if (!response.ok) {
+        fcrSyncStatusEl.textContent = "Não foi possível verificar agora. Tente de novo em instantes.";
+        fcrSyncStatusEl.className = "ticket-search-status is-error";
+        return;
+      }
+
+      const result = await response.json();
+      fcrSyncStatusEl.textContent =
+        result.processed > 0
+          ? `✅ ${result.processed} caso(s) finalizado(s). ${result.pending} ainda aguardando os 3 dias.`
+          : `✅ Verificado — nenhum caso com a janela de espera concluída ainda (${result.pending} aguardando).`;
+      fcrSyncStatusEl.className = "ticket-search-status is-success";
+
+      await loadMetrics();
+    } catch (error) {
+      fcrSyncStatusEl.textContent = "Erro de conexão. Verifique sua internet e tente de novo.";
+      fcrSyncStatusEl.className = "ticket-search-status is-error";
+    } finally {
+      fcrSyncBtn.disabled = false;
+    }
+  }
+
+  if (fcrSyncBtn) {
+    fcrSyncBtn.addEventListener("click", handleFcrSyncClick);
   }
 
   document.querySelectorAll(".ranking-weeks-count").forEach((el) => {

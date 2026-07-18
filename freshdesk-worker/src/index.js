@@ -29,6 +29,20 @@
  *                            e nota (% feliz) da semana atual
  *   GET  /csat-history     — mesmos contadores das últimas N semanas, para
  *                            o gráfico de tendência de satisfação
+ *   POST /fcr-start        — marca que uma resposta acabou de ser copiada
+ *                            para um ticket (primeiro contato), começando a
+ *                            "janela de espera" de FCR_WINDOW_DAYS dias
+ *   POST /fcr-sync         — verifica os tickets cuja janela de espera já
+ *                            passou: se o cliente não escreveu de novo
+ *                            nesse ticket depois da resposta, conta como
+ *                            resolvido no primeiro contato; se escreveu,
+ *                            conta como "precisou de novo contato". Roda
+ *                            sozinho 1x por dia (ver `scheduled`), mas
+ *                            também pode ser chamado manualmente
+ *   GET  /fcr-stats        — contadores de FCR (sucesso/reaberto) e taxa
+ *                            (% sucesso) da semana atual
+ *   GET  /fcr-history      — mesmos contadores das últimas N semanas, para
+ *                            o gráfico de tendência de FCR
  * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
@@ -47,6 +61,17 @@ const CSAT_LEVELS = ["feliz", "neutro", "insatisfeito"];
 const CSAT_SYNC_PER_PAGE = 100;
 const CSAT_SYNC_MAX_PAGES = 10;
 const CSAT_LAST_SYNCED_ID_KEY = "csat:lastSyncedId";
+
+// FCR (First Contact Resolution) é calculado por conta própria, não vem
+// pronto do Freshdesk: a API de histórico de status (/activities) não está
+// disponível nesta conta/plano (conferido ao vivo), e não existe nenhum
+// campo customizado já usado pelo time para marcar reabertura. A aproximação
+// usada aqui: quando uma resposta é copiada para um ticket, guardamos o
+// horário; depois de FCR_WINDOW_DAYS dias, verificamos se o cliente mandou
+// alguma mensagem nova nesse ticket depois desse horário. Se não mandou,
+// conta como resolvido no primeiro contato; se mandou, conta como reaberto.
+const FCR_WINDOW_DAYS = 3;
+const FCR_PENDING_PREFIX = "fcr:pending:";
 
 // Categorias aceitas em /stat-event, /stat-ranking e /stat-history. Motivo e
 // template têm uma lista aberta de valores; resposta usa sempre a mesma
@@ -526,6 +551,200 @@ async function handleCsatHistory(env, weeksParam) {
 }
 
 /**
+ * Trata POST /fcr-start: registra que uma resposta acabou de ser copiada
+ * para um ticket, começando a janela de espera. Se o ticket já estiver
+ * pendente (o atendente copiou mais de uma vez o mesmo caso, ex: PT e
+ * depois EN), mantém o horário já guardado — o relógio começa a contar no
+ * primeiro contato, não no último.
+ * @param {Request} request
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleFcrStart(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (error) {
+    return jsonResponse({ error: "Corpo da requisição inválido." }, 400);
+  }
+
+  const ticketId = typeof body.ticketId === "string" ? body.ticketId.trim() : "";
+  if (!ticketId || !/^\d+$/.test(ticketId)) {
+    return jsonResponse({ error: "Campo ticketId é obrigatório (número do ticket)." }, 400);
+  }
+
+  const key = `${FCR_PENDING_PREFIX}${ticketId}`;
+  const existing = await env.RISK_STATS.get(key);
+  if (!existing) {
+    await env.RISK_STATS.put(key, JSON.stringify({ firstResponseAt: new Date().toISOString() }));
+  }
+
+  return jsonResponse({ ok: true });
+}
+
+/**
+ * Busca as conversas do ticket no Freshdesk e verifica se o cliente mandou
+ * alguma mensagem depois do horário da nossa resposta.
+ * @param {Object} env
+ * @param {string} ticketId
+ * @param {string} firstResponseAt
+ * @returns {Promise<boolean>} true = resolvido no primeiro contato (cliente não voltou)
+ */
+async function classifyFcrOutcome(env, ticketId, firstResponseAt) {
+  const conversations = await freshdeskGet(env, `/api/v2/tickets/${ticketId}/conversations?per_page=100`);
+  const firstResponseTime = new Date(firstResponseAt).getTime();
+
+  const customerRepliedAfter = (conversations || []).some((entry) => {
+    if (!entry.incoming) return false;
+    const createdAt = new Date(entry.created_at || 0).getTime();
+    return createdAt > firstResponseTime;
+  });
+
+  return !customerRepliedAfter;
+}
+
+/**
+ * Soma 1 no contador FCR de uma semana/resultado.
+ * @param {Object} env
+ * @param {string} week
+ * @param {"sucesso"|"reaberto"} outcome
+ */
+async function incrementFcrCounter(env, week, outcome) {
+  const key = `fcr:${week}:${outcome}`;
+  const current = Number(await env.RISK_STATS.get(key)) || 0;
+  await env.RISK_STATS.put(key, String(current + 1));
+}
+
+/**
+ * Percorre os tickets pendentes de FCR e finaliza os que já passaram da
+ * janela de espera (FCR_WINDOW_DAYS), consultando o Freshdesk para saber se
+ * o cliente voltou a escrever. Tickets ainda dentro da janela, ou que dão
+ * erro na consulta (ex: Freshdesk fora do ar), continuam pendentes para a
+ * próxima varredura.
+ * @param {Object} env
+ * @returns {Promise<{processed: number, pending: number}>}
+ */
+async function sweepFcrPending(env) {
+  const { keys } = await env.RISK_STATS.list({ prefix: FCR_PENDING_PREFIX });
+  const now = Date.now();
+  let processed = 0;
+  let pending = 0;
+
+  for (const keyObj of keys) {
+    const raw = await env.RISK_STATS.get(keyObj.name);
+    if (!raw) continue;
+
+    let firstResponseAt;
+    try {
+      ({ firstResponseAt } = JSON.parse(raw));
+    } catch (error) {
+      await env.RISK_STATS.delete(keyObj.name);
+      continue;
+    }
+
+    const firstResponseTime = new Date(firstResponseAt).getTime();
+    if (!Number.isFinite(firstResponseTime)) {
+      await env.RISK_STATS.delete(keyObj.name);
+      continue;
+    }
+
+    const ageDays = (now - firstResponseTime) / 86400000;
+    if (ageDays < FCR_WINDOW_DAYS) {
+      pending += 1;
+      continue;
+    }
+
+    const ticketId = keyObj.name.slice(FCR_PENDING_PREFIX.length);
+    try {
+      const resolvedFirstContact = await classifyFcrOutcome(env, ticketId, firstResponseAt);
+      const week = getIsoWeekKey(new Date(firstResponseAt));
+      await incrementFcrCounter(env, week, resolvedFirstContact ? "sucesso" : "reaberto");
+      await env.RISK_STATS.delete(keyObj.name);
+      processed += 1;
+    } catch (error) {
+      // Não deu pra confirmar agora (ticket excluído, Freshdesk fora do ar
+      // etc.) — mantém pendente e tenta de novo na próxima varredura.
+      pending += 1;
+    }
+  }
+
+  return { processed, pending };
+}
+
+/**
+ * Trata POST /fcr-sync.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleFcrSync(env) {
+  try {
+    const result = await sweepFcrPending(env);
+    return jsonResponse({ ok: true, ...result });
+  } catch (error) {
+    return jsonResponse({ error: "Não foi possível verificar os chamados agora." }, 502);
+  }
+}
+
+/**
+ * Busca no KV os contadores de FCR de uma semana e calcula a taxa (%
+ * resolvido no primeiro contato sobre o total já finalizado).
+ * @param {Object} env
+ * @param {string} week
+ * @returns {Promise<Object>} ex: { week, sucesso, reaberto, total, rate }
+ */
+async function readWeekFcr(env, week) {
+  const [sucesso, reaberto] = await Promise.all([
+    env.RISK_STATS.get(`fcr:${week}:sucesso`),
+    env.RISK_STATS.get(`fcr:${week}:reaberto`),
+  ]);
+
+  const entry = {
+    week,
+    sucesso: Number(sucesso) || 0,
+    reaberto: Number(reaberto) || 0,
+  };
+  entry.total = entry.sucesso + entry.reaberto;
+  entry.rate = entry.total > 0 ? Math.round((entry.sucesso / entry.total) * 1000) / 10 : null;
+  return entry;
+}
+
+/**
+ * Trata GET /fcr-stats: devolve os contadores e a taxa de FCR da semana
+ * atual (semana em que a primeira resposta foi copiada, não a semana em
+ * que a verificação aconteceu).
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleFcrStats(env) {
+  const stats = await readWeekFcr(env, getIsoWeekKey(new Date()));
+  return jsonResponse(stats);
+}
+
+/**
+ * Trata GET /fcr-history: devolve os contadores e a taxa de FCR das
+ * últimas N semanas (da mais antiga para a mais recente).
+ * @param {Object} env
+ * @param {string|null} weeksParam
+ * @returns {Promise<Response>}
+ */
+async function handleFcrHistory(env, weeksParam) {
+  const requested = parseInt(weeksParam, 10);
+  const weeks = Math.min(
+    Math.max(Number.isFinite(requested) ? requested : DEFAULT_HISTORY_WEEKS, 1),
+    MAX_HISTORY_WEEKS,
+  );
+
+  const now = new Date();
+  const weekKeys = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    weekKeys.push(getIsoWeekKey(new Date(now.getTime() - i * 7 * 86400000)));
+  }
+
+  const history = await Promise.all(weekKeys.map((week) => readWeekFcr(env, week)));
+  return jsonResponse({ weeks: history });
+}
+
+/**
  * Transforma um texto livre (ex: "Atraso na Entrega") numa chave segura
  * para o KV: minúsculo, sem acento, só letras/números/hífen, tamanho
  * limitado. Usado para agrupar motivos/templates que só diferem em
@@ -737,6 +956,22 @@ export default {
       return handleCsatHistory(env, url.searchParams.get("weeks"));
     }
 
+    if (request.method === "POST" && url.pathname === "/fcr-start") {
+      return handleFcrStart(request, env);
+    }
+
+    if (request.method === "POST" && url.pathname === "/fcr-sync") {
+      return handleFcrSync(env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/fcr-stats") {
+      return handleFcrStats(env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/fcr-history") {
+      return handleFcrHistory(env, url.searchParams.get("weeks"));
+    }
+
     const match = url.pathname.match(/^\/ticket\/(\d+)$/);
     if (!match) {
       return jsonResponse({ error: "Rota não encontrada. Use /ticket/{numero}." }, 404);
@@ -768,10 +1003,12 @@ export default {
 
   /**
    * Gatilho agendado (ver [triggers] em wrangler.toml): roda sozinho 1x por
-   * dia e busca as respostas novas da pesquisa de satisfação no Freshdesk,
-   * sem precisar que ninguém abra o dashboard.
+   * dia — busca as respostas novas da pesquisa de satisfação (CSAT) e
+   * verifica os tickets de FCR cuja janela de espera já passou — sem
+   * precisar que ninguém abra o dashboard.
    */
   async scheduled(event, env, ctx) {
     ctx.waitUntil(syncCsatRatings(env));
+    ctx.waitUntil(sweepFcrPending(env));
   },
 };
