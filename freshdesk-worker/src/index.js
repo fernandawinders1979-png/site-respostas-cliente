@@ -134,16 +134,32 @@ const MAX_RANKING_LIMIT = 20;
 
 // Nomes técnicos reais dos campos personalizados do CHAMADO, conferidos via
 // API em GET /api/v2/ticket_fields na conta hebevi.freshdesk.com.
+//
+// "produto" usa cf_slug_da_loja_cartpanda (rótulo real: "#Slug [PAGAMERICAN
+// - PRODUTO]") como fallback: a empresa não usa mais CartPanda desde
+// 2026-07-18 (hoje é PagAmerican + Shopify, ~99% Shopify), então o campo do
+// CONTATO "loja_cartpanda" nunca mais é preenchido. Esse campo do ticket é
+// a única fonte de produto que resta, mas a qualidade é inconsistente (às
+// vezes vem "00" ou o nome do gateway em vez do produto) — combinado com a
+// dona do site usar mesmo assim e corrigir na mão quando vier errado.
 const CUSTOM_FIELD_CANDIDATES = {
   numeroPedido: ["cf_pedido_cart", "cf_nmero_pedido_eagle_labs"],
+  produto: ["cf_slug_da_loja_cartpanda"],
   status: ["cf_status_pedido_suporte_ativo", "cf_status_do_atendimento"],
   codigoRastreio: ["cf_rastreio_17track", "cf_novo_nmero_de_rastreio"],
   endereco: ["cf_se_endereo_for_diferente_da_cp_informar_o_correto_aqui"],
 };
 
 // Nomes técnicos reais dos campos personalizados do CONTATO, conferidos via
-// API em GET /api/v2/contact_fields — é onde os dados do pedido da
-// CartPanda ficam salvos nesta conta (não no chamado).
+// API em GET /api/v2/contact_fields. Estes campos só eram preenchidos pela
+// integração antiga com a CartPanda (não usada desde 2026-07-18) — hoje
+// vêm sempre vazios, mas mantidos como primeira tentativa (fallback para os
+// campos do CHAMADO acima) para não quebrar nada se a integração antiga for
+// reativada num pedido antigo. "valorTotal" não tem nenhum campo
+// substituto: essa informação simplesmente não chega mais no Freshdesk
+// (a PagAmerican/Shopify não tem a mesma integração automática que a
+// CartPanda tinha) — combinado com a dona do site de digitar esse valor à
+// mão por enquanto.
 const CONTACT_FIELD_CANDIDATES = {
   numeroPedido: ["id_do_pedido_cartpanda", "pedido_cartpanda"],
   produto: ["loja_cartpanda"],

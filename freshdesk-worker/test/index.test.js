@@ -906,3 +906,52 @@ test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   assert.match(payload.conversationText, /Atendente: Claro/);
   assert.doesNotMatch(payload.conversationText, /nota interna/);
 });
+
+test("busca com sucesso -> pedido sem CartPanda usa o produto do campo do ticket (PagAmerican/Shopify)", async () => {
+  globalThis.fetch = async (url) => {
+    const { pathname } = new URL(url);
+
+    if (pathname === "/api/v2/tickets/73336") {
+      return Response.json({
+        id: 73336,
+        requester_id: 555,
+        responder_id: null,
+        tags: [],
+        created_at: "2026-07-18T16:46:38Z",
+        description_text: "Produto veio errado",
+        custom_fields: {
+          cf_pedido_cart: "86788",
+          cf_slug_da_loja_cartpanda: "BadBadRock - Beef Organ Complex",
+          cf_status_do_atendimento: "Respondido [Aguardando cliente]",
+        },
+      });
+    }
+
+    if (pathname === "/api/v2/tickets/73336/conversations") {
+      return Response.json([]);
+    }
+
+    if (pathname === "/api/v2/contacts/555") {
+      // Conta sem CartPanda: os campos de contato antigos vêm sempre nulos.
+      return Response.json({
+        name: "Carlos Souza",
+        email: "carlos@exemplo.com",
+        custom_fields: {
+          id_do_pedido_cartpanda: null,
+          loja_cartpanda: null,
+          vlr_da_ltima_compra: null,
+        },
+      });
+    }
+
+    throw new Error("URL inesperada: " + pathname);
+  };
+
+  const res = await worker.fetch(req("/ticket/73336", { "X-App-Token": "senha-correta" }), env);
+  assert.equal(res.status, 200);
+  const payload = await res.json();
+
+  assert.equal(payload.numeroPedido, "86788");
+  assert.equal(payload.produto, "BadBadRock - Beef Organ Complex");
+  assert.equal(payload.valorTotal, ""); // sem fonte nenhuma no Freshdesk hoje — fica em branco de propósito
+});
