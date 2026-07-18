@@ -506,6 +506,125 @@ test("/fcr-history devolve o número certo de semanas", async () => {
   assert.equal(body.weeks.length, 4);
 });
 
+test("/duration-sync sem senha -> 401", async () => {
+  const res = await worker.fetch(postReq("/duration-sync", {}), { ...env, RISK_STATS: createMockKv() });
+  assert.equal(res.status, 401);
+});
+
+test("/duration-sync soma FRT e AHT dos tickets com stats preenchidas", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const createdAt = new Date(Date.now() - 2 * 86400000).toISOString();
+  const updatedAt = new Date(Date.now() - 1 * 86400000).toISOString();
+  const firstRespondedAt = new Date(new Date(createdAt).getTime() + 30 * 60000).toISOString(); // 30 min depois
+  const resolvedAt = new Date(new Date(createdAt).getTime() + 240 * 60000).toISOString(); // 240 min depois
+
+  globalThis.fetch = async (url) => {
+    const { pathname, searchParams } = new URL(url);
+    if (pathname === "/api/v2/tickets") {
+      if (searchParams.get("page") === "1") {
+        return Response.json([{ id: 501, updated_at: updatedAt }]);
+      }
+      return Response.json([]);
+    }
+    if (pathname === "/api/v2/tickets/501") {
+      return Response.json({
+        id: 501,
+        created_at: createdAt,
+        stats: { first_responded_at: firstRespondedAt, resolved_at: resolvedAt },
+      });
+    }
+    throw new Error("URL inesperada: " + pathname);
+  };
+
+  const res = await worker.fetch(postReq("/duration-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal(res.status, 200);
+  const body = await res.json();
+  assert.equal(body.ticketsChecked, 1);
+  assert.equal(body.frtRecorded, 1);
+  assert.equal(body.ahtRecorded, 1);
+
+  // Soma as últimas 2 semanas para não depender de em qual dia da semana o
+  // teste roda (a semana usada é a do created_at do ticket, não a de hoje).
+  const frtRes = await worker.fetch(req("/frt-history?weeks=2", { "X-App-Token": "senha-correta" }), testEnv);
+  const { weeks: frtWeeks } = await frtRes.json();
+  const frtWeekWithData = frtWeeks.find((w) => w.count > 0);
+  assert.ok(frtWeekWithData, "esperava encontrar uma semana com dado de FRT");
+  assert.equal(frtWeekWithData.avgMinutes, 30);
+
+  const ahtRes = await worker.fetch(req("/aht-history?weeks=2", { "X-App-Token": "senha-correta" }), testEnv);
+  const { weeks: ahtWeeks } = await ahtRes.json();
+  const ahtWeekWithData = ahtWeeks.find((w) => w.count > 0);
+  assert.ok(ahtWeekWithData, "esperava encontrar uma semana com dado de AHT");
+  assert.equal(ahtWeekWithData.avgMinutes, 240);
+
+  // Sincronizar de novo não deve somar o mesmo ticket 2x.
+  const res2 = await worker.fetch(postReq("/duration-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const body2 = await res2.json();
+  assert.equal(body2.frtRecorded, 0);
+  assert.equal(body2.ahtRecorded, 0);
+});
+
+test("/duration-sync mantém tickets com erro na consulta para tentar de novo na próxima sincronização", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const createdAt = new Date(Date.now() - 2 * 86400000).toISOString();
+  const updatedAt = new Date(Date.now() - 1 * 86400000).toISOString();
+
+  let detailShouldFail = true;
+  globalThis.fetch = async (url) => {
+    const { pathname, searchParams } = new URL(url);
+    if (pathname === "/api/v2/tickets") {
+      if (searchParams.get("page") === "1") return Response.json([{ id: 601, updated_at: updatedAt }]);
+      return Response.json([]);
+    }
+    if (pathname === "/api/v2/tickets/601") {
+      if (detailShouldFail) return new Response("erro", { status: 500 });
+      return Response.json({
+        id: 601,
+        created_at: createdAt,
+        stats: { first_responded_at: createdAt, resolved_at: createdAt },
+      });
+    }
+    throw new Error("URL inesperada: " + pathname);
+  };
+
+  const first = await worker.fetch(postReq("/duration-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const firstBody = await first.json();
+  assert.equal(firstBody.frtRecorded, 0);
+  assert.equal(firstBody.ahtRecorded, 0);
+
+  // Na próxima sincronização o Freshdesk já responde bem: o ticket precisa
+  // ser tentado de novo (o cursor não pode ter avançado para além dele).
+  detailShouldFail = false;
+  const second = await worker.fetch(postReq("/duration-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const secondBody = await second.json();
+  assert.equal(secondBody.frtRecorded, 1);
+  assert.equal(secondBody.ahtRecorded, 1);
+});
+
+test("/frt-stats e /aht-stats sem nenhum ticket -> avgMinutes null", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  const frtRes = await worker.fetch(req("/frt-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const frtStats = await frtRes.json();
+  assert.equal(frtStats.count, 0);
+  assert.equal(frtStats.avgMinutes, null);
+
+  const ahtRes = await worker.fetch(req("/aht-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const ahtStats = await ahtRes.json();
+  assert.equal(ahtStats.count, 0);
+  assert.equal(ahtStats.avgMinutes, null);
+});
+
+test("/frt-history e /aht-history devolvem o número certo de semanas", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+
+  const frtRes = await worker.fetch(req("/frt-history?weeks=4", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await frtRes.json()).weeks.length, 4);
+
+  const ahtRes = await worker.fetch(req("/aht-history?weeks=4", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await ahtRes.json()).weeks.length, 4);
+});
+
 test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   globalThis.fetch = async (url) => {
     const { pathname } = new URL(url);

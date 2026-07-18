@@ -43,6 +43,19 @@
  *                            (% sucesso) da semana atual
  *   GET  /fcr-history      — mesmos contadores das últimas N semanas, para
  *                            o gráfico de tendência de FCR
+ *   POST /duration-sync    — busca no Freshdesk os tickets atualizados
+ *                            recentemente (com include=stats) e soma nos
+ *                            contadores semanais de FRT (tempo até a
+ *                            primeira resposta) e AHT (tempo até a
+ *                            resolução). Roda sozinho 1x por dia (ver
+ *                            `scheduled`), mas também pode ser chamado
+ *                            manualmente
+ *   GET  /frt-stats        — média de minutos até a primeira resposta e
+ *                            quantidade de tickets, na semana atual
+ *   GET  /frt-history      — mesmos dados das últimas N semanas
+ *   GET  /aht-stats        — média de minutos até a resolução e
+ *                            quantidade de tickets, na semana atual
+ *   GET  /aht-history      — mesmos dados das últimas N semanas
  * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
@@ -72,6 +85,22 @@ const CSAT_LAST_SYNCED_ID_KEY = "csat:lastSyncedId";
 // conta como resolvido no primeiro contato; se mandou, conta como reaberto.
 const FCR_WINDOW_DAYS = 3;
 const FCR_PENDING_PREFIX = "fcr:pending:";
+
+// FRT (First Response Time) e AHT (tempo até a resolução) vêm prontos do
+// Freshdesk: GET /api/v2/tickets/{id}?include=stats devolve um objeto
+// "stats" com first_responded_at e resolved_at (conferido ao vivo na conta
+// hebevi.freshdesk.com). Cada ticket só é somado 1x por métrica (flags
+// "done" no KV), e o cursor de sincronização (updated_since) só avança pela
+// sequência de tickets processados com sucesso — se algum falhar no meio do
+// lote, o cursor para ali, para não perder aquele ticket na próxima rodada.
+const DURATION_METRICS = {
+  frt: { statsField: "first_responded_at" },
+  aht: { statsField: "resolved_at" },
+};
+const DURATION_LAST_SYNCED_KEY = "duration:lastSyncedAt";
+const DURATION_SYNC_PER_PAGE = 100;
+const DURATION_SYNC_MAX_PAGES = 10;
+const DURATION_INITIAL_LOOKBACK_DAYS = 30;
 
 // Categorias aceitas em /stat-event, /stat-ranking e /stat-history. Motivo e
 // template têm uma lista aberta de valores; resposta usa sempre a mesma
@@ -745,6 +774,184 @@ async function handleFcrHistory(env, weeksParam) {
 }
 
 /**
+ * Busca no Freshdesk os tickets atualizados desde `sinceIso`, paginando até
+ * encontrar uma página incompleta ou até o limite de segurança
+ * DURATION_SYNC_MAX_PAGES.
+ * @param {Object} env
+ * @param {string} sinceIso
+ * @returns {Promise<Array>}
+ */
+async function fetchUpdatedTickets(env, sinceIso) {
+  const collected = [];
+  for (let page = 1; page <= DURATION_SYNC_MAX_PAGES; page++) {
+    const batch = await freshdeskGet(
+      env,
+      `/api/v2/tickets?updated_since=${encodeURIComponent(sinceIso)}&order_by=updated_at&order_type=asc&per_page=${DURATION_SYNC_PER_PAGE}&page=${page}`,
+    );
+    if (!Array.isArray(batch) || batch.length === 0) break;
+    collected.push(...batch);
+    if (batch.length < DURATION_SYNC_PER_PAGE) break;
+  }
+  return collected;
+}
+
+/**
+ * Soma uma amostra (em minutos) no acumulador semanal de uma métrica de
+ * duração (frt ou aht) — guarda soma e contagem separadas para poder
+ * calcular a média a qualquer momento.
+ * @param {Object} env
+ * @param {"frt"|"aht"} metric
+ * @param {string} week
+ * @param {number} minutes
+ */
+async function recordDurationSample(env, metric, week, minutes) {
+  const sumKey = `${metric}:${week}:sum`;
+  const countKey = `${metric}:${week}:count`;
+  const [currentSum, currentCount] = await Promise.all([
+    env.RISK_STATS.get(sumKey),
+    env.RISK_STATS.get(countKey),
+  ]);
+  await Promise.all([
+    env.RISK_STATS.put(sumKey, String((Number(currentSum) || 0) + minutes)),
+    env.RISK_STATS.put(countKey, String((Number(currentCount) || 0) + 1)),
+  ]);
+}
+
+/**
+ * Sincroniza FRT e AHT: busca os tickets tocados desde a última
+ * sincronização, pega o detalhe de cada um com include=stats, e soma nos
+ * contadores semanais os que ainda não tinham sido contados (flags
+ * "done" no KV evitam duplicar quando o mesmo ticket aparece de novo por
+ * outro motivo, ex: reaberto ou campo editado depois de resolvido).
+ * @param {Object} env
+ * @returns {Promise<{ticketsChecked: number, frtRecorded: number, ahtRecorded: number}>}
+ */
+async function syncDurationMetrics(env) {
+  const lastSyncedAt =
+    (await env.RISK_STATS.get(DURATION_LAST_SYNCED_KEY)) ||
+    new Date(Date.now() - DURATION_INITIAL_LOOKBACK_DAYS * 86400000).toISOString();
+
+  const tickets = await fetchUpdatedTickets(env, lastSyncedAt);
+
+  let frtRecorded = 0;
+  let ahtRecorded = 0;
+  let cursorAdvance = lastSyncedAt;
+  let stopAdvancing = false;
+
+  for (const summary of tickets) {
+    let detail;
+    try {
+      detail = await freshdeskGet(env, `/api/v2/tickets/${summary.id}?include=stats`);
+    } catch (error) {
+      stopAdvancing = true;
+      continue;
+    }
+
+    const stats = detail.stats || {};
+    const createdTime = new Date(detail.created_at).getTime();
+    const week = getIsoWeekKey(new Date(detail.created_at));
+
+    for (const [metric, config] of Object.entries(DURATION_METRICS)) {
+      const finishedAt = stats[config.statsField];
+      if (!finishedAt) continue;
+
+      const doneKey = `duration:${metric}Done:${summary.id}`;
+      if (await env.RISK_STATS.get(doneKey)) continue;
+
+      const minutes = (new Date(finishedAt).getTime() - createdTime) / 60000;
+      if (!Number.isFinite(minutes) || minutes < 0) continue;
+
+      await recordDurationSample(env, metric, week, minutes);
+      await env.RISK_STATS.put(doneKey, "1");
+      if (metric === "frt") frtRecorded += 1;
+      if (metric === "aht") ahtRecorded += 1;
+    }
+
+    if (!stopAdvancing && summary.updated_at) {
+      cursorAdvance = summary.updated_at;
+    }
+  }
+
+  if (cursorAdvance !== lastSyncedAt) {
+    await env.RISK_STATS.put(DURATION_LAST_SYNCED_KEY, cursorAdvance);
+  }
+
+  return { ticketsChecked: tickets.length, frtRecorded, ahtRecorded };
+}
+
+/**
+ * Trata POST /duration-sync.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleDurationSync(env) {
+  try {
+    const result = await syncDurationMetrics(env);
+    return jsonResponse({ ok: true, ...result });
+  } catch (error) {
+    return jsonResponse({ error: "Não foi possível sincronizar com o Freshdesk agora." }, 502);
+  }
+}
+
+/**
+ * Busca no KV a soma e a contagem de uma métrica de duração numa semana, e
+ * calcula a média em minutos.
+ * @param {Object} env
+ * @param {"frt"|"aht"} metric
+ * @param {string} week
+ * @returns {Promise<Object>} ex: { week, count, avgMinutes }
+ */
+async function readWeekDuration(env, metric, week) {
+  const [sum, count] = await Promise.all([
+    env.RISK_STATS.get(`${metric}:${week}:sum`),
+    env.RISK_STATS.get(`${metric}:${week}:count`),
+  ]);
+
+  const totalCount = Number(count) || 0;
+  const totalSum = Number(sum) || 0;
+  return {
+    week,
+    count: totalCount,
+    avgMinutes: totalCount > 0 ? Math.round((totalSum / totalCount) * 10) / 10 : null,
+  };
+}
+
+/**
+ * Trata GET /frt-stats e GET /aht-stats (mesma lógica, métrica diferente).
+ * @param {Object} env
+ * @param {"frt"|"aht"} metric
+ * @returns {Promise<Response>}
+ */
+async function handleDurationStats(env, metric) {
+  const stats = await readWeekDuration(env, metric, getIsoWeekKey(new Date()));
+  return jsonResponse(stats);
+}
+
+/**
+ * Trata GET /frt-history e GET /aht-history.
+ * @param {Object} env
+ * @param {"frt"|"aht"} metric
+ * @param {string|null} weeksParam
+ * @returns {Promise<Response>}
+ */
+async function handleDurationHistory(env, metric, weeksParam) {
+  const requested = parseInt(weeksParam, 10);
+  const weeks = Math.min(
+    Math.max(Number.isFinite(requested) ? requested : DEFAULT_HISTORY_WEEKS, 1),
+    MAX_HISTORY_WEEKS,
+  );
+
+  const now = new Date();
+  const weekKeys = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    weekKeys.push(getIsoWeekKey(new Date(now.getTime() - i * 7 * 86400000)));
+  }
+
+  const history = await Promise.all(weekKeys.map((week) => readWeekDuration(env, metric, week)));
+  return jsonResponse({ weeks: history });
+}
+
+/**
  * Transforma um texto livre (ex: "Atraso na Entrega") numa chave segura
  * para o KV: minúsculo, sem acento, só letras/números/hífen, tamanho
  * limitado. Usado para agrupar motivos/templates que só diferem em
@@ -972,6 +1179,26 @@ export default {
       return handleFcrHistory(env, url.searchParams.get("weeks"));
     }
 
+    if (request.method === "POST" && url.pathname === "/duration-sync") {
+      return handleDurationSync(env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/frt-stats") {
+      return handleDurationStats(env, "frt");
+    }
+
+    if (request.method === "GET" && url.pathname === "/frt-history") {
+      return handleDurationHistory(env, "frt", url.searchParams.get("weeks"));
+    }
+
+    if (request.method === "GET" && url.pathname === "/aht-stats") {
+      return handleDurationStats(env, "aht");
+    }
+
+    if (request.method === "GET" && url.pathname === "/aht-history") {
+      return handleDurationHistory(env, "aht", url.searchParams.get("weeks"));
+    }
+
     const match = url.pathname.match(/^\/ticket\/(\d+)$/);
     if (!match) {
       return jsonResponse({ error: "Rota não encontrada. Use /ticket/{numero}." }, 404);
@@ -1003,12 +1230,14 @@ export default {
 
   /**
    * Gatilho agendado (ver [triggers] em wrangler.toml): roda sozinho 1x por
-   * dia — busca as respostas novas da pesquisa de satisfação (CSAT) e
-   * verifica os tickets de FCR cuja janela de espera já passou — sem
+   * dia — busca as respostas novas da pesquisa de satisfação (CSAT),
+   * verifica os tickets de FCR cuja janela de espera já passou, e
+   * sincroniza os tempos de primeira resposta e resolução (FRT/AHT) — sem
    * precisar que ninguém abra o dashboard.
    */
   async scheduled(event, env, ctx) {
     ctx.waitUntil(syncCsatRatings(env));
     ctx.waitUntil(sweepFcrPending(env));
+    ctx.waitUntil(syncDurationMetrics(env));
   },
 };

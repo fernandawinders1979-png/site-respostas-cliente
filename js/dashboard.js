@@ -64,8 +64,25 @@
   const fcrTooltipEl = document.getElementById("fcr-chart-tooltip");
   const fcrSyncBtn = document.getElementById("fcr-sync-btn");
   const fcrSyncStatusEl = document.getElementById("fcr-sync-status");
+  const durationSyncBtn = document.getElementById("duration-sync-btn");
+  const durationSyncStatusEl = document.getElementById("duration-sync-status");
 
   const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+
+  /**
+   * Formata minutos como "Xh Ymin" (ou só "Xmin" quando menos de 1 hora),
+   * ou uma mensagem quando ainda não há dado nenhum.
+   * @param {number|null} minutes
+   * @returns {string}
+   */
+  function formatDuration(minutes) {
+    if (minutes === null || minutes === undefined) return "Sem dados";
+    const totalMinutes = Math.round(minutes);
+    const hours = Math.floor(totalMinutes / 60);
+    const mins = totalMinutes % 60;
+    if (hours === 0) return `${mins} min`;
+    return mins === 0 ? `${hours}h` : `${hours}h ${mins}min`;
+  }
 
   function setStatus(message, kind) {
     if (!statusEl) return;
@@ -247,6 +264,28 @@
     document.getElementById("fcr-total-periodo").textContent =
       totalCasos > 0 ? `${totalCasos} caso(s) finalizado(s) no período` : "Nenhum caso finalizado no período";
     document.getElementById("fcr-periodo-semanas").textContent = String(HISTORY_WEEKS);
+  }
+
+  /**
+   * Renderiza os KPIs de uma métrica de duração (FRT ou AHT) — mesma
+   * lógica pros dois, só muda o prefixo dos ids no HTML.
+   * @param {"frt"|"aht"} prefix
+   * @param {Object} stats semana atual (GET /frt-stats ou /aht-stats)
+   * @param {Array} history últimas HISTORY_WEEKS semanas (mais antiga -> mais recente)
+   */
+  function renderDurationKpis(prefix, stats, history) {
+    document.getElementById(`${prefix}-valor-semana`).textContent = formatDuration(stats.avgMinutes);
+    document.getElementById(`${prefix}-total-semana`).textContent =
+      stats.count > 0 ? `${stats.count} ticket(s) esta semana` : "Nenhum ticket concluído esta semana";
+
+    const totalMinutes = history.reduce((sum, week) => sum + (week.avgMinutes || 0) * week.count, 0);
+    const totalCount = history.reduce((sum, week) => sum + week.count, 0);
+    const periodAvg = totalCount > 0 ? Math.round((totalMinutes / totalCount) * 10) / 10 : null;
+
+    document.getElementById(`${prefix}-valor-periodo`).textContent = formatDuration(periodAvg);
+    document.getElementById(`${prefix}-total-periodo`).textContent =
+      totalCount > 0 ? `${totalCount} ticket(s) concluído(s) no período` : "Nenhum ticket concluído no período";
+    document.getElementById(`${prefix}-periodo-semanas`).textContent = String(HISTORY_WEEKS);
   }
 
   /* =========================================================
@@ -840,6 +879,60 @@
   }
 
   /* =========================================================
+     Gráfico de barras de FRT/AHT (média de minutos por semana) — mesma
+     técnica de eixos/escala do gráfico de volume acima, só que o valor da
+     barra é a média em minutos em vez de uma contagem.
+     ========================================================= */
+  function renderDurationChart(svgId, history) {
+    const svg = document.getElementById(svgId);
+    if (!svg) return;
+    svg.innerHTML = "";
+
+    const count = history.length;
+    const maxValue = Math.max(1, ...history.map((week) => week.avgMinutes || 0));
+
+    const gridTicks = 4;
+    for (let i = 0; i <= gridTicks; i++) {
+      const value = Math.round((maxValue * i) / gridTicks);
+      const y = yForValue(value, maxValue);
+      svg.appendChild(
+        svgEl("line", { x1: MARGIN.left, x2: CHART_WIDTH - MARGIN.right, y1: y, y2: y, class: "chart-gridline" }),
+      );
+      const label = svgEl("text", { x: MARGIN.left - 8, y: y + 3, class: "chart-axis-label", "text-anchor": "end" });
+      label.textContent = String(value);
+      svg.appendChild(label);
+    }
+
+    history.forEach((week, index) => {
+      if (count > 8 && index % 2 !== 0 && index !== count - 1) return;
+      const x = xForIndex(index, count);
+      const label = svgEl("text", { x, y: CHART_HEIGHT - MARGIN.bottom + 18, class: "chart-axis-label", "text-anchor": "middle" });
+      label.textContent = shortWeekLabel(week.week);
+      svg.appendChild(label);
+    });
+
+    const barBottom = CHART_HEIGHT - MARGIN.bottom;
+    const barWidth = count > 0 ? Math.max(8, (PLOT_WIDTH / count) * 0.5) : 20;
+
+    history.forEach((week, index) => {
+      const x = xForIndex(index, count);
+      const value = week.avgMinutes || 0;
+      const yTop = yForValue(value, maxValue);
+      const bar = svgEl("rect", {
+        x: x - barWidth / 2,
+        y: yTop,
+        width: barWidth,
+        height: Math.max(0, barBottom - yTop),
+        rx: 3,
+        class: "ranking-chart-bar",
+      });
+      bar.appendChild(svgEl("title", {})).textContent =
+        `${shortWeekLabel(week.week)}: ${week.count > 0 ? formatDuration(week.avgMinutes) : "sem dados"}`;
+      svg.appendChild(bar);
+    });
+  }
+
+  /* =========================================================
      Carregamento
      ========================================================= */
   async function loadMetrics() {
@@ -855,24 +948,32 @@
       const rankingUrl = (category) =>
         `${FRESHDESK_WORKER_URL}/stat-ranking?category=${category}&weeks=${HISTORY_WEEKS}&limit=${RANKING_LIMIT}`;
 
-      const [statsRes, historyRes, motivoRes, templateRes, volumeRes, csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes] =
-        await Promise.all([
-          fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
-          fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
-          fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
-          fetch(rankingUrl("template"), { headers: { "X-App-Token": token } }),
-          fetch(`${FRESHDESK_WORKER_URL}/stat-history?category=resposta&key=total&weeks=${HISTORY_WEEKS}`, {
-            headers: { "X-App-Token": token },
-          }),
-          fetch(`${FRESHDESK_WORKER_URL}/csat-stats`, { headers: { "X-App-Token": token } }),
-          fetch(`${FRESHDESK_WORKER_URL}/csat-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
-          fetch(`${FRESHDESK_WORKER_URL}/fcr-stats`, { headers: { "X-App-Token": token } }),
-          fetch(`${FRESHDESK_WORKER_URL}/fcr-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
-        ]);
+      const [
+        statsRes, historyRes, motivoRes, templateRes, volumeRes,
+        csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes,
+        frtStatsRes, frtHistoryRes, ahtStatsRes, ahtHistoryRes,
+      ] = await Promise.all([
+        fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
+        fetch(rankingUrl("template"), { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/stat-history?category=resposta&key=total&weeks=${HISTORY_WEEKS}`, {
+          headers: { "X-App-Token": token },
+        }),
+        fetch(`${FRESHDESK_WORKER_URL}/csat-stats`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/csat-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/fcr-stats`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/fcr-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/frt-stats`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/frt-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/aht-stats`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/aht-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
+      ]);
 
       const responses = [
         statsRes, historyRes, motivoRes, templateRes, volumeRes,
         csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes,
+        frtStatsRes, frtHistoryRes, ahtStatsRes, ahtHistoryRes,
       ];
       if (responses.some((res) => res.status === 401)) {
         clearStoredToken();
@@ -894,6 +995,10 @@
       const { weeks: csatHistory } = await csatHistoryRes.json();
       const fcrStats = await fcrStatsRes.json();
       const { weeks: fcrHistory } = await fcrHistoryRes.json();
+      const frtStats = await frtStatsRes.json();
+      const { weeks: frtHistory } = await frtHistoryRes.json();
+      const ahtStats = await ahtStatsRes.json();
+      const { weeks: ahtHistory } = await ahtHistoryRes.json();
 
       const history = fullHistory.slice(-HISTORY_WEEKS);
       const previousHistory = fullHistory.slice(0, Math.max(0, fullHistory.length - HISTORY_WEEKS));
@@ -911,6 +1016,10 @@
       renderFcrKpis(fcrStats, fcrHistory);
       renderFcrLegend();
       renderFcrChart(fcrHistory);
+      renderDurationKpis("frt", frtStats, frtHistory);
+      renderDurationChart("frt-chart", frtHistory);
+      renderDurationKpis("aht", ahtStats, ahtHistory);
+      renderDurationChart("aht-chart", ahtHistory);
 
       const volumeTotalEl = document.getElementById("volume-total-semana");
       if (volumeTotalEl) {
@@ -1027,6 +1136,57 @@
 
   if (fcrSyncBtn) {
     fcrSyncBtn.addEventListener("click", handleFcrSyncClick);
+  }
+
+  /**
+   * Botão "Sincronizar agora" de FRT/AHT: chama POST /duration-sync (o
+   * mesmo processo que roda sozinho 1x por dia) e recarrega as métricas em
+   * seguida. Uma única chamada atualiza as duas métricas, já que as duas
+   * vêm do mesmo detalhe de ticket (include=stats).
+   */
+  async function handleDurationSyncClick() {
+    const token = getAppToken();
+    if (!token || !durationSyncBtn || !durationSyncStatusEl) return;
+
+    durationSyncBtn.disabled = true;
+    durationSyncStatusEl.textContent = "🔄 Sincronizando com o Freshdesk...";
+    durationSyncStatusEl.className = "ticket-search-status";
+
+    try {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/duration-sync`, {
+        method: "POST",
+        headers: { "X-App-Token": token },
+      });
+
+      if (response.status === 401) {
+        clearStoredToken();
+        durationSyncStatusEl.textContent = "Senha de equipe incorreta. Recarregue a página para tentar de novo.";
+        durationSyncStatusEl.className = "ticket-search-status is-error";
+        return;
+      }
+
+      if (!response.ok) {
+        durationSyncStatusEl.textContent = "Não foi possível sincronizar agora. Tente de novo em instantes.";
+        durationSyncStatusEl.className = "ticket-search-status is-error";
+        return;
+      }
+
+      const result = await response.json();
+      durationSyncStatusEl.textContent =
+        `✅ ${result.ticketsChecked} ticket(s) verificado(s) — ${result.frtRecorded} nova(s) resposta(s), ${result.ahtRecorded} nova(s) resolução(ões).`;
+      durationSyncStatusEl.className = "ticket-search-status is-success";
+
+      await loadMetrics();
+    } catch (error) {
+      durationSyncStatusEl.textContent = "Erro de conexão. Verifique sua internet e tente de novo.";
+      durationSyncStatusEl.className = "ticket-search-status is-error";
+    } finally {
+      durationSyncBtn.disabled = false;
+    }
+  }
+
+  if (durationSyncBtn) {
+    durationSyncBtn.addEventListener("click", handleDurationSyncClick);
   }
 
   document.querySelectorAll(".ranking-weeks-count").forEach((el) => {

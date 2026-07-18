@@ -816,6 +816,18 @@ section h2 {
   gap: 20px;
 }
 
+.metrics-subtitle {
+  margin: 20px 0 10px;
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metrics-subtitle:first-of-type {
+  margin-top: 4px;
+}
+
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
