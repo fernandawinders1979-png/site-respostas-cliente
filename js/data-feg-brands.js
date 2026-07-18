@@ -2610,11 +2610,11 @@ Customer Support Team`,
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
     { id: "reembolsoCancelarAssinatura", label: "Reembolso do Pedido e Cancelar Assinatura", color: "#4d7cff" },
+    { id: "cancelarCompreiPorEngano", label: "Cancelar - Comprei por Engano", color: "#ffb700" },
     { id: "medoReacaoAdversa", label: "Médico e Reação Adversa - Apenas o Pedido", color: "#ff8c1a" },
     { id: "medoReacaoAdversaPedidoAssinatura", label: "Médico e Reação Adversa - Pedido e Assinatura", color: "#ffa64d" },
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
-    { id: "cancelarCompreiPorEngano", label: "Cancelar - Comprei por Engano", color: "#ffb700" },
   ];
 
   const CATEGORY_GROUPS = [];
