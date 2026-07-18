@@ -2332,6 +2332,63 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team — FEG`,
     },
+
+    {
+      id: "fegCancelarCompreiPorEnganoProdutoTransito",
+      category: "cancelarCompreiPorEngano",
+      label: "Cancelar pedido - Comprou por engano – Produto em trânsito - Informe da assinatura",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG, e vou acompanhar seu caso pessoalmente.
+Agradeço por informar que o pedido foi feito por engano. Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+• Assinatura: Ativa (trimestral)
+
+Entendo perfeitamente, esse tipo de engano pode acontecer. Seu pedido já está em trânsito e não é mais possível interromper o envio. Quando o produto chegar, pedimos, por gentileza, que recuse a entrega; assim que a recusa for concluída, basta nos avisar por este e-mail para darmos continuidade ao reembolso integral.
+
+Além do pedido, você também possui uma assinatura trimestral ativa. Sugerimos mantê-la por enquanto, para que você tenha esse período para decidir com calma se deseja experimentar o produto. Caso prefira não seguir, basta nos enviar um e-mail a qualquer momento confirmando o cancelamento.
+
+Continuaremos acompanhando seu caso até a conclusão. Se tiver qualquer dúvida, estou à disposição.
+
+Quando decidir adquirir nosso produto novamente, esperamos tê-lo(a) de volta em breve.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente — FEG`,
+      en: `Hello, {{nomeCliente}}!
+
+My name is {{nomeAgente}}, from the FEG Customer Support team, and I'll be personally following your case.
+Thank you for letting us know the order was placed by mistake. I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+• Subscription: Active (quarterly)
+
+I completely understand, this kind of mistake can happen. Your order is already in transit, so it's no longer possible to stop the shipment. When the product arrives, please kindly refuse the delivery; once the refusal is completed, just let us know by replying to this email so we can move forward with the full refund.
+
+In addition to the order, you also have an active quarterly subscription. We suggest keeping it active for now, so you have this period to calmly decide whether you'd like to try the product. If you'd rather not continue, just send us an email at any time confirming the cancellation.
+
+We'll keep following your case through to its conclusion. If you have any questions, I'm at your disposal.
+
+Whenever you decide to purchase our product again, we hope to have you back soon.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team — FEG`,
+    },
   ];
 
   const CATEGORIES = [
@@ -2344,6 +2401,7 @@ Customer Support Team — FEG`,
     { id: "medoReacaoAdversa", label: "Médico e Reação Adversa", color: "#ff8c1a" },
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
+    { id: "cancelarCompreiPorEngano", label: "Cancelar - Comprei por Engano", color: "#ffb700" },
   ];
 
   const CATEGORY_GROUPS = [];
