@@ -2350,11 +2350,17 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
-• Assinatura: Ativa (trimestral)
+• Assinatura: Ativa
 
 Entendo perfeitamente, esse tipo de engano pode acontecer. Seu pedido já está em trânsito e não é mais possível interromper o envio. Quando o produto chegar, pedimos, por gentileza, que recuse a entrega; assim que a recusa for concluída, basta nos avisar por este e-mail para darmos continuidade ao reembolso integral.
 
-Além do pedido, você também possui uma assinatura trimestral ativa. Sugerimos mantê-la por enquanto, para que você tenha esse período para decidir com calma se deseja experimentar o produto. Caso prefira não seguir, basta nos enviar um e-mail a qualquer momento confirmando o cancelamento.
+Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
+
+Além do pedido, você também possui uma assinatura ativa. Sugerimos mantê-la por enquanto, para que você tenha esse período para decidir com calma se deseja experimentar o produto. Caso prefira não seguir, basta nos enviar um e-mail a qualquer momento confirmando o cancelamento.
 
 Continuaremos acompanhando seu caso até a conclusão. Se tiver qualquer dúvida, estou à disposição.
 
@@ -2375,11 +2381,17 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
-• Subscription: Active (quarterly)
+• Subscription: Active
 
 I completely understand, this kind of mistake can happen. Your order is already in transit, so it's no longer possible to stop the shipment. When the product arrives, please kindly refuse the delivery; once the refusal is completed, just let us know by replying to this email so we can move forward with the full refund.
 
-In addition to the order, you also have an active quarterly subscription. We suggest keeping it active for now, so you have this period to calmly decide whether you'd like to try the product. If you'd rather not continue, just send us an email at any time confirming the cancellation.
+You can track your order's delivery using the information below:
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
+
+In addition to the order, you also have an active subscription. We suggest keeping it active for now, so you have this period to calmly decide whether you'd like to try the product. If you'd rather not continue, just send us an email at any time confirming the cancellation.
 
 We'll keep following your case through to its conclusion. If you have any questions, I'm at your disposal.
 
