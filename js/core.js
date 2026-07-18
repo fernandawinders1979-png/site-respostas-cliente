@@ -919,17 +919,21 @@
   }
 
   /**
-   * Lida com o clique no botão "Analisar Risco de Chargeback".
-   * ESTE É UM PLACEHOLDER baseado em palavras-chave (mesma lógica usada
-   * para detectar templates), não uma IA real analisando o contexto.
+   * Roda a análise de risco (mesmo PLACEHOLDER por palavras-chave usado no
+   * botão manual) e atualiza o selo/explicação na tela. Usada tanto pelo
+   * clique manual em "Analisar Risco de Chargeback" quanto automaticamente
+   * assim que uma mensagem chega pronta do Freshdesk — ver
+   * fetchFreshdeskTicket.
+   * @param {string} text
    */
-  function handleRiskClick() {
+  function analyzeRisk(text) {
     if (!riskResult || !riskBadge || !riskExplanation) return;
 
-    const text = messageInput.value.trim();
     if (!text) {
-      showFeedback("Cole a mensagem do cliente antes de analisar o risco.");
-      messageInput.focus();
+      // Sem mensagem pra analisar (ex: ticket novo sem conversa ainda) —
+      // esconde o selo em vez de deixar o resultado do ticket anterior
+      // aparecendo, o que enganaria o atendente.
+      riskResult.hidden = true;
       return;
     }
 
@@ -947,6 +951,21 @@
 
     const valor = parseCurrencyValue(getOrderData().valorTotal);
     recordRiskEvent(level, valor);
+  }
+
+  /**
+   * Lida com o clique no botão "Analisar Risco de Chargeback" (uso manual,
+   * ex: mensagem colada à mão em vez de vinda do Freshdesk).
+   */
+  function handleRiskClick() {
+    const text = messageInput.value.trim();
+    if (!text) {
+      showFeedback("Cole a mensagem do cliente antes de analisar o risco.");
+      messageInput.focus();
+      return;
+    }
+
+    analyzeRisk(text);
   }
 
   /* =========================================================
@@ -1259,6 +1278,11 @@
       if (payload.motivo) {
         recordStatEvent("motivo", payload.motivo, payload.motivo);
       }
+      // Analisa o risco automaticamente assim que a mensagem chega do
+      // Freshdesk, sem esperar o atendente clicar em "Analisar Risco de
+      // Chargeback" — se for risco alto, o selo vermelho piscando e o som
+      // de alerta já disparam na hora.
+      analyzeRisk(payload.conversationText || "");
       setTicketSearchStatus("✅ Dados carregados! Revise os campos antes de responder.", "success");
     } catch (error) {
       setTicketSearchStatus("Erro de conexão com o Freshdesk. Verifique sua internet e tente de novo.", "error");

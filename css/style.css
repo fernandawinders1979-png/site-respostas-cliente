@@ -693,6 +693,8 @@ section h2 {
   color: #ff1a1a;
   box-shadow: 0 0 0 1px rgba(255, 0, 30, 0.6);
   animation: risk-alto-blink 1s ease-in-out infinite;
+  padding: 6px 16px;
+  font-size: 1rem;
 }
 
 @keyframes risk-alto-blink {
