@@ -1415,7 +1415,7 @@ Customer Support Team`,
       category: "naoReconhece",
       label: "Não reconhece a compra – Produto em trânsito",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1426,12 +1426,18 @@ Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
+• Valor Total: R\${{valorTotal}}
 • Status Atual: Em trânsito
 
 Lamentamos saber que você não reconhece essa compra. Levamos situações como essa muito a sério e faremos o possível para ajudá-lo(a) da forma mais rápida e segura.
 
 Como o pedido já está em trânsito, infelizmente não é mais possível interromper o envio.
+
+Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
 
 Quando a entrega for realizada, pedimos, por gentileza, que recuse o recebimento do pacote. Dessa forma, ele retornará automaticamente para nossa empresa.
 
@@ -1444,7 +1450,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order so we can find the best solution for your case.
@@ -1455,12 +1461,18 @@ Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: \${{valorTotal}}
+• Total Amount: R\${{valorTotal}}
 • Current Status: In transit
 
 We're sorry to hear you don't recognize this purchase. We take situations like this very seriously and will do everything we can to help you as quickly and safely as possible.
 
 Since the order is already in transit, it's unfortunately no longer possible to stop the shipment.
+
+You can track your order's delivery using the information below:
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
 
 When the delivery is attempted, please kindly refuse the package. This will cause it to be automatically returned to our company.
 
