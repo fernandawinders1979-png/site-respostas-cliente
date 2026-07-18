@@ -13,7 +13,7 @@
       label: "Não localizado",
       autoDetect: null,
       pt: `Olá!
-Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Antes de tudo, muito obrigado(a) por entrar em contato conosco. Sei que ter que buscar essas informações pode ser um pouco chato, então quero deixar esse processo o mais rápido e simples possível para você.
 
@@ -31,9 +31,9 @@ Fico no aguardo do seu retorno!
 
 Atenciosamente,
 {{nomeAgente}} 🤝
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 First of all, thank you so much for reaching out to us. I know having to look up this information can be a bit of a hassle, so I want to make this process as quick and simple as possible for you.
 
@@ -51,7 +51,7 @@ I'll be looking forward to your reply!
 
 Best regards,
 {{nomeAgente}} 🤝
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -60,7 +60,7 @@ Customer Support Team — FEG`,
       label: "Como posso te ajudar",
       autoDetect: null,
       pt: `Olá!
-Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Localizei seu pedido em nosso sistema:
 
@@ -79,9 +79,9 @@ Fico no aguardo do seu retorno e permaneço à disposição para qualquer esclar
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 I located your order in our system:
 
@@ -100,7 +100,7 @@ I'll be looking forward to your reply and remain available for any clarification
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -109,7 +109,7 @@ Customer Support Team — FEG`,
       label: "Detalhes do Pedido",
       autoDetect: null,
       pt: `Olá!
-Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Obrigado(a) por entrar em contato! Fico feliz em te ajudar a esclarecer exatamente o que você pediu conosco.
 
@@ -129,9 +129,9 @@ Estou à disposição para o que precisar!
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out! I'm happy to help clarify exactly what you asked us about.
 
@@ -151,7 +151,7 @@ I'm here for whatever you need!
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -160,7 +160,7 @@ Customer Support Team — FEG`,
       label: "Detalhes do Pedido – Com código de rastreio",
       autoDetect: null,
       pt: `Olá!
-Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Obrigado(a) por entrar em contato! Fico feliz em te ajudar a esclarecer exatamente o que você pediu conosco.
 
@@ -184,9 +184,9 @@ Estou à disposição para o que precisar!
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-How are you? My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out! I'm happy to help clarify exactly what you asked us about.
 
@@ -210,7 +210,7 @@ I'm here for whatever you need!
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -219,7 +219,7 @@ Customer Support Team — FEG`,
       label: "Detalhes da entrega – Quando não tem código de rastreio",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar, então vou te trazer todas as informações com precisão.
 
@@ -241,9 +241,9 @@ Fico no aguardo, e desejo que o {{produto}} chegue rapidinho até você!
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out to us. I know how good it feels to closely follow the arrival of a product that's part of your wellness routine, so I'll bring you all the information accurately.
 
@@ -265,7 +265,7 @@ I'll be looking forward to it, and I hope your {{produto}} arrives super soon!
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -274,7 +274,7 @@ Customer Support Team — FEG`,
       label: "Não recebeu o pedido – Endereço insuficiente",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
 Localizei seu pedido em nosso sistema:
 
@@ -295,9 +295,9 @@ Qualquer dúvida, estou à disposição.
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, from the FEG Customer Support team.
+My name is {{nomeAgente}}, from the Customer Support team.
 
 I located your order in our system:
 
@@ -318,7 +318,7 @@ If you have any questions, I'm here to help.
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -332,7 +332,7 @@ Customer Support Team — FEG`,
         "quero cancelar e reembolso", "exijo reembolso",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
 Localizei seu pedido em nosso sistema:
 
@@ -356,9 +356,9 @@ Fico no aguardo do seu retorno!
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, from the FEG Customer Support team.
+My name is {{nomeAgente}}, from the Customer Support team.
 
 I located your order in our system:
 
@@ -382,7 +382,7 @@ I'll be looking forward to your reply!
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -395,7 +395,7 @@ Customer Support Team — FEG`,
         "não chegou nada",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
 Localizei seu pedido em nosso sistema:
 
@@ -419,9 +419,9 @@ Fico no aguardo do seu retorno!
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, from the FEG Customer Support team.
+My name is {{nomeAgente}}, from the Customer Support team.
 
 I located your order in our system:
 
@@ -445,7 +445,7 @@ I'll be looking forward to your reply!
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -459,7 +459,7 @@ Customer Support Team — FEG`,
         "sem informação de rastreio", "rastreio não encontrado",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar, então vou te trazer todas as informações com precisão.
 
@@ -485,9 +485,9 @@ Fico no aguardo, e desejo que o {{produto}} chegue rapidinho até você!
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out to us. I know how nice it is to closely track the arrival of a product that's part of your wellness routine, so I'll bring you all the details with precision.
 
@@ -513,7 +513,7 @@ I'll be looking forward to it, and I hope your {{produto}} reaches you soon!
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -538,7 +538,7 @@ Agradeço muito a sua paciência e compreensão durante esse processo.
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
 As promised, I'm reaching out to share the updated tracking information for your reshipment, so you can follow the delivery progress directly with UPS.
 
@@ -556,7 +556,7 @@ Thank you so much for your patience and understanding throughout this process.
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -570,7 +570,7 @@ Customer Support Team — FEG`,
         "encerrar assinatura", "finalizar assinatura", "cancelar a assinatura",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco. Localizei sua assinatura em nosso sistema:
 
@@ -593,9 +593,9 @@ Fico no aguardo do seu retorno para seguirmos com o que fizer mais sentido para 
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out to us. I located your subscription in our system:
 
@@ -618,7 +618,7 @@ I'll be looking forward to your reply so we can move forward with whatever makes
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -628,7 +628,7 @@ Customer Support Team — FEG`,
       autoDetect: null,
       pt: `Olá!
 
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG, e vou acompanhar seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
 Localizei seu pedido em nosso sistema:
 
@@ -648,10 +648,10 @@ Estou à disposição para qualquer dúvida sobre o pedido, a garantia ou a assi
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
 
-My name is {{nomeAgente}}, from the FEG Customer Support team, and I'll be personally following your case.
+My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
 
 I located your order in our system:
 
@@ -671,7 +671,7 @@ I'm at your disposal for any questions about the order, the warranty, or the sub
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -681,7 +681,7 @@ Customer Support Team — FEG`,
       autoDetect: null,
       pt: `Olá!
 
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG, e vou acompanhar seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
 Localizei seu pedido em nosso sistema:
 
@@ -699,10 +699,10 @@ Estou à disposição para qualquer dúvida sobre o pedido ou a garantia.
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
 
-My name is {{nomeAgente}}, from the FEG Customer Support team, and I'll be personally following your case.
+My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
 
 I located your order in our system:
 
@@ -720,7 +720,7 @@ I'm at your disposal for any questions about the order or the warranty.
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -729,7 +729,7 @@ Customer Support Team — FEG`,
       label: "Cancelar assinatura mas foi compra única",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Consegui localizar o seguinte pedido em nosso sistema:
 
@@ -751,9 +751,9 @@ Caso tenha qualquer outra dúvida ou precise de ajuda com qualquer assunto relac
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll be personally following your case from now on.
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 I was able to locate the following order in our system:
 
@@ -775,7 +775,7 @@ If you have any other questions or need help with anything related to your order
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -785,7 +785,7 @@ Customer Support Team — FEG`,
       autoDetect: null,
       pt: `Olá!
 
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG, e vou acompanhar seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
 Obrigado por entrar em contato e explicar o ocorrido. Localizei seu pedido em nosso sistema:
 
@@ -809,10 +809,10 @@ Estou à disposição para o que precisar e vou acompanhar seu caso até a resol
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
 
-My name is {{nomeAgente}}, from the FEG Customer Support team, and I'll be personally following your case.
+My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
 
 Thank you for reaching out and explaining what happened. I located your order in our system:
 
@@ -836,7 +836,7 @@ I'm here for whatever you need and will follow your case through to full resolut
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -854,7 +854,7 @@ Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — ba
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Thank you for sharing the reason for the cancellation — your feedback is very important to us.
 
 I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
@@ -865,7 +865,7 @@ If you have any questions or need anything else, I'm at your disposal — just r
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -879,7 +879,7 @@ Customer Support Team — FEG`,
         "quero o dinheiro de volta", "quero cancelar e reembolso",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -914,9 +914,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
@@ -951,7 +951,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -965,7 +965,7 @@ Customer Support Team — FEG`,
         "como faço para devolver o produto que já recebi",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
 
@@ -990,9 +990,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can move forward in the best possible way.
 
@@ -1017,7 +1017,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1030,7 +1030,7 @@ Customer Support Team — FEG`,
         "ainda está como etiqueta criada",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua dúvida. Analisei seu pedido e posso esclarecer o que está acontecendo.
 
@@ -1058,9 +1058,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your question. I reviewed your order and can clarify what's happening.
 
@@ -1088,7 +1088,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1097,7 +1097,7 @@ Customer Support Team — FEG`,
       label: "Atraso na atualização do rastreio na transportadora",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -1126,9 +1126,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order so we can find the best solution for your case.
 
@@ -1157,7 +1157,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1170,7 +1170,7 @@ Customer Support Team — FEG`,
         "fiquei mal depois de usar", "tive efeito colateral", "me fez mal",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -1200,9 +1200,9 @@ Desejamos uma rápida recuperação e esperamos que você se sinta melhor em bre
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
@@ -1232,7 +1232,7 @@ We wish you a speedy recovery and hope you feel better soon.
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1250,7 +1250,7 @@ Agradeço pela sua paciência e confiança.
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Thank you for confirming the address for the reshipment. I'll arrange for a new product to be sent to the address provided.
 
 As soon as the order ships, I'll send you the tracking code so you can follow the delivery.
@@ -1261,7 +1261,7 @@ Thank you for your patience and trust.
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1274,7 +1274,7 @@ Customer Support Team — FEG`,
         "alguém usou meu cartão", "cobrança suspeita", "não fui eu que comprei",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1298,9 +1298,9 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 I located your order in our system:
 
@@ -1324,7 +1324,7 @@ I'll keep following your case until it's fully resolved.
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1333,7 +1333,7 @@ Customer Support Team — FEG`,
       label: "Não reconhece a compra – Está com o produto",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -1369,9 +1369,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
@@ -1407,7 +1407,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1416,7 +1416,7 @@ Customer Support Team — FEG`,
       label: "Não reconhece a compra – Produto em trânsito",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -1443,9 +1443,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order so we can find the best solution for your case.
 
@@ -1472,7 +1472,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1484,7 +1484,7 @@ Customer Support Team — FEG`,
         "status do meu reembolso", "cadê meu reembolso",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e continuarei acompanhando seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e continuarei acompanhando seu caso.
 
 Tenho uma ótima notícia: o seu reembolso já foi processado com sucesso.
 
@@ -1508,9 +1508,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and I'll keep following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll keep following your case.
 
 I have great news: your refund has already been successfully processed.
 
@@ -1534,7 +1534,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1543,7 +1543,7 @@ Customer Support Team — FEG`,
       label: "Produto chegou danificado",
       autoDetect: ["danificado", "quebrado", "avariado", "damaged", "broken"],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -1579,9 +1579,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
@@ -1617,7 +1617,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1644,7 +1644,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Thank you for sending the photos. We've received all the necessary information and everything is in order.
 
 In accordance with our warranty policy, your refund has been successfully processed.
@@ -1664,7 +1664,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1673,7 +1673,7 @@ Customer Support Team — FEG`,
       label: "Cancelar pedido – Pedido em trânsito",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -1699,9 +1699,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can find the best solution for your case.
 
@@ -1727,7 +1727,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1736,7 +1736,7 @@ Customer Support Team — FEG`,
       label: "Cancelar o pedido antes do envio",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Analisei seu pedido e tenho uma boa notícia.
 
@@ -1763,9 +1763,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I reviewed your order and have good news.
 
@@ -1792,7 +1792,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1804,7 +1804,7 @@ Customer Support Team — FEG`,
         "o gosto é muito ruim", "sabor desagradável", "gosto muito forte",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
 
@@ -1845,9 +1845,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
@@ -1888,7 +1888,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1900,7 +1900,7 @@ Customer Support Team — FEG`,
         "meu médico disse para não tomar", "médico não aprovou o uso",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar essa informação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
 
@@ -1937,9 +1937,9 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing this information. I'll carefully review your order so we can move forward in the best possible way.
 
@@ -1976,7 +1976,7 @@ If you have any questions or need any additional information, don't hesitate to 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -1988,7 +1988,7 @@ Customer Support Team — FEG`,
         "meu médico disse para não tomar", "médico não aprovou o uso",
       ],
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco e por compartilhar essa informação. Analisei seu pedido para encontrar a melhor forma de prosseguir.
 
@@ -2011,9 +2011,9 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be personally responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be personally responsible for following your case.
 
 Thank you for reaching out to us and sharing this information. I reviewed your order to find the best way to proceed.
 
@@ -2036,7 +2036,7 @@ I'll keep following your case until it's fully resolved. If you have any questio
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -2045,7 +2045,7 @@ Customer Support Team — FEG`,
       label: "Modo de uso – Sistema duplo (Unlock + Rebuild)",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco. Fico feliz em ajudá-lo(a) a utilizar corretamente o seu produto para aproveitar ao máximo essa experiência.
 
@@ -2073,9 +2073,9 @@ Desejo que você tenha uma excelente experiência com o produto e que sua jornad
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us. I'm happy to help you use your product correctly so you can get the most out of this experience.
 
@@ -2103,7 +2103,7 @@ I hope you have an excellent experience with the product and that your wellness 
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -2113,7 +2113,7 @@ Customer Support Team — FEG`,
       autoDetect: null,
       pt: `Olá!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Analisei seu pedido e tenho uma boa notícia.
 
@@ -2135,10 +2135,10 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
 
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I reviewed your order and have good news.
 
@@ -2160,7 +2160,7 @@ I'll keep following your case until it's fully resolved. If you have any questio
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -2169,7 +2169,7 @@ Customer Support Team — FEG`,
       label: "Cancelar o pedido e a assinatura, o pedido em trânsito",
       autoDetect: null,
       pt: `Olá!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação de cancelamento do pedido e da assinatura. Localizei seu pedido em nosso sistema:
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -2186,9 +2186,9 @@ Continuaremos acompanhando seu caso até a conclusão. Se tiver qualquer dúvida
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 Thank you for reaching out to us and sharing your request to cancel the order and the subscription. I located your order in our system:
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2205,7 +2205,7 @@ We'll keep following your case through to its conclusion. If you have any questi
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -2215,7 +2215,7 @@ Customer Support Team — FEG`,
       autoDetect: null,
       pt: `Olá!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente da FEG e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
 
@@ -2237,10 +2237,10 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello!
 
-My name is {{nomeAgente}}, part of the FEG Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can move forward in the best way possible.
 
@@ -2262,7 +2262,7 @@ I'll keep following your case until it's fully resolved. If you have any questio
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -2280,7 +2280,7 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Thank you for sharing your reasons — your feedback is very important to us and will help us improve our products and service.
 
 I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
@@ -2291,7 +2291,7 @@ I'll keep following your case until it's fully resolved. If you have any questio
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -2314,7 +2314,7 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Thank you for sharing your reasons — your feedback is very important to us and will help us improve our products and service.
 
 I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
@@ -2330,7 +2330,7 @@ I'll keep following your case until it's fully resolved. If you have any questio
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
 
     {
@@ -2340,7 +2340,7 @@ Customer Support Team — FEG`,
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente da FEG, e vou acompanhar seu caso pessoalmente.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 Agradeço por informar que o pedido foi feito por engano. Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
@@ -2368,10 +2368,10 @@ Quando decidir adquirir nosso produto novamente, esperamos tê-lo(a) de volta em
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente — FEG`,
+Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, from the FEG Customer Support team, and I'll be personally following your case.
+My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
 Thank you for letting us know the order was placed by mistake. I located your order in our system:
 
 Order Details
@@ -2399,7 +2399,7 @@ Whenever you decide to purchase our product again, we hope to have you back soon
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team — FEG`,
+Customer Support Team`,
     },
   ];
 
