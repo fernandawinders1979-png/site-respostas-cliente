@@ -814,6 +814,9 @@ section h2 {
    =========================================================== */
 .metrics-container {
   gap: 20px;
+  /* Deixa o texto secundário (descrições, rótulos, eixos dos gráficos)
+     branco em vez de cinza, só nesta página — fica mais fácil de ler. */
+  --color-text-light: var(--color-text);
 }
 
 .metrics-subtitle {
