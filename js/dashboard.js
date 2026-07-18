@@ -30,6 +30,17 @@
 
   const RANKING_LIMIT = 5;
 
+  // Mesma lógica de cores/formatos do RISK_META (nunca só a cor): feliz
+  // reaproveita o verde-azulado de "baixo risco", insatisfeito reaproveita
+  // o vermelho de "alto risco" — mantém a mesma linguagem visual em todo o
+  // dashboard (vermelho = ruim, amarelo = atenção, verde = bom).
+  const CSAT_ORDER = ["feliz", "neutro", "insatisfeito"];
+  const CSAT_META = {
+    feliz: { label: "Feliz", color: "#1f9e8c", shape: "circle", dash: "" },
+    neutro: { label: "Neutro", color: "#a88f18", shape: "square", dash: "7,4" },
+    insatisfeito: { label: "Insatisfeito", color: "#c73e3a", shape: "triangle", dash: "2,4" },
+  };
+
   const statusEl = document.getElementById("metrics-status");
   const legendEl = document.getElementById("chart-legend");
   const chartEl = document.getElementById("trend-chart");
@@ -37,6 +48,10 @@
   const tableBodyEl = document.querySelector("#trend-table tbody");
   const rankingMotivoEl = document.getElementById("ranking-motivo");
   const rankingTemplateEl = document.getElementById("ranking-template");
+  const csatChartEl = document.getElementById("csat-chart");
+  const csatTooltipEl = document.getElementById("csat-chart-tooltip");
+  const csatSyncBtn = document.getElementById("csat-sync-btn");
+  const csatSyncStatusEl = document.getElementById("csat-sync-status");
 
   const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 
@@ -158,15 +173,47 @@
     renderDelta("kpi-delta-periodo", totalValor, hasFullPreviousPeriod ? previousTotalValor : null);
   }
 
+  /**
+   * Mostra a nota de CSAT já formatada, ou uma mensagem quando ainda não
+   * há nenhuma resposta no período (evita mostrar "0%", que passaria a
+   * ideia errada de "todo mundo insatisfeito" quando na verdade é "sem dado").
+   * @param {number|null} score
+   * @returns {string}
+   */
+  function formatCsatScore(score) {
+    return score === null || score === undefined ? "Sem respostas" : `${score}%`;
+  }
+
+  /**
+   * @param {Object} stats semana atual (GET /csat-stats)
+   * @param {Array} history últimas HISTORY_WEEKS semanas (mais antiga -> mais recente)
+   */
+  function renderCsatKpis(stats, history) {
+    document.getElementById("csat-score-semana").textContent = formatCsatScore(stats.score);
+    document.getElementById("csat-total-semana").textContent =
+      stats.total > 0
+        ? `${stats.total} resposta(s) — ${stats.feliz} feliz, ${stats.neutro} neutro, ${stats.insatisfeito} insatisfeito`
+        : "Nenhuma resposta esta semana";
+
+    const totalFeliz = history.reduce((sum, week) => sum + week.feliz, 0);
+    const totalRespostas = history.reduce((sum, week) => sum + week.total, 0);
+    const periodScore = totalRespostas > 0 ? Math.round((totalFeliz / totalRespostas) * 1000) / 10 : null;
+
+    document.getElementById("csat-score-periodo").textContent = formatCsatScore(periodScore);
+    document.getElementById("csat-total-periodo").textContent =
+      totalRespostas > 0 ? `${totalRespostas} resposta(s) no período` : "Nenhuma resposta no período";
+    document.getElementById("csat-periodo-semanas").textContent = String(HISTORY_WEEKS);
+  }
+
   /* =========================================================
      Legenda (ícone com formato + cor + nome escrito — nunca só a cor)
      ========================================================= */
-  function renderLegend() {
-    if (!legendEl) return;
-    legendEl.innerHTML = "";
+  function renderLegendInto(container, order, meta) {
+    if (!container) return;
+    container.innerHTML = "";
 
-    RISK_ORDER.forEach((level) => {
-      const meta = RISK_META[level];
+    order.forEach((key) => {
+      const info = meta[key];
       const item = document.createElement("span");
       item.className = "chart-legend-item";
 
@@ -175,15 +222,23 @@
       icon.setAttribute("width", "12");
       icon.setAttribute("height", "12");
       icon.setAttribute("class", "chart-legend-icon");
-      icon.appendChild(buildMarkerShape(meta.shape, 6, 6, meta.color));
+      icon.appendChild(buildMarkerShape(info.shape, 6, 6, info.color));
 
       const text = document.createElement("span");
-      text.textContent = meta.label;
+      text.textContent = info.label;
 
       item.appendChild(icon);
       item.appendChild(text);
-      legendEl.appendChild(item);
+      container.appendChild(item);
     });
+  }
+
+  function renderLegend() {
+    renderLegendInto(legendEl, RISK_ORDER, RISK_META);
+  }
+
+  function renderCsatLegend() {
+    renderLegendInto(document.getElementById("csat-chart-legend"), CSAT_ORDER, CSAT_META);
   }
 
   /* =========================================================
@@ -343,6 +398,119 @@
 
   function hideTooltip() {
     if (tooltipEl) tooltipEl.hidden = true;
+  }
+
+  /* =========================================================
+     Gráfico de tendência de CSAT (feliz/neutro/insatisfeito por semana).
+     Mesma técnica de desenho do gráfico de risco acima (eixos, grade,
+     linhas, crosshair), só que com as 3 séries e o tooltip do CSAT —
+     mantido separado de propósito para não arriscar mexer no gráfico de
+     risco, que já está validado em produção.
+     ========================================================= */
+  function showCsatTooltip(week, chartX) {
+    if (!csatTooltipEl || !csatChartEl) return;
+    csatTooltipEl.innerHTML = `
+      <strong>${shortWeekLabel(week.week)}</strong><br>
+      🟢 Feliz: ${week.feliz}<br>
+      🟡 Neutro: ${week.neutro}<br>
+      🔴 Insatisfeito: ${week.insatisfeito}<br>
+      Nota: ${formatCsatScore(week.score)}
+    `;
+    csatTooltipEl.hidden = false;
+
+    const chartRect = csatChartEl.getBoundingClientRect();
+    const relativeX = (chartX / CHART_WIDTH) * chartRect.width;
+    csatTooltipEl.style.left = `${Math.min(relativeX + 12, chartRect.width - 160)}px`;
+    csatTooltipEl.style.top = "8px";
+  }
+
+  function hideCsatTooltip() {
+    if (csatTooltipEl) csatTooltipEl.hidden = true;
+  }
+
+  function renderCsatChart(history) {
+    if (!csatChartEl) return;
+    csatChartEl.innerHTML = "";
+
+    const rawMax = Math.max(1, ...history.flatMap((week) => CSAT_ORDER.map((level) => week[level])));
+    const maxValue = Math.ceil(rawMax * 1.15);
+    const count = history.length;
+
+    const gridTicks = 4;
+    for (let i = 0; i <= gridTicks; i++) {
+      const value = Math.round((maxValue * i) / gridTicks);
+      const y = yForValue(value, maxValue);
+      csatChartEl.appendChild(
+        svgEl("line", { x1: MARGIN.left, x2: CHART_WIDTH - MARGIN.right, y1: y, y2: y, class: "chart-gridline" }),
+      );
+      const label = svgEl("text", { x: MARGIN.left - 8, y: y + 3, class: "chart-axis-label", "text-anchor": "end" });
+      label.textContent = String(value);
+      csatChartEl.appendChild(label);
+    }
+
+    history.forEach((week, index) => {
+      if (count > 8 && index % 2 !== 0 && index !== count - 1) return;
+      const x = xForIndex(index, count);
+      const label = svgEl("text", { x, y: CHART_HEIGHT - MARGIN.bottom + 18, class: "chart-axis-label", "text-anchor": "middle" });
+      label.textContent = shortWeekLabel(week.week);
+      csatChartEl.appendChild(label);
+    });
+
+    CSAT_ORDER.forEach((level) => {
+      const meta = CSAT_META[level];
+      const points = history.map((week, index) => ({
+        x: xForIndex(index, count),
+        y: yForValue(week[level], maxValue),
+        value: week[level],
+      }));
+
+      const pathData = points.map((point, index) => `${index === 0 ? "M" : "L"}${point.x},${point.y}`).join(" ");
+      csatChartEl.appendChild(
+        svgEl("path", { d: pathData, class: "chart-line", stroke: meta.color, "stroke-dasharray": meta.dash, fill: "none" }),
+      );
+
+      points.forEach((point) => csatChartEl.appendChild(buildMarkerShape(meta.shape, point.x, point.y, meta.color)));
+
+      const last = points[points.length - 1];
+      const directLabel = svgEl("text", {
+        x: Math.min(last.x + 8, CHART_WIDTH - MARGIN.right + 2),
+        y: last.y + 4,
+        class: "chart-direct-label",
+        fill: meta.color,
+      });
+      directLabel.textContent = `${meta.label} (${last.value})`;
+      csatChartEl.appendChild(directLabel);
+    });
+
+    const crosshair = svgEl("line", {
+      x1: 0, x2: 0, y1: MARGIN.top, y2: CHART_HEIGHT - MARGIN.bottom, class: "chart-crosshair", visibility: "hidden",
+    });
+    csatChartEl.appendChild(crosshair);
+
+    const columnWidth = count <= 1 ? PLOT_WIDTH : PLOT_WIDTH / (count - 1);
+    history.forEach((week, index) => {
+      const x = xForIndex(index, count);
+      const hitZone = svgEl("rect", {
+        x: x - columnWidth / 2,
+        y: MARGIN.top,
+        width: columnWidth,
+        height: PLOT_HEIGHT,
+        class: "chart-hit-zone",
+      });
+
+      hitZone.addEventListener("mouseenter", () => {
+        crosshair.setAttribute("x1", x);
+        crosshair.setAttribute("x2", x);
+        crosshair.setAttribute("visibility", "visible");
+        showCsatTooltip(week, x);
+      });
+      hitZone.addEventListener("mouseleave", () => {
+        crosshair.setAttribute("visibility", "hidden");
+        hideCsatTooltip();
+      });
+
+      csatChartEl.appendChild(hitZone);
+    });
   }
 
   /* =========================================================
@@ -529,7 +697,7 @@
       const rankingUrl = (category) =>
         `${FRESHDESK_WORKER_URL}/stat-ranking?category=${category}&weeks=${HISTORY_WEEKS}&limit=${RANKING_LIMIT}`;
 
-      const [statsRes, historyRes, motivoRes, templateRes, volumeRes] = await Promise.all([
+      const [statsRes, historyRes, motivoRes, templateRes, volumeRes, csatStatsRes, csatHistoryRes] = await Promise.all([
         fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/risk-history?weeks=${COMPARISON_WEEKS}`, { headers: { "X-App-Token": token } }),
         fetch(rankingUrl("motivo"), { headers: { "X-App-Token": token } }),
@@ -537,9 +705,11 @@
         fetch(`${FRESHDESK_WORKER_URL}/stat-history?category=resposta&key=total&weeks=${HISTORY_WEEKS}`, {
           headers: { "X-App-Token": token },
         }),
+        fetch(`${FRESHDESK_WORKER_URL}/csat-stats`, { headers: { "X-App-Token": token } }),
+        fetch(`${FRESHDESK_WORKER_URL}/csat-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
       ]);
 
-      const responses = [statsRes, historyRes, motivoRes, templateRes, volumeRes];
+      const responses = [statsRes, historyRes, motivoRes, templateRes, volumeRes, csatStatsRes, csatHistoryRes];
       if (responses.some((res) => res.status === 401)) {
         clearStoredToken();
         setStatus("Senha de equipe incorreta. Recarregue a página para tentar de novo.", "error");
@@ -556,6 +726,8 @@
       const motivoRanking = await motivoRes.json();
       const templateRanking = await templateRes.json();
       const volumeHistory = await volumeRes.json();
+      const csatStats = await csatStatsRes.json();
+      const { weeks: csatHistory } = await csatHistoryRes.json();
 
       const history = fullHistory.slice(-HISTORY_WEEKS);
       const previousHistory = fullHistory.slice(0, Math.max(0, fullHistory.length - HISTORY_WEEKS));
@@ -567,6 +739,9 @@
       renderRanking(rankingMotivoEl, motivoRanking.items);
       renderRanking(rankingTemplateEl, templateRanking.items);
       renderVolumeChart(volumeHistory.weeks);
+      renderCsatKpis(csatStats, csatHistory);
+      renderCsatLegend();
+      renderCsatChart(csatHistory);
 
       const volumeTotalEl = document.getElementById("volume-total-semana");
       if (volumeTotalEl) {
@@ -578,6 +753,58 @@
     } catch (error) {
       setStatus("Erro de conexão. Verifique sua internet e recarregue a página.", "error");
     }
+  }
+
+  /**
+   * Botão "Sincronizar agora": chama POST /csat-sync (o mesmo processo que
+   * roda sozinho 1x por dia) e recarrega as métricas em seguida, para o
+   * atendente ver o resultado na hora em vez de esperar o próximo dia.
+   */
+  async function handleCsatSyncClick() {
+    const token = getAppToken();
+    if (!token || !csatSyncBtn || !csatSyncStatusEl) return;
+
+    csatSyncBtn.disabled = true;
+    csatSyncStatusEl.textContent = "🔄 Sincronizando com o Freshdesk...";
+    csatSyncStatusEl.className = "ticket-search-status";
+
+    try {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/csat-sync`, {
+        method: "POST",
+        headers: { "X-App-Token": token },
+      });
+
+      if (response.status === 401) {
+        clearStoredToken();
+        csatSyncStatusEl.textContent = "Senha de equipe incorreta. Recarregue a página para tentar de novo.";
+        csatSyncStatusEl.className = "ticket-search-status is-error";
+        return;
+      }
+
+      if (!response.ok) {
+        csatSyncStatusEl.textContent = "Não foi possível sincronizar agora. Tente de novo em instantes.";
+        csatSyncStatusEl.className = "ticket-search-status is-error";
+        return;
+      }
+
+      const result = await response.json();
+      csatSyncStatusEl.textContent =
+        result.synced > 0
+          ? `✅ ${result.synced} resposta(s) sincronizada(s).`
+          : "✅ Sincronizado — nenhuma resposta nova encontrada.";
+      csatSyncStatusEl.className = "ticket-search-status is-success";
+
+      await loadMetrics();
+    } catch (error) {
+      csatSyncStatusEl.textContent = "Erro de conexão. Verifique sua internet e tente de novo.";
+      csatSyncStatusEl.className = "ticket-search-status is-error";
+    } finally {
+      csatSyncBtn.disabled = false;
+    }
+  }
+
+  if (csatSyncBtn) {
+    csatSyncBtn.addEventListener("click", handleCsatSyncClick);
   }
 
   document.querySelectorAll(".ranking-weeks-count").forEach((el) => {

@@ -11,3 +11,8 @@ compatibility_date = "2024-09-23"
 [[kv_namespaces]]
 binding = "RISK_STATS"
 id = "adec800009d342f3bfa21634476f69c4"
+
+# Roda `scheduled()` 1x por dia, às 12:00 UTC (~09:00 em Brasília), para
+# sincronizar as respostas novas da pesquisa de satisfação (CSAT).
+[triggers]
+crons = ["0 12 * * *"]

@@ -19,6 +19,16 @@
  *   GET  /stat-history     — histórico semanal de uma chave específica
  *                            (ex: categoria "resposta", chave "total"), para
  *                            o gráfico de volume de atendimento
+ *   POST /csat-sync        — busca no Freshdesk as respostas novas da
+ *                            pesquisa de satisfação (CSAT) e soma nos
+ *                            contadores semanais. Roda sozinho 1x por dia
+ *                            (ver `scheduled` no fim do arquivo), mas também
+ *                            pode ser chamado manualmente pelo botão
+ *                            "Sincronizar agora" do dashboard de métricas.
+ *   GET  /csat-stats       — contadores de CSAT (feliz/neutro/insatisfeito)
+ *                            e nota (% feliz) da semana atual
+ *   GET  /csat-history     — mesmos contadores das últimas N semanas, para
+ *                            o gráfico de tendência de satisfação
  * Header obrigatório em todas: X-App-Token (a senha de equipe)
  */
 
@@ -27,6 +37,16 @@ const ALLOWED_ORIGIN = "https://fernandawinders1979-png.github.io";
 // Níveis de risco aceitos pelo painel de estatísticas (mesmos usados em
 // js/core.js -> classifyRisk).
 const RISK_LEVELS = ["baixo", "medio", "alto"];
+
+// Baldes de satisfação (CSAT). A escala real da conta (conferida via API em
+// GET /api/v2/surveys na conta hebevi.freshdesk.com) é de 3 pontos com os
+// códigos 103 / 100 / -103 em "ratings.default_question" — 100 é sempre o
+// ponto neutro da escala do Freshdesk, valores acima são cada vez mais
+// felizes e abaixo cada vez mais insatisfeitos (ver classifyCsatRating).
+const CSAT_LEVELS = ["feliz", "neutro", "insatisfeito"];
+const CSAT_SYNC_PER_PAGE = 100;
+const CSAT_SYNC_MAX_PAGES = 10;
+const CSAT_LAST_SYNCED_ID_KEY = "csat:lastSyncedId";
 
 // Categorias aceitas em /stat-event, /stat-ranking e /stat-history. Motivo e
 // template têm uma lista aberta de valores; resposta usa sempre a mesma
@@ -359,6 +379,153 @@ async function handleRiskHistory(env, weeksParam) {
 }
 
 /**
+ * Classifica o valor bruto de "ratings.default_question" (devolvido pela API
+ * de satisfaction_ratings do Freshdesk) num dos baldes de CSAT_LEVELS. 100 é
+ * sempre o ponto neutro da escala do Freshdesk; acima é feliz, abaixo é
+ * insatisfeito (ver comentário de CSAT_LEVELS no topo do arquivo).
+ * @param {number} rawValue
+ * @returns {"feliz"|"neutro"|"insatisfeito"|null}
+ */
+function classifyCsatRating(rawValue) {
+  if (typeof rawValue !== "number") return null;
+  if (rawValue > 100) return "feliz";
+  if (rawValue === 100) return "neutro";
+  return "insatisfeito";
+}
+
+/**
+ * Busca no Freshdesk todas as avaliações de satisfação com id maior que
+ * `lastId` (percorrendo páginas até encontrar uma página incompleta, ou até
+ * o limite de segurança CSAT_SYNC_MAX_PAGES).
+ * @param {Object} env
+ * @param {number} lastId
+ * @returns {Promise<Array>}
+ */
+async function fetchNewSatisfactionRatings(env, lastId) {
+  const collected = [];
+  for (let page = 1; page <= CSAT_SYNC_MAX_PAGES; page++) {
+    const batch = await freshdeskGet(
+      env,
+      `/api/v2/surveys/satisfaction_ratings?page=${page}&per_page=${CSAT_SYNC_PER_PAGE}`,
+    );
+    if (!Array.isArray(batch) || batch.length === 0) break;
+    collected.push(...batch);
+    if (batch.length < CSAT_SYNC_PER_PAGE) break;
+  }
+  return collected.filter((rating) => Number(rating.id) > lastId);
+}
+
+/**
+ * Soma 1 no contador CSAT de uma semana/balde.
+ * @param {Object} env
+ * @param {string} week
+ * @param {string} level
+ */
+async function incrementCsatCounter(env, week, level) {
+  const key = `csat:${week}:${level}`;
+  const current = Number(await env.RISK_STATS.get(key)) || 0;
+  await env.RISK_STATS.put(key, String(current + 1));
+}
+
+/**
+ * Busca as avaliações de satisfação novas no Freshdesk (desde a última
+ * sincronização, controlada pelo cursor CSAT_LAST_SYNCED_ID_KEY guardado no
+ * KV) e soma nos contadores semanais. Chamada tanto pelo gatilho agendado
+ * (1x por dia) quanto pelo botão "Sincronizar agora" do dashboard.
+ * @param {Object} env
+ * @returns {Promise<{synced: number}>}
+ */
+async function syncCsatRatings(env) {
+  const lastId = Number(await env.RISK_STATS.get(CSAT_LAST_SYNCED_ID_KEY)) || 0;
+  const newRatings = await fetchNewSatisfactionRatings(env, lastId);
+
+  let maxId = lastId;
+  for (const rating of newRatings) {
+    const level = classifyCsatRating(rating.ratings && rating.ratings.default_question);
+    if (level) {
+      const week = getIsoWeekKey(new Date(rating.created_at || Date.now()));
+      await incrementCsatCounter(env, week, level);
+    }
+    if (Number(rating.id) > maxId) maxId = Number(rating.id);
+  }
+
+  if (maxId > lastId) {
+    await env.RISK_STATS.put(CSAT_LAST_SYNCED_ID_KEY, String(maxId));
+  }
+
+  return { synced: newRatings.length };
+}
+
+/**
+ * Trata POST /csat-sync.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleCsatSync(env) {
+  try {
+    const result = await syncCsatRatings(env);
+    return jsonResponse({ ok: true, ...result });
+  } catch (error) {
+    return jsonResponse({ error: "Não foi possível sincronizar com o Freshdesk agora." }, 502);
+  }
+}
+
+/**
+ * Busca no KV os contadores de CSAT de uma semana e calcula a nota (%
+ * feliz sobre o total de respostas).
+ * @param {Object} env
+ * @param {string} week
+ * @returns {Promise<Object>} ex: { week, feliz, neutro, insatisfeito, total, score }
+ */
+async function readWeekCsat(env, week) {
+  const values = await Promise.all(CSAT_LEVELS.map((level) => env.RISK_STATS.get(`csat:${week}:${level}`)));
+
+  const entry = { week };
+  CSAT_LEVELS.forEach((level, index) => {
+    entry[level] = Number(values[index]) || 0;
+  });
+  entry.total = CSAT_LEVELS.reduce((sum, level) => sum + entry[level], 0);
+  entry.score = entry.total > 0 ? Math.round((entry.feliz / entry.total) * 1000) / 10 : null;
+  return entry;
+}
+
+/**
+ * Trata GET /csat-stats: devolve os contadores e a nota de CSAT da semana
+ * atual.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handleCsatStats(env) {
+  const stats = await readWeekCsat(env, getIsoWeekKey(new Date()));
+  return jsonResponse(stats);
+}
+
+/**
+ * Trata GET /csat-history: devolve os contadores e a nota de CSAT das
+ * últimas N semanas (da mais antiga para a mais recente), para o gráfico de
+ * tendência de satisfação do dashboard de métricas.
+ * @param {Object} env
+ * @param {string|null} weeksParam
+ * @returns {Promise<Response>}
+ */
+async function handleCsatHistory(env, weeksParam) {
+  const requested = parseInt(weeksParam, 10);
+  const weeks = Math.min(
+    Math.max(Number.isFinite(requested) ? requested : DEFAULT_HISTORY_WEEKS, 1),
+    MAX_HISTORY_WEEKS,
+  );
+
+  const now = new Date();
+  const weekKeys = [];
+  for (let i = weeks - 1; i >= 0; i--) {
+    weekKeys.push(getIsoWeekKey(new Date(now.getTime() - i * 7 * 86400000)));
+  }
+
+  const history = await Promise.all(weekKeys.map((week) => readWeekCsat(env, week)));
+  return jsonResponse({ weeks: history });
+}
+
+/**
  * Transforma um texto livre (ex: "Atraso na Entrega") numa chave segura
  * para o KV: minúsculo, sem acento, só letras/números/hífen, tamanho
  * limitado. Usado para agrupar motivos/templates que só diferem em
@@ -558,6 +725,18 @@ export default {
       return handleStatHistory(env, url.searchParams);
     }
 
+    if (request.method === "POST" && url.pathname === "/csat-sync") {
+      return handleCsatSync(env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/csat-stats") {
+      return handleCsatStats(env);
+    }
+
+    if (request.method === "GET" && url.pathname === "/csat-history") {
+      return handleCsatHistory(env, url.searchParams.get("weeks"));
+    }
+
     const match = url.pathname.match(/^\/ticket\/(\d+)$/);
     if (!match) {
       return jsonResponse({ error: "Rota não encontrada. Use /ticket/{numero}." }, 404);
@@ -585,5 +764,14 @@ export default {
       }
       return jsonResponse({ error: "Não foi possível buscar esse ticket agora. Tente de novo em instantes." }, 502);
     }
+  },
+
+  /**
+   * Gatilho agendado (ver [triggers] em wrangler.toml): roda sozinho 1x por
+   * dia e busca as respostas novas da pesquisa de satisfação no Freshdesk,
+   * sem precisar que ninguém abra o dashboard.
+   */
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(syncCsatRatings(env));
   },
 };

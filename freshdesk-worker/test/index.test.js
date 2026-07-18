@@ -299,6 +299,95 @@ test("/stat-history devolve o histórico semanal da chave certa", async () => {
   assert.match(body.weeks[0].week, /^\d{4}-W\d{2}$/);
 });
 
+test("/csat-sync sem senha -> 401", async () => {
+  const res = await worker.fetch(postReq("/csat-sync", {}), { ...env, RISK_STATS: createMockKv() });
+  assert.equal(res.status, 401);
+});
+
+test("/csat-sync classifica as respostas (feliz/neutro/insatisfeito) e soma em /csat-stats", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const hoje = new Date().toISOString();
+
+  globalThis.fetch = async (url) => {
+    const { pathname, searchParams } = new URL(url);
+    assert.equal(pathname, "/api/v2/surveys/satisfaction_ratings");
+    if (searchParams.get("page") === "1") {
+      return Response.json([
+        { id: 1, created_at: hoje, ratings: { default_question: 103 } },
+        { id: 2, created_at: hoje, ratings: { default_question: 100 } },
+        { id: 3, created_at: hoje, ratings: { default_question: -103 } },
+        { id: 4, created_at: hoje, ratings: { default_question: 103 } },
+      ]);
+    }
+    return Response.json([]);
+  };
+
+  const syncRes = await worker.fetch(
+    postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(syncRes.status, 200);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.synced, 4);
+
+  const statsRes = await worker.fetch(req("/csat-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const stats = await statsRes.json();
+
+  assert.equal(stats.feliz, 2);
+  assert.equal(stats.neutro, 1);
+  assert.equal(stats.insatisfeito, 1);
+  assert.equal(stats.total, 4);
+  assert.equal(stats.score, 50);
+});
+
+test("/csat-sync não conta de novo respostas já sincronizadas antes (cursor por id)", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const hoje = new Date().toISOString();
+  let allRatings = [{ id: 1, created_at: hoje, ratings: { default_question: 103 } }];
+
+  globalThis.fetch = async (url) => {
+    const { searchParams } = new URL(url);
+    if (searchParams.get("page") === "1") return Response.json(allRatings);
+    return Response.json([]);
+  };
+
+  const first = await worker.fetch(postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await first.json()).synced, 1);
+
+  // Segunda sincronização: nenhuma resposta nova além da já processada (id 1).
+  const second = await worker.fetch(postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await second.json()).synced, 0);
+
+  // Chega uma resposta nova (id 2): só ela deve ser contada.
+  allRatings = [...allRatings, { id: 2, created_at: hoje, ratings: { default_question: -103 } }];
+  const third = await worker.fetch(postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await third.json()).synced, 1);
+
+  const statsRes = await worker.fetch(req("/csat-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const stats = await statsRes.json();
+  assert.equal(stats.feliz, 1);
+  assert.equal(stats.insatisfeito, 1);
+});
+
+test("/csat-stats sem nenhuma resposta -> score null", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const res = await worker.fetch(req("/csat-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const stats = await res.json();
+  assert.equal(stats.total, 0);
+  assert.equal(stats.score, null);
+});
+
+test("/csat-history devolve o número certo de semanas", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const res = await worker.fetch(
+    req("/csat-history?weeks=4", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res.status, 200);
+  const body = await res.json();
+  assert.equal(body.weeks.length, 4);
+});
+
 test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   globalThis.fetch = async (url) => {
     const { pathname } = new URL(url);

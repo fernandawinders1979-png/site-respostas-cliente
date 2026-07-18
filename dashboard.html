@@ -27,6 +27,44 @@
     <p id="metrics-status" class="ticket-search-status" role="status" aria-live="polite"></p>
 
     <!-- ============================================================
+         Satisfação do Cliente (CSAT) — respondida pelo próprio cliente na
+         pesquisa que o Freshdesk envia por e-mail depois do chamado
+         resolvido. O Worker sincroniza sozinho 1x por dia; o botão abaixo
+         força uma sincronização imediata.
+         ============================================================ -->
+    <details class="results-section metrics-accordion" open>
+      <summary class="metrics-accordion-title">
+        <span>Satisfação do Cliente (CSAT)</span>
+        <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
+      </summary>
+      <div class="metrics-accordion-body">
+        <p class="ai-note">Nota que o próprio cliente dá na pesquisa de satisfação enviada por e-mail pelo Freshdesk, depois que o chamado é resolvido. Sincroniza sozinho 1x por dia — use o botão abaixo para forçar uma atualização imediata.</p>
+
+        <button id="csat-sync-btn" class="btn-secondary" type="button">🔄 Sincronizar agora</button>
+        <p id="csat-sync-status" class="ticket-search-status" role="status" aria-live="polite"></p>
+
+        <section class="kpi-row" aria-label="Resumo de satisfação do cliente">
+          <article class="kpi-tile">
+            <span class="kpi-label">Esta semana</span>
+            <strong id="csat-score-semana" class="kpi-value">--</strong>
+            <span id="csat-total-semana" class="kpi-sub">--</span>
+          </article>
+          <article class="kpi-tile">
+            <span class="kpi-label">Últimas <span id="csat-periodo-semanas">8</span> semanas</span>
+            <strong id="csat-score-periodo" class="kpi-value">--</strong>
+            <span id="csat-total-periodo" class="kpi-sub">--</span>
+          </article>
+        </section>
+
+        <div class="chart-legend" id="csat-chart-legend"></div>
+        <div class="chart-wrap">
+          <svg id="csat-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-label="Respostas de satisfação por semana"></svg>
+          <div id="csat-chart-tooltip" class="chart-tooltip" hidden></div>
+        </div>
+      </div>
+    </details>
+
+    <!-- ============================================================
          Volume de atendimento (respostas enviadas pelo site)
          ============================================================ -->
     <details class="results-section metrics-accordion">
