@@ -12,7 +12,7 @@
       category: "geral",
       label: "Não localizado",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Antes de tudo, muito obrigado(a) por entrar em contato conosco. Sei que ter que buscar essas informações pode ser um pouco chato, então quero deixar esse processo o mais rápido e simples possível para você.
@@ -32,7 +32,7 @@ Fico no aguardo do seu retorno!
 Atenciosamente,
 {{nomeAgente}} 🤝
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 First of all, thank you so much for reaching out to us. I know having to look up this information can be a bit of a hassle, so I want to make this process as quick and simple as possible for you.
@@ -59,7 +59,7 @@ Customer Support Team`,
       category: "geral",
       label: "Como posso te ajudar",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Localizei seu pedido em nosso sistema:
@@ -80,7 +80,7 @@ Fico no aguardo do seu retorno e permaneço à disposição para qualquer esclar
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 I located your order in our system:
@@ -108,7 +108,7 @@ Customer Support Team`,
       category: "geral",
       label: "Detalhes do Pedido",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Obrigado(a) por entrar em contato! Fico feliz em te ajudar a esclarecer exatamente o que você pediu conosco.
@@ -130,7 +130,7 @@ Estou à disposição para o que precisar!
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out! I'm happy to help clarify exactly what you asked us about.
@@ -159,7 +159,7 @@ Customer Support Team`,
       category: "geral",
       label: "Detalhes do Pedido – Com código de rastreio",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Obrigado(a) por entrar em contato! Fico feliz em te ajudar a esclarecer exatamente o que você pediu conosco.
@@ -185,7 +185,7 @@ Estou à disposição para o que precisar!
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out! I'm happy to help clarify exactly what you asked us about.
@@ -218,7 +218,7 @@ Customer Support Team`,
       category: "logistica",
       label: "Detalhes da entrega – Quando não tem código de rastreio",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar, então vou te trazer todas as informações com precisão.
@@ -242,7 +242,7 @@ Fico no aguardo, e desejo que o {{produto}} chegue rapidinho até você!
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out to us. I know how good it feels to closely follow the arrival of a product that's part of your wellness routine, so I'll bring you all the information accurately.
@@ -273,7 +273,7 @@ Customer Support Team`,
       category: "logistica",
       label: "Não recebeu o pedido – Endereço insuficiente",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
 Localizei seu pedido em nosso sistema:
@@ -296,7 +296,7 @@ Qualquer dúvida, estou à disposição.
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, from the Customer Support team.
 
 I located your order in our system:
@@ -331,7 +331,7 @@ Customer Support Team`,
         "quero reembolso", "quero meu dinheiro de volta", "quero o dinheiro de volta",
         "quero cancelar e reembolso", "exijo reembolso",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
 Localizei seu pedido em nosso sistema:
@@ -357,7 +357,7 @@ Fico no aguardo do seu retorno!
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, from the Customer Support team.
 
 I located your order in our system:
@@ -394,7 +394,7 @@ Customer Support Team`,
         "aparece como entregue mas não recebi", "diz que foi entregue mas não recebi",
         "não chegou nada",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
 Localizei seu pedido em nosso sistema:
@@ -420,7 +420,7 @@ Fico no aguardo do seu retorno!
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, from the Customer Support team.
 
 I located your order in our system:
@@ -458,7 +458,7 @@ Customer Support Team`,
         "rastreamento do pedido", "link de rastreio", "rastreio sumiu", "não aparece rastreio",
         "sem informação de rastreio", "rastreio não encontrado",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar, então vou te trazer todas as informações com precisão.
@@ -486,7 +486,7 @@ Fico no aguardo, e desejo que o {{produto}} chegue rapidinho até você!
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out to us. I know how nice it is to closely track the arrival of a product that's part of your wellness routine, so I'll bring you all the details with precision.
@@ -521,7 +521,7 @@ Customer Support Team`,
       category: "logistica",
       label: "Novo código de rastreio – Reenvio",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Como prometido, estou entrando em contato para fornecer as informações de rastreamento atualizadas do seu reenvio, para que você possa acompanhar o andamento da entrega diretamente com a UPS.
 
 Informações de Rastreamento
@@ -539,7 +539,7 @@ Agradeço muito a sua paciência e compreensão durante esse processo.
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 As promised, I'm reaching out to share the updated tracking information for your reshipment, so you can follow the delivery progress directly with UPS.
 
 Tracking Information
@@ -569,7 +569,7 @@ Customer Support Team`,
         "quero parar a assinatura", "cancelar a recorrência", "quero sair da assinatura",
         "encerrar assinatura", "finalizar assinatura", "cancelar a assinatura",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco. Localizei sua assinatura em nosso sistema:
@@ -594,7 +594,7 @@ Fico no aguardo do seu retorno para seguirmos com o que fizer mais sentido para 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 Thank you for reaching out to us. I located your subscription in our system:
@@ -626,7 +626,7 @@ Customer Support Team`,
       category: "garantiaVencida",
       label: "Garantia vencida, mas tem assinatura ativa",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
@@ -649,7 +649,7 @@ Estou à disposição para qualquer dúvida sobre o pedido, a garantia ou a assi
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
 
@@ -679,7 +679,7 @@ Customer Support Team`,
       category: "garantiaVencida",
       label: "Garantia vencida",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
@@ -700,7 +700,7 @@ Estou à disposição para qualquer dúvida sobre o pedido ou a garantia.
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
 
@@ -728,7 +728,7 @@ Customer Support Team`,
       category: "assinatura",
       label: "Cancelar assinatura mas foi compra única",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
 Consegui localizar o seguinte pedido em nosso sistema:
@@ -752,7 +752,7 @@ Caso tenha qualquer outra dúvida ou precise de ajuda com qualquer assunto relac
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
 I was able to locate the following order in our system:
@@ -783,7 +783,7 @@ Customer Support Team`,
       category: "assinatura",
       label: "Cancelar a assinatura, mas o segundo pedido está a caminho",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
@@ -810,7 +810,7 @@ Estou à disposição para o que precisar e vou acompanhar seu caso até a resol
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
 
@@ -878,7 +878,7 @@ Customer Support Team`,
         "quero devolver", "quero devolução", "quero reembolso", "quero meu dinheiro de volta",
         "quero o dinheiro de volta", "quero cancelar e reembolso",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
@@ -915,7 +915,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
@@ -964,7 +964,7 @@ Customer Support Team`,
         "já estou com o produto", "estou com o produto em mãos", "recebi o produto e quero devolver",
         "como faço para devolver o produto que já recebi",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
@@ -991,7 +991,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can move forward in the best possible way.
@@ -1029,7 +1029,7 @@ Customer Support Team`,
         "rastreio parado", "rastreamento parado", "status não muda",
         "ainda está como etiqueta criada",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua dúvida. Analisei seu pedido e posso esclarecer o que está acontecendo.
@@ -1059,7 +1059,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your question. I reviewed your order and can clarify what's happening.
@@ -1096,7 +1096,7 @@ Customer Support Team`,
       category: "logistica",
       label: "Atraso na atualização do rastreio na transportadora",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1127,7 +1127,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order so we can find the best solution for your case.
@@ -1169,7 +1169,7 @@ Customer Support Team`,
         "tive enjoo", "tive náusea", "tive dor de cabeça depois de tomar",
         "fiquei mal depois de usar", "tive efeito colateral", "me fez mal",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1201,7 +1201,7 @@ Desejamos uma rápida recuperação e esperamos que você se sinta melhor em bre
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
@@ -1273,7 +1273,7 @@ Customer Support Team`,
         "não autorizei essa compra", "fraude no meu cartão", "compra que eu não fiz",
         "alguém usou meu cartão", "cobrança suspeita", "não fui eu que comprei",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Localizei seu pedido em nosso sistema:
@@ -1299,7 +1299,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 I located your order in our system:
@@ -1332,7 +1332,7 @@ Customer Support Team`,
       category: "naoReconhece",
       label: "Não reconhece a compra – Está com o produto",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1370,7 +1370,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
@@ -1495,7 +1495,7 @@ Customer Support Team`,
         "já caiu meu reembolso", "quando recebo o reembolso", "meu reembolso ainda não caiu",
         "status do meu reembolso", "cadê meu reembolso",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e continuarei acompanhando seu caso.
 
 Tenho uma ótima notícia: o seu reembolso já foi processado com sucesso.
@@ -1521,7 +1521,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll keep following your case.
 
 I have great news: your refund has already been successfully processed.
@@ -1554,7 +1554,7 @@ Customer Support Team`,
       category: "reembolso",
       label: "Produto chegou danificado",
       autoDetect: ["danificado", "quebrado", "avariado", "damaged", "broken"],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1592,7 +1592,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
@@ -1759,7 +1759,7 @@ Customer Support Team`,
       category: "reembolso",
       label: "Cancelar o pedido antes do envio",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Analisei seu pedido e tenho uma boa notícia.
@@ -1788,7 +1788,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I reviewed your order and have good news.
@@ -1827,7 +1827,7 @@ Customer Support Team`,
         "não gostei do sabor", "gosto ruim", "sabor horrível", "não gostei do gosto",
         "o gosto é muito ruim", "sabor desagradável", "gosto muito forte",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1870,7 +1870,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
@@ -1923,7 +1923,7 @@ Customer Support Team`,
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
         "meu médico disse para não tomar", "médico não aprovou o uso",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar essa informação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
@@ -1962,7 +1962,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing this information. I'll carefully review your order so we can move forward in the best possible way.
@@ -2230,7 +2230,7 @@ Customer Support Team`,
       category: "modoDeUso",
       label: "Modo de uso – Sistema duplo (Unlock + Rebuild)",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco. Fico feliz em ajudá-lo(a) a utilizar corretamente o seu produto para aproveitar ao máximo essa experiência.
@@ -2260,7 +2260,7 @@ Desejo que você tenha uma excelente experiência com o produto e que sua jornad
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us. I'm happy to help you use your product correctly so you can get the most out of this experience.
@@ -2297,7 +2297,7 @@ Customer Support Team`,
       category: "reembolsoCancelarAssinatura",
       label: "Cancelar o pedido e a assinatura antes do envio do pedido",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
@@ -2322,7 +2322,7 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
@@ -2413,7 +2413,7 @@ Customer Support Team`,
       category: "reembolsoCancelarAssinatura",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
@@ -2438,7 +2438,7 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
