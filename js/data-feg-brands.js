@@ -2192,7 +2192,7 @@ Customer Support Team`,
       category: "reembolsoCancelarAssinatura",
       label: "Cancelar o pedido e a assinatura, o pedido em trânsito",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação de cancelamento do pedido e da assinatura. Localizei seu pedido em nosso sistema:
 Detalhes do Pedido
@@ -2205,13 +2205,20 @@ Detalhes do Pedido
 • Assinatura: Ativa
 
 Entendo sua decisão e isso não é problema algum. Verifiquei que seu pedido já está em trânsito e, por esse motivo, não é mais possível interromper o envio. Quando o produto chegar, pedimos, por gentileza, que recuse a entrega. Assim que a recusa for concluída, basta nos avisar para que possamos dar continuidade ao reembolso integral.
+
+Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
+
 Quanto à assinatura, antes de prosseguirmos com o cancelamento, gostaria de pedir, se possível, que compartilhe o motivo da sua decisão. Seu feedback é muito importante para nos ajudar a melhorar nossos produtos e atendimento, e assim que recebermos sua resposta, faremos o cancelamento imediatamente.
 Continuaremos acompanhando seu caso até a conclusão. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 Thank you for reaching out to us and sharing your request to cancel the order and the subscription. I located your order in our system:
 Order Details
@@ -2224,6 +2231,13 @@ Order Details
 • Subscription: Active
 
 I understand your decision, and that's not a problem at all. I checked and your order is already in transit, so it's no longer possible to stop the shipment. When the product arrives, please kindly refuse the delivery. Once the refusal is completed, just let us know so we can move forward with the full refund.
+
+You can track your order's delivery using the information below:
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
+
 As for the subscription, before we proceed with the cancellation, I'd like to ask, if possible, that you share the reason for your decision. Your feedback is very important to help us improve our products and service, and as soon as we receive your reply, we'll cancel it right away.
 We'll keep following your case through to its conclusion. If you have any questions or need any additional information, don't hesitate to reply to this email.
 
