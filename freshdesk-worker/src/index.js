@@ -33,12 +33,12 @@
  *                            para um ticket (primeiro contato), começando a
  *                            "janela de espera" de FCR_WINDOW_DAYS dias
  *   POST /fcr-sync         — verifica os tickets cuja janela de espera já
- *                            passou: se o cliente não escreveu de novo
- *                            nesse ticket depois da resposta, conta como
- *                            resolvido no primeiro contato; se escreveu,
- *                            conta como "precisou de novo contato". Roda
- *                            sozinho 1x por dia (ver `scheduled`), mas
- *                            também pode ser chamado manualmente
+ *                            passou: se o ticket não foi reaberto
+ *                            (reopened_at) depois da resposta, conta como
+ *                            resolvido no primeiro contato; se foi, conta
+ *                            como "precisou de novo contato". Roda sozinho
+ *                            1x por dia (ver `scheduled`), mas também pode
+ *                            ser chamado manualmente
  *   GET  /fcr-stats        — contadores de FCR (sucesso/reaberto) e taxa
  *                            (% sucesso) da semana atual
  *   GET  /fcr-history      — mesmos contadores das últimas N semanas, para
@@ -78,11 +78,13 @@ const CSAT_LAST_SYNCED_ID_KEY = "csat:lastSyncedId";
 // FCR (First Contact Resolution) é calculado por conta própria, não vem
 // pronto do Freshdesk: a API de histórico de status (/activities) não está
 // disponível nesta conta/plano (conferido ao vivo), e não existe nenhum
-// campo customizado já usado pelo time para marcar reabertura. A aproximação
+// campo customizado já usado pelo time para marcar reabertura. A abordagem
 // usada aqui: quando uma resposta é copiada para um ticket, guardamos o
-// horário; depois de FCR_WINDOW_DAYS dias, verificamos se o cliente mandou
-// alguma mensagem nova nesse ticket depois desse horário. Se não mandou,
-// conta como resolvido no primeiro contato; se mandou, conta como reaberto.
+// horário; depois de FCR_WINDOW_DAYS dias, buscamos o ticket com
+// include=stats (mesma fonte do FRT/AHT) e conferimos o campo oficial
+// "reopened_at". Se o ticket não foi reaberto depois desse horário, conta
+// como resolvido no primeiro contato; se foi, conta como reaberto (ver
+// classifyFcrOutcome).
 const FCR_WINDOW_DAYS = 3;
 const FCR_PENDING_PREFIX = "fcr:pending:";
 
@@ -612,24 +614,28 @@ async function handleFcrStart(request, env) {
 }
 
 /**
- * Busca as conversas do ticket no Freshdesk e verifica se o cliente mandou
- * alguma mensagem depois do horário da nossa resposta.
+ * Busca o ticket no Freshdesk com include=stats e verifica o campo oficial
+ * "reopened_at" (a mesma fonte usada pelo FRT/AHT). Antes, essa checagem
+ * era feita vasculhando a conversa atrás de qualquer mensagem nova do
+ * cliente — mas isso gerava falso positivo em casos normais de atendimento
+ * (ex: ticket em "Pending" aguardando uma informação do cliente, que
+ * responde exatamente o que foi pedido; isso não é uma reabertura, é o
+ * fluxo esperado). reopened_at só é preenchido quando o Freshdesk de fato
+ * reabre o ticket (Resolvido/Fechado voltando para Aberto), o que reflete
+ * melhor a intenção da métrica.
  * @param {Object} env
  * @param {string} ticketId
  * @param {string} firstResponseAt
- * @returns {Promise<boolean>} true = resolvido no primeiro contato (cliente não voltou)
+ * @returns {Promise<boolean>} true = resolvido no primeiro contato (não reaberto depois)
  */
 async function classifyFcrOutcome(env, ticketId, firstResponseAt) {
-  const conversations = await freshdeskGet(env, `/api/v2/tickets/${ticketId}/conversations?per_page=100`);
+  const detail = await freshdeskGet(env, `/api/v2/tickets/${ticketId}?include=stats`);
+  const reopenedAt = detail.stats && detail.stats.reopened_at;
+  if (!reopenedAt) return true;
+
+  const reopenedTime = new Date(reopenedAt).getTime();
   const firstResponseTime = new Date(firstResponseAt).getTime();
-
-  const customerRepliedAfter = (conversations || []).some((entry) => {
-    if (!entry.incoming) return false;
-    const createdAt = new Date(entry.created_at || 0).getTime();
-    return createdAt > firstResponseTime;
-  });
-
-  return !customerRepliedAfter;
+  return !(reopenedTime > firstResponseTime);
 }
 
 /**
@@ -647,9 +653,9 @@ async function incrementFcrCounter(env, week, outcome) {
 /**
  * Percorre os tickets pendentes de FCR e finaliza os que já passaram da
  * janela de espera (FCR_WINDOW_DAYS), consultando o Freshdesk para saber se
- * o cliente voltou a escrever. Tickets ainda dentro da janela, ou que dão
- * erro na consulta (ex: Freshdesk fora do ar), continuam pendentes para a
- * próxima varredura.
+ * o ticket foi reaberto. Tickets ainda dentro da janela, ou que dão erro na
+ * consulta (ex: Freshdesk fora do ar), continuam pendentes para a próxima
+ * varredura.
  * @param {Object} env
  * @returns {Promise<{processed: number, pending: number}>}
  */

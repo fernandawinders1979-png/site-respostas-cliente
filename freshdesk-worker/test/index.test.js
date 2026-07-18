@@ -422,15 +422,16 @@ test("/fcr-sync não consulta nem conta tickets ainda dentro da janela de espera
   assert.ok(await testEnv.RISK_STATS.get("fcr:pending:58214"));
 });
 
-test("/fcr-sync: cliente não respondeu de novo após a janela -> conta como resolvido no 1º contato", async () => {
+test("/fcr-sync: ticket não foi reaberto após a janela -> conta como resolvido no 1º contato", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   const quatroDiasAtras = new Date(Date.now() - 4 * 86400000).toISOString();
   await testEnv.RISK_STATS.put("fcr:pending:58214", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
 
   globalThis.fetch = async (url) => {
-    const { pathname } = new URL(url);
-    assert.equal(pathname, "/api/v2/tickets/58214/conversations");
-    return Response.json([{ incoming: false, created_at: quatroDiasAtras }]);
+    const { pathname, searchParams } = new URL(url);
+    assert.equal(pathname, "/api/v2/tickets/58214");
+    assert.equal(searchParams.get("include"), "stats");
+    return Response.json({ id: 58214, stats: { reopened_at: null } });
   };
 
   const syncRes = await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
@@ -452,17 +453,13 @@ test("/fcr-sync: cliente não respondeu de novo após a janela -> conta como res
   assert.equal(totalReaberto, 0);
 });
 
-test("/fcr-sync: cliente respondeu de novo depois da nossa resposta -> conta como reaberto", async () => {
+test("/fcr-sync: ticket foi reaberto depois da nossa resposta -> conta como reaberto", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   const quatroDiasAtras = new Date(Date.now() - 4 * 86400000).toISOString();
   const tresDiasAtras = new Date(Date.now() - 3.5 * 86400000).toISOString();
   await testEnv.RISK_STATS.put("fcr:pending:58215", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
 
-  globalThis.fetch = async () =>
-    Response.json([
-      { incoming: false, created_at: quatroDiasAtras },
-      { incoming: true, created_at: tresDiasAtras },
-    ]);
+  globalThis.fetch = async () => Response.json({ id: 58215, stats: { reopened_at: tresDiasAtras } });
 
   await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
 
@@ -475,6 +472,29 @@ test("/fcr-sync: cliente respondeu de novo depois da nossa resposta -> conta com
   const totalReaberto = weeks.reduce((sum, week) => sum + week.reaberto, 0);
   assert.equal(totalSucesso, 0);
   assert.equal(totalReaberto, 1);
+});
+
+test("/fcr-sync: reopened_at de um ciclo antigo (antes da nossa resposta) não conta como reaberto", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const dezDiasAtras = new Date(Date.now() - 10 * 86400000).toISOString();
+  const quatroDiasAtras = new Date(Date.now() - 4 * 86400000).toISOString();
+  await testEnv.RISK_STATS.put("fcr:pending:58217", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
+
+  // reopened_at é de ANTES da nossa resposta (reabertura de um ciclo
+  // anterior, já tratado) — não deve penalizar este contato.
+  globalThis.fetch = async () => Response.json({ id: 58217, stats: { reopened_at: dezDiasAtras } });
+
+  await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+
+  const historyRes = await worker.fetch(
+    req("/fcr-history?weeks=2", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const { weeks } = await historyRes.json();
+  const totalSucesso = weeks.reduce((sum, week) => sum + week.sucesso, 0);
+  const totalReaberto = weeks.reduce((sum, week) => sum + week.reaberto, 0);
+  assert.equal(totalSucesso, 1);
+  assert.equal(totalReaberto, 0);
 });
 
 test("/fcr-sync erro ao consultar o Freshdesk mantém o ticket pendente para a próxima varredura", async () => {
