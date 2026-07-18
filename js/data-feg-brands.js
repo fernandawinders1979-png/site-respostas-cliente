@@ -2011,7 +2011,8 @@ Customer Support Team`,
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
         "meu médico disse para não tomar", "médico não aprovou o uso",
       ],
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco e por compartilhar essa informação. Analisei seu pedido para encontrar a melhor forma de prosseguir.
@@ -2027,6 +2028,12 @@ Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientaç�
 
 Seu pedido está dentro do período da nossa Garantia de Satisfação, então podemos prosseguir com o reembolso integral. Porém, o pacote já está em trânsito e não conseguimos interromper ou cancelar o envio neste momento.
 
+Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
+
 Por isso, pedimos que você recuse a entrega quando o pacote chegar — basta não aceitá-lo do entregador. Após fazer isso, por favor responda a este e-mail confirmando, e daremos andamento ao reembolso integral no mesmo método de pagamento utilizado na compra assim que o pacote retornar para nós.
 
 Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
@@ -2036,7 +2043,8 @@ Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se t
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
+
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be personally responsible for following your case.
 
 Thank you for reaching out to us and sharing this information. I reviewed your order to find the best way to proceed.
@@ -2051,6 +2059,12 @@ Order Details
 We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
 
 Your order is within our Satisfaction Guarantee period, so we can proceed with a full refund. However, the package is already in transit and we're unable to stop or cancel the shipment at this time.
+
+You can track your order's delivery using the information below:
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
 
 Because of that, we kindly ask that you refuse the delivery when the package arrives — simply don't accept it from the carrier. After doing so, please reply to this email confirming it, and we'll proceed with the full refund to the same payment method used for the purchase as soon as the package returns to us.
 
