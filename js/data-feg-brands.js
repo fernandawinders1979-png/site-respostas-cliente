@@ -1684,7 +1684,7 @@ Customer Support Team`,
       category: "reembolso",
       label: "Cancelar pedido – Pedido em trânsito",
       autoDetect: null,
-      pt: `Olá!
+      pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1703,6 +1703,12 @@ Entendo que você decidiu não prosseguir com a compra, e isso não é um proble
 
 Verifiquei que seu pedido já está em trânsito e, por esse motivo, não é mais possível interromper o envio.
 
+Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
+
 Quando o produto chegar, pedimos, por gentileza, que recuse a entrega. Assim que a recusa for concluída, basta responder a este e-mail para que possamos dar continuidade ao processo de reembolso.
 
 Esperamos que todo esse processo ocorra da forma mais rápida possível e continuaremos acompanhando seu caso até a sua conclusão.
@@ -1712,7 +1718,7 @@ Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não h
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello!
+      en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can find the best solution for your case.
@@ -1730,6 +1736,12 @@ Order Details
 I understand you've decided not to proceed with the purchase, and that's not a problem at all. I'd just like to ask, if possible, that you share the reason for the cancellation. Your feedback is very important to help us improve our products and service.
 
 I checked and your order is already in transit, so it's no longer possible to stop the shipment.
+
+You can track your order's delivery using the information below:
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
 
 When the product arrives, please kindly refuse the delivery. Once the refusal is completed, just reply to this email so we can move forward with the refund process.
 
