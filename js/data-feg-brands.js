@@ -2078,6 +2078,154 @@ Customer Support Team`,
     },
 
     {
+      id: "fegMedicoNaoAutorizouEstaComProdutoAssinaturaCancelada",
+      category: "medoReacaoAdversaPedidoAssinatura",
+      label: "Médico não autorizou o uso do produto – Está com o produto",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
+
+Agradeço por entrar em contato conosco e por compartilhar essa informação. Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada, e respeitamos totalmente essa recomendação.
+
+Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
+
+Número da Autorização de Devolução (RMA): [Número do RMA]
+
+Endereço de Devolução:
+[Endereço de Devolução]
+
+Após realizar o envio, por favor responda a este e-mail anexando uma foto dos produtos devolvidos e o comprovante de envio, com o número de rastreamento visível e legível. Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
+
+Também confirmo que sua assinatura ativa foi cancelada com sucesso.
+
+Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida, não hesite em responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case.
+
+Thank you for reaching out to us and sharing this information. I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
+
+Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
+
+Return Merchandise Authorization Number (RMA): [RMA Number]
+
+Return Address:
+[Return Address]
+
+After shipping the return, please reply to this email attaching a photo of the returned products and proof of shipment, with the tracking number clearly visible and legible. As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
+
+I also confirm that your active subscription has been successfully canceled.
+
+There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
+
+I'll keep following your case until it's fully resolved. If you have any questions, don't hesitate to reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
+      id: "fegMedicoNaoAutorizouProdutoTransitoAssinaturaCancelada",
+      category: "medoReacaoAdversaPedidoAssinatura",
+      label: "Médico não autorizou o uso do produto – Produto em trânsito – Recusar entrega",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso pessoalmente.
+
+Agradeço por entrar em contato conosco e por compartilhar essa informação. Analisei seu pedido para encontrar a melhor forma de prosseguir.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+• Assinatura: Cancelada
+
+Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada, e respeitamos totalmente essa recomendação.
+
+Seu pedido está dentro do período da nossa Garantia de Satisfação, então podemos prosseguir com o reembolso integral. Porém, o pacote já está em trânsito e não conseguimos interromper ou cancelar o envio neste momento.
+
+Você pode acompanhar a entrega utilizando as informações abaixo:
+
+Informações de Rastreamento
+• Código de Rastreamento: {{codigoRastreio}}
+• Link de Rastreamento: {{linkRastreio}}
+
+Pedimos que você recuse a entrega quando o pacote chegar — basta não aceitá-lo do entregador. Após fazer isso, por favor responda a este e-mail confirmando, e daremos andamento ao reembolso integral no mesmo método de pagamento utilizado na compra assim que o pacote retornar para nós.
+
+Também confirmo que sua assinatura ativa foi cancelada com sucesso.
+
+Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be personally responsible for following your case.
+
+Thank you for reaching out to us and sharing this information. I reviewed your order to find the best way to proceed.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+• Subscription: Canceled
+
+We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
+
+Your order is within our Satisfaction Guarantee period, so we can proceed with a full refund. However, the package is already in transit and we're unable to stop or cancel the shipment at this time.
+
+You can track the delivery using the information below:
+
+Tracking Information
+• Tracking Code: {{codigoRastreio}}
+• Tracking Link: {{linkRastreio}}
+
+We kindly ask that you refuse the delivery when the package arrives — simply don't accept it from the carrier. After doing so, please reply to this email confirming it, and we'll proceed with the full refund to the same payment method used for the purchase as soon as the package returns to us.
+
+I also confirm that your active subscription has been successfully canceled.
+
+There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
+
+I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegModoDeUsoSistemaDuplo",
       category: "modoDeUso",
       label: "Modo de uso – Sistema duplo (Unlock + Rebuild)",
@@ -2462,7 +2610,8 @@ Customer Support Team`,
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
     { id: "reembolsoCancelarAssinatura", label: "Reembolso do Pedido e Cancelar Assinatura", color: "#4d7cff" },
-    { id: "medoReacaoAdversa", label: "Médico e Reação Adversa", color: "#ff8c1a" },
+    { id: "medoReacaoAdversa", label: "Médico e Reação Adversa - Apenas o Pedido", color: "#ff8c1a" },
+    { id: "medoReacaoAdversaPedidoAssinatura", label: "Médico e Reação Adversa - Pedido e Assinatura", color: "#ffa64d" },
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
     { id: "cancelarCompreiPorEngano", label: "Cancelar - Comprei por Engano", color: "#ffb700" },
