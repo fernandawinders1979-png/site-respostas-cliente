@@ -453,8 +453,9 @@
 
   /**
    * Converte a chave de semana ISO (ex: "2026-W29") na data de início dessa
-   * semana (a segunda-feira), no formato DD/MM — mesmo cálculo de semana
-   * ISO usado pelo Worker (getIsoWeekKey em freshdesk-worker/src/index.js).
+   * semana (a segunda-feira), no formato DD/MM/AAAA — mesmo cálculo de
+   * semana ISO usado pelo Worker (getIsoWeekKey em
+   * freshdesk-worker/src/index.js).
    * @param {string} weekKey
    * @returns {string}
    */
@@ -476,7 +477,7 @@
 
     const day = String(monday.getUTCDate()).padStart(2, "0");
     const month = String(monday.getUTCMonth() + 1).padStart(2, "0");
-    return `${day}/${month}`;
+    return `${day}/${month}/${monday.getUTCFullYear()}`;
   }
 
   function renderChart(history) {
