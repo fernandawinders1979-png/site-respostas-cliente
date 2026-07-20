@@ -1061,6 +1061,15 @@ section h2 {
   white-space: nowrap;
 }
 
+.metrics-acronym-hint {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  text-shadow: none;
+}
+
 .metrics-accordion[open] > .metrics-accordion-title .metrics-accordion-hint {
   display: none;
 }
