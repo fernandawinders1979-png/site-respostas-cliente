@@ -451,10 +451,32 @@
     return MARGIN.top + PLOT_HEIGHT - (PLOT_HEIGHT * value) / maxValue;
   }
 
+  /**
+   * Converte a chave de semana ISO (ex: "2026-W29") na data de início dessa
+   * semana (a segunda-feira), no formato DD/MM — mesmo cálculo de semana
+   * ISO usado pelo Worker (getIsoWeekKey em freshdesk-worker/src/index.js).
+   * @param {string} weekKey
+   * @returns {string}
+   */
   function shortWeekLabel(weekKey) {
-    // "2026-W29" -> "S29"
-    const match = weekKey.match(/W(\d+)$/);
-    return match ? `S${match[1]}` : weekKey;
+    const match = weekKey.match(/^(\d{4})-W(\d+)$/);
+    if (!match) return weekKey;
+
+    const year = Number(match[1]);
+    const week = Number(match[2]);
+
+    // 4 de janeiro está sempre na semana 1 (regra ISO 8601).
+    const jan4 = new Date(Date.UTC(year, 0, 4));
+    const jan4DayOfWeek = jan4.getUTCDay() || 7; // segunda=1 ... domingo=7
+    const week1Monday = new Date(jan4);
+    week1Monday.setUTCDate(jan4.getUTCDate() - jan4DayOfWeek + 1);
+
+    const monday = new Date(week1Monday);
+    monday.setUTCDate(week1Monday.getUTCDate() + (week - 1) * 7);
+
+    const day = String(monday.getUTCDate()).padStart(2, "0");
+    const month = String(monday.getUTCMonth() + 1).padStart(2, "0");
+    return `${day}/${month}`;
   }
 
   function renderChart(history) {
