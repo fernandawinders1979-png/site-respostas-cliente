@@ -26,6 +26,74 @@
     <p id="metrics-status" class="ticket-search-status" role="status" aria-live="polite"></p>
 
     <!-- ============================================================
+         GRUPO 1 — Proteção de Receita: o quanto o atendimento está
+         evitando que vendas virem prejuízo.
+         ============================================================ -->
+    <h2 class="metrics-group-title">Proteção de Receita</h2>
+
+    <!-- ============================================================
+         KPIs: valor identificado em risco alto
+         ============================================================ -->
+    <details class="results-section metrics-accordion">
+      <summary class="metrics-accordion-title">
+        <span>Valor em risco alto identificado</span>
+        <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
+      </summary>
+      <div class="metrics-accordion-body">
+        <section class="kpi-row" aria-label="Resumo de valor em risco alto">
+          <article class="kpi-tile">
+            <span class="kpi-label">Esta semana</span>
+            <strong id="kpi-valor-semana" class="kpi-value">--</strong>
+            <span id="kpi-casos-semana" class="kpi-sub">--</span>
+            <span id="kpi-delta-semana" class="kpi-delta"></span>
+          </article>
+          <article class="kpi-tile">
+            <span class="kpi-label">Últimas <span id="kpi-periodo-semanas">8</span> semanas</span>
+            <strong id="kpi-valor-periodo" class="kpi-value">--</strong>
+            <span id="kpi-casos-periodo" class="kpi-sub">--</span>
+            <span id="kpi-delta-periodo" class="kpi-delta"></span>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- ============================================================
+         Gráfico de tendência semanal (alto / médio / baixo)
+         ============================================================ -->
+    <details class="results-section metrics-accordion">
+      <summary class="metrics-accordion-title" id="trend-title">
+        <span>Tendência semanal de risco identificado</span>
+        <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
+      </summary>
+      <div class="metrics-accordion-body">
+        <p class="ai-note">Quantidade de mensagens classificadas em cada nível de risco, por semana. Passe o mouse sobre um ponto para ver os números exatos.</p>
+
+        <div class="chart-legend" id="chart-legend"></div>
+        <div class="chart-wrap">
+          <svg id="trend-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-labelledby="trend-title"></svg>
+          <div id="chart-tooltip" class="chart-tooltip" hidden></div>
+        </div>
+
+        <details class="chart-table-details">
+          <summary>Ver como tabela</summary>
+          <div class="table-scroll">
+            <table id="trend-table" class="trend-table">
+              <thead>
+                <tr>
+                  <th scope="col">Semana</th>
+                  <th scope="col">Alto</th>
+                  <th scope="col">Médio</th>
+                  <th scope="col">Baixo</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <!-- ============================================================
          Prevenção de Chargeback — fecha o ciclo do risco: quando um caso
          de risco alto é identificado, fica "aguardando confirmação" até o
          campo "Status do reembolso" do ticket chegar num desfecho final
@@ -64,6 +132,12 @@
         <div id="prevention-pending-list" class="prevention-pending-list"></div>
       </div>
     </details>
+
+    <!-- ============================================================
+         GRUPO 2 — Qualidade do Atendimento: como o cliente está sendo
+         tratado, e o quão rápido.
+         ============================================================ -->
+    <h2 class="metrics-group-title">Qualidade do Atendimento</h2>
 
     <!-- ============================================================
          Satisfação do Cliente (CSAT) — respondida pelo próprio cliente na
@@ -194,6 +268,11 @@
     </details>
 
     <!-- ============================================================
+         GRUPO 3 — Operação: o tamanho e a natureza do trabalho do time.
+         ============================================================ -->
+    <h2 class="metrics-group-title">Operação</h2>
+
+    <!-- ============================================================
          Volume de atendimento (respostas enviadas pelo site)
          ============================================================ -->
     <details class="results-section metrics-accordion">
@@ -207,68 +286,6 @@
         <div class="chart-wrap">
           <svg id="volume-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-label="Respostas enviadas por semana"></svg>
         </div>
-      </div>
-    </details>
-
-    <!-- ============================================================
-         KPIs: valor identificado em risco alto
-         ============================================================ -->
-    <details class="results-section metrics-accordion">
-      <summary class="metrics-accordion-title">
-        <span>Valor em risco alto identificado</span>
-        <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
-      </summary>
-      <div class="metrics-accordion-body">
-        <section class="kpi-row" aria-label="Resumo de valor em risco alto">
-          <article class="kpi-tile">
-            <span class="kpi-label">Esta semana</span>
-            <strong id="kpi-valor-semana" class="kpi-value">--</strong>
-            <span id="kpi-casos-semana" class="kpi-sub">--</span>
-            <span id="kpi-delta-semana" class="kpi-delta"></span>
-          </article>
-          <article class="kpi-tile">
-            <span class="kpi-label">Últimas <span id="kpi-periodo-semanas">8</span> semanas</span>
-            <strong id="kpi-valor-periodo" class="kpi-value">--</strong>
-            <span id="kpi-casos-periodo" class="kpi-sub">--</span>
-            <span id="kpi-delta-periodo" class="kpi-delta"></span>
-          </article>
-        </section>
-      </div>
-    </details>
-
-    <!-- ============================================================
-         Gráfico de tendência semanal (alto / médio / baixo)
-         ============================================================ -->
-    <details class="results-section metrics-accordion">
-      <summary class="metrics-accordion-title" id="trend-title">
-        <span>Tendência semanal de risco identificado</span>
-        <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
-      </summary>
-      <div class="metrics-accordion-body">
-        <p class="ai-note">Quantidade de mensagens classificadas em cada nível de risco, por semana. Passe o mouse sobre um ponto para ver os números exatos.</p>
-
-        <div class="chart-legend" id="chart-legend"></div>
-        <div class="chart-wrap">
-          <svg id="trend-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-labelledby="trend-title"></svg>
-          <div id="chart-tooltip" class="chart-tooltip" hidden></div>
-        </div>
-
-        <details class="chart-table-details">
-          <summary>Ver como tabela</summary>
-          <div class="table-scroll">
-            <table id="trend-table" class="trend-table">
-              <thead>
-                <tr>
-                  <th scope="col">Semana</th>
-                  <th scope="col">Alto</th>
-                  <th scope="col">Médio</th>
-                  <th scope="col">Baixo</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </details>
       </div>
     </details>
 
