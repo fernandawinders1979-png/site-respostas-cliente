@@ -5,6 +5,14 @@
  * em código — o dashboard nunca fala direto com o Freshdesk, só com este
  * Worker.
  *
+ * Desde 2026-07-20, TODAS as métricas (risco, CSAT, FCR, FRT/AHT, prevenção,
+ * rankings de motivo/template, volume) só contam tickets do grupo "Suporte
+ * Badrock" (ver BADROCK_GROUP_ID). Rotas que recebem eventos sem vínculo
+ * automático com um ticket (/risk-event, /stat-event) agora exigem um
+ * `ticketId` no corpo da requisição só pra essa checagem — se não vier, ou o
+ * ticket não for desse grupo, o evento é silenciosamente ignorado (não conta,
+ * mas a resposta ainda é 200 pra não atrapalhar o uso normal do site).
+ *
  * Rotas:
  *   GET  /ticket/{numero}  — dados do chamado, para preencher o painel
  *   POST /risk-event       — soma 1 (e o valor do pedido, se informado) no
@@ -71,6 +79,13 @@
  */
 
 const ALLOWED_ORIGIN = "https://fernandawinders1979-png.github.io";
+
+// Todas as métricas do dashboard só contam tickets do grupo "7. Suporte
+// Badrock" (conferido ao vivo em GET /api/v2/groups na conta
+// hebevi.freshdesk.com — id 156001126409, nome inclui o prefixo numérico do
+// Freshdesk). Desde 2026-07-20, a dona do site pediu pra restringir todas as
+// métricas a esse grupo específico, já que antes contavam qualquer chamado.
+const BADROCK_GROUP_ID = 156001126409;
 
 // Níveis de risco aceitos pelo painel de estatísticas (mesmos usados em
 // js/core.js -> classifyRisk).
@@ -328,6 +343,24 @@ async function freshdeskGet(env, path) {
 }
 
 /**
+ * Confere se um ticket pertence ao grupo "Suporte Badrock" (único grupo cujos
+ * tickets contam nas métricas do dashboard). Devolve false também quando o
+ * ticket não existe ou o Freshdesk não responde, pra nunca contar por engano.
+ * @param {Object} env
+ * @param {string} ticketId
+ * @returns {Promise<boolean>}
+ */
+async function isBadrockTicket(env, ticketId) {
+  if (!ticketId || !/^\d+$/.test(ticketId)) return false;
+  try {
+    const ticket = await freshdeskGet(env, `/api/v2/tickets/${ticketId}`);
+    return ticket.group_id === BADROCK_GROUP_ID;
+  } catch (error) {
+    return false;
+  }
+}
+
+/**
  * Monta o payload combinando os dados do chamado, do contato e do agente
  * responsável, no mesmo formato que o dashboard (js/core.js ->
  * applyFreshdeskPayload) espera.
@@ -388,7 +421,9 @@ async function incrementRiskCounter(env, week, level, valor) {
 /**
  * Trata POST /risk-event: registra que uma mensagem foi classificada com
  * determinado nível de risco (e, se informado, o valor do pedido), para o
- * painel de estatísticas e o gráfico de tendência.
+ * painel de estatísticas e o gráfico de tendência. Só soma se o ticket
+ * informado for do grupo Suporte Badrock — sem ticket buscado (ou de outro
+ * grupo), a análise não entra na contagem.
  * @param {Request} request
  * @param {Object} env
  * @returns {Promise<Response>}
@@ -405,9 +440,14 @@ async function handleRiskEvent(request, env) {
     return jsonResponse({ error: "Nível de risco inválido. Use baixo, medio ou alto." }, 400);
   }
 
+  const ticketId = typeof body.ticketId === "string" ? body.ticketId.trim() : "";
+  if (!(await isBadrockTicket(env, ticketId))) {
+    return jsonResponse({ ok: true, counted: false });
+  }
+
   const valor = typeof body.valor === "number" ? body.valor : null;
   await incrementRiskCounter(env, getIsoWeekKey(new Date()), body.level, valor);
-  return jsonResponse({ ok: true });
+  return jsonResponse({ ok: true, counted: true });
 }
 
 /**
@@ -521,8 +561,10 @@ async function incrementCsatCounter(env, week, level) {
 /**
  * Busca as avaliações de satisfação novas no Freshdesk (desde a última
  * sincronização, controlada pelo cursor CSAT_LAST_SYNCED_ID_KEY guardado no
- * KV) e soma nos contadores semanais. Chamada tanto pelo gatilho agendado
- * (1x por dia) quanto pelo botão "Sincronizar agora" do dashboard.
+ * KV), confere o ticket de cada uma (a resposta de satisfação em si não traz
+ * group_id, então busca o ticket pelo ticket_id) e soma nos contadores
+ * semanais só as do grupo Suporte Badrock. Chamada tanto pelo gatilho
+ * agendado (1x por dia) quanto pelo botão "Sincronizar agora" do dashboard.
  * @param {Object} env
  * @returns {Promise<{synced: number}>}
  */
@@ -533,7 +575,7 @@ async function syncCsatRatings(env) {
   let maxId = lastId;
   for (const rating of newRatings) {
     const level = classifyCsatRating(rating.ratings && rating.ratings.default_question);
-    if (level) {
+    if (level && (await isBadrockTicket(env, String(rating.ticket_id)))) {
       const week = getIsoWeekKey(new Date(rating.created_at || Date.now()));
       await incrementCsatCounter(env, week, level);
     }
@@ -649,28 +691,31 @@ async function handleFcrStart(request, env) {
 }
 
 /**
- * Busca o ticket no Freshdesk com include=stats e verifica o campo oficial
- * "reopened_at" (a mesma fonte usada pelo FRT/AHT). Antes, essa checagem
- * era feita vasculhando a conversa atrás de qualquer mensagem nova do
- * cliente — mas isso gerava falso positivo em casos normais de atendimento
- * (ex: ticket em "Pending" aguardando uma informação do cliente, que
- * responde exatamente o que foi pedido; isso não é uma reabertura, é o
- * fluxo esperado). reopened_at só é preenchido quando o Freshdesk de fato
- * reabre o ticket (Resolvido/Fechado voltando para Aberto), o que reflete
- * melhor a intenção da métrica.
+ * Busca o ticket no Freshdesk com include=stats, verifica se é do grupo
+ * Suporte Badrock, e confere o campo oficial "reopened_at" (a mesma fonte
+ * usada pelo FRT/AHT). Antes, essa checagem de reabertura era feita
+ * vasculhando a conversa atrás de qualquer mensagem nova do cliente — mas
+ * isso gerava falso positivo em casos normais de atendimento (ex: ticket em
+ * "Pending" aguardando uma informação do cliente, que responde exatamente o
+ * que foi pedido; isso não é uma reabertura, é o fluxo esperado).
+ * reopened_at só é preenchido quando o Freshdesk de fato reabre o ticket
+ * (Resolvido/Fechado voltando para Aberto), o que reflete melhor a intenção
+ * da métrica.
  * @param {Object} env
  * @param {string} ticketId
  * @param {string} firstResponseAt
- * @returns {Promise<boolean>} true = resolvido no primeiro contato (não reaberto depois)
+ * @returns {Promise<{isBadrock: boolean, resolvedFirstContact: boolean}>} resolvedFirstContact: true = não reaberto depois
  */
 async function classifyFcrOutcome(env, ticketId, firstResponseAt) {
   const detail = await freshdeskGet(env, `/api/v2/tickets/${ticketId}?include=stats`);
+  const isBadrock = detail.group_id === BADROCK_GROUP_ID;
+
   const reopenedAt = detail.stats && detail.stats.reopened_at;
-  if (!reopenedAt) return true;
+  if (!reopenedAt) return { isBadrock, resolvedFirstContact: true };
 
   const reopenedTime = new Date(reopenedAt).getTime();
   const firstResponseTime = new Date(firstResponseAt).getTime();
-  return !(reopenedTime > firstResponseTime);
+  return { isBadrock, resolvedFirstContact: !(reopenedTime > firstResponseTime) };
 }
 
 /**
@@ -688,9 +733,10 @@ async function incrementFcrCounter(env, week, outcome) {
 /**
  * Percorre os tickets pendentes de FCR e finaliza os que já passaram da
  * janela de espera (FCR_WINDOW_DAYS), consultando o Freshdesk para saber se
- * o ticket foi reaberto. Tickets ainda dentro da janela, ou que dão erro na
- * consulta (ex: Freshdesk fora do ar), continuam pendentes para a próxima
- * varredura.
+ * o ticket foi reaberto e se é do grupo Suporte Badrock (só esses somam no
+ * contador — os demais são só descartados da fila, sem contar). Tickets
+ * ainda dentro da janela, ou que dão erro na consulta (ex: Freshdesk fora do
+ * ar), continuam pendentes para a próxima varredura.
  * @param {Object} env
  * @returns {Promise<{processed: number, pending: number}>}
  */
@@ -726,9 +772,11 @@ async function sweepFcrPending(env) {
 
     const ticketId = keyObj.name.slice(FCR_PENDING_PREFIX.length);
     try {
-      const resolvedFirstContact = await classifyFcrOutcome(env, ticketId, firstResponseAt);
-      const week = getIsoWeekKey(new Date(firstResponseAt));
-      await incrementFcrCounter(env, week, resolvedFirstContact ? "sucesso" : "reaberto");
+      const { isBadrock, resolvedFirstContact } = await classifyFcrOutcome(env, ticketId, firstResponseAt);
+      if (isBadrock) {
+        const week = getIsoWeekKey(new Date(firstResponseAt));
+        await incrementFcrCounter(env, week, resolvedFirstContact ? "sucesso" : "reaberto");
+      }
       await env.RISK_STATS.delete(keyObj.name);
       processed += 1;
     } catch (error) {
@@ -860,10 +908,12 @@ async function recordDurationSample(env, metric, week, minutes) {
 
 /**
  * Sincroniza FRT e AHT: busca os tickets tocados desde a última
- * sincronização, pega o detalhe de cada um com include=stats, e soma nos
- * contadores semanais os que ainda não tinham sido contados (flags
- * "done" no KV evitam duplicar quando o mesmo ticket aparece de novo por
- * outro motivo, ex: reaberto ou campo editado depois de resolvido).
+ * sincronização, ignora de cara os que não são do grupo Suporte Badrock
+ * (o group_id já vem na própria listagem, sem precisar de include extra), e
+ * pega o detalhe com include=stats só dos demais, somando nos contadores
+ * semanais os que ainda não tinham sido contados (flags "done" no KV evitam
+ * duplicar quando o mesmo ticket aparece de novo por outro motivo, ex:
+ * reaberto ou campo editado depois de resolvido).
  * @param {Object} env
  * @returns {Promise<{ticketsChecked: number, frtRecorded: number, ahtRecorded: number}>}
  */
@@ -880,6 +930,13 @@ async function syncDurationMetrics(env) {
   let stopAdvancing = false;
 
   for (const summary of tickets) {
+    if (summary.group_id !== BADROCK_GROUP_ID) {
+      if (!stopAdvancing && summary.updated_at) {
+        cursorAdvance = summary.updated_at;
+      }
+      continue;
+    }
+
     let detail;
     try {
       detail = await freshdeskGet(env, `/api/v2/tickets/${summary.id}?include=stats`);
@@ -996,7 +1053,8 @@ async function handleDurationHistory(env, metric, weeksParam) {
  * Trata POST /risk-case-start: registra que um caso de risco alto foi
  * identificado num ticket real, aguardando confirmação manual depois. Se o
  * ticket já tiver um caso registrado (ex: a mensagem foi analisada de novo),
- * mantém o registro original — o horário de detecção não deve mudar.
+ * mantém o registro original — o horário de detecção não deve mudar. Só
+ * registra se o ticket for do grupo Suporte Badrock.
  * @param {Request} request
  * @param {Object} env
  * @returns {Promise<Response>}
@@ -1012,6 +1070,10 @@ async function handleRiskCaseStart(request, env) {
   const ticketId = typeof body.ticketId === "string" ? body.ticketId.trim() : "";
   if (!ticketId || !/^\d+$/.test(ticketId)) {
     return jsonResponse({ error: "Campo ticketId é obrigatório (número do ticket)." }, 400);
+  }
+
+  if (!(await isBadrockTicket(env, ticketId))) {
+    return jsonResponse({ ok: true, counted: false });
   }
 
   const key = `${RISK_CASE_PREFIX}${ticketId}`;
@@ -1201,8 +1263,10 @@ async function incrementNamedCounter(env, category, week, rawKey, label) {
 }
 
 /**
- * Trata POST /stat-event: registra uma ocorrência de motivo de contato ou
- * template usado, para os rankings do dashboard de métricas.
+ * Trata POST /stat-event: registra uma ocorrência de motivo de contato,
+ * template usado ou resposta copiada, para os rankings e o volume do
+ * dashboard de métricas. Só soma se o ticket informado for do grupo Suporte
+ * Badrock — sem ticket buscado (ou de outro grupo), não entra na contagem.
  * @param {Request} request
  * @param {Object} env
  * @returns {Promise<Response>}
@@ -1225,8 +1289,13 @@ async function handleStatEvent(request, env) {
   }
   const label = typeof body.label === "string" ? body.label.trim().slice(0, 120) : "";
 
+  const ticketId = typeof body.ticketId === "string" ? body.ticketId.trim() : "";
+  if (!(await isBadrockTicket(env, ticketId))) {
+    return jsonResponse({ ok: true, counted: false });
+  }
+
   await incrementNamedCounter(env, body.category, getIsoWeekKey(new Date()), key, label);
-  return jsonResponse({ ok: true });
+  return jsonResponse({ ok: true, counted: true });
 }
 
 /**

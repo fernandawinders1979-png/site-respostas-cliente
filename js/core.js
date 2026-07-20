@@ -1350,16 +1350,18 @@
    * Avisa o Worker que uma mensagem foi classificada com determinado nível
    * de risco, para somar no contador compartilhado da semana. É um "extra"
    * de estatística — se falhar (sem senha guardada, sem internet, etc.),
-   * ignora em silêncio e não afeta o uso normal do site.
+   * ignora em silêncio e não afeta o uso normal do site. Só dispara quando o
+   * ticket veio de uma busca real (currentTicketId) — o Worker só soma se
+   * esse ticket for do grupo Suporte Badrock.
    * @param {string} level "baixo" | "medio" | "alto"
    * @param {number|null} valor valor do pedido (Detalhes do Pedido), quando disponível
    */
   async function recordRiskEvent(level, valor) {
     const token = getStoredAppToken();
-    if (!token) return;
+    if (!token || !currentTicketId) return;
 
     try {
-      const body = { level };
+      const body = { level, ticketId: currentTicketId };
       if (typeof valor === "number" && Number.isFinite(valor)) {
         body.valor = valor;
       }
@@ -1381,22 +1383,24 @@
 
   /**
    * Avisa o Worker que um valor apareceu numa categoria "aberta" — motivo
-   * de contato ou template usado — para os rankings do dashboard de
-   * métricas. Mesmo padrão silencioso de recordRiskEvent: só dispara se já
-   * houver senha guardada, nunca interrompe o atendimento se falhar.
+   * de contato, template usado ou resposta copiada — para os rankings e o
+   * volume do dashboard de métricas. Mesmo padrão silencioso de
+   * recordRiskEvent: só dispara se já houver senha guardada e um ticket
+   * buscado (currentTicketId) — o Worker só soma se esse ticket for do
+   * grupo Suporte Badrock.
    * @param {string} category "motivo" | "template"
    * @param {string} key
    * @param {string} label
    */
   async function recordStatEvent(category, key, label) {
     const token = getStoredAppToken();
-    if (!token || !key) return;
+    if (!token || !key || !currentTicketId) return;
 
     try {
       await fetch(`${FRESHDESK_WORKER_URL}/stat-event`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-App-Token": token },
-        body: JSON.stringify({ category, key, label }),
+        body: JSON.stringify({ category, key, label, ticketId: currentTicketId }),
       });
     } catch (error) {
       // Sem internet ou Worker fora do ar: ignora, é só estatística extra.

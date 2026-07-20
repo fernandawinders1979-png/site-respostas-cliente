@@ -11,6 +11,26 @@ const env = {
   APP_TOKEN: "senha-correta",
 };
 
+// Mesmo grupo usado em src/index.js (BADROCK_GROUP_ID) — todas as métricas só
+// contam tickets desse grupo, então os testes precisam simular a checagem.
+const BADROCK_GROUP_ID = 156001126409;
+const OTHER_GROUP_ID = 156001053742;
+
+// Fetch simulado que responde group_id do grupo Badrock (ou outro) para
+// qualquer /api/v2/tickets/{id}, e delega o resto para um fetch extra
+// (usado quando o teste também precisa simular outras rotas do Freshdesk).
+function mockTicketGroupFetch(groupId, extraFetch) {
+  return async (url, ...rest) => {
+    const { pathname } = new URL(url);
+    const match = pathname.match(/^\/api\/v2\/tickets\/(\d+)$/);
+    if (match) {
+      return Response.json({ id: Number(match[1]), group_id: groupId });
+    }
+    if (extraFetch) return extraFetch(url, ...rest);
+    throw new Error("URL inesperada: " + pathname);
+  };
+}
+
 const AGENT_RESPONSE = {
   contact: { name: "João Souza" },
 };
@@ -94,15 +114,16 @@ test("registrar risco com nível inválido -> 400", async () => {
 
 test("registrar risco soma no contador da semana e aparece em /risk-stats", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   const res1 = await worker.fetch(
-    postReq("/risk-event", { level: "alto" }, { "X-App-Token": "senha-correta" }),
+    postReq("/risk-event", { level: "alto", ticketId: "70100" }, { "X-App-Token": "senha-correta" }),
     testEnv,
   );
   assert.equal(res1.status, 200);
 
   const res2 = await worker.fetch(
-    postReq("/risk-event", { level: "alto" }, { "X-App-Token": "senha-correta" }),
+    postReq("/risk-event", { level: "alto", ticketId: "70100" }, { "X-App-Token": "senha-correta" }),
     testEnv,
   );
   assert.equal(res2.status, 200);
@@ -117,20 +138,47 @@ test("registrar risco soma no contador da semana e aparece em /risk-stats", asyn
   assert.match(stats.week, /^\d{4}-W\d{2}$/);
 });
 
+test("registrar risco sem ticket do grupo Suporte Badrock não conta", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(OTHER_GROUP_ID);
+
+  const semTicket = await worker.fetch(
+    postReq("/risk-event", { level: "alto" }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(semTicket.status, 200);
+  assert.equal((await semTicket.json()).counted, false);
+
+  const outroGrupo = await worker.fetch(
+    postReq("/risk-event", { level: "alto", ticketId: "70101" }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal((await outroGrupo.json()).counted, false);
+
+  const statsRes = await worker.fetch(req("/risk-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const stats = await statsRes.json();
+  assert.equal(stats.alto, 0);
+});
+
 test("registrar risco com valor soma no total da semana", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   await worker.fetch(
-    postReq("/risk-event", { level: "alto", valor: 49.9 }, { "X-App-Token": "senha-correta" }),
+    postReq("/risk-event", { level: "alto", valor: 49.9, ticketId: "70102" }, { "X-App-Token": "senha-correta" }),
     testEnv,
   );
   await worker.fetch(
-    postReq("/risk-event", { level: "alto", valor: 100.1 }, { "X-App-Token": "senha-correta" }),
+    postReq("/risk-event", { level: "alto", valor: 100.1, ticketId: "70102" }, { "X-App-Token": "senha-correta" }),
     testEnv,
   );
   // valor inválido não deve quebrar a requisição nem entrar na soma
   const res3 = await worker.fetch(
-    postReq("/risk-event", { level: "alto", valor: "não é número" }, { "X-App-Token": "senha-correta" }),
+    postReq(
+      "/risk-event",
+      { level: "alto", valor: "não é número", ticketId: "70102" },
+      { "X-App-Token": "senha-correta" },
+    ),
     testEnv,
   );
   assert.equal(res3.status, 200);
@@ -150,9 +198,10 @@ test("/risk-history sem senha -> 401", async () => {
 
 test("/risk-history devolve as semanas certas com os totais acumulados", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   await worker.fetch(
-    postReq("/risk-event", { level: "medio", valor: 30 }, { "X-App-Token": "senha-correta" }),
+    postReq("/risk-event", { level: "medio", valor: 30, ticketId: "70103" }, { "X-App-Token": "senha-correta" }),
     testEnv,
   );
 
@@ -198,11 +247,12 @@ test("registrar estatística sem key -> 400", async () => {
 
 test("registrar motivo repetido soma no mesmo contador (ignora acento/maiúscula)", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   await worker.fetch(
     postReq(
       "/stat-event",
-      { category: "motivo", key: "Atraso na Entrega", label: "Atraso na Entrega" },
+      { category: "motivo", key: "Atraso na Entrega", label: "Atraso na Entrega", ticketId: "70104" },
       { "X-App-Token": "senha-correta" },
     ),
     testEnv,
@@ -210,7 +260,7 @@ test("registrar motivo repetido soma no mesmo contador (ignora acento/maiúscula
   await worker.fetch(
     postReq(
       "/stat-event",
-      { category: "motivo", key: "atraso na entrega", label: "Atraso na Entrega" },
+      { category: "motivo", key: "atraso na entrega", label: "Atraso na Entrega", ticketId: "70104" },
       { "X-App-Token": "senha-correta" },
     ),
     testEnv,
@@ -230,10 +280,15 @@ test("registrar motivo repetido soma no mesmo contador (ignora acento/maiúscula
 
 test("/stat-ranking ordena do mais frequente para o menos e respeita o limit", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   const record = (key) =>
     worker.fetch(
-      postReq("/stat-event", { category: "template", key, label: key }, { "X-App-Token": "senha-correta" }),
+      postReq(
+        "/stat-event",
+        { category: "template", key, label: key, ticketId: "70105" },
+        { "X-App-Token": "senha-correta" },
+      ),
       testEnv,
     );
 
@@ -274,12 +329,13 @@ test("/stat-history sem key -> 400", async () => {
 
 test("/stat-history devolve o histórico semanal da chave certa", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   const record = () =>
     worker.fetch(
       postReq(
         "/stat-event",
-        { category: "resposta", key: "total", label: "Respostas copiadas" },
+        { category: "resposta", key: "total", label: "Respostas copiadas", ticketId: "70106" },
         { "X-App-Token": "senha-correta" },
       ),
       testEnv,
@@ -311,19 +367,19 @@ test("/csat-sync classifica as respostas (feliz/neutro/insatisfeito) e soma em /
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   const hoje = new Date().toISOString();
 
-  globalThis.fetch = async (url) => {
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID, async (url) => {
     const { pathname, searchParams } = new URL(url);
     assert.equal(pathname, "/api/v2/surveys/satisfaction_ratings");
     if (searchParams.get("page") === "1") {
       return Response.json([
-        { id: 1, created_at: hoje, ratings: { default_question: 103 } },
-        { id: 2, created_at: hoje, ratings: { default_question: 100 } },
-        { id: 3, created_at: hoje, ratings: { default_question: -103 } },
-        { id: 4, created_at: hoje, ratings: { default_question: 103 } },
+        { id: 1, ticket_id: 501, created_at: hoje, ratings: { default_question: 103 } },
+        { id: 2, ticket_id: 502, created_at: hoje, ratings: { default_question: 100 } },
+        { id: 3, ticket_id: 503, created_at: hoje, ratings: { default_question: -103 } },
+        { id: 4, ticket_id: 504, created_at: hoje, ratings: { default_question: 103 } },
       ]);
     }
     return Response.json([]);
-  };
+  });
 
   const syncRes = await worker.fetch(
     postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }),
@@ -343,16 +399,36 @@ test("/csat-sync classifica as respostas (feliz/neutro/insatisfeito) e soma em /
   assert.equal(stats.score, 50);
 });
 
+test("/csat-sync ignora avaliações de tickets fora do grupo Suporte Badrock", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const hoje = new Date().toISOString();
+
+  globalThis.fetch = mockTicketGroupFetch(OTHER_GROUP_ID, async (url) => {
+    const { searchParams } = new URL(url);
+    if (searchParams.get("page") === "1") {
+      return Response.json([{ id: 1, ticket_id: 601, created_at: hoje, ratings: { default_question: 103 } }]);
+    }
+    return Response.json([]);
+  });
+
+  const syncRes = await worker.fetch(postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await syncRes.json()).synced, 1); // "synced" só conta que o cursor avançou, não que somou
+
+  const statsRes = await worker.fetch(req("/csat-stats", { "X-App-Token": "senha-correta" }), testEnv);
+  const stats = await statsRes.json();
+  assert.equal(stats.total, 0);
+});
+
 test("/csat-sync não conta de novo respostas já sincronizadas antes (cursor por id)", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   const hoje = new Date().toISOString();
-  let allRatings = [{ id: 1, created_at: hoje, ratings: { default_question: 103 } }];
+  let allRatings = [{ id: 1, ticket_id: 501, created_at: hoje, ratings: { default_question: 103 } }];
 
-  globalThis.fetch = async (url) => {
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID, async (url) => {
     const { searchParams } = new URL(url);
     if (searchParams.get("page") === "1") return Response.json(allRatings);
     return Response.json([]);
-  };
+  });
 
   const first = await worker.fetch(postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
   assert.equal((await first.json()).synced, 1);
@@ -362,7 +438,7 @@ test("/csat-sync não conta de novo respostas já sincronizadas antes (cursor po
   assert.equal((await second.json()).synced, 0);
 
   // Chega uma resposta nova (id 2): só ela deve ser contada.
-  allRatings = [...allRatings, { id: 2, created_at: hoje, ratings: { default_question: -103 } }];
+  allRatings = [...allRatings, { id: 2, ticket_id: 502, created_at: hoje, ratings: { default_question: -103 } }];
   const third = await worker.fetch(postReq("/csat-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
   assert.equal((await third.json()).synced, 1);
 
@@ -431,7 +507,7 @@ test("/fcr-sync: ticket não foi reaberto após a janela -> conta como resolvido
     const { pathname, searchParams } = new URL(url);
     assert.equal(pathname, "/api/v2/tickets/58214");
     assert.equal(searchParams.get("include"), "stats");
-    return Response.json({ id: 58214, stats: { reopened_at: null } });
+    return Response.json({ id: 58214, group_id: BADROCK_GROUP_ID, stats: { reopened_at: null } });
   };
 
   const syncRes = await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
@@ -459,7 +535,8 @@ test("/fcr-sync: ticket foi reaberto depois da nossa resposta -> conta como reab
   const tresDiasAtras = new Date(Date.now() - 3.5 * 86400000).toISOString();
   await testEnv.RISK_STATS.put("fcr:pending:58215", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
 
-  globalThis.fetch = async () => Response.json({ id: 58215, stats: { reopened_at: tresDiasAtras } });
+  globalThis.fetch = async () =>
+    Response.json({ id: 58215, group_id: BADROCK_GROUP_ID, stats: { reopened_at: tresDiasAtras } });
 
   await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
 
@@ -482,7 +559,8 @@ test("/fcr-sync: reopened_at de um ciclo antigo (antes da nossa resposta) não c
 
   // reopened_at é de ANTES da nossa resposta (reabertura de um ciclo
   // anterior, já tratado) — não deve penalizar este contato.
-  globalThis.fetch = async () => Response.json({ id: 58217, stats: { reopened_at: dezDiasAtras } });
+  globalThis.fetch = async () =>
+    Response.json({ id: 58217, group_id: BADROCK_GROUP_ID, stats: { reopened_at: dezDiasAtras } });
 
   await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
 
@@ -495,6 +573,28 @@ test("/fcr-sync: reopened_at de um ciclo antigo (antes da nossa resposta) não c
   const totalReaberto = weeks.reduce((sum, week) => sum + week.reaberto, 0);
   assert.equal(totalSucesso, 1);
   assert.equal(totalReaberto, 0);
+});
+
+test("/fcr-sync: ticket fora do grupo Suporte Badrock é descartado sem contar", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const quatroDiasAtras = new Date(Date.now() - 4 * 86400000).toISOString();
+  await testEnv.RISK_STATS.put("fcr:pending:58218", JSON.stringify({ firstResponseAt: quatroDiasAtras }));
+
+  globalThis.fetch = async () =>
+    Response.json({ id: 58218, group_id: OTHER_GROUP_ID, stats: { reopened_at: null } });
+
+  const syncRes = await worker.fetch(postReq("/fcr-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.processed, 1); // removido da fila...
+  assert.equal(await testEnv.RISK_STATS.get("fcr:pending:58218"), null);
+
+  const historyRes = await worker.fetch(
+    req("/fcr-history?weeks=2", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const { weeks } = await historyRes.json();
+  const total = weeks.reduce((sum, w) => sum + w.sucesso + w.reaberto, 0);
+  assert.equal(total, 0); // ...mas não soma no contador
 });
 
 test("/fcr-sync erro ao consultar o Freshdesk mantém o ticket pendente para a próxima varredura", async () => {
@@ -542,7 +642,7 @@ test("/duration-sync soma FRT e AHT dos tickets com stats preenchidas", async ()
     const { pathname, searchParams } = new URL(url);
     if (pathname === "/api/v2/tickets") {
       if (searchParams.get("page") === "1") {
-        return Response.json([{ id: 501, updated_at: updatedAt }]);
+        return Response.json([{ id: 501, group_id: BADROCK_GROUP_ID, updated_at: updatedAt }]);
       }
       return Response.json([]);
     }
@@ -593,7 +693,9 @@ test("/duration-sync mantém tickets com erro na consulta para tentar de novo na
   globalThis.fetch = async (url) => {
     const { pathname, searchParams } = new URL(url);
     if (pathname === "/api/v2/tickets") {
-      if (searchParams.get("page") === "1") return Response.json([{ id: 601, updated_at: updatedAt }]);
+      if (searchParams.get("page") === "1") {
+        return Response.json([{ id: 601, group_id: BADROCK_GROUP_ID, updated_at: updatedAt }]);
+      }
       return Response.json([]);
     }
     if (pathname === "/api/v2/tickets/601") {
@@ -619,6 +721,28 @@ test("/duration-sync mantém tickets com erro na consulta para tentar de novo na
   const secondBody = await second.json();
   assert.equal(secondBody.frtRecorded, 1);
   assert.equal(secondBody.ahtRecorded, 1);
+});
+
+test("/duration-sync ignora tickets fora do grupo Suporte Badrock sem consultar o detalhe", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  const updatedAt = new Date(Date.now() - 1 * 86400000).toISOString();
+
+  globalThis.fetch = async (url) => {
+    const { pathname, searchParams } = new URL(url);
+    if (pathname === "/api/v2/tickets") {
+      if (searchParams.get("page") === "1") {
+        return Response.json([{ id: 701, group_id: OTHER_GROUP_ID, updated_at: updatedAt }]);
+      }
+      return Response.json([]);
+    }
+    throw new Error("não deveria buscar o detalhe de um ticket fora do grupo Badrock: " + pathname);
+  };
+
+  const res = await worker.fetch(postReq("/duration-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const body = await res.json();
+  assert.equal(body.ticketsChecked, 1);
+  assert.equal(body.frtRecorded, 0);
+  assert.equal(body.ahtRecorded, 0);
 });
 
 test("/frt-stats e /aht-stats sem nenhum ticket -> avgMinutes null", async () => {
@@ -660,10 +784,7 @@ test("/risk-case-start com ticketId inválido -> 400", async () => {
 
 test("/risk-case-start cria o caso e ele aparece em /risk-cases-pending", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
-
-  globalThis.fetch = async () => {
-    throw new Error("/risk-case-start não deveria consultar o Freshdesk!");
-  };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   const res = await worker.fetch(
     postReq("/risk-case-start", { ticketId: "70001", valor: 49.9 }, { "X-App-Token": "senha-correta" }),
@@ -682,8 +803,27 @@ test("/risk-case-start cria o caso e ele aparece em /risk-cases-pending", async 
   assert.equal(cases[0].outcome, null);
 });
 
+test("/risk-case-start não cria caso para ticket fora do grupo Suporte Badrock", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(OTHER_GROUP_ID);
+
+  const res = await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70007", valor: 49.9 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal(res.status, 200);
+  assert.equal((await res.json()).counted, false);
+
+  const pendingRes = await worker.fetch(
+    req("/risk-cases-pending", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  assert.equal((await pendingRes.json()).cases.length, 0);
+});
+
 test("/risk-case-start chamado 2x pro mesmo ticket não duplica o caso", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   await worker.fetch(
     postReq("/risk-case-start", { ticketId: "70002", valor: 10 }, { "X-App-Token": "senha-correta" }),
@@ -729,6 +869,7 @@ test("/risk-outcome ticket sem caso registrado -> 404", async () => {
 
 test("/risk-outcome marca 'evitado', soma no valor evitado e some da lista de pendentes", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   await worker.fetch(
     postReq("/risk-case-start", { ticketId: "70004", valor: 120.5 }, { "X-App-Token": "senha-correta" }),
@@ -763,6 +904,7 @@ test("/risk-outcome marca 'evitado', soma no valor evitado e some da lista de pe
 
 test("/risk-outcome marca 'chargeback' corretamente", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   await worker.fetch(
     postReq("/risk-case-start", { ticketId: "70005", valor: 30 }, { "X-App-Token": "senha-correta" }),
@@ -786,6 +928,7 @@ test("/risk-outcome marca 'chargeback' corretamente", async () => {
 
 test("/risk-outcome chamado 2x pro mesmo ticket -> 409 na segunda vez", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
 
   await worker.fetch(
     postReq("/risk-case-start", { ticketId: "70006", valor: 10 }, { "X-App-Token": "senha-correta" }),
