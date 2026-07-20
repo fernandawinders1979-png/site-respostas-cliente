@@ -32,6 +32,46 @@
     <h2 class="metrics-group-title">Proteção de Receita</h2>
 
     <!-- ============================================================
+         Prevenção de Chargeback — fecha o ciclo do risco: quando um caso
+         de risco alto é identificado, fica "aguardando confirmação" até o
+         campo "Status do reembolso" do ticket chegar num desfecho final
+         (chargeback, ou alguma opção de reembolso/não-reembolso). A
+         confirmação é automática — o Worker lê esse campo sozinho.
+         ============================================================ -->
+    <details class="results-section metrics-accordion" open>
+      <summary class="metrics-accordion-title">
+        <span>Prevenção de Chargeback</span>
+        <span class="metrics-accordion-hint">Clique para ver</span>
+      </summary>
+      <div class="metrics-accordion-body">
+        <p class="ai-note">Quando um caso de risco alto é identificado num ticket, ele fica "aguardando confirmação" abaixo até o campo "Status do reembolso" desse ticket no Freshdesk chegar num resultado final — se virou "Chargeback" de verdade, ou se foi resolvido de outro jeito (evitado). Isso é o que prova, em número, quanto o atendimento está protegendo a receita da empresa.</p>
+
+        <button id="prevention-sync-btn" class="btn-secondary" type="button">🔄 Sincronizar agora</button>
+        <p id="prevention-sync-status" class="ticket-search-status" role="status" aria-live="polite"></p>
+
+        <section class="kpi-row" aria-label="Resumo de prevenção de chargeback">
+          <article class="kpi-tile">
+            <span class="kpi-label">Taxa de prevenção (semana)</span>
+            <strong id="prevention-rate-semana" class="kpi-value">--</strong>
+            <span id="prevention-total-semana" class="kpi-sub">--</span>
+          </article>
+          <article class="kpi-tile">
+            <span class="kpi-label">Taxa de prevenção (<span id="prevention-periodo-semanas">8</span> semanas)</span>
+            <strong id="prevention-rate-periodo" class="kpi-value">--</strong>
+            <span id="prevention-total-periodo" class="kpi-sub">--</span>
+          </article>
+          <article class="kpi-tile">
+            <span class="kpi-label">Valor evitado no período</span>
+            <strong id="prevention-valor-periodo" class="kpi-value">--</strong>
+          </article>
+        </section>
+
+        <h3 class="metrics-subtitle">Casos aguardando confirmação</h3>
+        <div id="prevention-pending-list" class="prevention-pending-list"></div>
+      </div>
+    </details>
+
+    <!-- ============================================================
          KPIs: valor identificado em risco alto
          ============================================================ -->
     <details class="results-section metrics-accordion">
@@ -90,46 +130,6 @@
             </table>
           </div>
         </details>
-      </div>
-    </details>
-
-    <!-- ============================================================
-         Prevenção de Chargeback — fecha o ciclo do risco: quando um caso
-         de risco alto é identificado, fica "aguardando confirmação" até o
-         campo "Status do reembolso" do ticket chegar num desfecho final
-         (chargeback, ou alguma opção de reembolso/não-reembolso). A
-         confirmação é automática — o Worker lê esse campo sozinho.
-         ============================================================ -->
-    <details class="results-section metrics-accordion" open>
-      <summary class="metrics-accordion-title">
-        <span>Prevenção de Chargeback</span>
-        <span class="metrics-accordion-hint">Clique para ver</span>
-      </summary>
-      <div class="metrics-accordion-body">
-        <p class="ai-note">Quando um caso de risco alto é identificado num ticket, ele fica "aguardando confirmação" abaixo até o campo "Status do reembolso" desse ticket no Freshdesk chegar num resultado final — se virou "Chargeback" de verdade, ou se foi resolvido de outro jeito (evitado). Isso é o que prova, em número, quanto o atendimento está protegendo a receita da empresa.</p>
-
-        <button id="prevention-sync-btn" class="btn-secondary" type="button">🔄 Sincronizar agora</button>
-        <p id="prevention-sync-status" class="ticket-search-status" role="status" aria-live="polite"></p>
-
-        <section class="kpi-row" aria-label="Resumo de prevenção de chargeback">
-          <article class="kpi-tile">
-            <span class="kpi-label">Taxa de prevenção (semana)</span>
-            <strong id="prevention-rate-semana" class="kpi-value">--</strong>
-            <span id="prevention-total-semana" class="kpi-sub">--</span>
-          </article>
-          <article class="kpi-tile">
-            <span class="kpi-label">Taxa de prevenção (<span id="prevention-periodo-semanas">8</span> semanas)</span>
-            <strong id="prevention-rate-periodo" class="kpi-value">--</strong>
-            <span id="prevention-total-periodo" class="kpi-sub">--</span>
-          </article>
-          <article class="kpi-tile">
-            <span class="kpi-label">Valor evitado no período</span>
-            <strong id="prevention-valor-periodo" class="kpi-value">--</strong>
-          </article>
-        </section>
-
-        <h3 class="metrics-subtitle">Casos aguardando confirmação</h3>
-        <div id="prevention-pending-list" class="prevention-pending-list"></div>
       </div>
     </details>
 
