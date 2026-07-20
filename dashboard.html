@@ -27,10 +27,10 @@
 
     <!-- ============================================================
          Prevenção de Chargeback — fecha o ciclo do risco: quando um caso
-         de risco alto é identificado, fica "aguardando confirmação" até
-         alguém marcar se ele virou chargeback de verdade ou foi evitado.
-         Diferente das outras métricas, essa confirmação é sempre manual —
-         o resultado real não está em nenhum campo do Freshdesk.
+         de risco alto é identificado, fica "aguardando confirmação" até o
+         campo "Status do reembolso" do ticket chegar num desfecho final
+         (chargeback, ou alguma opção de reembolso/não-reembolso). A
+         confirmação é automática — o Worker lê esse campo sozinho.
          ============================================================ -->
     <details class="results-section metrics-accordion" open>
       <summary class="metrics-accordion-title">
@@ -38,7 +38,10 @@
         <span class="metrics-accordion-hint">Clique para ver</span>
       </summary>
       <div class="metrics-accordion-body">
-        <p class="ai-note">Quando um caso de risco alto é identificado num ticket, ele fica "aguardando confirmação" abaixo. Marque se o cliente realmente contestou a compra no banco (virou chargeback) ou se foi resolvido sem disputa (evitado) — isso é o que prova, em número, quanto o atendimento está protegendo a receita da empresa.</p>
+        <p class="ai-note">Quando um caso de risco alto é identificado num ticket, ele fica "aguardando confirmação" abaixo até o campo "Status do reembolso" desse ticket no Freshdesk chegar num resultado final — se virou "Chargeback" de verdade, ou se foi resolvido de outro jeito (evitado). Isso é o que prova, em número, quanto o atendimento está protegendo a receita da empresa.</p>
+
+        <button id="prevention-sync-btn" class="btn-secondary" type="button">🔄 Sincronizar agora</button>
+        <p id="prevention-sync-status" class="ticket-search-status" role="status" aria-live="polite"></p>
 
         <section class="kpi-row" aria-label="Resumo de prevenção de chargeback">
           <article class="kpi-tile">

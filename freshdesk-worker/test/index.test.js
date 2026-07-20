@@ -843,110 +843,66 @@ test("/risk-case-start chamado 2x pro mesmo ticket não duplica o caso", async (
   assert.equal(cases[0].valor, 10); // mantém o valor do primeiro registro
 });
 
-test("/risk-outcome sem senha -> 401", async () => {
-  const res = await worker.fetch(postReq("/risk-outcome", { ticketId: "1", outcome: "evitado" }), {
-    ...env,
-    RISK_STATS: createMockKv(),
-  });
+// Fetch simulado que responde /api/v2/tickets/{id} com o campo "Status do
+// reembolso" (cf_status_do_reembolso) igual ao mapa passado, por ticketId.
+function mockRefundStatusFetch(statusByTicketId) {
+  return async (url) => {
+    const { pathname } = new URL(url);
+    const match = pathname.match(/^\/api\/v2\/tickets\/(\d+)$/);
+    if (match) {
+      return Response.json({
+        id: Number(match[1]),
+        custom_fields: { cf_status_do_reembolso: statusByTicketId[match[1]] ?? null },
+      });
+    }
+    throw new Error("URL inesperada: " + pathname);
+  };
+}
+
+test("/prevention-sync sem senha -> 401", async () => {
+  const res = await worker.fetch(postReq("/prevention-sync", {}), { ...env, RISK_STATS: createMockKv() });
   assert.equal(res.status, 401);
 });
 
-test("/risk-outcome outcome inválido -> 400", async () => {
-  const res = await worker.fetch(
-    postReq("/risk-outcome", { ticketId: "70003", outcome: "sei-la" }, { "X-App-Token": "senha-correta" }),
-    { ...env, RISK_STATS: createMockKv() },
-  );
-  assert.equal(res.status, 400);
-});
-
-test("/risk-outcome ticket sem caso registrado -> 404", async () => {
-  const res = await worker.fetch(
-    postReq("/risk-outcome", { ticketId: "99999", outcome: "evitado" }, { "X-App-Token": "senha-correta" }),
-    { ...env, RISK_STATS: createMockKv() },
-  );
-  assert.equal(res.status, 404);
-});
-
-test("/risk-outcome marca 'evitado', soma no valor evitado e some da lista de pendentes", async () => {
+test("/prevention-sync: campo 'Chargeback' confirma como chargeback e sai da lista de pendentes", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
-
-  await worker.fetch(
-    postReq("/risk-case-start", { ticketId: "70004", valor: 120.5 }, { "X-App-Token": "senha-correta" }),
-    testEnv,
-  );
-  const outcomeRes = await worker.fetch(
-    postReq("/risk-outcome", { ticketId: "70004", outcome: "evitado" }, { "X-App-Token": "senha-correta" }),
-    testEnv,
-  );
-  assert.equal(outcomeRes.status, 200);
-
-  const pendingRes = await worker.fetch(
-    req("/risk-cases-pending", { "X-App-Token": "senha-correta" }),
-    testEnv,
-  );
-  assert.equal((await pendingRes.json()).cases.length, 0);
-
-  // Soma as últimas 2 semanas para não depender de em qual dia da semana o
-  // teste roda (a semana usada é a da detecção, não a da confirmação).
-  const historyRes = await worker.fetch(
-    req("/prevention-history?weeks=2", { "X-App-Token": "senha-correta" }),
-    testEnv,
-  );
-  const { weeks } = await historyRes.json();
-  const totalEvitado = weeks.reduce((sum, w) => sum + w.evitado, 0);
-  const totalChargeback = weeks.reduce((sum, w) => sum + w.chargeback, 0);
-  const totalValorEvitado = weeks.reduce((sum, w) => sum + w.evitadoValor, 0);
-  assert.equal(totalEvitado, 1);
-  assert.equal(totalChargeback, 0);
-  assert.equal(totalValorEvitado, 120.5);
-});
-
-test("/risk-outcome marca 'chargeback' corretamente", async () => {
-  const testEnv = { ...env, RISK_STATS: createMockKv() };
-  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
-
   await worker.fetch(
     postReq("/risk-case-start", { ticketId: "70005", valor: 30 }, { "X-App-Token": "senha-correta" }),
     testEnv,
   );
-  await worker.fetch(
-    postReq("/risk-outcome", { ticketId: "70005", outcome: "chargeback" }, { "X-App-Token": "senha-correta" }),
-    testEnv,
-  );
+
+  globalThis.fetch = mockRefundStatusFetch({ "70005": "Chargeback" });
+  const syncRes = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.confirmed, 1);
+
+  const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await pendingRes.json()).cases.length, 0);
 
   const historyRes = await worker.fetch(
     req("/prevention-history?weeks=2", { "X-App-Token": "senha-correta" }),
     testEnv,
   );
   const { weeks } = await historyRes.json();
-  const totalEvitado = weeks.reduce((sum, w) => sum + w.evitado, 0);
-  const totalChargeback = weeks.reduce((sum, w) => sum + w.chargeback, 0);
-  assert.equal(totalEvitado, 0);
-  assert.equal(totalChargeback, 1);
+  assert.equal(weeks.reduce((sum, w) => sum + w.evitado, 0), 0);
+  assert.equal(weeks.reduce((sum, w) => sum + w.chargeback, 0), 1);
 });
 
-test("/risk-outcome chamado 2x pro mesmo ticket -> 409 na segunda vez", async () => {
+test("/prevention-sync: qualquer opção de reembolso confirma como evitado e soma o valor", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
-
   await worker.fetch(
-    postReq("/risk-case-start", { ticketId: "70006", valor: 10 }, { "X-App-Token": "senha-correta" }),
+    postReq("/risk-case-start", { ticketId: "70004", valor: 120.5 }, { "X-App-Token": "senha-correta" }),
     testEnv,
   );
-  const first = await worker.fetch(
-    postReq("/risk-outcome", { ticketId: "70006", outcome: "evitado" }, { "X-App-Token": "senha-correta" }),
-    testEnv,
-  );
-  assert.equal(first.status, 200);
 
-  const second = await worker.fetch(
-    postReq("/risk-outcome", { ticketId: "70006", outcome: "chargeback" }, { "X-App-Token": "senha-correta" }),
-    testEnv,
-  );
-  assert.equal(second.status, 409);
+  globalThis.fetch = mockRefundStatusFetch({ "70004": "Reembolso 30%" });
+  await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
 
-  // O primeiro resultado registrado não deve ter sido sobrescrito.
+  const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await pendingRes.json()).cases.length, 0);
+
   const historyRes = await worker.fetch(
     req("/prevention-history?weeks=2", { "X-App-Token": "senha-correta" }),
     testEnv,
@@ -954,6 +910,97 @@ test("/risk-outcome chamado 2x pro mesmo ticket -> 409 na segunda vez", async ()
   const { weeks } = await historyRes.json();
   assert.equal(weeks.reduce((sum, w) => sum + w.evitado, 0), 1);
   assert.equal(weeks.reduce((sum, w) => sum + w.chargeback, 0), 0);
+  assert.equal(weeks.reduce((sum, w) => sum + w.evitadoValor, 0), 120.5);
+});
+
+test("/prevention-sync: caso ainda em andamento (ou campo vazio) continua pendente", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
+  await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70008", valor: 10 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70009", valor: 10 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+
+  // 70008 = "Em atendimento" (em andamento), 70009 = sem valor no campo (null)
+  globalThis.fetch = mockRefundStatusFetch({ "70008": "Em atendimento" });
+  const syncRes = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.confirmed, 0);
+  assert.equal(syncBody.pending, 2);
+
+  const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await pendingRes.json()).cases.length, 2);
+});
+
+test("/prevention-sync: 'Mesclar'/'Spam' descarta o caso sem contar em nada", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
+  await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70010", valor: 50 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70011", valor: 50 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+
+  globalThis.fetch = mockRefundStatusFetch({ "70010": "Mesclar", "70011": "Spam" });
+  const syncRes = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.ignored, 2);
+  assert.equal(syncBody.confirmed, 0);
+
+  const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await pendingRes.json()).cases.length, 0);
+
+  const historyRes = await worker.fetch(
+    req("/prevention-history?weeks=2", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const { weeks } = await historyRes.json();
+  assert.equal(weeks.reduce((sum, w) => sum + w.evitado + w.chargeback, 0), 0);
+});
+
+test("/prevention-sync: erro ao consultar o Freshdesk mantém o caso pendente", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
+  await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70012", valor: 10 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+
+  globalThis.fetch = async () => new Response("erro", { status: 500 });
+  const syncRes = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.pending, 1);
+
+  const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await pendingRes.json()).cases.length, 1);
+});
+
+test("/prevention-sync chamado 2x não conta o mesmo caso de novo", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
+  await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70006", valor: 10 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+
+  globalThis.fetch = mockRefundStatusFetch({ "70006": "Não envolve reembolso" });
+  await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const second = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await second.json()).confirmed, 0); // já tinha sido confirmado antes
+
+  const historyRes = await worker.fetch(
+    req("/prevention-history?weeks=2", { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+  const { weeks } = await historyRes.json();
+  assert.equal(weeks.reduce((sum, w) => sum + w.evitado, 0), 1); // não duplicou
 });
 
 test("/prevention-stats sem nenhum caso confirmado -> rate null", async () => {

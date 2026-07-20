@@ -65,13 +65,18 @@
  *                            quantidade de tickets, na semana atual
  *   GET  /aht-history      — mesmos dados das últimas N semanas
  *   POST /risk-case-start  — registra um caso de risco alto identificado
- *                            num ticket real, aguardando confirmação manual
- *                            do resultado (evitado ou virou chargeback)
+ *                            num ticket real, aguardando confirmação
+ *                            automática do resultado (evitado ou virou
+ *                            chargeback)
  *   GET  /risk-cases-pending — lista os casos de risco alto ainda sem
- *                            confirmação, para o atendente marcar
- *   POST /risk-outcome     — confirma o resultado de um caso (evitado ou
- *                            chargeback) e soma nos contadores semanais de
- *                            prevenção
+ *                            confirmação
+ *   POST /prevention-sync  — verifica no Freshdesk o campo "Status do
+ *                            reembolso" de cada caso pendente e confirma
+ *                            sozinho o resultado (evitado/chargeback/ainda
+ *                            em andamento), somando nos contadores semanais
+ *                            de prevenção. Roda sozinho 1x por dia (ver
+ *                            `scheduled`), mas também pode ser chamado
+ *                            manualmente
  *   GET  /prevention-stats — contadores de prevenção (evitado/chargeback),
  *                            valor evitado e taxa (% evitado) da semana atual
  *   GET  /prevention-history — mesmos dados das últimas N semanas
@@ -130,13 +135,42 @@ const DURATION_SYNC_PER_PAGE = 100;
 const DURATION_SYNC_MAX_PAGES = 10;
 const DURATION_INITIAL_LOOKBACK_DAYS = 30;
 
-// "Fecha o ciclo" do risco de chargeback: diferente de CSAT/FCR/FRT/AHT, o
-// resultado real (o caso virou chargeback de verdade ou foi evitado) não
-// está em nenhum campo do Freshdesk — só quem cuida do caso sabe. Por isso
-// essa confirmação é sempre manual, feita no dashboard de métricas, sem
-// nenhum agendamento automático.
+// "Fecha o ciclo" do risco de chargeback: o resultado real (o caso virou
+// chargeback de verdade ou foi evitado) é lido do campo "Status do
+// reembolso" do ticket (ver REFUND_STATUS_FIELD e classifyRefundStatus) —
+// antes de 2026-07-20 essa confirmação era sempre manual no dashboard, mas
+// a dona do site confirmou que esse campo já reflete o desfecho real de
+// cada caso, então virou automático (ver syncPreventionOutcomes).
 const RISK_CASE_PREFIX = "riskcase:";
-const RISK_OUTCOMES = ["evitado", "chargeback"];
+
+// Campo de contexto do CHAMADO (já listado em CONTEXT_FIELD_LABELS) que
+// registra o desfecho real de um reembolso/chargeback — conferido ao vivo
+// via GET /api/v2/ticket_fields na conta hebevi.freshdesk.com. As listas
+// abaixo vieram da dona do site classificando cada opção real do dropdown
+// (choices) num dos três baldes; qualquer opção fora dessas listas (campo
+// vazio, "Em atendimento", "Aguardando rastreio para reembolso", "Tratativa
+// Pagamerican") significa que o caso ainda está em andamento.
+const REFUND_STATUS_FIELD = "cf_status_do_reembolso";
+const REFUND_STATUS_CHARGEBACK = ["Chargeback"];
+const REFUND_STATUS_EVITADO = [
+  "Não envolve reembolso",
+  "Reembolso revertido",
+  "Reembolso revertido - Cliente sem o produto",
+  "Reembolso 15%",
+  "Reembolso 20%",
+  "Reembolso 25%",
+  "Reembolso 30%",
+  "Reembolso 35%",
+  "Reembolso 50%",
+  "Reembolso 70%",
+  "Reembolso 80%",
+  "Reembolso total [Retendo 15%]",
+  "Reembolso total [Sem retenção]",
+  "Não reembolsado [60d após a compra]",
+];
+// Ticket mesclado com outro ou identificado como spam — não é um caso de
+// risco de verdade, então só é descartado da lista de pendentes.
+const REFUND_STATUS_IGNORE = ["Mesclar", "Spam"];
 
 // Categorias aceitas em /stat-event, /stat-ranking e /stat-history. Motivo e
 // template têm uma lista aberta de valores; resposta usa sempre a mesma
@@ -1051,10 +1085,11 @@ async function handleDurationHistory(env, metric, weeksParam) {
 
 /**
  * Trata POST /risk-case-start: registra que um caso de risco alto foi
- * identificado num ticket real, aguardando confirmação manual depois. Se o
- * ticket já tiver um caso registrado (ex: a mensagem foi analisada de novo),
- * mantém o registro original — o horário de detecção não deve mudar. Só
- * registra se o ticket for do grupo Suporte Badrock.
+ * identificado num ticket real, aguardando confirmação automática depois
+ * (ver syncPreventionOutcomes). Se o ticket já tiver um caso registrado (ex:
+ * a mensagem foi analisada de novo), mantém o registro original — o horário
+ * de detecção não deve mudar. Só registra se o ticket for do grupo Suporte
+ * Badrock.
  * @param {Request} request
  * @param {Object} env
  * @returns {Promise<Response>}
@@ -1115,42 +1150,37 @@ async function handleRiskCasesPending(env) {
 }
 
 /**
- * Trata POST /risk-outcome: confirma se um caso de risco alto foi evitado
- * ou virou chargeback de verdade, e soma nos contadores semanais de
- * prevenção (na semana em que o caso foi DETECTADO, não a de hoje).
- * @param {Request} request
- * @param {Object} env
- * @returns {Promise<Response>}
+ * Classifica o valor do campo "Status do reembolso" (cf_status_do_reembolso)
+ * de um ticket num resultado de prevenção. Confirmado ao vivo em GET
+ * /api/v2/ticket_fields na conta hebevi.freshdesk.com — a dona do site
+ * definiu quais das opções reais do dropdown contam como quê:
+ * - "chargeback": só a opção "Chargeback" mesmo.
+ * - "evitado": qualquer desfecho que resolveu o caso sem virar chargeback
+ *   (não envolveu reembolso, reembolso revertido, qualquer % de reembolso,
+ *   ou passou dos 60 dias sem reembolso).
+ * - "ignorar": ticket mesclado ou spam — não é um caso de risco de verdade,
+ *   só é descartado (não soma em nenhum dos dois números).
+ * - null: ainda em andamento (campo vazio, "Em atendimento", "Aguardando
+ *   rastreio para reembolso", "Tratativa Pagamerican", ou qualquer valor não
+ *   mapeado) — continua aguardando a próxima sincronização.
+ * @param {string} rawValue
+ * @returns {"chargeback"|"evitado"|"ignorar"|null}
  */
-async function handleRiskOutcome(request, env) {
-  let body;
-  try {
-    body = await request.json();
-  } catch (error) {
-    return jsonResponse({ error: "Corpo da requisição inválido." }, 400);
-  }
+function classifyRefundStatus(rawValue) {
+  if (REFUND_STATUS_CHARGEBACK.includes(rawValue)) return "chargeback";
+  if (REFUND_STATUS_EVITADO.includes(rawValue)) return "evitado";
+  if (REFUND_STATUS_IGNORE.includes(rawValue)) return "ignorar";
+  return null;
+}
 
-  const ticketId = typeof body.ticketId === "string" ? body.ticketId.trim() : "";
-  const outcome = body.outcome;
-  if (!ticketId || !RISK_OUTCOMES.includes(outcome)) {
-    return jsonResponse({ error: "Campos ticketId e outcome (evitado ou chargeback) são obrigatórios." }, 400);
-  }
-
-  const key = `${RISK_CASE_PREFIX}${ticketId}`;
-  const raw = await env.RISK_STATS.get(key);
-  if (!raw) {
-    return jsonResponse({ error: "Caso não encontrado." }, 404);
-  }
-
-  const caseData = JSON.parse(raw);
-  if (caseData.outcome) {
-    return jsonResponse({ error: "Esse caso já foi confirmado antes." }, 409);
-  }
-
-  caseData.outcome = outcome;
-  caseData.resolvedAt = new Date().toISOString();
-  await env.RISK_STATS.put(key, JSON.stringify(caseData));
-
+/**
+ * Soma 1 (e o valor evitado, se houver) no contador de prevenção da semana
+ * em que o caso foi DETECTADO (não a de hoje).
+ * @param {Object} env
+ * @param {Object} caseData
+ * @param {"chargeback"|"evitado"} outcome
+ */
+async function incrementPreventionCounter(env, caseData, outcome) {
   const countKey = `prevention:${caseData.week}:${outcome}`;
   const currentCount = Number(await env.RISK_STATS.get(countKey)) || 0;
   await env.RISK_STATS.put(countKey, String(currentCount + 1));
@@ -1160,8 +1190,75 @@ async function handleRiskOutcome(request, env) {
     const currentValor = Number(await env.RISK_STATS.get(valorKey)) || 0;
     await env.RISK_STATS.put(valorKey, String(currentValor + caseData.valor));
   }
+}
 
-  return jsonResponse({ ok: true });
+/**
+ * Percorre os casos de risco alto ainda sem confirmação e verifica, no
+ * Freshdesk, o campo "Status do reembolso" do ticket de cada um — não
+ * depende mais de ninguém marcar manualmente no painel (ver
+ * classifyRefundStatus). Casos cujo campo ainda não chegou num desfecho
+ * final continuam aguardando a próxima sincronização; casos com erro na
+ * consulta (ticket excluído, Freshdesk fora do ar) também.
+ * @param {Object} env
+ * @returns {Promise<{confirmed: number, ignored: number, pending: number}>}
+ */
+async function syncPreventionOutcomes(env) {
+  const { keys } = await env.RISK_STATS.list({ prefix: RISK_CASE_PREFIX });
+
+  let confirmed = 0;
+  let ignored = 0;
+  let pending = 0;
+
+  for (const keyObj of keys) {
+    const raw = await env.RISK_STATS.get(keyObj.name);
+    if (!raw) continue;
+
+    const caseData = JSON.parse(raw);
+    if (caseData.outcome) continue;
+
+    let outcome;
+    try {
+      const detail = await freshdeskGet(env, `/api/v2/tickets/${caseData.ticketId}`);
+      const refundStatus = detail.custom_fields && detail.custom_fields[REFUND_STATUS_FIELD];
+      outcome = classifyRefundStatus(refundStatus);
+    } catch (error) {
+      pending += 1;
+      continue;
+    }
+
+    if (outcome === null) {
+      pending += 1;
+      continue;
+    }
+
+    if (outcome === "ignorar") {
+      await env.RISK_STATS.delete(keyObj.name);
+      ignored += 1;
+      continue;
+    }
+
+    caseData.outcome = outcome;
+    caseData.resolvedAt = new Date().toISOString();
+    await env.RISK_STATS.put(keyObj.name, JSON.stringify(caseData));
+    await incrementPreventionCounter(env, caseData, outcome);
+    confirmed += 1;
+  }
+
+  return { confirmed, ignored, pending };
+}
+
+/**
+ * Trata POST /prevention-sync.
+ * @param {Object} env
+ * @returns {Promise<Response>}
+ */
+async function handlePreventionSync(env) {
+  try {
+    const result = await syncPreventionOutcomes(env);
+    return jsonResponse({ ok: true, ...result });
+  } catch (error) {
+    return jsonResponse({ error: "Não foi possível sincronizar com o Freshdesk agora." }, 502);
+  }
 }
 
 /**
@@ -1485,8 +1582,8 @@ export default {
       return handleRiskCasesPending(env);
     }
 
-    if (request.method === "POST" && url.pathname === "/risk-outcome") {
-      return handleRiskOutcome(request, env);
+    if (request.method === "POST" && url.pathname === "/prevention-sync") {
+      return handlePreventionSync(env);
     }
 
     if (request.method === "GET" && url.pathname === "/prevention-stats") {
@@ -1529,13 +1626,15 @@ export default {
   /**
    * Gatilho agendado (ver [triggers] em wrangler.toml): roda sozinho 1x por
    * dia — busca as respostas novas da pesquisa de satisfação (CSAT),
-   * verifica os tickets de FCR cuja janela de espera já passou, e
-   * sincroniza os tempos de primeira resposta e resolução (FRT/AHT) — sem
-   * precisar que ninguém abra o dashboard.
+   * verifica os tickets de FCR cuja janela de espera já passou, sincroniza
+   * os tempos de primeira resposta e resolução (FRT/AHT), e confirma os
+   * casos de prevenção de chargeback com desfecho já definido no Freshdesk
+   * — sem precisar que ninguém abra o dashboard.
    */
   async scheduled(event, env, ctx) {
     ctx.waitUntil(syncCsatRatings(env));
     ctx.waitUntil(sweepFcrPending(env));
     ctx.waitUntil(syncDurationMetrics(env));
+    ctx.waitUntil(syncPreventionOutcomes(env));
   },
 };

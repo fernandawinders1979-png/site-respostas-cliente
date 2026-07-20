@@ -66,6 +66,8 @@
   const fcrSyncStatusEl = document.getElementById("fcr-sync-status");
   const durationSyncBtn = document.getElementById("duration-sync-btn");
   const durationSyncStatusEl = document.getElementById("duration-sync-status");
+  const preventionSyncBtn = document.getElementById("prevention-sync-btn");
+  const preventionSyncStatusEl = document.getElementById("prevention-sync-status");
   const preventionPendingListEl = document.getElementById("prevention-pending-list");
 
   const currencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
@@ -316,9 +318,10 @@
   }
 
   /**
-   * Renderiza a lista de casos de risco alto aguardando confirmação, cada
-   * um com dois botões ("Evitado" / "Virou chargeback") que chamam
-   * handleRiskOutcomeClick.
+   * Renderiza a lista de casos de risco alto ainda sem confirmação — só
+   * leitura, já que a confirmação agora é automática (ver
+   * handlePreventionSyncClick): o Worker confere sozinho o campo "Status do
+   * reembolso" do ticket no Freshdesk.
    * @param {Array} cases
    */
   function renderPreventionPendingList(cases) {
@@ -340,27 +343,11 @@
       const info = document.createElement("span");
       info.className = "prevention-case-info";
       const valorTexto = typeof item.valor === "number" ? ` — ${formatCurrency(item.valor)}` : "";
-      info.textContent = `Ticket #${item.ticketId}${valorTexto} — detectado em ${formatCaseDate(item.detectedAt)}`;
+      info.textContent =
+        `Ticket #${item.ticketId}${valorTexto} — detectado em ${formatCaseDate(item.detectedAt)} — ` +
+        `aguardando desfecho no campo "Status do reembolso"`;
 
-      const actions = document.createElement("span");
-      actions.className = "prevention-case-actions";
-
-      const avoidedBtn = document.createElement("button");
-      avoidedBtn.type = "button";
-      avoidedBtn.className = "btn-secondary btn-outcome-evitado";
-      avoidedBtn.textContent = "✅ Evitado";
-      avoidedBtn.addEventListener("click", () => handleRiskOutcomeClick(item.ticketId, "evitado"));
-
-      const chargebackBtn = document.createElement("button");
-      chargebackBtn.type = "button";
-      chargebackBtn.className = "btn-secondary btn-outcome-chargeback";
-      chargebackBtn.textContent = "❌ Virou chargeback";
-      chargebackBtn.addEventListener("click", () => handleRiskOutcomeClick(item.ticketId, "chargeback"));
-
-      actions.appendChild(avoidedBtn);
-      actions.appendChild(chargebackBtn);
       row.appendChild(info);
-      row.appendChild(actions);
       preventionPendingListEl.appendChild(row);
     });
   }
@@ -1299,38 +1286,55 @@
   }
 
   /**
-   * Confirma o resultado de um caso de risco alto ("evitado" ou
-   * "chargeback") e recarrega as métricas — o caso sai da lista de
-   * pendentes e passa a contar na taxa de prevenção.
-   * @param {string} ticketId
-   * @param {"evitado"|"chargeback"} outcome
+   * Botão "Sincronizar agora" da Prevenção de Chargeback: chama POST
+   * /prevention-sync (o mesmo processo que roda sozinho 1x por dia) e
+   * recarrega as métricas em seguida. Confirma sozinho os casos cujo campo
+   * "Status do reembolso" já chegou num desfecho final no Freshdesk.
    */
-  async function handleRiskOutcomeClick(ticketId, outcome) {
+  async function handlePreventionSyncClick() {
     const token = getAppToken();
-    if (!token) return;
+    if (!token || !preventionSyncBtn || !preventionSyncStatusEl) return;
+
+    preventionSyncBtn.disabled = true;
+    preventionSyncStatusEl.textContent = "🔄 Sincronizando com o Freshdesk...";
+    preventionSyncStatusEl.className = "ticket-search-status";
 
     try {
-      const response = await fetch(`${FRESHDESK_WORKER_URL}/risk-outcome`, {
+      const response = await fetch(`${FRESHDESK_WORKER_URL}/prevention-sync`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "X-App-Token": token },
-        body: JSON.stringify({ ticketId, outcome }),
+        headers: { "X-App-Token": token },
       });
 
       if (response.status === 401) {
         clearStoredToken();
-        setStatus("Senha de equipe incorreta. Recarregue a página para tentar de novo.", "error");
+        preventionSyncStatusEl.textContent = "Senha de equipe incorreta. Recarregue a página para tentar de novo.";
+        preventionSyncStatusEl.className = "ticket-search-status is-error";
         return;
       }
 
       if (!response.ok) {
-        setStatus("Não foi possível confirmar esse caso agora. Tente de novo em instantes.", "error");
+        preventionSyncStatusEl.textContent = "Não foi possível sincronizar agora. Tente de novo em instantes.";
+        preventionSyncStatusEl.className = "ticket-search-status is-error";
         return;
       }
 
+      const result = await response.json();
+      preventionSyncStatusEl.textContent =
+        `✅ ${result.confirmed} caso(s) confirmado(s), ${result.ignored} descartado(s), ` +
+        `${result.pending} ainda aguardando desfecho no Freshdesk.`;
+      preventionSyncStatusEl.className = "ticket-search-status is-success";
+
       await loadMetrics();
     } catch (error) {
-      setStatus("Erro de conexão. Verifique sua internet e tente de novo.", "error");
+      preventionSyncStatusEl.textContent = "Erro de conexão. Verifique sua internet e tente de novo.";
+      preventionSyncStatusEl.className = "ticket-search-status is-error";
+    } finally {
+      preventionSyncBtn.disabled = false;
     }
+  }
+
+  if (preventionSyncBtn) {
+    preventionSyncBtn.addEventListener("click", handlePreventionSyncClick);
   }
 
   document.querySelectorAll(".ranking-weeks-count").forEach((el) => {
