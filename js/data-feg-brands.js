@@ -2601,6 +2601,69 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
+    {
+      id: "fegChargeback",
+      category: "chargeback",
+      label: "Chargeback",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Meu nome é {{nomeAgente}}, faço parte da Equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar pessoalmente o seu caso.
+
+Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Analisei cuidadosamente o seu pedido e localizei as seguintes informações em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto(s): {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+Ao analisar seu caso, verifiquei que a operadora do seu cartão já iniciou um processo de chargeback (contestação da cobrança) para esta compra.
+
+Como essa disputa já está em andamento junto à instituição financeira, não podemos processar o cancelamento ou emitir um reembolso diretamente por nossa empresa, pois isso poderia resultar em um reembolso duplicado.
+
+A partir deste momento, o caso será tratado por meio do processo de chargeback iniciado junto ao seu banco ou administradora do cartão. Recomendamos que acompanhe a disputa diretamente com a instituição financeira, que será responsável por analisar o caso e informar a decisão final.
+
+Nossa equipe continuará colaborando com todas as informações necessárias sempre que solicitadas durante esse processo.
+
+Continuarei acompanhando pessoalmente o seu caso até que ele seja totalmente concluído.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, basta responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be personally responsible for following up on your case.
+
+Thank you for contacting us and for sharing your request. I carefully reviewed your order and found the following information in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product(s): {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+While reviewing your case, I found that your card issuer has already opened a chargeback (payment dispute) process for this purchase.
+
+Since this dispute is already underway with your financial institution, we're unable to process a cancellation or issue a refund directly through our company, as this could result in a duplicate refund.
+
+From this point forward, your case will be handled through the chargeback process opened with your bank or card issuer. We recommend following up on the dispute directly with your financial institution, which will be responsible for reviewing the case and providing the final decision.
+
+Our team will continue to cooperate and provide any information requested throughout this process.
+
+I'll keep personally following your case until it's fully resolved.
+
+If you have any questions or need any additional information, just reply to this email. I'll be happy to keep helping.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
   ];
 
   const CATEGORIES = [
@@ -2615,6 +2678,7 @@ Customer Support Team`,
     { id: "medoReacaoAdversaPedidoAssinatura", label: "Médico e Reação Adversa - Pedido e Assinatura", color: "#ffa64d" },
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
+    { id: "chargeback", label: "Chargeback", color: "#e100ff" },
   ];
 
   const CATEGORY_GROUPS = [];
