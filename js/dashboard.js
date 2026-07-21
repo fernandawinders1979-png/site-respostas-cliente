@@ -353,10 +353,9 @@
   }
 
   /**
-   * Renderiza os KPIs de uma métrica de duração (FRT ou AHT) — mesma
-   * lógica pros dois, só muda o prefixo dos ids no HTML.
-   * @param {"frt"|"aht"} prefix
-   * @param {Object} stats semana atual (GET /frt-stats ou /aht-stats)
+   * Renderiza os KPIs de uma métrica de duração (FRT).
+   * @param {"frt"} prefix
+   * @param {Object} stats semana atual (GET /frt-stats)
    * @param {Array} history últimas HISTORY_WEEKS semanas (mais antiga -> mais recente)
    */
   function renderDurationKpis(prefix, stats, history) {
@@ -988,7 +987,7 @@
   }
 
   /* =========================================================
-     Gráfico de barras de FRT/AHT (média de minutos por semana) — mesma
+     Gráfico de barras de FRT (média de minutos por semana) — mesma
      técnica de eixos/escala do gráfico de volume acima, só que o valor da
      barra é a média em minutos em vez de uma contagem.
      ========================================================= */
@@ -1060,7 +1059,7 @@
       const [
         statsRes, historyRes, motivoRes, templateRes, volumeRes,
         csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes,
-        frtStatsRes, frtHistoryRes, ahtStatsRes, ahtHistoryRes,
+        frtStatsRes, frtHistoryRes,
         preventionStatsRes, preventionHistoryRes, preventionPendingRes,
       ] = await Promise.all([
         fetch(`${FRESHDESK_WORKER_URL}/risk-stats`, { headers: { "X-App-Token": token } }),
@@ -1076,8 +1075,6 @@
         fetch(`${FRESHDESK_WORKER_URL}/fcr-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/frt-stats`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/frt-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
-        fetch(`${FRESHDESK_WORKER_URL}/aht-stats`, { headers: { "X-App-Token": token } }),
-        fetch(`${FRESHDESK_WORKER_URL}/aht-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/prevention-stats`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/prevention-history?weeks=${HISTORY_WEEKS}`, { headers: { "X-App-Token": token } }),
         fetch(`${FRESHDESK_WORKER_URL}/risk-cases-pending`, { headers: { "X-App-Token": token } }),
@@ -1086,7 +1083,7 @@
       const responses = [
         statsRes, historyRes, motivoRes, templateRes, volumeRes,
         csatStatsRes, csatHistoryRes, fcrStatsRes, fcrHistoryRes,
-        frtStatsRes, frtHistoryRes, ahtStatsRes, ahtHistoryRes,
+        frtStatsRes, frtHistoryRes,
         preventionStatsRes, preventionHistoryRes, preventionPendingRes,
       ];
       if (responses.some((res) => res.status === 401)) {
@@ -1111,8 +1108,6 @@
       const { weeks: fcrHistory } = await fcrHistoryRes.json();
       const frtStats = await frtStatsRes.json();
       const { weeks: frtHistory } = await frtHistoryRes.json();
-      const ahtStats = await ahtStatsRes.json();
-      const { weeks: ahtHistory } = await ahtHistoryRes.json();
       const preventionStats = await preventionStatsRes.json();
       const { weeks: preventionHistory } = await preventionHistoryRes.json();
       const { cases: preventionPending } = await preventionPendingRes.json();
@@ -1135,8 +1130,6 @@
       renderFcrChart(fcrHistory);
       renderDurationKpis("frt", frtStats, frtHistory);
       renderDurationChart("frt-chart", frtHistory);
-      renderDurationKpis("aht", ahtStats, ahtHistory);
-      renderDurationChart("aht-chart", ahtHistory);
       renderPreventionKpis(preventionStats, preventionHistory);
       renderPreventionPendingList(preventionPending);
 
@@ -1258,10 +1251,9 @@
   }
 
   /**
-   * Botão "Sincronizar agora" de FRT/AHT: chama POST /duration-sync (o
+   * Botão "Sincronizar agora" de FRT: chama POST /duration-sync (o
    * mesmo processo que roda sozinho 1x por dia) e recarrega as métricas em
-   * seguida. Uma única chamada atualiza as duas métricas, já que as duas
-   * vêm do mesmo detalhe de ticket (include=stats).
+   * seguida.
    */
   async function handleDurationSyncClick() {
     const token = getAppToken();
@@ -1292,7 +1284,7 @@
 
       const result = await response.json();
       durationSyncStatusEl.textContent =
-        `✅ ${result.ticketsChecked} ticket(s) verificado(s) — ${result.frtRecorded} nova(s) resposta(s), ${result.ahtRecorded} nova(s) resolução(ões).`;
+        `✅ ${result.ticketsChecked} ticket(s) verificado(s) — ${result.frtRecorded} nova(s) resposta(s).`;
       durationSyncStatusEl.className = "ticket-search-status is-success";
 
       await loadMetrics();

@@ -216,22 +216,20 @@
     </details>
 
     <!-- ============================================================
-         FRT (First Response Time) e AHT (tempo médio até a resolução) —
-         vêm prontos do Freshdesk (stats do próprio ticket), só precisam
-         ser buscados e somados por semana.
+         FRT (First Response Time) — vem pronto do Freshdesk (stats do
+         próprio ticket), só precisa ser buscado e somado por semana.
          ============================================================ -->
     <details class="results-section metrics-accordion" open>
       <summary class="metrics-accordion-title">
-        <span>Tempo de Resposta e Resolução (FRT / AHT)</span>
+        <span>Tempo de Primeira Resposta (FRT)</span>
         <span class="metrics-accordion-hint">Clique para ver o gráfico</span>
       </summary>
       <div class="metrics-accordion-body">
-        <p class="ai-note">FRT: tempo entre o cliente abrir o chamado e receber a primeira resposta. AHT: tempo entre a abertura e a resolução do chamado. Os dois vêm direto do Freshdesk. Sincroniza sozinho 1x por dia — use o botão abaixo para forçar uma atualização imediata.</p>
+        <p class="ai-note">FRT: tempo entre o cliente abrir o chamado e receber a primeira resposta. Vem direto do Freshdesk. Sincroniza sozinho 1x por dia — use o botão abaixo para forçar uma atualização imediata.</p>
 
         <button id="duration-sync-btn" class="btn-secondary" type="button">🔄 Sincronizar agora</button>
         <p id="duration-sync-status" class="ticket-search-status" role="status" aria-live="polite"></p>
 
-        <h3 class="metrics-subtitle">Tempo de Primeira Resposta (FRT)</h3>
         <section class="kpi-row" aria-label="Resumo de tempo de primeira resposta">
           <article class="kpi-tile">
             <span class="kpi-label">Esta semana</span>
@@ -246,23 +244,6 @@
         </section>
         <div class="chart-wrap">
           <svg id="frt-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-label="Tempo médio de primeira resposta por semana"></svg>
-        </div>
-
-        <h3 class="metrics-subtitle">Tempo Médio de Resolução (AHT)</h3>
-        <section class="kpi-row" aria-label="Resumo de tempo médio de resolução">
-          <article class="kpi-tile">
-            <span class="kpi-label">Esta semana</span>
-            <strong id="aht-valor-semana" class="kpi-value">--</strong>
-            <span id="aht-total-semana" class="kpi-sub">--</span>
-          </article>
-          <article class="kpi-tile">
-            <span class="kpi-label">Últimas <span id="aht-periodo-semanas">8</span> semanas</span>
-            <strong id="aht-valor-periodo" class="kpi-value">--</strong>
-            <span id="aht-total-periodo" class="kpi-sub">--</span>
-          </article>
-        </section>
-        <div class="chart-wrap">
-          <svg id="aht-chart" class="trend-chart" viewBox="0 0 720 220" role="img" aria-label="Tempo médio de resolução por semana"></svg>
         </div>
       </div>
     </details>
