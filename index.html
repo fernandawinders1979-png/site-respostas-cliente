@@ -118,19 +118,17 @@
 
       <div id="order-tags" class="order-tags" hidden></div>
 
-      <details class="tracking-details">
-        <summary>Informações de rastreamento (preenche automaticamente na mensagem gerada)</summary>
-        <div class="order-grid">
-          <div class="order-field">
-            <label for="order-codigo-rastreio">Código de Rastreamento</label>
-            <input id="order-codigo-rastreio" type="text" placeholder="Ex: BR123456789">
-          </div>
-          <div class="order-field">
-            <label for="order-link-rastreio">Link de Rastreamento</label>
-            <input id="order-link-rastreio" type="text" placeholder="Ex: https://rastreio.exemplo.com/BR123456789">
-          </div>
+      <p class="tracking-label">Informações de rastreamento (preenche automaticamente na mensagem gerada)</p>
+      <div class="order-grid tracking-grid">
+        <div class="order-field">
+          <label for="order-codigo-rastreio">Código de Rastreamento</label>
+          <input id="order-codigo-rastreio" type="text" placeholder="Ex: BR123456789">
         </div>
-      </details>
+        <div class="order-field">
+          <label for="order-link-rastreio">Link de Rastreamento</label>
+          <input id="order-link-rastreio" type="text" placeholder="Ex: https://rastreio.exemplo.com/BR123456789">
+        </div>
+      </div>
 
       <p class="refund-grid-label">Dados do reembolso confirmado (preenche automaticamente o template "Reembolso realizado")</p>
       <div class="order-grid refund-grid">
