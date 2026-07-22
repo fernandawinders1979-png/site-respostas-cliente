@@ -622,6 +622,60 @@ Customer Support Team`,
     },
 
     {
+      id: "fegCancelarAssinaturaComMotivoPrimeiroContato",
+      category: "assinatura",
+      label: "Cancelar assinatura, falou o motivo - Primeiro contato",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+
+Agradeço por entrar em contato e por compartilhar sua experiência com o produto. Sinto muito que ele não tenha atendido às suas expectativas.
+
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças a partir de agora.
+
+Se tiver qualquer dúvida ou precisar de algo mais, fique à vontade para responder a este e-mail.
+
+Ficaremos felizes em recebê-lo(a) novamente em uma futura compra, sempre que for o momento certo para você.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+My name is {{nomeAgente}}, and I'm part of the Customer Support team. I'll be personally handling your case from here.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+
+Thank you for reaching out and for sharing your experience with the product. I'm truly sorry it didn't meet your expectations.
+
+I confirm that your subscription has been successfully canceled. You will not receive any further shipments or charges going forward.
+
+If you have any questions or need anything else, feel free to reply to this email.
+
+We'd be happy to welcome you back for a future purchase whenever the time feels right for you.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegGarantiaVencidaAssinaturaAtiva",
       category: "garantiaVencida",
       label: "Garantia vencida, mas tem assinatura ativa",
