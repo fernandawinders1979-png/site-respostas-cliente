@@ -231,33 +231,78 @@
     return insertAssinaturaLine(filled, data, lang);
   }
 
+  const MONTH_NAMES = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+
   /**
-   * Converte uma data digitada no formato brasileiro (dd/mm/aaaa) para o
-   * formato em inglês por extenso (ex: "June 10, 2026"). Usado só nos
-   * templates em inglês, para a data não ficar ambígua para o cliente.
-   * Se o texto não estiver nesse formato, devolve o texto original sem alterar.
+   * Interpreta uma data digitada no campo de Data da Compra/Reembolso, que
+   * pode vir em dois formatos (os pedidos chegam ora num, ora no outro):
+   * brasileiro (dd/mm/aaaa) ou em inglês por extenso (ex: "July 9, 2026").
+   * Se o texto não corresponder a nenhum dos dois, devolve null.
+   * @param {string} dateStr
+   * @returns {{day: number, month: number, year: number}|null}
+   */
+  function parseOrderDate(dateStr) {
+    if (!dateStr) return null;
+    const text = dateStr.trim();
+
+    const brMatch = text.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
+    if (brMatch) {
+      const day = parseInt(brMatch[1], 10);
+      const month = parseInt(brMatch[2], 10);
+      let year = parseInt(brMatch[3], 10);
+      if (year < 100) year += 2000;
+      if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+      return { day, month, year };
+    }
+
+    const enMatch = text.match(/^([A-Za-z]+)\.?\s+(\d{1,2}),?\s+(\d{4})$/);
+    if (enMatch) {
+      const monthIndex = MONTH_NAMES.findIndex(
+        (name) => name.toLowerCase() === enMatch[1].toLowerCase()
+      );
+      if (monthIndex === -1) return null;
+      const day = parseInt(enMatch[2], 10);
+      const year = parseInt(enMatch[3], 10);
+      if (day < 1 || day > 31) return null;
+      return { day, month: monthIndex + 1, year };
+    }
+
+    return null;
+  }
+
+  /**
+   * Converte uma data (em qualquer um dos formatos aceitos, ver
+   * parseOrderDate) para o formato em inglês por extenso (ex: "June 10,
+   * 2026"). Usado só nos templates em inglês, para a data não ficar
+   * ambígua para o cliente. Se o texto não for reconhecido, devolve o
+   * texto original sem alterar.
    * @param {string} dateStr
    * @returns {string}
    */
   function formatDateToEnglish(dateStr) {
-    if (!dateStr) return dateStr;
+    const parsed = parseOrderDate(dateStr);
+    if (!parsed) return dateStr;
+    return `${MONTH_NAMES[parsed.month - 1]} ${parsed.day}, ${parsed.year}`;
+  }
 
-    const match = dateStr.trim().match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/);
-    if (!match) return dateStr;
-
-    const day = parseInt(match[1], 10);
-    const month = parseInt(match[2], 10);
-    let year = parseInt(match[3], 10);
-    if (year < 100) year += 2000;
-
-    if (month < 1 || month > 12 || day < 1 || day > 31) return dateStr;
-
-    const MONTH_NAMES = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December",
-    ];
-
-    return `${MONTH_NAMES[month - 1]} ${day}, ${year}`;
+  /**
+   * Converte uma data (em qualquer um dos formatos aceitos, ver
+   * parseOrderDate) para o formato brasileiro (dd/mm/aaaa). Usado nos
+   * templates em português, para que uma data digitada em inglês (ex:
+   * "July 9, 2026") apareça certa mesmo na resposta em português. Se o
+   * texto não for reconhecido, devolve o texto original sem alterar.
+   * @param {string} dateStr
+   * @returns {string}
+   */
+  function formatDateToPortuguese(dateStr) {
+    const parsed = parseOrderDate(dateStr);
+    if (!parsed) return dateStr;
+    const dd = String(parsed.day).padStart(2, "0");
+    const mm = String(parsed.month).padStart(2, "0");
+    return `${dd}/${mm}/${parsed.year}`;
   }
 
   /**
@@ -273,6 +318,21 @@
       ...data,
       dataCompra: formatDateToEnglish(data.dataCompra),
       dataReembolso: formatDateToEnglish(data.dataReembolso),
+    };
+  }
+
+  /**
+   * Igual a toEnglishOrderDataPreview, mas para o template em português:
+   * normaliza as datas para dd/mm/aaaa mesmo que tenham sido digitadas no
+   * formato em inglês por extenso.
+   * @param {Object} data
+   * @returns {Object}
+   */
+  function toPortugueseOrderDataPreview(data) {
+    return {
+      ...data,
+      dataCompra: formatDateToPortuguese(data.dataCompra),
+      dataReembolso: formatDateToPortuguese(data.dataReembolso),
     };
   }
 
@@ -638,7 +698,7 @@
 
     cancelPendingTranslation();
     const data = getOrderDataForTemplate(template);
-    setResponseValue(responsePt, fillPlaceholders(template.pt, data, FALLBACKS_PT));
+    setResponseValue(responsePt, fillPlaceholders(template.pt, toPortugueseOrderDataPreview(data), FALLBACKS_PT));
     activeTemplateId = templateId;
     activeTemplateStatRecorded = false;
     updateResponseEnFromTemplate(template, data, { immediate: true });
@@ -657,7 +717,7 @@
 
     cancelPendingTranslation();
     const data = getOrderDataForTemplate(template);
-    setResponseValue(responsePt, fillPlaceholders(template.pt, data, FALLBACKS_PT));
+    setResponseValue(responsePt, fillPlaceholders(template.pt, toPortugueseOrderDataPreview(data), FALLBACKS_PT));
     updateResponseEnFromTemplate(template, data, { immediate: false });
   }
 
