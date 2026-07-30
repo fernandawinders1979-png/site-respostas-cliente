@@ -2463,6 +2463,61 @@ Customer Support Team`,
     },
 
     {
+      id: "fegRecusouPedidoReembolsoCancelamento",
+      category: "reembolsoCancelarAssinatura",
+      label: "Recusou pedido, solicita reembolso e cancelamento da assinatura",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Atendimento ao Cliente.
+
+Muito obrigado por entrar em contato, e obrigado por ter recusado a entrega — foi exatamente a atitude certa, e isso tornou todo o processamento aqui do nosso lado rápido e simples.
+
+Gostaria de explicar o que aconteceu: este envio fazia parte da assinatura que foi ativada na sua compra anterior. Entendo perfeitamente que não era o que você esperava, e peço sinceras desculpas por qualquer confusão que isso possa ter causado.
+
+Detalhes da Compra
+• Número do Pedido: {{numeroPedido}}
+• Produto: {{produto}}
+• Data do Pedido: {{dataCompra}}
+• Valor da Compra: \${{valorTotal}}
+
+Não se preocupe — veja o que já resolvemos para você:
+✅ Sua assinatura foi totalmente cancelada — não haverá novos envios.
+✅ Seu reembolso integral já foi processado para a mesma forma de pagamento original.
+
+Dependendo do seu banco ou operadora do cartão, o reembolso pode levar de 5 a 10 dias úteis para aparecer no seu extrato. Se você não visualizar o valor após esse prazo, é só responder este e-mail que verificarei pessoalmente para você.
+
+Valorizamos muito ter você em nossa comunidade de bem-estar, e sempre que quiser comprar conosco novamente, será um prazer recebê-la de volta — nossas portas estarão sempre abertas para você.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Atendimento ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}} and I'm part of the Customer Support Team.
+
+Thank you so much for reaching out, and thank you for refusing the delivery — that was exactly the right move, and it made the whole process on our end quick and simple.
+
+I'd like to explain what happened: this shipment was part of the subscription that was activated with your previous purchase. I completely understand this wasn't what you expected, and I sincerely apologize for any confusion this may have caused.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Product: {{produto}}
+• Order Date: {{dataCompra}}
+• Purchase Amount: \${{valorTotal}}
+
+Don't worry — here's what we've already taken care of for you:
+✅ Your subscription has been fully canceled — there will be no further shipments.
+✅ Your full refund has already been processed to the original payment method.
+
+Depending on your bank or card issuer, the refund may take 5 to 10 business days to appear on your statement. If you don't see it after that time, just reply to this email and I'll personally check on it for you.
+
+We truly value having you in our wellness community, and whenever you'd like to shop with us again, we'll be delighted to welcome you back — our doors are always open for you.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
       category: "reembolsoCancelarAssinatura",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
