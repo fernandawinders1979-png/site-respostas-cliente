@@ -2464,7 +2464,7 @@ Customer Support Team`,
 
     {
       id: "fegRecusouPedidoReembolsoCancelamento",
-      category: "reembolsoCancelarAssinatura",
+      category: "recusouEntrega",
       label: "Recusou pedido, solicita reembolso e cancelamento da assinatura",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2782,6 +2782,7 @@ Customer Support Team`,
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
     { id: "reembolsoCancelarAssinatura", label: "Reembolso do Pedido e Cancelar Assinatura", color: "#4d7cff" },
+    { id: "recusouEntrega", label: "Recusou o pedido no ato da entrega", color: "#2ec4b6" },
     { id: "cancelarCompreiPorEngano", label: "Cancelar - Comprei por Engano", color: "#ffb700" },
     { id: "medoReacaoAdversa", label: "Médico e Reação Adversa - Apenas o Pedido", color: "#ff8c1a" },
     { id: "medoReacaoAdversaPedidoAssinatura", label: "Médico e Reação Adversa - Pedido e Assinatura", color: "#ffa64d" },
