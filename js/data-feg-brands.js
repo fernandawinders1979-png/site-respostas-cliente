@@ -2903,6 +2903,57 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAssinaturaCanceladaComSucessoAmeacaDisputa",
+      category: "clienteAmeacandoDisputa",
+      label: "Assinatura cancelada com sucesso",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Produto: {{produto}}
+• Data do Cancelamento da Assinatura: [Data do Cancelamento]
+
+Antes de tudo, peço desculpas pela frustração causada e agradeço por ter entrado em contato para que pudéssemos resolver isso da melhor forma possível.
+
+Gostaria de confirmar que sua assinatura foi cancelada com sucesso na data acima — não haverá novos envios ou cobranças automáticas, sem necessidade de nenhuma ação adicional da sua parte, e sem que você precise abrir uma disputa com a operadora do seu cartão.
+
+Lamentamos sinceramente que sua experiência não tenha sido a que esperávamos oferecer, e agradecemos a oportunidade de corrigir isso diretamente com você.
+
+E saiba que, sempre que você sentir vontade de nos dar uma nova oportunidade, as portas estarão sempre abertas — será um verdadeiro prazer recebê-la de volta em nossa comunidade, quando for o momento certo para você.
+
+Estamos sempre à disposição para o que você precisar — é só responder este e-mail, com todo carinho, que teremos o maior prazer em ajudar.
+
+Com atenção e cuidado,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'm part of the Customer Support Team.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Product: {{produto}}
+• Subscription Cancellation Date: [Cancellation Date]
+
+First of all, I apologize for the frustration caused and thank you for reaching out to us so we could resolve this in the best possible way.
+
+I'd like to confirm that your subscription was successfully canceled on the date above — there will be no further shipments or automatic charges, with no further action needed on your part, and without you needing to open a dispute with your card issuer.
+
+We sincerely regret that your experience wasn't what we aimed to provide, and we appreciate the opportunity to make this right directly with you.
+
+And please know that whenever you feel like giving us another chance, our doors will always be open — it would be a true pleasure to welcome you back to our community, whenever the time feels right for you.
+
+We're always here for whatever you need — just reply to this email, and we'll be glad to help.
+
+With care and attention,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegReembolsoPedidoRealizadoComSucesso",
       category: "reembolso",
       label: "Reembolso do pedido realizado com sucesso",
