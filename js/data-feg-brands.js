@@ -2834,6 +2834,73 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
+    {
+      id: "fegReembolsoCancelarAssinaturaAmeacaDisputa",
+      category: "clienteAmeacandoDisputa",
+      label: "Reembolso de pedido e cancelamento de assinatura",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente.
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Produto: {{produto}}
+• Data da Assinatura: {{dataCompra}}
+
+Antes de tudo, peço desculpas pela frustração causada e agradeço por ter entrado em contato novamente para que pudéssemos resolver isso da melhor forma possível.
+
+Entendo completamente sua preocupação, e quero deixar tudo resolvido agora mesmo, sem que você precise abrir uma disputa com a operadora do seu cartão.
+
+Já realizamos o seguinte, sem necessidade de nenhuma ação adicional da sua parte:
+
+✅ Sua assinatura foi cancelada com sucesso — não haverá novos envios ou cobranças automáticas.
+
+✅ Seu reembolso integral foi processado para a mesma forma de pagamento original.
+
+O valor pode levar de 5 a 10 dias úteis para aparecer no seu extrato, dependendo do seu banco ou operadora do cartão.
+
+Lamentamos sinceramente que sua experiência não tenha sido a que esperávamos oferecer, e agradecemos a oportunidade de corrigir isso diretamente com você.
+
+E saiba que, sempre que você sentir vontade de nos dar uma nova oportunidade, as portas estarão sempre abertas — será um verdadeiro prazer recebê-la de volta em nossa comunidade, quando for o momento certo para você.
+
+Estamos sempre à disposição para o que você precisar — é só responder este e-mail, com todo carinho, que teremos o maior prazer em ajudar.
+
+Com atenção e cuidado,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'm part of the Customer Support Team.
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Product: {{produto}}
+• Subscription Date: {{dataCompra}}
+
+First of all, I apologize for the frustration caused and thank you for reaching out to us again so we could resolve this in the best possible way.
+
+I completely understand your concern, and I want to get everything resolved right now, without you needing to open a dispute with your card issuer.
+
+We've already taken care of the following, with no further action needed on your part:
+
+✅ Your subscription has been successfully canceled — there will be no further shipments or automatic charges.
+
+✅ Your full refund has been processed to your original payment method.
+
+The amount may take 5 to 10 business days to appear on your statement, depending on your bank or card issuer.
+
+We sincerely regret that your experience wasn't what we aimed to provide, and we appreciate the opportunity to make this right directly with you.
+
+And please know that whenever you feel like giving us another chance, our doors will always be open — it would be a true pleasure to welcome you back to our community, whenever the time feels right for you.
+
+We're always here for whatever you need — just reply to this email, and we'll be glad to help.
+
+With care and attention,
+{{nomeAgente}}
+Customer Support Team`,
+    },
   ];
 
   const CATEGORIES = [
@@ -2850,6 +2917,7 @@ Customer Support Team`,
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
     { id: "chargeback", label: "Chargeback", color: "#e100ff" },
+    { id: "clienteAmeacandoDisputa", label: "Cliente Ameaçando disputa ou denunciar", color: "#ef476f" },
   ];
 
   const CATEGORY_GROUPS = [];
