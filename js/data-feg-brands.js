@@ -2962,6 +2962,7 @@ Customer Support Team`,
     { id: "geral", label: "Geral", color: "#39ff14", featured: true },
     { id: "logistica", label: "Logística", color: "#14c8ff" },
     { id: "naoReconhece", label: "Cliente não reconhece a compra", color: "#ff5050" },
+    { id: "clienteAmeacandoDisputa", label: "Cliente Ameaçando disputa ou denunciar", color: "#ef476f" },
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
     { id: "reembolsoCancelarAssinatura", label: "Reembolso do Pedido e Cancelar Assinatura", color: "#4d7cff" },
@@ -2972,7 +2973,6 @@ Customer Support Team`,
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
     { id: "chargeback", label: "Chargeback", color: "#e100ff" },
-    { id: "clienteAmeacandoDisputa", label: "Cliente Ameaçando disputa ou denunciar", color: "#ef476f" },
   ];
 
   const CATEGORY_GROUPS = [];
