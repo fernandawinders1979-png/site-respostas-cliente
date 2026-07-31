@@ -676,6 +676,67 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAssinaturaCanceladaPrimeiroContato",
+      category: "assinatura",
+      label: "Assinatura cancelada - primeiro contato",
+      autoDetect: null,
+      pt: `Olá {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente. É um prazer falar com você!
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Produto: {{produto}}
+• Data da Assinatura: {{dataCompra}}
+
+Antes de tudo, muito obrigada por compartilhar o motivo do seu cancelamento — sua opinião é muito valiosa para nós e nos ajuda a melhorar cada vez mais a experiência de quem faz parte da nossa comunidade de bem-estar.
+
+Confirmo que sua assinatura foi cancelada com sucesso. ✅
+
+Isso significa que, a partir de agora:
+
+• Você não receberá novos envios;
+• Não haverá nenhuma cobrança automática.
+
+Pode ficar totalmente tranquila — está tudo resolvido e você não precisa fazer mais nada.
+
+Queremos que saiba que as portas estarão sempre abertas por aqui. Sempre que for o momento certo para você, será um prazer recebê-la de volta em nossa comunidade.
+
+Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail que terei o maior prazer em ajudar.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'm part of the Customer Support Team. It's a pleasure to speak with you!
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Product: {{produto}}
+• Subscription Date: {{dataCompra}}
+
+First of all, thank you so much for sharing the reason for your cancellation — your feedback is extremely valuable to us and helps us keep improving the experience for everyone in our wellness community.
+
+I confirm that your subscription has been successfully canceled. ✅
+
+This means that, from now on:
+
+• You will not receive any new shipments;
+• There will be no automatic charges.
+
+You can rest completely assured — everything is taken care of, and there's nothing else you need to do.
+
+Please know that our doors will always be open. Whenever the time feels right for you, we'd be delighted to welcome you back to our community.
+
+If you have any questions or need anything else, I'm at your disposal — just reply to this email and I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegGarantiaVencidaAssinaturaAtiva",
       category: "garantiaVencida",
       label: "Garantia vencida, mas tem assinatura ativa",
