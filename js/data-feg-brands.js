@@ -3056,6 +3056,75 @@ Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
+
+    {
+      id: "fegTenhoUsadoMasNaoSintoEfeito",
+      category: "reembolso",
+      label: "Tenho usado o seu produto, mas não sinto nenhum efeito",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}} e irei te ajudar a partir de agora. Recebi sua mensagem e fico feliz em poder te auxiliar a tirar o máximo proveito do produto.
+
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente sua solicitação e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+
+Localizei seu pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+
+Lamento saber que o produto não atendeu às suas expectativas até o momento.
+
+Para que eu possa te dar orientações realmente direcionadas ao seu caso, gostaria de entender um pouco melhor sua experiência de uso:
+
+Há quanto tempo você está utilizando o produto?
+Como tem sido o seu uso no dia a dia (frequência, horário, quantidade, etc.)?
+Você notou alguma mudança, mesmo que pequena, desde que começou a usar?
+Existe algo específico que você esperava sentir e ainda não sentiu?
+
+Os resultados costumam depender bastante da constância e de pequenos ajustes na forma de uso — e com essas informações, consigo te dar dicas bem direcionadas para o seu momento.
+
+Assim que você me responder, volto com algumas sugestões práticas para você aproveitar ainda mais os benefícios. 😊
+
+Fico no aguardo do seu retorno!
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}} and I'll be helping you from now on. I received your message and I'm happy to help you get the most out of the product.
+
+Thank you for reaching out to us and sharing what happened. I'll carefully review your request and all the information you've shared so we can find the best solution for your case.
+
+I located your order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+
+I'm sorry to hear the product hasn't met your expectations so far.
+
+So I can give you guidance that's truly tailored to your case, I'd like to understand your experience with the product a bit better:
+
+How long have you been using the product?
+What has your day-to-day use been like (frequency, time of day, amount, etc.)?
+Have you noticed any change, even a small one, since you started using it?
+Is there something specific you expected to feel that you haven't felt yet?
+
+Results tend to depend a lot on consistency and small adjustments to how the product is used — and with this information, I can give you tips that are truly tailored to your situation.
+
+As soon as you reply, I'll come back with some practical suggestions to help you get even more out of the benefits. 😊
+
+I'll be looking forward to your reply!
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
   ];
 
   const CATEGORIES = [
