@@ -2704,6 +2704,77 @@ Customer Support Team`,
     },
 
     {
+      id: "fegMotivoCriseFinanceiraAguardandoRMA",
+      category: "reembolsoCancelarAssinatura",
+      label: "Motivo crise financeira e aguardando o RMA",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Primeiramente, quero agradecer por compartilhar sua situação conosco. Sabemos que momentos de reorganização financeira exigem decisões importantes, e estamos aqui para tornar esse processo o mais simples e tranquilo possível para você. Seu bem-estar continua sendo nossa prioridade. 💚
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Status Atual: {{status}}
+• Assinatura: Cancelada
+
+✅ Confirmação de Cancelamento
+
+Informo que sua assinatura foi cancelada com sucesso na data de hoje. Você não receberá novas cobranças a partir de agora.
+
+📦 Próximos passos — Devolução e Reembolso
+
+Já solicitei internamente a Autorização de Devolução (RMA) referente ao seu pedido. Assim que o número do RMA for liberado, entrarei em contato imediatamente com o endereço de devolução e todas as instruções necessárias para a devolução dos frascos.
+
+Após realizar o envio dos produtos, peço gentilmente que me encaminhe uma foto do comprovante de envio, para que possamos dar seguimento ao seu reembolso o quanto antes.
+
+Agradeço muito pela sua paciência e compreensão enquanto resolvemos isso juntos. Seu caso continua sendo acompanhado de perto por mim.
+
+E saiba que as portas estarão sempre abertas para você! 🌿 Quando sentir que é o momento certo de retomar sua jornada de bem-estar, será uma alegria enorme recebê-lo(a) de volta. Estaremos sempre à disposição para quando quiser adquirir nossos produtos novamente — você faz parte da nossa história.
+
+Qualquer dúvida, fico à disposição.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
+
+First of all, thank you for sharing your situation with us. We know that times of financial reorganization call for important decisions, and we're here to make this process as simple and smooth as possible for you. Your well-being remains our priority. 💚
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Current Status: {{status}}
+• Subscription: Canceled
+
+✅ Cancellation Confirmation
+
+I confirm that your subscription has been successfully canceled as of today. You won't receive any further charges from now on.
+
+📦 Next steps — Return and Refund
+
+I've already requested the Return Merchandise Authorization (RMA) for your order internally. As soon as the RMA number is released, I'll reach out immediately with the return address and all the instructions needed to return the bottles.
+
+After shipping the products, please kindly send me a photo of the shipping receipt so we can move forward with your refund as soon as possible.
+
+Thank you so much for your patience and understanding while we work this out together. I'm keeping a close eye on your case.
+
+And know that our doors will always be open for you! 🌿 Whenever you feel it's the right time to resume your wellness journey, it will be a true joy to welcome you back. We're always here whenever you'd like to purchase our products again — you're part of our story.
+
+If you have any questions, I'm here to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegCancelarCompreiPorEnganoProdutoTransito",
       category: "cancelarCompreiPorEngano",
       label: "Cancelar pedido - Comprou por engano – Produto em trânsito - Informe da assinatura",
