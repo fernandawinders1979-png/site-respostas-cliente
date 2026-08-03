@@ -3027,7 +3027,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoPedidoRealizadoComSucesso",
       category: "reembolso",
-      label: "Reembolso do pedido realizado com sucesso",
+      label: "Reembolso realizado com sucesso",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
 
