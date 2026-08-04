@@ -618,69 +618,6 @@ Customer Support Team`,
     },
 
     {
-      id: "fegCancelarAssinaturaSemMotivo",
-      category: "assinatura",
-      code: "AS-06",
-      label: "Cancelar assinatura recorrente sem falar motivo",
-      autoDetect: [
-        "cancelar assinatura", "quero cancelar minha assinatura", "cancelar minha assinatura",
-        "não quero mais receber", "parar de receber", "cancelar o plano",
-        "quero parar a assinatura", "cancelar a recorrência", "quero sair da assinatura",
-        "encerrar assinatura", "finalizar assinatura", "cancelar a assinatura",
-      ],
-      pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
-
-Agradeço por entrar em contato conosco. Localizei sua assinatura em nosso sistema:
-
-Detalhes da Assinatura
-• Número da Assinatura: {{numeroPedido}}
-• Plano Atual: {{produto}}
-• Data da Última Cobrança: [Data]
-• Próxima Cobrança Prevista: [Data]
-• Status Atual: Ativa
-
-Obrigado(a) por nos avisar sobre o cancelamento. Entendo perfeitamente — às vezes a rotina muda, as prioridades mudam, e isso é totalmente normal. Fique à vontade para seguir com o cancelamento; a decisão é sua.
-
-Antes de finalizar, se você se sentir à vontade, poderia nos contar brevemente o motivo do cancelamento? Pode ser algo relacionado ao produto, aos resultados, ao valor, à frequência das entregas, ou simplesmente uma mudança na sua rotina. Essa informação é totalmente opcional, e serve apenas para nos ajudar a melhorar cada vez mais a experiência dos nossos clientes.
-
-Se, após compartilhar (ou mesmo sem compartilhar), você continuar preferindo não seguir com o tratamento, sem problema algum — o cancelamento será processado imediatamente, sem nenhuma taxa e sem burocracia, e você não será cobrado(a) novamente a partir de [data].
-
-De qualquer forma, agradecemos sinceramente por ter feito parte da sua jornada de bem-estar até aqui. Se um dia sentir vontade de retomar o tratamento conosco, suas informações ficam guardadas, e o processo de reativação é simples e rápido.
-
-Fico no aguardo do seu retorno para seguirmos com o que fizer mais sentido para você.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
-
-Thank you for reaching out to us. I located your subscription in our system:
-
-Subscription Details
-• Subscription Number: {{numeroPedido}}
-• Current Plan: {{produto}}
-• Last Billing Date: [Date]
-• Next Expected Billing Date: [Date]
-• Current Status: Active
-
-Thank you for letting us know about the cancellation. I completely understand — routines change, priorities change, and that's totally normal. Feel free to go ahead with the cancellation; it's entirely your decision.
-
-Before we finalize it, if you're comfortable sharing, could you briefly tell us the reason for the cancellation? It could be related to the product, the results, the price, the delivery frequency, or simply a change in your routine. This information is completely optional and only helps us keep improving the experience for our customers.
-
-If, after sharing (or even without sharing), you'd still prefer not to continue, no problem at all — the cancellation will be processed immediately, with no fees and no hassle, and you won't be charged again starting on [date].
-
-Either way, we sincerely thank you for being part of your wellness journey with us so far. If you ever feel like resuming treatment with us, your information stays on file, and the reactivation process is quick and simple.
-
-I'll be looking forward to your reply so we can move forward with whatever makes the most sense for you.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
       code: "AS-02",
