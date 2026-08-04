@@ -514,9 +514,10 @@ Customer Support Team`,
         "sem informação de rastreio", "rastreio não encontrado",
       ],
       pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
-Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar, então vou te trazer todas as informações com precisão.
+Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar.
 
 Localizei seu pedido em nosso sistema:
 
@@ -536,15 +537,16 @@ Informações de Rastreamento
 
 Fico à disposição para acompanhar isso com você. Se por algum motivo a entrega não chegar dentro do prazo estimado, ou se surgir qualquer outra dúvida, é só me responder este e-mail — estarei aqui para te ajudar.
 
-Fico no aguardo, e desejo que o {{produto}} chegue rapidinho até você!
+Fico no aguardo, e desejo que o produto chegue rapidinho até você!
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
+
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
-Thank you for reaching out to us. I know how nice it is to closely track the arrival of a product that's part of your wellness routine, so I'll bring you all the details with precision.
+Thank you for reaching out to us. I know how nice it is to closely track the arrival of a product that's part of your wellness routine.
 
 I located your order in our system:
 
@@ -564,7 +566,7 @@ Tracking Information
 
 I'm here to follow up on this with you. If for any reason the delivery doesn't arrive within the estimated window, or if any other question comes up, just reply to this email — I'll be here to help.
 
-I'll be looking forward to it, and I hope your {{produto}} reaches you soon!
+I'll be looking forward to it, and I hope your product reaches you soon!
 
 Best regards,
 {{nomeAgente}}
