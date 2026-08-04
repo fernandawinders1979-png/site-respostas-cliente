@@ -2018,12 +2018,13 @@ Customer Support Team`,
     {
       id: "fegMedicoNaoAutorizouReembolsoSemDevolucao",
       category: "medoReacaoAdversa",
-      label: "Médico não autorizou e está com os produtos",
+      label: "Medico não autorizou, Solicitar RMA para devolução do produto",
       autoDetect: [
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
         "meu médico disse para não tomar", "médico não aprovou o uso",
       ],
       pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar essa informação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
@@ -2041,19 +2042,15 @@ Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientaç�
 
 Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
 
-Número da Autorização de Devolução (RMA): [Número do RMA]
-
-📍 Endereço de Devolução:
-11870 62nd St. N
-Largo, FL 33773
+Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que tiver o retorno, enviarei o número do RMA e todas as informações necessárias para a devolução.
 
 Após realizar o envio, por favor, responda a este e-mail anexando:
-• Uma foto dos produtos que estão sendo devolvidos; e
+
 • O comprovante de envio, com o número de rastreamento visível e legível.
 
 Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
 
-Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
+Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação. 💚
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
@@ -2063,6 +2060,7 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
+
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing this information. I'll carefully review your order so we can move forward in the best possible way.
@@ -2080,19 +2078,15 @@ We completely understand your decision. When it comes to your health, your docto
 
 Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
 
-Return Merchandise Authorization Number (RMA): [RMA Number]
-
-📍 Return Address:
-11870 62nd St. N
-Largo, FL 33773
+I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you the RMA number and all the information needed for the return.
 
 After shipping the return, please reply to this email attaching:
-• A photo of the products being returned; and
+
 • Proof of shipment, with the tracking number clearly visible and legible.
 
 As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
 
-There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
+There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery. 💚
 
 I'll keep following your case until it's fully resolved.
 
