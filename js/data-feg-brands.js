@@ -3359,6 +3359,16 @@ Customer Support Team`,
     },
   ];
 
+  /**
+   * Prefixo do código de cada categoria (campo "code" dos templates, ex:
+   * "AS-03"). Ao criar um template novo, use o prefixo da categoria dele
+   * e o próximo número livre nessa categoria (maior número existente + 1).
+   * G=Geral, LG=Logística, NR=Não reconhece a compra, CD=Cliente ameaçando
+   * disputa, AS=Assinatura, RE=Reembolso do Pedido, RC=Reembolso+Cancelar
+   * Assinatura, REN=Recusou entrega, CE=Comprei por engano,
+   * MA=Médico/Reação adversa (apenas pedido), MP=Médico/Reação adversa
+   * (pedido+assinatura), GV=Garantia vencida, MU=Modo de uso, CB=Chargeback.
+   */
   const CATEGORIES = [
     { id: "geral", label: "Geral", color: "#39ff14", featured: true },
     { id: "logistica", label: "Logística", color: "#14c8ff" },
