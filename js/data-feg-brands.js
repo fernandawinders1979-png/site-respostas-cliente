@@ -989,6 +989,7 @@ Customer Support Team`,
         "quero o dinheiro de volta", "quero cancelar e reembolso",
       ],
       pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
@@ -1004,16 +1005,10 @@ Detalhes do Pedido
 
 Lamento saber que o produto não atendeu às suas expectativas.
 
-Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
+Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral. Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que eu tiver o retorno, enviarei todas as informações necessárias para a devolução.
 
-Número da Autorização de Devolução (RMA): [Número do RMA]
+Quando você realizar o envio com as informações que enviarei, por favor, responda a este e-mail anexando:
 
-📍 Endereço de Devolução:
-11870 62nd St. N
-Largo, FL 33773
-
-Após realizar o envio, por favor, responda a este e-mail anexando:
-• Uma foto dos produtos que estão sendo devolvidos; e
 • O comprovante de envio, com o número de rastreamento visível e legível.
 
 Assim que recebermos essas informações, processaremos imediatamente o seu reembolso integral para o mesmo método de pagamento utilizado na compra.
@@ -1026,6 +1021,7 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
+
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
@@ -1041,16 +1037,10 @@ Order Details
 
 I'm sorry to hear the product didn't meet your expectations.
 
-Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
+Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund. I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you all the information needed for the return.
 
-Return Merchandise Authorization Number (RMA): [RMA Number]
+Once you ship it using the information I'll send you, please reply to this email attaching:
 
-📍 Return Address:
-11870 62nd St. N
-Largo, FL 33773
-
-After shipping the return, please reply to this email attaching:
-• A photo of the products being returned; and
 • Proof of shipment, with the tracking number clearly visible and legible.
 
 As soon as we receive this information, we'll immediately process your full refund to the same payment method used for the purchase.
