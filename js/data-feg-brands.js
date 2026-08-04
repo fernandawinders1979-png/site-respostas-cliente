@@ -684,58 +684,42 @@ Customer Support Team`,
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
       code: "AS-02",
-      label: "Assinatura cancelada falando o motivo no primeiro contato",
+      label: "Cancelar assinatura - falou o motivo",
       autoDetect: null,
-      pt: `Olá {{nomeCliente}},
+      pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente. É um prazer falar com você!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Produto: {{produto}}
-• Data da Assinatura: {{dataCompra}}
+Antes de prosseguirmos, quero lembrar que você tem total flexibilidade com a sua assinatura: caso prefira, é possível pausar temporariamente ou pular uma entrega, sem custo algum — assim você não perde seu histórico e pode retomar quando o momento estiver mais favorável.
 
-Antes de tudo, muito obrigada por compartilhar o motivo do seu cancelamento — sua opinião é muito valiosa para nós e nos ajuda a melhorar cada vez mais a experiência de quem faz parte da nossa comunidade de bem-estar.
+🌿 E temos um cuidado especial para quem opta pela pausa: ao decidir retomar sua assinatura, você garante 15% de desconto no seu retorno. É a nossa forma de manter sua jornada de bem-estar acessível e de mostrar o quanto valorizamos ter você conosco — sem pressão e no seu tempo.
 
-Confirmo que sua assinatura foi cancelada com sucesso. ✅
+Mas, claro, a decisão é totalmente sua, e o cancelamento também está disponível a qualquer momento.
 
-Isso significa que, a partir de agora:
+Se preferir seguir com o cancelamento, sem problema algum: ele será processado imediatamente, sem taxas e sem burocracia, e você não será cobrado(a) novamente. Importante: o cancelamento sempre vale para a próxima renovação, ou seja, envios já processados no ciclo atual não são afetados.
 
-• Você não receberá novos envios;
-• Não haverá nenhuma cobrança automática.
+De qualquer forma, agradecemos sinceramente por ter feito parte da sua jornada de bem-estar até aqui. 💚
 
-Pode ficar totalmente tranquila — está tudo resolvido e você não precisa fazer mais nada.
-
-Queremos que saiba que as portas estarão sempre abertas por aqui. Sempre que for o momento certo para você, será um prazer recebê-la de volta em nossa comunidade.
-
-Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail que terei o maior prazer em ajudar.
+Fico no aguardo do seu retorno para seguirmos com o que fizer mais sentido para você.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello {{nomeCliente}},
+      en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}} and I'm part of the Customer Support Team. It's a pleasure to speak with you!
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
-Order Details
-• Order Number: {{numeroPedido}}
-• Product: {{produto}}
-• Subscription Date: {{dataCompra}}
+Before we move forward, I want to remind you that you have full flexibility with your subscription: if you prefer, you can temporarily pause it or skip a delivery, at no cost — that way you don't lose your history and can resume whenever it's a better time for you.
 
-First of all, thank you so much for sharing the reason for your cancellation — your feedback is extremely valuable to us and helps us keep improving the experience for everyone in our wellness community.
+🌿 And we have something special for anyone who chooses to pause: when you decide to resume your subscription, you get a 15% discount on your return. It's our way of keeping your wellness journey accessible and showing how much we value having you with us — no pressure, on your own time.
 
-I confirm that your subscription has been successfully canceled. ✅
+But of course, the decision is entirely yours, and cancellation is also available at any time.
 
-This means that, from now on:
+If you'd still prefer to go ahead with the cancellation, no problem at all: it will be processed immediately, with no fees and no hassle, and you won't be charged again. Important: the cancellation always applies to the next renewal, meaning shipments already processed in the current cycle aren't affected.
 
-• You will not receive any new shipments;
-• There will be no automatic charges.
+Either way, we sincerely thank you for being part of your wellness journey with us so far. 💚
 
-You can rest completely assured — everything is taken care of, and there's nothing else you need to do.
-
-Please know that our doors will always be open. Whenever the time feels right for you, we'd be delighted to welcome you back to our community.
-
-If you have any questions or need anything else, I'm at your disposal — just reply to this email and I'll be happy to help.
+I'll be looking forward to your reply so we can move forward with whatever makes the most sense for you.
 
 Best regards,
 {{nomeAgente}}
