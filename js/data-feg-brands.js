@@ -952,7 +952,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSucesso",
       category: "assinatura",
-      label: "Assinatura cancelada com sucesso",
+      label: "Assinatura cancelada - cliente respondeu falando o motivo",
       autoDetect: null,
       pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
 
