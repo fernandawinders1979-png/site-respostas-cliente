@@ -214,6 +214,51 @@ Customer Support Team`,
     },
 
     {
+      id: "fegEnvioDoRMA",
+      category: "geral",
+      label: "Envio do RMA",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e estarei auxiliando você com o processo de devolução.
+
+Conforme informado anteriormente, o seu RMA (Return Merchandise Authorization) está disponível no arquivo PDF anexado a este e-mail.
+
+Por gentileza, imprima o documento RMA anexado e inclua-o junto ao envio do produto, seguindo as instruções fornecidas.
+
+Após realizar o envio do produto, pedimos que responda a este mesmo e-mail enviando uma foto ou cópia do comprovante de envio contendo o código de rastreamento.
+
+Essa informação será necessária para acompanharmos a devolução e darmos continuidade ao processo de reembolso conforme nossa política.
+
+Assim que recebermos o comprovante de envio, poderemos prosseguir com a próxima etapa do seu atendimento.
+
+Agradecemos pela sua colaboração e permanecemos à disposição caso tenha qualquer dúvida ou precise de auxílio durante o processo.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'll be assisting you with the return process.
+
+As previously informed, your RMA (Return Merchandise Authorization) is available in the PDF file attached to this email.
+
+Please print the attached RMA document and include it with the product shipment, following the instructions provided.
+
+After shipping the product, please reply to this same email with a photo or copy of the shipping receipt showing the tracking code.
+
+This information will be necessary for us to track the return and proceed with the refund process according to our policy.
+
+As soon as we receive the shipping receipt, we'll be able to move forward with the next step of your case.
+
+We appreciate your cooperation and remain available should you have any questions or need assistance during the process.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegDetalhesEntregaSemRastreio",
       category: "logistica",
       label: "Detalhes da entrega – Quando não tem código de rastreio",
