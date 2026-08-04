@@ -1572,12 +1572,13 @@ Customer Support Team`,
       id: "fegNaoReconheceCompraComProduto",
       category: "naoReconhece",
       code: "NR-01",
-      label: "Não reconhece a compra – Está com o produto",
+      label: "Não reconheço a compra, está com o produto. Solicita o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Lamentamos saber que você não reconhece essa compra. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1587,23 +1588,13 @@ Detalhes do Pedido
 • Produto: {{produto}}
 • Valor Total: \${{valorTotal}}
 
-Lamentamos saber que você não reconhece essa compra. Levamos situações como essa muito a sério e faremos o possível para ajudá-lo(a) da forma mais rápida e segura.
-
-Para prosseguirmos com o reembolso, siga as instruções abaixo:
-
-Número da Autorização de Devolução (RMA): [Número do RMA]
-
-📍 Endereço de Devolução:
-11870 62nd St. N
-Largo, FL 33773
+Para prosseguirmos com o reembolso, já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que for liberada, enviarei o número do RMA junto com todas as instruções necessárias para a devolução.
 
 Após realizar o envio, por favor, responda a este e-mail anexando:
-• Uma foto dos produtos que estão sendo devolvidos; e
+
 • O comprovante de envio, com o número de rastreamento visível e legível.
 
 Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
-
-Como medida de segurança, recomendamos também que entre em contato com a administradora do seu cartão ou com seu banco, caso acredite que seus dados possam ter sido utilizados sem sua autorização.
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
@@ -1613,9 +1604,10 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
+
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+Thank you for reaching out to us and sharing what happened. We're sorry to hear you don't recognize this purchase. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
 I located your order in our system:
 
@@ -1625,23 +1617,13 @@ Order Details
 • Product: {{produto}}
 • Total Amount: \${{valorTotal}}
 
-We're sorry to hear you don't recognize this purchase. We take situations like this very seriously and will do everything we can to help you as quickly and safely as possible.
-
-To proceed with the refund, please follow the instructions below:
-
-Return Merchandise Authorization Number (RMA): [RMA Number]
-
-📍 Return Address:
-11870 62nd St. N
-Largo, FL 33773
+To proceed with the refund, I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as it's released, I'll send you the RMA number along with all the instructions needed for the return.
 
 After shipping the return, please reply to this email attaching:
-• A photo of the products being returned; and
+
 • Proof of shipment, with the tracking number clearly visible and legible.
 
 As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
-
-As a security measure, we also recommend contacting your card issuer or bank, in case you believe your information may have been used without your authorization.
 
 I'll keep following your case until it's fully resolved.
 
