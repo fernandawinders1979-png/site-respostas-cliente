@@ -10,6 +10,7 @@
     {
       id: "fegClienteNaoLocalizado",
       category: "geral",
+      code: "G-05",
       label: "Não localizado",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -57,6 +58,7 @@ Customer Support Team`,
     {
       id: "fegComoPossoAjudar",
       category: "geral",
+      code: "G-01",
       label: "Como posso te ajudar",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -106,6 +108,7 @@ Customer Support Team`,
     {
       id: "fegDetalhesDoPedido",
       category: "geral",
+      code: "G-02",
       label: "Detalhes do Pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -157,6 +160,7 @@ Customer Support Team`,
     {
       id: "fegDetalhesDoPedidoComRastreio",
       category: "geral",
+      code: "G-03",
       label: "Detalhes do Pedido – Com código de rastreio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -216,6 +220,7 @@ Customer Support Team`,
     {
       id: "fegEnvioDoRMA",
       category: "geral",
+      code: "G-04",
       label: "Envio do RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}},
@@ -261,6 +266,7 @@ Customer Support Team`,
     {
       id: "fegDetalhesEntregaSemRastreio",
       category: "logistica",
+      code: "LG-04",
       label: "Detalhes da entrega – Quando não tem código de rastreio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -316,6 +322,7 @@ Customer Support Team`,
     {
       id: "fegEnderecoInsuficiente",
       category: "logistica",
+      code: "LG-05",
       label: "Não recebeu o pedido – Endereço insuficiente",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -369,6 +376,7 @@ Customer Support Team`,
     {
       id: "fegNaoRecebeuQuerReembolsoEntregue",
       category: "logistica",
+      code: "LG-09",
       label: "Relata que não recebeu pedido e quer reembolso – Consta como entregue",
       autoDetect: [
         "não recebi meu pedido", "não recebi o pedido", "meu pedido não chegou",
@@ -433,6 +441,7 @@ Customer Support Team`,
     {
       id: "fegNaoRecebeuEntregueSemReembolso",
       category: "logistica",
+      code: "LG-08",
       label: "Relata que não recebeu pedido – Consta como entregue (sem falar de reembolso)",
       autoDetect: [
         "não recebi meu pedido", "não recebi o pedido", "meu pedido não chegou",
@@ -496,6 +505,7 @@ Customer Support Team`,
     {
       id: "fegDetalhesDaEntrega",
       category: "logistica",
+      code: "LG-03",
       label: "Detalhes da entrega",
       autoDetect: [
         "quando vai chegar", "previsão de chegada", "qual é o status da entrega",
@@ -564,6 +574,7 @@ Customer Support Team`,
     {
       id: "fegNovoCodigoRastreioReenvio",
       category: "logistica",
+      code: "LG-06",
       label: "Novo código de rastreio – Reenvio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -607,6 +618,7 @@ Customer Support Team`,
     {
       id: "fegCancelarAssinaturaSemMotivo",
       category: "assinatura",
+      code: "AS-06",
       label: "Cancelar assinatura recorrente sem falar motivo",
       autoDetect: [
         "cancelar assinatura", "quero cancelar minha assinatura", "cancelar minha assinatura",
@@ -669,6 +681,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
+      code: "AS-02",
       label: "Assinatura cancelada falando o motivo no primeiro contato",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -730,6 +743,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaMotivoSemResultados",
       category: "assinatura",
+      code: "AS-03",
       label: "Assinatura já foi cancelada - motivo sem resultados",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -779,6 +793,7 @@ Customer Support Team`,
     {
       id: "fegGarantiaVencidaAssinaturaAtiva",
       category: "garantiaVencida",
+      code: "GV-02",
       label: "Garantia vencida, mas tem assinatura ativa",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -832,6 +847,7 @@ Customer Support Team`,
     {
       id: "fegGarantiaVencida",
       category: "garantiaVencida",
+      code: "GV-01",
       label: "Garantia vencida",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -881,6 +897,7 @@ Customer Support Team`,
     {
       id: "fegCancelarAssinaturaCompraUnica",
       category: "assinatura",
+      code: "AS-05",
       label: "Cancelar assinatura mas foi compra única",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -936,6 +953,7 @@ Customer Support Team`,
     {
       id: "fegCancelarAssinaturaSegundoPedidoCaminho",
       category: "assinatura",
+      code: "AS-04",
       label: "Cancelar a assinatura, mas o segundo pedido está a caminho",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -997,6 +1015,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSucesso",
       category: "assinatura",
+      code: "AS-01",
       label: "Assinatura cancelada - cliente respondeu falando o motivo",
       autoDetect: null,
       pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
@@ -1026,6 +1045,7 @@ Customer Support Team`,
     {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "reembolso",
+      code: "RE-10",
       label: "Sem resultados",
       autoDetect: [
         "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
@@ -1102,6 +1122,7 @@ Customer Support Team`,
     {
       id: "fegDevolverComProdutoSemMotivoSemRetencao",
       category: "reembolso",
+      code: "RE-03",
       label: "Devolver e está com o produto, não fala o motivo",
       autoDetect: [
         "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
@@ -1168,6 +1189,7 @@ Customer Support Team`,
     {
       id: "fegEtiquetaCriada",
       category: "logistica",
+      code: "LG-07",
       label: "Relata que a etiqueta ainda aparece somente como criada",
       autoDetect: [
         "etiqueta criada", "só aparece etiqueta criada", "rastreio não atualiza",
@@ -1239,6 +1261,7 @@ Customer Support Team`,
     {
       id: "fegAtrasoAtualizacaoRastreio",
       category: "logistica",
+      code: "LG-02",
       label: "Atraso na atualização do rastreio na transportadora",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1308,6 +1331,7 @@ Customer Support Team`,
     {
       id: "fegEfeitosAdversosSintomas",
       category: "medoReacaoAdversa",
+      code: "MA-04",
       label: "Reação adversa, Pergunte quantos frascos ainda tem",
       autoDetect: [
         "tive uma reação", "tive reação alérgica", "me deu alergia", "passei mal",
@@ -1395,6 +1419,7 @@ Customer Support Team`,
     {
       id: "fegReacaoAdversaSolicitarRMA",
       category: "medoReacaoAdversa",
+      code: "MA-03",
       label: "Reação adversa - Solicitar RMA para devolução do produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1468,6 +1493,7 @@ Customer Support Team`,
     {
       id: "fegAceitouReenvio",
       category: "logistica",
+      code: "LG-01",
       label: "Aceitou o reenvio",
       autoDetect: null,
       pt: `Obrigado por confirmar o endereço para o reenvio. Vou providenciar o envio de um novo produto para o endereço informado.
@@ -1497,6 +1523,7 @@ Customer Support Team`,
     {
       id: "fegNaoReconheceCompraSemRastreio",
       category: "naoReconhece",
+      code: "NR-03",
       label: "Não reconhece a compra – Sem o código de rastreio",
       autoDetect: [
         "não reconheço essa compra", "não fiz essa compra", "cobrança que não reconheço",
@@ -1560,6 +1587,7 @@ Customer Support Team`,
     {
       id: "fegNaoReconheceCompraComProduto",
       category: "naoReconhece",
+      code: "NR-01",
       label: "Não reconhece a compra – Está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1643,6 +1671,7 @@ Customer Support Team`,
     {
       id: "fegNaoReconheceCompraEmTransito",
       category: "naoReconhece",
+      code: "NR-02",
       label: "Não reconhece a compra – Produto em trânsito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1720,6 +1749,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoRealizado",
       category: "reembolso",
+      code: "RE-07",
       label: "Reembolso realizado",
       autoDetect: [
         "já caiu meu reembolso", "quando recebo o reembolso", "meu reembolso ainda não caiu",
@@ -1782,6 +1812,7 @@ Customer Support Team`,
     {
       id: "fegProdutoChegouDanificado",
       category: "reembolso",
+      code: "RE-05",
       label: "Produto chegou danificado",
       autoDetect: ["danificado", "quebrado", "avariado", "damaged", "broken"],
       pt: `Olá, {{nomeCliente}}!
@@ -1865,6 +1896,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoProcessadoEvidencias",
       category: "reembolso",
+      code: "RE-06",
       label: "Reembolso processado após envio das evidências",
       autoDetect: null,
       pt: `Agradeço por enviar as fotos. Recebemos todas as informações necessárias e está tudo em ordem.
@@ -1912,6 +1944,7 @@ Customer Support Team`,
     {
       id: "fegCancelarPedidoEmTransito",
       category: "reembolso",
+      code: "RE-02",
       label: "Cancelar pedido – Pedido em trânsito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1987,6 +2020,7 @@ Customer Support Team`,
     {
       id: "fegCancelarPedidoAntesEnvio",
       category: "reembolso",
+      code: "RE-01",
       label: "Cancelar o pedido antes do envio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2052,6 +2086,7 @@ Customer Support Team`,
     {
       id: "fegNaoGostouSabor",
       category: "reembolso",
+      code: "RE-04",
       label: "Não gostou do sabor",
       autoDetect: [
         "não gostei do sabor", "gosto ruim", "sabor horrível", "não gostei do gosto",
@@ -2148,6 +2183,7 @@ Customer Support Team`,
     {
       id: "fegMedicoNaoAutorizouReembolsoSemDevolucao",
       category: "medoReacaoAdversa",
+      code: "MA-02",
       label: "Medico não autorizou, Solicitar RMA para devolução do produto",
       autoDetect: [
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
@@ -2230,6 +2266,7 @@ Customer Support Team`,
     {
       id: "fegMedicoNaoAutorizouReembolsoRecusarEntrega",
       category: "medoReacaoAdversa",
+      code: "MA-01",
       label: "Médico não autorizou o uso do produto – Produto em trânsito – Recusar entrega",
       autoDetect: [
         "meu médico não autorizou", "médico não recomendou", "médico não liberou",
@@ -2304,6 +2341,7 @@ Customer Support Team`,
     {
       id: "fegMedicoNaoAutorizouEstaComProdutoAssinaturaCancelada",
       category: "medoReacaoAdversaPedidoAssinatura",
+      code: "MP-01",
       label: "Médico não autorizou - tem garrafas lacradas - Solicitar RMA para devolução",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2371,6 +2409,7 @@ Customer Support Team`,
     {
       id: "fegMedicoNaoAutorizouProdutoTransitoAssinaturaCancelada",
       category: "medoReacaoAdversaPedidoAssinatura",
+      code: "MP-02",
       label: "Médico não autorizou o uso do produto – Produto em trânsito – Recusar entrega",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2448,6 +2487,7 @@ Customer Support Team`,
     {
       id: "fegModoDeUsoSistemaDuplo",
       category: "modoDeUso",
+      code: "MU-01",
       label: "Modo de uso – Sistema duplo (Unlock + Rebuild)",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2515,6 +2555,7 @@ Customer Support Team`,
     {
       id: "fegCancelarPedidoAssinaturaAntesEnvio",
       category: "reembolsoCancelarAssinatura",
+      code: "RC-01",
       label: "Cancelar o pedido e a assinatura antes do envio do pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2572,6 +2613,7 @@ Customer Support Team`,
     {
       id: "fegCancelarPedidoAssinaturaEmTransito",
       category: "reembolsoCancelarAssinatura",
+      code: "RC-02",
       label: "Cancelar o pedido e a assinatura, o pedido em trânsito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2631,6 +2673,7 @@ Customer Support Team`,
     {
       id: "fegRecusouPedidoReembolsoCancelamento",
       category: "recusouEntrega",
+      code: "REN-01",
       label: "Recusou pedido, solicita reembolso e cancelamento da assinatura",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2686,6 +2729,7 @@ Customer Support Team`,
     {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
       category: "reembolsoCancelarAssinatura",
+      code: "RC-06",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2743,6 +2787,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaProdutoTransito",
       category: "reembolsoCancelarAssinatura",
+      code: "RC-03",
       label: "Justificativa enviada, Recusa entrega e Assinatura cancelada - Pedido em transito",
       autoDetect: null,
       pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
@@ -2772,6 +2817,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaComProduto",
       category: "reembolsoCancelarAssinatura",
+      code: "RC-04",
       label: "Justificativo enviada - Processo de reembolos (solicitar RMA) e assinatura cancelada - está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2813,6 +2859,7 @@ Customer Support Team`,
     {
       id: "fegMotivoCriseFinanceiraAguardandoRMA",
       category: "reembolsoCancelarAssinatura",
+      code: "RC-05",
       label: "Motivo crise financeira e aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2884,6 +2931,7 @@ Customer Support Team`,
     {
       id: "fegCancelarCompreiPorEnganoProdutoTransito",
       category: "cancelarCompreiPorEngano",
+      code: "CE-01",
       label: "Cancelar pedido - Comprou por engano – Produto em trânsito - Informe da assinatura",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2953,6 +3001,7 @@ Customer Support Team`,
     {
       id: "fegChargeback",
       category: "chargeback",
+      code: "CB-01",
       label: "Chargeback",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -3016,6 +3065,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoCancelarAssinaturaAmeacaDisputa",
       category: "clienteAmeacandoDisputa",
+      code: "CD-02",
       label: "Reembolso de pedido e cancelamento de assinatura",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -3083,6 +3133,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaComSucessoAmeacaDisputa",
       category: "clienteAmeacandoDisputa",
+      code: "CD-01",
       label: "Assinatura cancelada com sucesso",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -3134,6 +3185,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoPedidoRealizadoComSucesso",
       category: "reembolso",
+      code: "RE-08",
       label: "Reembolso realizado com sucesso",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
@@ -3189,6 +3241,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoSemResultadoAguardandoRMA",
       category: "reembolso",
+      code: "RE-09",
       label: "Sem resultado, aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -3238,6 +3291,7 @@ Customer Support Team`,
     {
       id: "fegTenhoUsadoMasNaoSintoEfeito",
       category: "reembolso",
+      code: "RE-11",
       label: "Tenho usado o seu produto, mas não sinto nenhum efeito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!

@@ -504,6 +504,19 @@ section h2 {
   content: " ✨";
 }
 
+.template-code-badge {
+  display: inline-block;
+  font-family: "Courier New", ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-bg);
+  background-color: var(--cat-color, var(--color-primary));
+  border-radius: 5px;
+  padding: 1px 6px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
 .suggestion-box {
   margin-bottom: 14px;
   padding: 10px 12px;

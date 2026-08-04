@@ -596,7 +596,16 @@
       const button = document.createElement("button");
       button.type = "button";
       button.className = "template-btn";
-      button.textContent = template.label;
+      button.dataset.templateId = template.id;
+
+      if (template.code) {
+        const codeBadge = document.createElement("span");
+        codeBadge.className = "template-code-badge";
+        codeBadge.textContent = template.code;
+        button.appendChild(codeBadge);
+      }
+      button.appendChild(document.createTextNode(template.label));
+
       button.addEventListener("click", () => handleTemplateClick(template.id));
       li.appendChild(button);
       list.appendChild(li);
@@ -1171,8 +1180,8 @@
       btn.classList.remove("template-btn--suggested");
     });
 
-    const suggestedButton = Array.from(document.querySelectorAll(".template-btn")).find(
-      (btn) => btn.textContent === template.label
+    const suggestedButton = document.querySelector(
+      `.template-btn[data-template-id="${template.id}"]`
     );
     if (suggestedButton) {
       suggestedButton.classList.add("template-btn--suggested");
