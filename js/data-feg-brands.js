@@ -683,6 +683,55 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAssinaturaCanceladaMotivoSemResultados",
+      category: "assinatura",
+      label: "Assinatura já foi cancelada - motivo sem resultados",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Espero que esteja bem.
+
+Escrevo para confirmar que sua assinatura foi cancelada com sucesso no dia [DATA]. Com isso, você não receberá mais nenhum produto ou cobrança automática a partir de agora.
+
+Gostaria de compartilhar uma informação importante: cada organismo é único, e o tempo necessário para perceber os resultados pode variar de pessoa para pessoa. Alguns clientes podem notar mudanças mais rapidamente, enquanto outros podem precisar de um pouco mais de tempo para que o corpo se adapte e responda ao produto. A consistência no uso conforme as orientações é fundamental para permitir que o produto atue de forma gradual e adequada.
+
+Recomendamos dar ao seu corpo o tempo necessário, pois os resultados podem aparecer progressivamente com o uso contínuo. 🌿
+
+Foi um prazer enorme tê-lo(a) como parte da nossa comunidade de bem-estar, e somos muito gratos pela confiança que depositou em nós. 💚
+
+Saiba que nossas portas estarão sempre abertas — quando sentir que é o momento certo de retomar sua jornada de bem-estar, será uma alegria recebê-lo(a) de volta. Basta nos enviar um e-mail que teremos o maior prazer em auxiliá-lo(a).
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Com carinho,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+My name is {{nomeAgente}}, and I'm part of the Customer Support team. I'll be personally following your case from now on.
+
+I hope you're doing well.
+
+I'm writing to confirm that your subscription was successfully canceled on [DATE]. From now on, you will not receive any further products or automatic charges.
+
+I'd like to share an important piece of information: every body is unique, and the time needed to notice results can vary from person to person. Some clients may notice changes more quickly, while others may need a bit more time for the body to adjust and respond to the product. Consistent use, as directed, is essential to allow the product to work gradually and properly.
+
+We recommend giving your body the time it needs, as results can appear progressively with continued use. 🌿
+
+It was a true pleasure having you as part of our wellness community, and we're truly grateful for the trust you placed in us. 💚
+
+Please know that our doors will always be open — whenever you feel it's the right time to resume your wellness journey, we'll be delighted to welcome you back. Just send us an email and we'll be happy to help.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+Warmly,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegGarantiaVencidaAssinaturaAtiva",
       category: "garantiaVencida",
       label: "Garantia vencida, mas tem assinatura ativa",
