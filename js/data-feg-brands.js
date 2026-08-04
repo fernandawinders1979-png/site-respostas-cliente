@@ -2259,9 +2259,10 @@ Customer Support Team`,
     {
       id: "fegMedicoNaoAutorizouEstaComProdutoAssinaturaCancelada",
       category: "medoReacaoAdversaPedidoAssinatura",
-      label: "Médico não autorizou o uso do produto – Está com o produto",
+      label: "Médico não autorizou - tem garrafas lacradas - Solicitar RMA para devolução",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
 Agradeço por entrar em contato conosco e por compartilhar essa informação. Localizei seu pedido em nosso sistema:
@@ -2277,16 +2278,13 @@ Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientaç�
 
 Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
 
-Número da Autorização de Devolução (RMA): [Número do RMA]
+Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que tiver o retorno, enviarei o número do RMA e todas as informações necessárias para a devolução.
 
-Endereço de Devolução:
-[Endereço de Devolução]
+Após realizar o envio, por favor, responda a este e-mail anexando a foto do comprovante de envio, com o número de rastreamento visível e legível. Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
 
-Após realizar o envio, por favor responda a este e-mail anexando uma foto dos produtos devolvidos e o comprovante de envio, com o número de rastreamento visível e legível. Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
+Também confirmo que sua assinatura ativa foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
 
-Também confirmo que sua assinatura ativa foi cancelada com sucesso.
-
-Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
+Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação. 💚
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida, não hesite em responder a este e-mail.
 
@@ -2294,6 +2292,7 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
+
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case.
 
 Thank you for reaching out to us and sharing this information. I located your order in our system:
@@ -2309,16 +2308,13 @@ We completely understand your decision. When it comes to your health, your docto
 
 Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
 
-Return Merchandise Authorization Number (RMA): [RMA Number]
+I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you the RMA number and all the information needed for the return.
 
-Return Address:
-[Return Address]
+After shipping the return, please reply to this email attaching a photo of the shipping receipt, with the tracking number clearly visible and legible. As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
 
-After shipping the return, please reply to this email attaching a photo of the returned products and proof of shipment, with the tracking number clearly visible and legible. As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
+I also confirm that your active subscription has been successfully canceled. You will not receive any further shipments or automatic charges from now on.
 
-I also confirm that your active subscription has been successfully canceled.
-
-There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
+There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery. 💚
 
 I'll keep following your case until it's fully resolved. If you have any questions, don't hesitate to reply to this email.
 
