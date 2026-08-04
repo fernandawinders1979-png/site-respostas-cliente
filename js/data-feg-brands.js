@@ -624,7 +624,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
-      label: "Assinatura cancelada - primeiro contato",
+      label: "Assinatura cancelada falando o motivo no primeiro contato",
       autoDetect: null,
       pt: `Olá {{nomeCliente}},
 
