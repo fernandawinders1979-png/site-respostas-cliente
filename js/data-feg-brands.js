@@ -1636,12 +1636,13 @@ Customer Support Team`,
       id: "fegProdutoChegouDanificado",
       category: "reembolso",
       code: "RE-05",
-      label: "Produto chegou danificado",
-      autoDetect: ["danificado", "quebrado", "avariado", "damaged", "broken"],
+      label: "Não gostou do sabor - pergunte se tem garrafas lacradas?",
+      autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1651,23 +1652,15 @@ Detalhes do Pedido
 • Produto: {{produto}}
 • Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
 
-Lamento saber que seu pedido chegou danificado. Essa não é a experiência nem o padrão de qualidade que esperamos oferecer aos nossos clientes, e pedimos sinceras desculpas pelo ocorrido.
+Lamento saber que o sabor do produto não agradou ao seu paladar. Sabemos que essa é uma preferência muito pessoal e entendemos que isso pode influenciar sua experiência.
 
-Além de resolvermos sua solicitação, abriremos uma reclamação junto à transportadora para que o caso seja analisado e possamos evitar que situações como essa aconteçam novamente.
+Antes de prosseguirmos com a devolução, gostaria apenas de compartilhar uma sugestão que costuma ajudar alguns clientes: consumir o produto misturado a sucos cítricos bem gelados, vitaminas ou chás gelados, o que pode tornar o sabor mais agradável.
 
-Para darmos continuidade ao seu atendimento, por favor, responda a este e-mail anexando:
-• Uma foto da embalagem;
-• Uma foto do(s) produto(s) danificado(s); e
-• Informando qual das opções abaixo você prefere:
+Para seguirmos com o reembolso, poderia nos informar, por gentileza, quantas garrafas lacradas você possui em mãos? Essa informação nos ajudará a organizar corretamente o processo de devolução.
 
-Opção 1 – Reenvio do produto
-Se preferir receber um novo produto, por gentileza, informe o endereço completo onde deseja receber o reenvio.
-
-Opção 2 – Reembolso integral
-Se preferir o reembolso, enviaremos as instruções para a devolução do produto lacrado, para que possamos dar continuidade ao processo.
-
-Assim que recebermos sua resposta, providenciaremos a solução escolhida com prioridade.
+Lamentamos que sua experiência não tenha sido a esperada, mas agradecemos por compartilhar seu feedback, pois ele é muito importante para continuarmos aprimorando nossos produtos e a experiência dos nossos clientes.
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
@@ -1677,9 +1670,10 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
+
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+Thank you for reaching out to us and sharing what happened.
 
 I located your order in our system:
 
@@ -1689,23 +1683,15 @@ Order Details
 • Product: {{produto}}
 • Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
+• Current Status: {{status}}
 
-I'm sorry to hear your order arrived damaged. This isn't the experience or the quality standard we aim to offer our customers, and we sincerely apologize for what happened.
+I'm sorry to hear the flavor of the product didn't suit your taste. We know this is a very personal preference and understand it can affect your experience.
 
-In addition to resolving your request, we'll file a claim with the carrier so the case can be reviewed and we can help prevent situations like this from happening again.
+Before moving forward with the return, I'd just like to share a suggestion that tends to help some customers: mixing the product with well-chilled citrus juices, smoothies, or iced teas, which can make the flavor more pleasant.
 
-To move forward with your case, please reply to this email attaching:
-• A photo of the packaging;
-• A photo of the damaged product(s); and
-• Letting us know which of the options below you prefer:
+To proceed with the refund, could you please let us know how many sealed bottles you have on hand? This information will help us organize the return process correctly.
 
-Option 1 – Product reshipment
-If you'd like to receive a new product, please provide the full address where you'd like the reshipment sent.
-
-Option 2 – Full refund
-If you prefer a refund, we'll send instructions for returning the sealed product so we can move forward with the process.
-
-As soon as we receive your reply, we'll arrange the chosen solution as a priority.
+We're sorry your experience wasn't what you expected, but we appreciate you sharing your feedback, as it's very important for us to keep improving our products and our customers' experience.
 
 I'll keep following your case until it's fully resolved.
 
