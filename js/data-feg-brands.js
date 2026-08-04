@@ -2623,7 +2623,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaProdutoTransito",
       category: "reembolsoCancelarAssinatura",
-      label: "Justificativa do porque o pedido e a assinatura, processo de reembolso e assinatura cancelada - Produto em trânsito",
+      label: "Justificativa enviada, Recusa entrega e Assinatura cancelada - Pedido em transito",
       autoDetect: null,
       pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
 
