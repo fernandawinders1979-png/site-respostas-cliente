@@ -2652,36 +2652,38 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaComProduto",
       category: "reembolsoCancelarAssinatura",
-      label: "Justificativa do porque o pedido e a assinatura, processo de reembolso e assinatura cancelada - Está com o produto",
+      label: "Justificativo enviada - Processo de reembolos (solicitar RMA) e assinatura cancelada - está com o produto",
       autoDetect: null,
-      pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
+      pt: `Olá, {{nomeCliente}}!
+
+Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
 
 Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
 
-Quanto ao pedido, para prosseguirmos com o reembolso, por favor devolva o produto para o endereço abaixo:
+Quanto ao pedido, para prosseguirmos com o reembolso, já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que tiver o retorno, enviarei todas as informações necessárias para a devolução dos produtos.
 
-Endereço de Devolução:
-[Endereço de Devolução]
+Assim que você postar o pacote, por favor, responda a este e-mail anexando a foto do comprovante de envio, com o número de rastreamento visível. Ao recebermos essa confirmação, daremos continuidade ao reembolso integral do pedido.
 
-Assim que você postar o pacote, por favor responda a este e-mail com a foto do comprovante de envio. Assim que recebermos essa confirmação, daremos continuidade ao reembolso integral do pedido.
+Permanecerei acompanhando seu caso pessoalmente até que ele seja totalmente concluído.
 
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em ajudar.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Thank you for sharing your reasons — your feedback is very important to us and will help us improve our products and service.
+      en: `Hello, {{nomeCliente}}!
+
+Thank you for sharing your reasons — your feedback is very important to us and will help us improve our products and service.
 
 I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
 
-As for the order, to move forward with the refund, please return the product to the address below:
+As for the order, to move forward with the refund, I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you all the information needed to return the products.
 
-Return Address:
-[Return Address]
+Once you ship the package, please reply to this email attaching a photo of the shipping receipt, with the tracking number clearly visible. Once we receive that confirmation, we'll move forward with the full refund for the order.
 
-Once you've shipped the package, please reply to this email with a photo of the shipping receipt. As soon as we receive that confirmation, we'll move forward with the full refund for the order.
+I'll keep personally following your case until it's fully resolved.
 
-I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
+If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to help.
 
 Best regards,
 {{nomeAgente}}
