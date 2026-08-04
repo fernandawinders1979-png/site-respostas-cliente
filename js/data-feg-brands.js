@@ -953,68 +953,6 @@ Customer Support Team`,
     },
 
     {
-      id: "fegCancelarAssinaturaSegundoPedidoCaminho",
-      category: "assinatura",
-      code: "AS-04",
-      label: "Cancelar a assinatura, mas o segundo pedido está a caminho",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
-
-Obrigado por entrar em contato e explicar o ocorrido. Localizei seu pedido em nosso sistema:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-
-Entendo sua situação e sinto muito pelo transtorno. Verifiquei que o primeiro pedido já foi entregue, e o segundo ainda está em trânsito.
-
-Informações de Rastreamento
-• Código de Rastreamento: {{codigoRastreio}}
-• Link de Rastreamento: {{linkRastreio}}
-
-Como o segundo pedido ainda não foi entregue, pedimos que você recuse a entrega ao receber a encomenda. Assim que recusar, nos avise — a transportadora pode levar algumas horas para atualizar o status. Assim que a atualização aparecer no sistema, seguimos com o reembolso integral. Sua assinatura já foi cancelada, então não haverá novos envios automáticos.
-
-Estou à disposição para o que precisar e vou acompanhar seu caso até a resolução completa.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-
-My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
-
-Thank you for reaching out and explaining what happened. I located your order in our system:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-
-I understand your situation and I'm sorry for the inconvenience. I checked and the first order has already been delivered, and the second one is still in transit.
-
-Tracking Information
-• Tracking Code: {{codigoRastreio}}
-• Tracking Link: {{linkRastreio}}
-
-Since the second order hasn't been delivered yet, please refuse the delivery when it arrives. As soon as you refuse it, let us know — the carrier may take a few hours to update the status. Once the update appears in the system, we'll proceed with the full refund. Your subscription has already been canceled, so there will be no further automatic shipments.
-
-I'm here for whatever you need and will follow your case through to full resolution.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
       id: "fegAssinaturaCanceladaSucesso",
       category: "assinatura",
       code: "AS-01",
