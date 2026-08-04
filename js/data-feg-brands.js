@@ -1265,9 +1265,8 @@ Customer Support Team`,
       label: "Atraso na atualização do rastreio na transportadora",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e serei responsável por acompanhar seu caso pessoalmente. Obrigado por entrar em contato e compartilhar o ocorrido.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1278,27 +1277,18 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
-Verifiquei que a atualização do rastreamento está pausada há alguns dias.
+Verifiquei que a atualização do rastreamento está pausada há alguns dias. Para garantir que sua entrega siga normalmente, já abrimos uma solicitação junto à transportadora, que tem até 5 dias úteis para nos dar um posicionamento.
 
-Para garantir que sua entrega siga normalmente, já abrimos uma solicitação junto à transportadora para verificar o ocorrido. Eles têm o prazo de até 5 dias úteis para nos fornecer um posicionamento.
+Enquanto isso, fique tranquilo(a): seguirei acompanhando seu pedido de perto e te manterei informado(a) sobre qualquer novidade. Esperamos que o pacote siga viagem o quanto antes — mas, caso a transportadora confirme que ele não foi localizado ou que houve algum problema na entrega, entraremos em contato com a melhor solução para você.
 
-Enquanto isso, fique tranquilo(a): continuaremos acompanhando seu pedido de perto e manteremos você informado sobre qualquer novidade.
-
-Esperamos que seu pedido seja localizado e siga viagem o quanto antes, para que você possa recebê-lo e iniciar sua experiência com o produto.
-
-Caso a transportadora confirme que o pacote não foi localizado ou que houve algum problema na entrega, entraremos em contato para apresentar a melhor solução.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Se tiver qualquer dúvida, é só responder a este e-mail. Ficarei feliz em ajudar.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. I'll carefully review your order so we can find the best solution for your case.
+My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally responsible for following your case. Thank you for reaching out and sharing what happened.
 
 I located your order in our system:
 
@@ -1309,19 +1299,11 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
-I checked and the tracking update has been paused for a few days.
+I checked and the tracking update has been paused for a few days. To make sure your delivery proceeds normally, we've already opened a request with the carrier, who has up to 5 business days to give us a response.
 
-To make sure your delivery proceeds normally, we've already opened a request with the carrier to look into what happened. They have up to 5 business days to give us a response.
+In the meantime, please don't worry: I'll keep closely monitoring your order and will keep you informed of any updates. We hope the package continues on its way as soon as possible — but if the carrier confirms it couldn't be located or that there was a delivery issue, we'll reach out with the best solution for you.
 
-In the meantime, please don't worry: we'll keep closely monitoring your order and will keep you informed of any updates.
-
-We hope your order is located and continues on its way as soon as possible, so you can receive it and start your experience with the product.
-
-If the carrier confirms that the package couldn't be located or that there was a delivery issue, we'll reach out to present the best solution.
-
-I'll keep following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+If you have any questions, just reply to this email. I'll be happy to help.
 
 Best regards,
 {{nomeAgente}}
