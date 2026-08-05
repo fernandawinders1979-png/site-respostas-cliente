@@ -904,6 +904,36 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAssinaturaCanceladaSemMotivo",
+      category: "assinatura",
+      code: "AS-04",
+      label: "Cancelada - Não quis falar o motivo",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
+
+Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — estaremos sempre à disposição para quando desejar adquirir os produtos da nossa empresa, e será um prazer recebê-lo(a) de volta sempre que for o momento certo para você. 💚
+
+Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+
+We hope to have the opportunity to serve you again soon — we'll always be available whenever you wish to purchase our products again, and it will be a pleasure to have you back whenever the time feels right for you. 💚
+
+If you have any questions or need anything else, I'm at your disposal — just reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "reembolso",
       code: "RE-10",
