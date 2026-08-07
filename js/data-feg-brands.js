@@ -264,6 +264,36 @@ Customer Support Team`,
     },
 
     {
+      id: "fegEnviandoRMA",
+      category: "geral",
+      code: "G-06",
+      label: "Enviando o RMA",
+      autoDetect: null,
+      pt: `Informamos que a RMA aguardada foi liberada e segue em anexo neste e-mail.
+
+Solicitamos, por gentileza, que realizem o envio dos produtos conforme as instruções constantes na RMA anexa.
+
+Assim que o envio for efetuado, pedimos que nos encaminhem, em resposta a este e-mail, o comprovante de envio (print ou foto do recibo da postagem), para que possamos dar andamento ao processo de reembolso.
+
+Ficamos no aguardo do seu retorno e permanecemos à disposição para quaisquer dúvidas.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `We inform you that the RMA you were waiting for has been released and is attached to this email.
+
+We kindly ask that you ship the products according to the instructions included in the attached RMA.
+
+Once the shipment has been made, please reply to this email with proof of shipment (a screenshot or photo of the shipping receipt) so we can proceed with the refund process.
+
+We look forward to your reply and remain available for any questions.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegDetalhesEntregaSemRastreio",
       category: "logistica",
       code: "LG-04",
