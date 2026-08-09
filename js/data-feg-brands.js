@@ -651,7 +651,7 @@ Customer Support Team`,
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
       code: "AS-02",
-      label: "Cancelar assinatura - falou o motivo",
+      label: "Cancelar assinatura - fale da flexibilidade da assinatura",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
