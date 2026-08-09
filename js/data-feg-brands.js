@@ -648,6 +648,36 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAssinaturaCanceladaSucesso",
+      category: "assinatura",
+      code: "AS-01",
+      label: "Assinatura cancelada - cliente respondeu falando o motivo",
+      autoDetect: null,
+      pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
+
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
+
+Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — será um prazer recebê-lo(a) de volta sempre que for o momento certo para você.
+
+Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Thank you for sharing the reason for the cancellation — your feedback is very important to us.
+
+I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+
+We hope to have the opportunity to serve you again soon — it will be a pleasure to have you back whenever the time feels right for you.
+
+If you have any questions or need anything else, I'm at your disposal — just reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
       code: "AS-02",
@@ -739,6 +769,92 @@ Please know that our doors will always be open — whenever you feel it's the ri
 If you have any questions or need any additional information, don't hesitate to reply to this email.
 
 Warmly,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
+      id: "fegAssinaturaCanceladaSemMotivo",
+      category: "assinatura",
+      code: "AS-04",
+      label: "Cancelada, cliente respondeu e não quis falar o motivo",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
+
+Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — estaremos sempre à disposição para quando desejar adquirir os produtos da nossa empresa, e será um prazer recebê-lo(a) de volta sempre que for o momento certo para você. 💚
+
+Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+
+We hope to have the opportunity to serve you again soon — we'll always be available whenever you wish to purchase our products again, and it will be a pleasure to have you back whenever the time feels right for you. 💚
+
+If you have any questions or need anything else, I'm at your disposal — just reply to this email.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
+      id: "fegCancelarAssinaturaCompraUnica",
+      category: "assinatura",
+      code: "AS-05",
+      label: "Cancelar assinatura mas foi compra única",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+
+Consegui localizar o seguinte pedido em nosso sistema:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Endereço de Entrega: {{endereco}}
+• Status Atual: {{status}}
+
+Entendo perfeitamente a importância de ter clareza e tranquilidade quando se trata de compras relacionadas ao bem-estar e do receio de cobranças inesperadas. Por isso, quis confirmar essa informação pessoalmente para você.
+
+Gostaria de tranquilizá-lo(a) informando que esta foi uma compra única. Não existe nenhuma assinatura ativa associada a este pedido, o que significa que você não será cobrado(a) automaticamente no futuro, nem receberá envios recorrentes relacionados a esta compra.
+
+Fique tranquilo(a): não é necessário realizar nenhuma ação em relação a assinaturas, pois, como confirmei, não existe nenhuma vinculada a este pedido.
+
+Caso tenha qualquer outra dúvida ou precise de ajuda com qualquer assunto relacionado ao seu pedido, por favor, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
+
+I was able to locate the following order in our system:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Shipping Address: {{endereco}}
+• Current Status: {{status}}
+
+I completely understand how important it is to have clarity and peace of mind when it comes to wellness purchases, and the concern about unexpected charges. That's why I wanted to confirm this information personally for you.
+
+I'd like to reassure you that this was a one-time purchase. There is no active subscription associated with this order, which means you won't be charged automatically in the future, nor will you receive recurring shipments related to this purchase.
+
+Rest assured: there's no action needed regarding subscriptions, since, as I confirmed, there is none linked to this order.
+
+If you have any other questions or need help with anything related to your order, please don't hesitate to reply to this email. I'll be happy to keep helping.
+
+Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
@@ -841,122 +957,6 @@ Order Details
 I understand how frustrating it can be to run into a time limitation when requesting a refund. I checked carefully: your purchase was made on {{dataCompra}}, covered by a [X]-day satisfaction guarantee, which ended on [DEADLINE DATE]. Since the order is already outside that period, I'm unfortunately unable to process a refund for this purchase, and I'm sorry I can't offer a different solution in this case.
 
 I'm at your disposal for any questions about the order or the warranty.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
-      id: "fegCancelarAssinaturaCompraUnica",
-      category: "assinatura",
-      code: "AS-05",
-      label: "Cancelar assinatura mas foi compra única",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
-
-Consegui localizar o seguinte pedido em nosso sistema:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-
-Entendo perfeitamente a importância de ter clareza e tranquilidade quando se trata de compras relacionadas ao bem-estar e do receio de cobranças inesperadas. Por isso, quis confirmar essa informação pessoalmente para você.
-
-Gostaria de tranquilizá-lo(a) informando que esta foi uma compra única. Não existe nenhuma assinatura ativa associada a este pedido, o que significa que você não será cobrado(a) automaticamente no futuro, nem receberá envios recorrentes relacionados a esta compra.
-
-Fique tranquilo(a): não é necessário realizar nenhuma ação em relação a assinaturas, pois, como confirmei, não existe nenhuma vinculada a este pedido.
-
-Caso tenha qualquer outra dúvida ou precise de ajuda com qualquer assunto relacionado ao seu pedido, por favor, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
-
-I was able to locate the following order in our system:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-
-I completely understand how important it is to have clarity and peace of mind when it comes to wellness purchases, and the concern about unexpected charges. That's why I wanted to confirm this information personally for you.
-
-I'd like to reassure you that this was a one-time purchase. There is no active subscription associated with this order, which means you won't be charged automatically in the future, nor will you receive recurring shipments related to this purchase.
-
-Rest assured: there's no action needed regarding subscriptions, since, as I confirmed, there is none linked to this order.
-
-If you have any other questions or need help with anything related to your order, please don't hesitate to reply to this email. I'll be happy to keep helping.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
-      id: "fegAssinaturaCanceladaSucesso",
-      category: "assinatura",
-      code: "AS-01",
-      label: "Assinatura cancelada - cliente respondeu falando o motivo",
-      autoDetect: null,
-      pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
-
-Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
-
-Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — será um prazer recebê-lo(a) de volta sempre que for o momento certo para você.
-
-Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Thank you for sharing the reason for the cancellation — your feedback is very important to us.
-
-I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
-
-We hope to have the opportunity to serve you again soon — it will be a pleasure to have you back whenever the time feels right for you.
-
-If you have any questions or need anything else, I'm at your disposal — just reply to this email.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
-      id: "fegAssinaturaCanceladaSemMotivo",
-      category: "assinatura",
-      code: "AS-04",
-      label: "Cancelada - Não quis falar o motivo",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-
-Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
-
-Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — estaremos sempre à disposição para quando desejar adquirir os produtos da nossa empresa, e será um prazer recebê-lo(a) de volta sempre que for o momento certo para você. 💚
-
-Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-
-I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
-
-We hope to have the opportunity to serve you again soon — we'll always be available whenever you wish to purchase our products again, and it will be a pleasure to have you back whenever the time feels right for you. 💚
-
-If you have any questions or need anything else, I'm at your disposal — just reply to this email.
 
 Best regards,
 {{nomeAgente}}
