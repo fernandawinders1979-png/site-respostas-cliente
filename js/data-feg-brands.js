@@ -860,6 +860,60 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAssinaturaCancelarSemMotivo",
+      category: "assinatura",
+      code: "AS-06",
+      label: "Cancelar sem falar motivo - Pergunte o motivo",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Recebemos sua solicitação de cancelamento e estarei acompanhando seu caso pessoalmente.
+
+Antes de finalizarmos, poderia nos contar o motivo do cancelamento? Para facilitar, basta responder com o número da opção que mais se encaixa na sua situação:
+
+1. Dificuldade financeira / momento financeiro
+2. Produto não funcionou / não vi resultados
+3. Efeito colateral ou orientação médica (médico não autorizou)
+4. Não sabia que era assinatura recorrente
+5. Pedido feito por engano ou mudei de ideia
+6. Produto diferente do anunciado
+7. Não recebi o produto
+8. Apenas quero cancelar, sem motivo específico
+9. Outro motivo (se puder, conte brevemente)
+
+Sua resposta nos ajuda muito a melhorar a experiência de bem-estar que oferecemos.
+
+Obrigado(a) por ter feito parte da sua jornada de bem-estar conosco. 💚
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+This is {{nomeAgente}}, from Customer Support. We received your cancellation request and I'll be personally following your case.
+
+Before we finalize it, could you tell us the reason for the cancellation? To make it easier, just reply with the number of the option that best fits your situation:
+
+1. Financial difficulty / financial situation
+2. Product didn't work / didn't see results
+3. Side effect or medical advice (doctor didn't approve)
+4. Didn't know it was a recurring subscription
+5. Order placed by mistake or changed my mind
+6. Product different from what was advertised
+7. Didn't receive the product
+8. Just want to cancel, no specific reason
+9. Other reason (please briefly explain if you can)
+
+Your answer helps us a lot to improve the wellness experience we offer.
+
+Thank you for being part of your wellness journey with us. 💚
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegGarantiaVencidaAssinaturaAtiva",
       category: "garantiaVencida",
       code: "GV-02",
