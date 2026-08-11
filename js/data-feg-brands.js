@@ -2776,8 +2776,6 @@ Customer Support Team`,
 
 Meu nome é {{nomeAgente}}, faço parte da Equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar pessoalmente o seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Localizei as seguintes informações em nosso sistema:
-
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
@@ -2799,8 +2797,6 @@ Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be personally responsible for following up on your case.
-
-Thank you for contacting us and for sharing your request. I found the following information in our system:
 
 Order Details
 • Order Number: {{numeroPedido}}
