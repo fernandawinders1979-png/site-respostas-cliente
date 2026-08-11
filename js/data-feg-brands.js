@@ -2802,8 +2802,9 @@ Customer Support Team`,
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
-Agradeço por informar que o pedido foi feito por engano. Localizei seu pedido em nosso sistema:
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente até a conclusão.
+
+Obrigado(a) por nos informar que o pedido foi feito por engano — entendo perfeitamente, isso pode acontecer. Localizei seu pedido:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -2814,27 +2815,26 @@ Detalhes do Pedido
 • Status Atual: {{status}}
 • Assinatura: Ativa
 
-Entendo perfeitamente, esse tipo de engano pode acontecer. Seu pedido já está em trânsito e não é mais possível interromper o envio. Quando o produto chegar, pedimos, por gentileza, que recuse a entrega; assim que a recusa for concluída, basta nos avisar por este e-mail para darmos continuidade ao reembolso integral.
+Como o pedido já está em trânsito, não é mais possível interromper o envio. Quando o produto chegar, basta recusar a entrega e nos avisar por este e-mail — a partir daí, daremos continuidade ao reembolso integral.
 
-Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
+Você pode acompanhar a entrega por aqui:
 
 Informações de Rastreamento
 • Código de Rastreamento: {{codigoRastreio}}
 • Link de Rastreamento: {{linkRastreio}}
 
-Além do pedido, você também possui uma assinatura ativa. Sugerimos mantê-la por enquanto, para que você tenha esse período para decidir com calma se deseja experimentar o produto. Caso prefira não seguir, basta nos enviar um e-mail a qualquer momento confirmando o cancelamento.
+Sobre sua assinatura ativa: sugerimos mantê-la por enquanto, para decidir com calma se deseja experimentar o produto. Caso prefira cancelar, é só nos enviar um e-mail a qualquer momento confirmando.
 
-Continuaremos acompanhando seu caso até a conclusão. Se tiver qualquer dúvida, estou à disposição.
-
-Quando decidir adquirir nosso produto novamente, esperamos tê-lo(a) de volta em breve.
+Qualquer dúvida, estou à disposição. E quando decidir comprar conosco novamente, será um prazer recebê-lo(a) de volta.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally following your case.
-Thank you for letting us know the order was placed by mistake. I located your order in our system:
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case through to its conclusion.
+
+Thank you for letting us know the order was placed by mistake — I completely understand, this can happen. I've located your order:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2845,19 +2845,17 @@ Order Details
 • Current Status: {{status}}
 • Subscription: Active
 
-I completely understand, this kind of mistake can happen. Your order is already in transit, so it's no longer possible to stop the shipment. When the product arrives, please kindly refuse the delivery; once the refusal is completed, just let us know by replying to this email so we can move forward with the full refund.
+Since your order is already in transit, it's no longer possible to stop the shipment. When the product arrives, just refuse the delivery and let us know by replying to this email — from there, we'll move forward with the full refund.
 
-You can track your order's delivery using the information below:
+You can track your delivery here:
 
 Tracking Information
 • Tracking Code: {{codigoRastreio}}
 • Tracking Link: {{linkRastreio}}
 
-In addition to the order, you also have an active subscription. We suggest keeping it active for now, so you have this period to calmly decide whether you'd like to try the product. If you'd rather not continue, just send us an email at any time confirming the cancellation.
+About your active subscription: we suggest keeping it for now, so you can calmly decide whether you'd like to try the product. If you'd rather cancel, just send us an email at any time confirming it.
 
-We'll keep following your case through to its conclusion. If you have any questions, I'm at your disposal.
-
-Whenever you decide to purchase our product again, we hope to have you back soon.
+If you have any questions, I'm at your disposal. And whenever you decide to purchase with us again, it'll be a pleasure to welcome you back.
 
 Best regards,
 {{nomeAgente}}
