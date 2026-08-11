@@ -3091,8 +3091,6 @@ Detalhes do Pedido
 
 Passando para te atualizar sobre o andamento do seu caso: já solicitamos internamente a Autorização de Devolução (RMA) referente ao seu pedido, e no momento estamos aguardando essa informação para poder te enviar o número do RMA, o endereço de devolução e as demais instruções necessárias para darmos continuidade ao seu reembolso.
 
-Ainda não temos uma novidade concreta para compartilhar, mas quero garantir que seu caso continua sendo acompanhado de perto por mim, e assim que o RMA for liberado, entrarei em contato imediatamente com todos os detalhes.
-
 Agradeço muito pela sua paciência e compreensão enquanto resolvemos isso juntos.
 
 Qualquer dúvida, fico à disposição.
@@ -3111,8 +3109,6 @@ Order Details
 • Current Status: {{status}}
 
 I'm reaching out to update you on your case: we've already requested the Return Merchandise Authorization (RMA) for your order internally, and we're currently waiting to receive that information so we can send you the RMA number, the return address, and the remaining instructions to move forward with your refund.
-
-We don't have concrete news to share just yet, but I want to assure you that I'm keeping a close eye on your case, and as soon as the RMA is released, I'll reach out immediately with all the details.
 
 Thank you so much for your patience and understanding while we work this out together.
 
