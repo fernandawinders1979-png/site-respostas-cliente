@@ -1173,9 +1173,9 @@ Customer Support Team`,
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e serei responsável por acompanhar seu caso pessoalmente. Obrigado por entrar em contato e compartilhar o ocorrido.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Obrigado(a) por entrar em contato — estarei acompanhando seu caso pessoalmente.
 
-Localizei seu pedido em nosso sistema:
+Localizei seu pedido:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -1184,20 +1184,20 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
-Verifiquei que a atualização do rastreamento está pausada há alguns dias. Para garantir que sua entrega siga normalmente, já abrimos uma solicitação junto à transportadora, que tem até 5 dias úteis para nos dar um posicionamento.
+Verifiquei que o rastreamento está sem atualização há alguns dias. Já abrimos uma solicitação junto à transportadora, que tem até 5 dias úteis para nos dar um posicionamento.
 
-Enquanto isso, fique tranquilo(a): seguirei acompanhando seu pedido de perto e te manterei informado(a) sobre qualquer novidade. Esperamos que o pacote siga viagem o quanto antes — mas, caso a transportadora confirme que ele não foi localizado ou que houve algum problema na entrega, entraremos em contato com a melhor solução para você.
+Enquanto isso, fique tranquilo(a): seguirei acompanhando de perto e te manterei informado(a) sobre qualquer novidade. Se a transportadora confirmar que o pacote não foi localizado ou que houve problema na entrega, entraremos em contato com a melhor solução para você.
 
-Se tiver qualquer dúvida, é só responder a este e-mail. Ficarei feliz em ajudar.
+Qualquer dúvida, é só responder este e-mail.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, from the Customer Support team, and I'll be personally responsible for following your case. Thank you for reaching out and sharing what happened.
+This is {{nomeAgente}}, from Customer Support. Thank you for reaching out — I'll be personally following your case.
 
-I located your order in our system:
+I've located your order:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -1206,11 +1206,11 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
-I checked and the tracking update has been paused for a few days. To make sure your delivery proceeds normally, we've already opened a request with the carrier, who has up to 5 business days to give us a response.
+I checked and the tracking hasn't been updated for a few days. We've already opened a request with the carrier, who has up to 5 business days to give us a response.
 
-In the meantime, please don't worry: I'll keep closely monitoring your order and will keep you informed of any updates. We hope the package continues on its way as soon as possible — but if the carrier confirms it couldn't be located or that there was a delivery issue, we'll reach out with the best solution for you.
+In the meantime, please don't worry: I'll keep closely monitoring it and will keep you informed of any updates. If the carrier confirms the package couldn't be located or that there was a delivery issue, we'll reach out with the best solution for you.
 
-If you have any questions, just reply to this email. I'll be happy to help.
+If you have any questions, just reply to this email.
 
 Best regards,
 {{nomeAgente}}
