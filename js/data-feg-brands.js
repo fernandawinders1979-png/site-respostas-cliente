@@ -2852,6 +2852,62 @@ Customer Support Team`,
     },
 
     {
+      id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
+      category: "reembolsoCancelarAssinatura",
+      code: "RC-07",
+      label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Serei responsável pelo seu caso até a conclusão.
+
+Localizei seu pedido:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: \${{valorTotal}}
+• Assinatura: Ativa
+
+Lamento que o produto não tenha atendido às suas expectativas. Como seu pedido está dentro do período da nossa Garantia de Satisfação, já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, em breve, enviarei as instruções de envio. Após postar o produto, basta responder este e-mail com o comprovante de envio e o número de rastreamento legível — assim que recebermos, processaremos o reembolso integral do seu primeiro pedido no mesmo método de pagamento utilizado na compra.
+
+✅ Confirmação de Cancelamento
+
+Confirmo que sua assinatura foi cancelada com sucesso, sem taxas e sem burocracia, e você não será cobrado(a) novamente. O cancelamento vale a partir da próxima renovação — envios já processados no ciclo atual não são afetados, mas o reembolso solicitado se aplica apenas a este primeiro pedido.
+
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em ajudar.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+This is {{nomeAgente}}, from Customer Support. I'll be responsible for your case until it's resolved.
+
+I've located your order:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: \${{valorTotal}}
+• Subscription: Active
+
+I'm sorry the product didn't meet your expectations. Since your order is within our Satisfaction Guarantee period, I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and I'll send the shipping instructions shortly. After you ship the product, just reply to this email with the shipping receipt and a legible tracking number — once we receive it, we'll process the full refund for your first order using the same payment method used for the purchase.
+
+✅ Cancellation Confirmation
+
+I confirm that your subscription has been successfully canceled, with no fees and no hassle, and you won't be charged again. The cancellation takes effect from the next renewal onward — shipments already processed in the current cycle aren't affected, but the requested refund applies only to this first order.
+
+I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegCancelarCompreiPorEnganoProdutoTransito",
       category: "cancelarCompreiPorEngano",
       code: "CE-01",
