@@ -1753,8 +1753,6 @@ Informações de Rastreamento
 
 Quando o produto chegar, pedimos, por gentileza, que recuse a entrega. Assim que a recusa for concluída, basta responder a este e-mail para que possamos dar continuidade ao processo de reembolso.
 
-Esperamos que todo esse processo ocorra da forma mais rápida possível e continuaremos acompanhando seu caso até a sua conclusão.
-
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 Atenciosamente,
@@ -1784,8 +1782,6 @@ Tracking Information
 • Tracking Link: {{linkRastreio}}
 
 When the product arrives, please kindly refuse the delivery. Once the refusal is completed, just reply to this email so we can move forward with the refund process.
-
-We hope this whole process happens as quickly as possible, and we'll keep following your case through to its conclusion.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
