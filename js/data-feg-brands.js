@@ -2018,11 +2018,9 @@ Customer Support Team`,
       ],
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente até a conclusão.
 
-Agradeço por entrar em contato conosco e por compartilhar essa informação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
-
-Localizei seu pedido em nosso sistema:
+Localizei seu pedido:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -2031,34 +2029,20 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Status Atual: {{status}}
 
-Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada, e respeitamos totalmente essa recomendação.
+Entendemos perfeitamente sua decisão — quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada. E fique tranquilo(a): não é necessário compartilhar detalhes sobre sua condição, respeitamos totalmente sua privacidade. 💚
 
-Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
+Seu pedido está dentro da Garantia de Satisfação, então seguiremos com a devolução para o reembolso integral. Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que tiver o retorno, enviarei o número do RMA e todas as instruções para a devolução.
 
-Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que tiver o retorno, enviarei o número do RMA e todas as informações necessárias para a devolução.
-
-Após realizar o envio, por favor, responda a este e-mail anexando:
-
-• O comprovante de envio, com o número de rastreamento visível e legível.
-
-Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
-
-Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação. 💚
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Desejamos uma excelente recuperação! Qualquer dúvida, é só responder este e-mail.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case through to its conclusion.
 
-Thank you for reaching out to us and sharing this information. I'll carefully review your order so we can move forward in the best possible way.
-
-I located your order in our system:
+I've located your order:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2067,23 +2051,11 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Current Status: {{status}}
 
-We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
+We completely understand your decision — when it comes to your health, your doctor's guidance should always be prioritized. And rest assured: there's no need to share any details about your condition, we fully respect your privacy. 💚
 
-Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
+Your order is within our Satisfaction Guarantee period, so we'll proceed with the return for a full refund. I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you the RMA number and all the instructions for the return.
 
-I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you the RMA number and all the information needed for the return.
-
-After shipping the return, please reply to this email attaching:
-
-• Proof of shipment, with the tracking number clearly visible and legible.
-
-As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
-
-There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery. 💚
-
-I'll keep following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+We wish you a full recovery! If you have any questions, just reply to this email.
 
 Best regards,
 {{nomeAgente}}
