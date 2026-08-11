@@ -2693,9 +2693,10 @@ Customer Support Team`,
       label: "Motivo crise financeira e aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
-Primeiramente, quero agradecer por compartilhar sua situação conosco. Sabemos que momentos de reorganização financeira exigem decisões importantes, e estamos aqui para tornar esse processo o mais simples e tranquilo possível para você. Seu bem-estar continua sendo nossa prioridade. 💚
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente até a conclusão.
+
+Obrigado(a) por compartilhar sua situação. Sabemos que momentos de reorganização financeira exigem decisões importantes, e queremos tornar esse processo o mais simples possível para você. 💚
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -2705,29 +2706,22 @@ Detalhes do Pedido
 • Status Atual: {{status}}
 • Assinatura: Cancelada
 
-✅ Confirmação de Cancelamento
+✅ Cancelamento confirmado: sua assinatura foi cancelada com sucesso na data de hoje. Você não receberá novas cobranças.
 
-Informo que sua assinatura foi cancelada com sucesso na data de hoje. Você não receberá novas cobranças a partir de agora.
+📦 Devolução e reembolso: já solicitei a Autorização de Devolução (RMA) do seu pedido. Assim que o número for liberado, entrarei em contato com o endereço de devolução e todas as instruções para o envio dos frascos.
 
-📦 Próximos passos — Devolução e Reembolso
+Obrigado(a) pela paciência enquanto resolvemos isso juntos. E saiba que nossas portas estarão sempre abertas — quando sentir que é o momento de retomar sua jornada de bem-estar, será uma alegria recebê-lo(a) de volta. 🌿
 
-Já solicitei internamente a Autorização de Devolução (RMA) referente ao seu pedido. Assim que o número do RMA for liberado, entrarei em contato imediatamente com o endereço de devolução e todas as instruções necessárias para a devolução dos frascos.
-
-Após realizar o envio dos produtos, peço gentilmente que me encaminhe uma foto do comprovante de envio, para que possamos dar seguimento ao seu reembolso o quanto antes.
-
-Agradeço muito pela sua paciência e compreensão enquanto resolvemos isso juntos. Seu caso continua sendo acompanhado de perto por mim.
-
-E saiba que as portas estarão sempre abertas para você! 🌿 Quando sentir que é o momento certo de retomar sua jornada de bem-estar, será uma alegria enorme recebê-lo(a) de volta. Estaremos sempre à disposição para quando quiser adquirir nossos produtos novamente — você faz parte da nossa história.
-
-Qualquer dúvida, fico à disposição.
+Qualquer dúvida, é só responder este e-mail.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
-First of all, thank you for sharing your situation with us. We know that times of financial reorganization call for important decisions, and we're here to make this process as simple and smooth as possible for you. Your well-being remains our priority. 💚
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case through to its conclusion.
+
+Thank you for sharing your situation. We know that times of financial reorganization call for important decisions, and we want to make this process as simple as possible for you. 💚
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2737,21 +2731,13 @@ Order Details
 • Current Status: {{status}}
 • Subscription: Canceled
 
-✅ Cancellation Confirmation
+✅ Cancellation confirmed: your subscription was successfully canceled as of today. You won't receive any further charges.
 
-I confirm that your subscription has been successfully canceled as of today. You won't receive any further charges from now on.
+📦 Return and refund: I've already requested the Return Merchandise Authorization (RMA) for your order. As soon as the number is released, I'll reach out with the return address and all the instructions for shipping the bottles.
 
-📦 Next steps — Return and Refund
+Thank you for your patience while we work this out together. And know that our doors will always be open — whenever you feel it's the right time to resume your wellness journey, it will be a joy to welcome you back. 🌿
 
-I've already requested the Return Merchandise Authorization (RMA) for your order internally. As soon as the RMA number is released, I'll reach out immediately with the return address and all the instructions needed to return the bottles.
-
-After shipping the products, please kindly send me a photo of the shipping receipt so we can move forward with your refund as soon as possible.
-
-Thank you so much for your patience and understanding while we work this out together. I'm keeping a close eye on your case.
-
-And know that our doors will always be open for you! 🌿 Whenever you feel it's the right time to resume your wellness journey, it will be a true joy to welcome you back. We're always here whenever you'd like to purchase our products again — you're part of our story.
-
-If you have any questions, I'm here to help.
+If you have any questions, just reply to this email.
 
 Best regards,
 {{nomeAgente}}
