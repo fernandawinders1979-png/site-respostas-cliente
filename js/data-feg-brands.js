@@ -2099,8 +2099,6 @@ Customer Support Team`,
 
 Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente, e vou acompanhar seu caso pessoalmente.
 
-Agradeço por entrar em contato conosco e por compartilhar essa informação. Localizei seu pedido em nosso sistema:
-
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
@@ -2110,11 +2108,7 @@ Detalhes do Pedido
 
 Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada, e respeitamos totalmente essa recomendação.
 
-Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral.
-
-Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que tiver o retorno, enviarei o número do RMA e todas as informações necessárias para a devolução.
-
-Após realizar o envio, por favor, responda a este e-mail anexando a foto do comprovante de envio, com o número de rastreamento visível e legível. Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
+Como seu pedido está dentro do período da nossa Garantia de Satisfação, já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que tiver o retorno, enviarei o número do RMA e todas as informações necessárias para a devolução.
 
 Também confirmo que sua assinatura ativa foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
 
@@ -2129,8 +2123,6 @@ Equipe de Suporte ao Cliente`,
 
 My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case.
 
-Thank you for reaching out to us and sharing this information. I located your order in our system:
-
 Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
@@ -2140,11 +2132,7 @@ Order Details
 
 We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
 
-Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund.
-
-I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you the RMA number and all the information needed for the return.
-
-After shipping the return, please reply to this email attaching a photo of the shipping receipt, with the tracking number clearly visible and legible. As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
+Since your order is within our Satisfaction Guarantee period, I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you the RMA number and all the information needed for the return.
 
 I also confirm that your active subscription has been successfully canceled. You will not receive any further shipments or automatic charges from now on.
 
@@ -2166,8 +2154,6 @@ Customer Support Team`,
       pt: `Olá, {{nomeCliente}}!
 
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso pessoalmente.
-
-Agradeço por entrar em contato conosco e por compartilhar essa informação. Analisei seu pedido para encontrar a melhor forma de prosseguir.
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -2191,9 +2177,7 @@ Pedimos que você recuse a entrega quando o pacote chegar — basta não aceitá
 
 Também confirmo que sua assinatura ativa foi cancelada com sucesso.
 
-Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
 
 Atenciosamente,
 {{nomeAgente}}
@@ -2201,8 +2185,6 @@ Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be personally responsible for following your case.
-
-Thank you for reaching out to us and sharing this information. I reviewed your order to find the best way to proceed.
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2226,9 +2208,7 @@ We kindly ask that you refuse the delivery when the package arrives — simply d
 
 I also confirm that your active subscription has been successfully canceled.
 
-There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
-
-I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
+If you have any questions or need any additional information, don't hesitate to reply to this email.
 
 Best regards,
 {{nomeAgente}}
