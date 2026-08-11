@@ -1104,11 +1104,8 @@ Customer Support Team`,
         "ainda está como etiqueta criada",
       ],
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar sua dúvida. Analisei seu pedido e posso esclarecer o que está acontecendo.
-
-Localizei seu pedido em nosso sistema:
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Obrigado(a) por entrar em contato — estarei acompanhando seu caso pessoalmente. Analisei seu pedido e posso esclarecer o que está acontecendo.
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -1117,28 +1114,19 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: Etiqueta criada
 
-Verifiquei que o rastreamento ainda exibe o status "Etiqueta criada". Isso significa que a etiqueta de envio já foi gerada e o pacote está aguardando a próxima atualização da transportadora. Essa é uma etapa normal do processo de envio e não indica qualquer problema com o seu pedido.
-
-Assim que a transportadora realizar a próxima leitura do pacote, o rastreamento será atualizado automaticamente. Você poderá acompanhar todas as movimentações pelo link abaixo:
+O status "Etiqueta criada" significa que a etiqueta de envio já foi gerada e o pacote aguarda a próxima leitura da transportadora. É uma etapa normal do processo e não indica qualquer problema com o seu pedido. Assim que a transportadora fizer a próxima leitura, o rastreamento será atualizado automaticamente — você pode acompanhar por aqui:
 {{linkRastreio}}
 
-Sabemos que a expectativa para receber o pedido é grande, e esperamos que ele chegue até você muito em breve para que possa iniciar sua experiência com o produto.
+Sabemos que a expectativa é grande e esperamos que o pedido chegue muito em breve. Caso o status permaneça inalterado nos próximos dias, é só responder este e-mail que verifico diretamente com a transportadora.
 
-Caso o status permaneça inalterado pelos próximos dias, basta responder a este e-mail. Terei prazer em verificar a situação diretamente com a transportadora.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Qualquer dúvida, estou à disposição.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing your question. I reviewed your order and can clarify what's happening.
-
-I located your order in our system:
+This is {{nomeAgente}}, from Customer Support. Thank you for reaching out — I'll be personally following your case. I reviewed your order and can clarify what's happening.
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -1147,18 +1135,12 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: Label created
 
-I checked and the tracking still shows the status "Label created." This means the shipping label has already been generated and the package is awaiting the carrier's next update. This is a normal step in the shipping process and doesn't indicate any problem with your order.
-
-As soon as the carrier scans the package again, the tracking will update automatically. You'll be able to follow all the movements through the link below:
+The "Label created" status means the shipping label has already been generated and the package is awaiting the carrier's next scan. This is a normal step in the process and doesn't indicate any problem with your order. As soon as the carrier scans it again, the tracking will update automatically — you can follow it here:
 {{linkRastreio}}
 
-We know how eager you are to receive your order, and we hope it arrives very soon so you can start your experience with the product.
+We know the anticipation is real, and we hope the order arrives very soon. If the status remains unchanged over the next few days, just reply to this email and I'll check directly with the carrier.
 
-If the status remains unchanged over the next few days, just reply to this email. I'll be happy to check the situation directly with the carrier.
-
-I'll keep following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+If you have any questions, I'm at your disposal.
 
 Best regards,
 {{nomeAgente}}
