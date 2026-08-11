@@ -1261,11 +1261,9 @@ Customer Support Team`,
       ],
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Obrigado(a) por compartilhar o que aconteceu — estarei acompanhando seu caso pessoalmente até a conclusão.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
-
-Localizei seu pedido em nosso sistema:
+Localizei seu pedido, que está dentro do período de garantia:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -1273,37 +1271,27 @@ Detalhes do Pedido
 • Produto: {{produto}}
 • Valor Total: \${{valorTotal}}
 
-Verifiquei que o seu pedido está dentro do período de garantia.
+Lamento saber que você apresentou esses sintomas após utilizar o produto — sua saúde é nossa prioridade.
 
-Lamento saber que você apresentou esses sintomas após utilizar o produto. Sua saúde e seu bem-estar são muito importantes para nós.
+Como medida de precaução, oriente-se a interromper imediatamente o uso do produto e, caso os sintomas persistam ou causem preocupação, procurar um profissional de saúde para uma avaliação adequada.
 
-Como medida de precaução, orientamos que interrompa imediatamente o uso do produto e, caso os sintomas persistam ou causem preocupação, procure um profissional de saúde para uma avaliação adequada.
-
-Para nos ajudar na análise do ocorrido, pedimos, por gentileza, que responda a este e-mail informando:
+Para darmos andamento à análise, devolução e reembolso, responda este e-mail informando:
 
 • Quais sintomas você apresentou;
 • Quantos frascos ainda lacrados você possui em mãos.
 
-Essa última informação nos ajudará a organizar corretamente o processo de devolução.
+Assim que recebermos essas informações, enviaremos as instruções de devolução e seguiremos com o reembolso.
 
-Assim que recebermos essas informações, enviaremos as instruções para a devolução do produto e daremos continuidade ao processo de reembolso.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
-
-Desejamos uma rápida recuperação e esperamos que você se sinta melhor em breve. 💚
+Qualquer dúvida, é só responder este e-mail. Desejamos uma rápida recuperação — esperamos que se sinta melhor em breve. 💚
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
+This is {{nomeAgente}}, from Customer Support. Thank you for sharing what happened — I'll be personally following your case through to its conclusion.
 
-Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
-
-I located your order in our system:
+I've located your order, which is within the warranty period:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -1311,26 +1299,18 @@ Order Details
 • Product: {{produto}}
 • Total Amount: \${{valorTotal}}
 
-I've checked and your order is within the warranty period.
+I'm sorry to hear you experienced these symptoms after using the product — your health is our priority.
 
-I'm sorry to hear you experienced these symptoms after using the product. Your health and wellbeing are very important to us.
+As a precaution, please stop using the product immediately and, if symptoms persist or cause concern, seek a healthcare professional for a proper evaluation.
 
-As a precaution, we recommend that you stop using the product immediately and, if the symptoms persist or cause concern, seek a healthcare professional for a proper evaluation.
-
-To help us look into what happened, could you please reply to this email letting us know:
+To move forward with the review, return, and refund, please reply to this email letting us know:
 
 • Which symptoms you experienced;
 • How many still-sealed bottles you have on hand.
 
-This last piece of information will help us organize the return process correctly.
+As soon as we receive this information, we'll send the return instructions and proceed with the refund.
 
-As soon as we receive this information, we'll send you instructions for returning the product and proceed with the refund process.
-
-I'll keep following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
-
-We wish you a speedy recovery and hope you feel better soon. 💚
+If you have any questions, just reply to this email. We wish you a speedy recovery — we hope you feel better soon. 💚
 
 Best regards,
 {{nomeAgente}}
