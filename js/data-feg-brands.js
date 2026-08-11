@@ -3112,8 +3112,6 @@ Customer Support Team`,
       pt: `Olá, {{nomeCliente}}!
 Meu nome é {{nomeAgente}} e irei te ajudar a partir de agora. Recebi sua mensagem e fico feliz em poder te auxiliar a tirar o máximo proveito do produto.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente sua solicitação e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
-
 Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
@@ -3142,8 +3140,6 @@ Atenciosamente,
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}} and I'll be helping you from now on. I received your message and I'm happy to help you get the most out of the product.
-
-Thank you for reaching out to us and sharing what happened. I'll carefully review your request and all the information you've shared so we can find the best solution for your case.
 
 I located your order in our system:
 
