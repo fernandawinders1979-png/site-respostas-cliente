@@ -798,9 +798,10 @@ Customer Support Team`,
       label: "Cancelar assinatura mas foi compra única",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
-Consegui localizar o seguinte pedido em nosso sistema:
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente.
+
+Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -809,22 +810,20 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
+• Assinatura: NÃO
 
-Entendo perfeitamente a importância de ter clareza e tranquilidade quando se trata de compras relacionadas ao bem-estar e do receio de cobranças inesperadas. Por isso, quis confirmar essa informação pessoalmente para você.
+Entendo seu receio de cobranças inesperadas, então quis confirmar pessoalmente: esta foi uma compra única. Não há nenhuma assinatura ativa vinculada a este pedido — você não será cobrado(a) automaticamente no futuro nem receberá envios recorrentes. Nenhuma ação é necessária da sua parte.
 
-Gostaria de tranquilizá-lo(a) informando que esta foi uma compra única. Não existe nenhuma assinatura ativa associada a este pedido, o que significa que você não será cobrado(a) automaticamente no futuro, nem receberá envios recorrentes relacionados a esta compra.
-
-Fique tranquilo(a): não é necessário realizar nenhuma ação em relação a assinaturas, pois, como confirmei, não existe nenhuma vinculada a este pedido.
-
-Caso tenha qualquer outra dúvida ou precise de ajuda com qualquer assunto relacionado ao seu pedido, por favor, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Qualquer dúvida, é só responder este e-mail. Ficarei feliz em ajudar.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
 
-I was able to locate the following order in our system:
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case.
+
+I've located your order in our system:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -833,14 +832,11 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
+• Subscription: NO
 
-I completely understand how important it is to have clarity and peace of mind when it comes to wellness purchases, and the concern about unexpected charges. That's why I wanted to confirm this information personally for you.
+I understand your concern about unexpected charges, so I wanted to confirm this personally: this was a one-time purchase. There's no active subscription linked to this order — you won't be charged automatically in the future, nor will you receive recurring shipments. No action is needed on your part.
 
-I'd like to reassure you that this was a one-time purchase. There is no active subscription associated with this order, which means you won't be charged automatically in the future, nor will you receive recurring shipments related to this purchase.
-
-Rest assured: there's no action needed regarding subscriptions, since, as I confirmed, there is none linked to this order.
-
-If you have any other questions or need help with anything related to your order, please don't hesitate to reply to this email. I'll be happy to keep helping.
+If you have any questions, just reply to this email. I'll be happy to help.
 
 Best regards,
 {{nomeAgente}}
