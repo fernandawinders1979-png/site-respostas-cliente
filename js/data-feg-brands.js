@@ -2566,8 +2566,6 @@ Customer Support Team`,
 
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Vou analisar cuidadosamente seu pedido para que possamos dar andamento da melhor forma possível.
-
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
@@ -2580,7 +2578,7 @@ Verifiquei que seu pedido está dentro do período da nossa Garantia de Satisfa�
 
 Antes de enviarmos as instruções, gostaria de entender o motivo tanto da devolução quanto do cancelamento da assinatura. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
 
-Assim que recebermos sua resposta, enviaremos a autorização de devolução (RMA), o endereço para envio e as demais orientações para dar continuidade ao reembolso, e também faremos o cancelamento da assinatura.
+AGUARDO SEU RETORNO PARA PROSSEGUIR
 
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
 
@@ -2590,8 +2588,6 @@ Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-
-Thank you for reaching out to us and sharing your request. I'll carefully review your order so we can move forward in the best way possible.
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2605,7 +2601,7 @@ I checked and your order is within our Satisfaction Guarantee period, so we can 
 
 Before sending the instructions, I'd like to understand the reason for both the return and the subscription cancellation. Your feedback is very important to help us improve our products and service.
 
-As soon as we receive your reply, we'll send the return authorization (RMA), the shipping address, and the remaining instructions to move forward with the refund, and we'll also cancel the subscription.
+I'M WAITING TO HEAR BACK FROM YOU TO PROCEED
 
 I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
 
