@@ -1992,11 +1992,10 @@ Customer Support Team`,
         "o gosto é muito ruim", "sabor desagradável", "gosto muito forte",
       ],
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente.
 
-Localizei seu pedido em nosso sistema:
+Localizei seu pedido:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -2006,40 +2005,20 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: {{status}}
 
-Lamento saber que o sabor do produto não agradou ao seu paladar. Sabemos que essa é uma preferência muito pessoal e entendemos que isso pode influenciar sua experiência.
+Lamento que o sabor não tenha agradado ao seu paladar — sabemos que essa é uma preferência muito pessoal. Antes de prosseguirmos, uma dica rápida que ajuda muitos clientes: experimente misturar o produto com sucos cítricos bem gelados, vitaminas ou chás gelados, o que pode tornar o sabor mais agradável.
 
-Antes de prosseguirmos com a devolução, gostaria apenas de compartilhar uma sugestão que costuma ajudar alguns clientes: consumir o produto misturado a sucos cítricos bem gelados, vitaminas ou chás gelados, o que pode tornar o sabor mais agradável.
+Caso ainda prefira a devolução, sem problema algum, iremos seguir com o processo de devolução.
 
-Caso prefira não experimentar outras formas de consumo, não há problema. Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir normalmente com a devolução para realização do reembolso integral.
-
-Número da Autorização de Devolução (RMA): [Número do RMA]
-
-Endereço para Devolução:
-📍 Endereço de Devolução:
-11870 62nd St. N
-Largo, FL 33773
-
-Após realizar o envio, por favor, responda a este e-mail anexando:
-• Uma foto dos produtos que estão sendo devolvidos; e
-• O comprovante de envio, com o número de rastreamento visível e legível.
-
-Assim que recebermos essas informações, processaremos o seu reembolso integral para o mesmo método de pagamento utilizado na compra.
-
-Lamentamos que sua experiência não tenha sido a esperada, mas agradecemos por compartilhar seu feedback, pois ele é muito importante para continuarmos aprimorando nossos produtos e a experiência dos nossos clientes.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Obrigado(a) pelo seu feedback — ele nos ajuda a melhorar cada vez mais. Aguardo seu retorno.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case.
 
-I located your order in our system:
+I've located your order:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2049,30 +2028,11 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: {{status}}
 
-I'm sorry to hear the taste of the product wasn't to your liking. We know this is a very personal preference and understand it can affect your experience.
+I'm sorry the taste wasn't to your liking — we know this is a very personal preference. Before we move forward, here's a quick tip that helps many customers: try mixing the product with well-chilled citrus juices, smoothies, or iced teas, which can make the taste more pleasant.
 
-Before we move forward with the return, I'd like to share a suggestion that tends to help some customers: mixing the product with well-chilled citrus juices, smoothies, or iced teas, which can make the taste more pleasant.
+If you'd still prefer the return, no problem at all — we'll go ahead with the return process.
 
-If you'd rather not try other ways of taking it, that's not a problem. Since your order is within our Satisfaction Guarantee period, we can proceed normally with the return for a full refund.
-
-Return Merchandise Authorization (RMA) Number: [RMA Number]
-
-Return Address:
-📍 Return Address:
-11870 62nd St. N
-Largo, FL 33773
-
-After shipping the return, please reply to this email attaching:
-• A photo of the products being returned; and
-• The shipping receipt, with the tracking number visible and legible.
-
-As soon as we receive this information, we'll process your full refund to the same payment method used for the purchase.
-
-We're sorry your experience wasn't what you expected, but we appreciate you sharing your feedback, as it's very important for us to keep improving our products and our customers' experience.
-
-I'll keep following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+Thank you for your feedback — it helps us keep improving. I'll be waiting to hear back from you.
 
 Best regards,
 {{nomeAgente}}
