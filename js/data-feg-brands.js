@@ -61,10 +61,11 @@ Customer Support Team`,
       code: "G-01",
       label: "Como posso te ajudar",
       autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+      pt: `Olá, {{nomeCliente}}! Tudo bem?
 
-Localizei seu pedido em nosso sistema:
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Obrigado(a) por entrar em contato — estarei acompanhando seu caso pessoalmente.
+
+Localizei seu pedido:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -73,19 +74,18 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Status Atual: {{status}}
 
-Agradeço muito por entrar em contato conosco. Quero que você se sinta à vontade para compartilhar exatamente o que precisa — estou aqui para te ouvir e ajudar da melhor forma possível.
+Poderia me contar um pouco mais sobre sua dúvida ou necessidade em relação a esse pedido? Fique à vontade para compartilhar exatamente o que precisa — assim que eu entender melhor sua situação, vou te ajudar a encontrar a solução ideal.
 
-Poderia me contar um pouco mais sobre sua dúvida ou necessidade em relação a esse pedido? Assim que eu entender melhor a sua situação, terei todo o cuidado necessário para te ajudar a encontrar a solução ideal, com toda a atenção que você merece.
-
-Fico no aguardo do seu retorno e permaneço à disposição para qualquer esclarecimento!
+Fico no aguardo do seu retorno e permaneço à disposição!
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
+      en: `Hello, {{nomeCliente}}! How are you?
 
-I located your order in our system:
+This is {{nomeAgente}}, from Customer Support. Thank you for reaching out — I'll be personally following your case.
+
+I've located your order:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -94,11 +94,9 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Current Status: {{status}}
 
-Thank you so much for reaching out to us. I want you to feel comfortable sharing exactly what you need — I'm here to listen and help in the best way possible.
+Could you tell me a bit more about your question or need regarding this order? Feel free to share exactly what you need — once I better understand your situation, I'll help you find the ideal solution.
 
-Could you tell me a bit more about your question or need regarding this order? Once I better understand your situation, I'll take all the care needed to help you find the ideal solution, with all the attention you deserve.
-
-I'll be looking forward to your reply and remain available for any clarification!
+I'll be looking forward to your reply and remain available!
 
 Best regards,
 {{nomeAgente}}
