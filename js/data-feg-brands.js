@@ -731,42 +731,30 @@ Customer Support Team`,
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Espero que esteja bem.
 
-Espero que esteja bem.
+Confirmo que sua assinatura foi cancelada com sucesso no dia [DATA]. A partir de agora, você não receberá mais nenhum produto nem cobrança automática.
 
-Escrevo para confirmar que sua assinatura foi cancelada com sucesso no dia [DATA]. Com isso, você não receberá mais nenhum produto ou cobrança automática a partir de agora.
+Apenas uma informação importante: cada organismo é único, e o tempo para perceber resultados varia de pessoa para pessoa. A consistência no uso, conforme as orientações, é fundamental — os resultados costumam aparecer progressivamente com o uso contínuo. 🌿
 
-Gostaria de compartilhar uma informação importante: cada organismo é único, e o tempo necessário para perceber os resultados pode variar de pessoa para pessoa. Alguns clientes podem notar mudanças mais rapidamente, enquanto outros podem precisar de um pouco mais de tempo para que o corpo se adapte e responda ao produto. A consistência no uso conforme as orientações é fundamental para permitir que o produto atue de forma gradual e adequada.
+Foi um prazer tê-lo(a) em nossa comunidade de bem-estar. Nossas portas estarão sempre abertas: quando sentir que é o momento de retomar sua jornada, basta nos enviar um e-mail. 💚
 
-Recomendamos dar ao seu corpo o tempo necessário, pois os resultados podem aparecer progressivamente com o uso contínuo. 🌿
-
-Foi um prazer enorme tê-lo(a) como parte da nossa comunidade de bem-estar, e somos muito gratos pela confiança que depositou em nós. 💚
-
-Saiba que nossas portas estarão sempre abertas — quando sentir que é o momento certo de retomar sua jornada de bem-estar, será uma alegria recebê-lo(a) de volta. Basta nos enviar um e-mail que teremos o maior prazer em auxiliá-lo(a).
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+Qualquer dúvida, é só responder esta mensagem.
 
 Com carinho,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, and I'm part of the Customer Support team. I'll be personally following your case from now on.
+This is {{nomeAgente}}, from Customer Support. I hope you're doing well.
 
-I hope you're doing well.
+I confirm that your subscription was successfully canceled on [DATE]. From now on, you won't receive any further products or automatic charges.
 
-I'm writing to confirm that your subscription was successfully canceled on [DATE]. From now on, you will not receive any further products or automatic charges.
+Just an important note: every body is unique, and the time to notice results varies from person to person. Consistent use, as directed, is essential — results usually appear progressively with continued use. 🌿
 
-I'd like to share an important piece of information: every body is unique, and the time needed to notice results can vary from person to person. Some clients may notice changes more quickly, while others may need a bit more time for the body to adjust and respond to the product. Consistent use, as directed, is essential to allow the product to work gradually and properly.
+It was a pleasure having you in our wellness community. Our doors will always be open: whenever you feel it's the right time to resume your journey, just send us an email. 💚
 
-We recommend giving your body the time it needs, as results can appear progressively with continued use. 🌿
-
-It was a true pleasure having you as part of our wellness community, and we're truly grateful for the trust you placed in us. 💚
-
-Please know that our doors will always be open — whenever you feel it's the right time to resume your wellness journey, we'll be delighted to welcome you back. Just send us an email and we'll be happy to help.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email.
+If you have any questions, just reply to this message.
 
 Warmly,
 {{nomeAgente}}
