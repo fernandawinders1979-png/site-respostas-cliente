@@ -1801,9 +1801,8 @@ Customer Support Team`,
       label: "Cancelar o pedido antes do envio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar sua solicitação. Analisei seu pedido e tenho uma boa notícia.
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1814,25 +1813,20 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Status Atual: Cancelado
 
-Consegui cancelar seu pedido antes do envio e o reembolso integral já foi processado para o mesmo método de pagamento utilizado na compra.
-
-Em anexo, segue o comprovante do reembolso para sua conferência.
+O seu pedido FOI CANCELADO antes do envio e o reembolso integral já foi processado para o mesmo método de pagamento utilizado na compra.
 
 Dependendo da administradora do seu cartão ou da instituição financeira, o crédito poderá levar alguns dias para aparecer em sua conta ou fatura.
 
 Se não se importar em compartilhar, gostaria apenas de saber o motivo do cancelamento. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
 
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing your request. I reviewed your order and have good news.
+My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
 I located your order in our system:
 
@@ -1843,17 +1837,13 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Current Status: Canceled
 
-I was able to cancel your order before it shipped, and the full refund has already been processed to the same payment method used for the purchase.
-
-Attached, please find the refund receipt for your records.
+Your order WAS CANCELED before shipping and the full refund has already been processed to the same payment method used for the purchase.
 
 Depending on your card issuer or financial institution, the credit may take a few days to appear on your account or statement.
 
 If you don't mind sharing, I'd just like to know the reason for the cancellation. Your feedback is very important to help us improve our products and service.
 
-I'll continue following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+I'll continue following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
 Best regards,
 {{nomeAgente}}
