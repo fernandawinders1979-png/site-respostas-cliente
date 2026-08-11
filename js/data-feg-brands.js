@@ -2101,9 +2101,9 @@ Customer Support Team`,
       ],
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso pessoalmente.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente até a conclusão.
 
-Agradeço por entrar em contato conosco e por compartilhar essa informação. Analisei seu pedido para encontrar a melhor forma de prosseguir.
+Localizei seu pedido:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -2112,30 +2112,26 @@ Detalhes do Pedido
 • Valor Total: \${{valorTotal}}
 • Status Atual: {{status}}
 
-Entendemos perfeitamente a sua decisão. Quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada, e respeitamos totalmente essa recomendação.
+Entendemos perfeitamente sua decisão — quando se trata da saúde, a orientação do seu médico deve sempre ser priorizada. E fique tranquilo(a): não é necessário compartilhar detalhes sobre sua condição, respeitamos totalmente sua privacidade.
 
-Seu pedido está dentro do período da nossa Garantia de Satisfação, então podemos prosseguir com o reembolso integral. Porém, o pacote já está em trânsito e não conseguimos interromper ou cancelar o envio neste momento.
+Seu pedido está dentro da Garantia de Satisfação, então faremos o reembolso integral. Como o pacote já está em trânsito e não é possível interromper o envio, pedimos que você recuse a entrega quando ele chegar — basta não aceitá-lo do entregador. Depois, responda este e-mail confirmando, e o reembolso será processado no mesmo método de pagamento assim que o pacote retornar para nós.
 
-Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
+Acompanhe a entrega por aqui:
 
 Informações de Rastreamento
 • Código de Rastreamento: {{codigoRastreio}}
 • Link de Rastreamento: {{linkRastreio}}
 
-Por isso, pedimos que você recuse a entrega quando o pacote chegar — basta não aceitá-lo do entregador. Após fazer isso, por favor responda a este e-mail confirmando, e daremos andamento ao reembolso integral no mesmo método de pagamento utilizado na compra assim que o pacote retornar para nós.
-
-Não é necessário compartilhar detalhes sobre sua condição de saúde. Respeitamos totalmente sua privacidade e desejamos que você tenha uma excelente recuperação.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Desejamos uma excelente recuperação! Qualquer dúvida, é só responder este e-mail.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be personally responsible for following your case.
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case through to its conclusion.
 
-Thank you for reaching out to us and sharing this information. I reviewed your order to find the best way to proceed.
+I've located your order:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -2144,21 +2140,17 @@ Order Details
 • Total Amount: \${{valorTotal}}
 • Current Status: {{status}}
 
-We completely understand your decision. When it comes to your health, your doctor's guidance should always be prioritized, and we fully respect that recommendation.
+We completely understand your decision — when it comes to your health, your doctor's guidance should always be prioritized. And rest assured: there's no need to share any details about your condition, we fully respect your privacy.
 
-Your order is within our Satisfaction Guarantee period, so we can proceed with a full refund. However, the package is already in transit and we're unable to stop or cancel the shipment at this time.
+Your order is within our Satisfaction Guarantee period, so we'll process a full refund. Since the package is already in transit and we can't stop the shipment, we ask that you refuse the delivery when it arrives — simply don't accept it from the carrier. Afterward, reply to this email confirming it, and the refund will be processed to the same payment method as soon as the package returns to us.
 
-You can track your order's delivery using the information below:
+You can track the delivery here:
 
 Tracking Information
 • Tracking Code: {{codigoRastreio}}
 • Tracking Link: {{linkRastreio}}
 
-Because of that, we kindly ask that you refuse the delivery when the package arrives — simply don't accept it from the carrier. After doing so, please reply to this email confirming it, and we'll proceed with the full refund to the same payment method used for the purchase as soon as the package returns to us.
-
-There's no need to share any details about your health condition. We fully respect your privacy and wish you a full and speedy recovery.
-
-I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+We wish you a full recovery! If you have any questions, just reply to this email.
 
 Best regards,
 {{nomeAgente}}
