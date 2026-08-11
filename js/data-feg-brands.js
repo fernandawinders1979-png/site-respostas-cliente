@@ -1345,11 +1345,13 @@ Customer Support Team`,
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente até a conclusão.
 
-Agradeço por entrar em contato e por compartilhar as informações sobre a reação adversa que você apresentou. Lamento sinceramente pelo ocorrido — sua saúde e seu bem-estar são muito importantes para nós.
+Obrigado(a) por nos informar sobre a reação adversa que você apresentou. Lamento sinceramente pelo ocorrido — sua saúde e seu bem-estar são nossa prioridade.
 
 Como medida de precaução, reforçamos a orientação de manter o uso do produto interrompido e, caso os sintomas persistam ou causem preocupação, procurar um profissional de saúde para uma avaliação adequada.
+
+Localizei seu pedido:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -1357,32 +1359,22 @@ Detalhes do Pedido
 • Produto: {{produto}}
 • Valor Total: \${{valorTotal}}
 
-✅ Confirmação do Reembolso
+✅ Reembolso: seu reembolso será processado. Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que estiver disponível, enviarei o número do RMA com todas as instruções para a devolução dos frascos.
 
-Informo que o seu reembolso será processado. Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que estiver disponível, enviarei o número do RMA junto com todas as instruções necessárias para a devolução dos frascos.
-
-📦 Próximos Passos
-
-Quando realizar o envio dos produtos, por favor, responda a este e-mail anexando a foto do comprovante de envio, com o número de rastreamento visível e legível, para darmos prosseguimento ao seu reembolso.
-
-Assim que recebermos essa confirmação, daremos continuidade ao processo de reembolso para o mesmo método de pagamento utilizado na compra.
-
-Permanecerei acompanhando seu caso pessoalmente até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
-
-Desejamos uma rápida recuperação e esperamos que você se sinta melhor em breve. 💚
+Qualquer dúvida, é só responder este e-mail. Desejamos uma rápida recuperação — esperamos que se sinta melhor em breve. 💚
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case through to its conclusion.
 
-Thank you for reaching out and sharing the information about the adverse reaction you experienced. I'm truly sorry to hear about this — your health and wellbeing are very important to us.
+Thank you for letting us know about the adverse reaction you experienced. I'm truly sorry to hear about it — your health and wellbeing are our priority.
 
 As a precaution, we reinforce the recommendation to keep the product use discontinued and, if symptoms persist or cause concern, to seek a healthcare professional for a proper evaluation.
+
+I've located your order:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -1390,21 +1382,9 @@ Order Details
 • Product: {{produto}}
 • Total Amount: \${{valorTotal}}
 
-✅ Refund Confirmation
+✅ Refund: your refund will be processed. I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as it's available, I'll send you the RMA number along with all the instructions to return the bottles.
 
-I confirm that your refund will be processed. I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as it's available, I'll send you the RMA number along with all the instructions needed to return the bottles.
-
-📦 Next Steps
-
-Once you ship the products, please reply to this email attaching a photo of the shipping receipt, with the tracking number clearly visible and legible, so we can proceed with your refund.
-
-As soon as we receive this confirmation, we'll move forward with the refund process to the same payment method used for the purchase.
-
-I'll keep personally following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
-
-We wish you a speedy recovery and hope you feel better soon. 💚
+If you have any questions, just reply to this email. We wish you a speedy recovery — we hope you feel better soon. 💚
 
 Best regards,
 {{nomeAgente}}
