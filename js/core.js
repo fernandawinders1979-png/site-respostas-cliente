@@ -201,13 +201,18 @@
     const headerIndex = lines.findIndex((line) => ORDER_DETAILS_HEADERS[lang].includes(line.trim()));
     if (headerIndex === -1) return text;
 
+    const assinaturaPrefix = `• ${ASSINATURA_LINE_LABEL[lang]}:`;
     let insertAt = headerIndex + 1;
     while (insertAt < lines.length && lines[insertAt].trim().startsWith("•")) {
+      // Alguns templates já narram o status da assinatura à mão (ex: "Cancelada"),
+      // um valor que o campo Sim/Não do painel não representa. Nesse caso não
+      // inserimos uma segunda linha por cima da já escrita no template.
+      if (lines[insertAt].trim().startsWith(assinaturaPrefix)) return text;
       insertAt++;
     }
 
     const label = ASSINATURA_VALUE_LABELS[lang][data.assinatura] || ASSINATURA_FALLBACK[lang];
-    lines.splice(insertAt, 0, `• ${ASSINATURA_LINE_LABEL[lang]}: ${label}`);
+    lines.splice(insertAt, 0, `${assinaturaPrefix} ${label}`);
 
     return lines.join("\n");
   }
