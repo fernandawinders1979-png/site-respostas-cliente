@@ -1016,8 +1016,6 @@ Customer Support Team`,
 
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
-
 Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
@@ -1031,12 +1029,6 @@ Lamento saber que o produto não atendeu às suas expectativas.
 
 Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral. Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que eu tiver o retorno, enviarei todas as informações necessárias para a devolução.
 
-Quando você realizar o envio com as informações que enviarei, por favor, responda a este e-mail anexando:
-
-• O comprovante de envio, com o número de rastreamento visível e legível.
-
-Assim que recebermos essas informações, processaremos imediatamente o seu reembolso integral para o mesmo método de pagamento utilizado na compra.
-
 Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
 
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
@@ -1047,8 +1039,6 @@ Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-
-Thank you for reaching out to us and sharing what happened. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
 
 I located your order in our system:
 
@@ -1062,12 +1052,6 @@ Order Details
 I'm sorry to hear the product didn't meet your expectations.
 
 Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund. I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you all the information needed for the return.
-
-Once you ship it using the information I'll send you, please reply to this email attaching:
-
-• Proof of shipment, with the tracking number clearly visible and legible.
-
-As soon as we receive this information, we'll immediately process your full refund to the same payment method used for the purchase.
 
 I'll keep following your case until it's fully resolved.
 
