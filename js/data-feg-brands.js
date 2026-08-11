@@ -2440,8 +2440,11 @@ Customer Support Team`,
       label: "Cancelar o pedido e a assinatura, o pedido em trânsito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
+
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
-Agradeço por entrar em contato conosco e por compartilhar sua solicitação de cancelamento do pedido e da assinatura. Localizei seu pedido em nosso sistema:
+
+Localizei seu pedido em nosso sistema:
+
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
 • Data da Compra: {{dataCompra}}
@@ -2460,14 +2463,17 @@ Informações de Rastreamento
 • Link de Rastreamento: {{linkRastreio}}
 
 Quanto à assinatura, antes de prosseguirmos com o cancelamento, gostaria de pedir, se possível, que compartilhe o motivo da sua decisão. Seu feedback é muito importante para nos ajudar a melhorar nossos produtos e atendimento, e assim que recebermos sua resposta, faremos o cancelamento imediatamente.
-Continuaremos acompanhando seu caso até a conclusão. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
+
+Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-Thank you for reaching out to us and sharing your request to cancel the order and the subscription. I located your order in our system:
+
+I located your order in our system:
+
 Order Details
 • Order Number: {{numeroPedido}}
 • Purchase Date: {{dataCompra}}
@@ -2486,7 +2492,8 @@ Tracking Information
 • Tracking Link: {{linkRastreio}}
 
 As for the subscription, before we proceed with the cancellation, I'd like to ask, if possible, that you share the reason for your decision. Your feedback is very important to help us improve our products and service, and as soon as we receive your reply, we'll cancel it right away.
-We'll keep following your case through to its conclusion. If you have any questions or need any additional information, don't hesitate to reply to this email.
+
+If you have any questions or need any additional information, don't hesitate to reply to this email.
 
 Best regards,
 {{nomeAgente}}
