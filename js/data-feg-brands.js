@@ -164,8 +164,6 @@ Customer Support Team`,
       pt: `Olá, {{nomeCliente}}!
 Tudo bem? Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
 
-Obrigado(a) por entrar em contato! Fico feliz em te ajudar a esclarecer exatamente o que você pediu conosco.
-
 Consegui localizar o seu pedido em nosso sistema, e aqui estão todos os detalhes:
 
 Detalhes do Pedido
@@ -189,8 +187,6 @@ Atenciosamente,
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 How are you? My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
-
-Thank you for reaching out! I'm happy to help clarify exactly what you asked us about.
 
 I was able to locate your order in our system, and here are all the details:
 
