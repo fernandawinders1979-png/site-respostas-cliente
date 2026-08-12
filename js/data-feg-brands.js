@@ -2970,7 +2970,7 @@ Customer Support Team`,
   const CATEGORIES = [
     { id: "geral", label: "Geral", color: "#39ff14", featured: true },
     { id: "logistica", label: "Logística", color: "#14c8ff" },
-    { id: "naoReconhece", label: "Cliente não reconhece a compra", color: "#ff5050" },
+    { id: "naoReconhece", label: "Cliente não reconhece a compra - Compra única sem assinatura", color: "#ff5050" },
     { id: "clienteAmeacandoDisputa", label: "Cliente Ameaçando disputa ou denunciar", color: "#ef476f" },
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
