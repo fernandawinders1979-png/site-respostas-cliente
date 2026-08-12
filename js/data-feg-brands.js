@@ -509,58 +509,52 @@ Customer Support Team`,
       ],
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente.
 
-Agradeço por entrar em contato conosco. Sei o quanto é bom acompanhar de perto a chegada de um produto que faz parte da sua rotina de bem-estar.
-
-Localizei seu pedido em nosso sistema:
+Localizei seu pedido:
 
 Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
+• Pedido: {{numeroPedido}}
+• Data da compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
+• Valor: \${{valorTotal}}
+• Endereço de entrega: {{endereco}}
+• Status: {{status}}
 
-Verifiquei aqui e posso confirmar que seu pedido está dentro do prazo estimado de entrega e atualmente a caminho do seu endereço. Você pode acompanhar cada etapa através das informações abaixo:
+Boa notícia: verifiquei e confirmo que seu pedido está dentro do prazo estimado de entrega e a caminho do seu endereço. Você pode acompanhar a movimentação por aqui:
 
-Informações de Rastreamento
-• Código de Rastreamento: {{codigoRastreio}}
-• Link de Rastreamento: {{linkRastreio}}
+• Código de rastreamento: {{codigoRastreio}}
+• Link de rastreamento: {{linkRastreio}}
 
-Fico à disposição para acompanhar isso com você. Se por algum motivo a entrega não chegar dentro do prazo estimado, ou se surgir qualquer outra dúvida, é só me responder este e-mail — estarei aqui para te ajudar.
+Se por algum motivo a entrega não chegar dentro do prazo estimado, ou se surgir qualquer outra dúvida, é só responder este e-mail — estarei aqui para ajudar.
 
-Fico no aguardo, e desejo que o produto chegue rapidinho até você!
+Desejo que o produto chegue rapidinho até você!
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case.
 
-Thank you for reaching out to us. I know how nice it is to closely track the arrival of a product that's part of your wellness routine.
-
-I located your order in our system:
+I located your order:
 
 Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
+• Order: {{numeroPedido}}
+• Purchase date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
+• Amount: \${{valorTotal}}
+• Shipping address: {{endereco}}
+• Status: {{status}}
 
-I checked here and can confirm your order is within the estimated delivery window and currently on its way to your address. You can follow each step using the information below:
+Good news: I checked and can confirm your order is within the estimated delivery window and on its way to your address. You can track the movement here:
 
-Tracking Information
-• Tracking Code: {{codigoRastreio}}
-• Tracking Link: {{linkRastreio}}
+• Tracking code: {{codigoRastreio}}
+• Tracking link: {{linkRastreio}}
 
-I'm here to follow up on this with you. If for any reason the delivery doesn't arrive within the estimated window, or if any other question comes up, just reply to this email — I'll be here to help.
+If for any reason the delivery doesn't arrive within the estimated window, or if any other question comes up, just reply to this email — I'll be here to help.
 
-I'll be looking forward to it, and I hope your product reaches you soon!
+I hope your product reaches you soon!
 
 Best regards,
 {{nomeAgente}}
