@@ -620,13 +620,26 @@
     return details;
   }
 
+  /**
+   * Ordena templates pelo número do código (ex: G-01, G-02, G-03...), não
+   * pelo título. Antes a lista era ordenada por ordem alfabética do título,
+   * o que fazia a numeração aparecer fora de ordem dentro de várias
+   * categorias no site.
+   * @param {Object} a
+   * @param {Object} b
+   * @returns {number}
+   */
+  function compareByCode(a, b) {
+    return (a.code || "").localeCompare(b.code || "", "pt-BR", { numeric: true });
+  }
+
   function renderTemplateSidebar() {
     templateCategoriesEl.innerHTML = "";
 
     CATEGORIES.forEach((category, index) => {
       const templatesInCategory = TEMPLATES
         .filter((t) => t.category === category.id)
-        .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
+        .sort(compareByCode);
       if (templatesInCategory.length === 0) return;
 
       const details = buildCategoryDetails(category, templatesInCategory, index === 0);
@@ -651,7 +664,7 @@
       group.subcategories.forEach((subcategory) => {
         const templatesInSubcategory = TEMPLATES
           .filter((t) => t.category === subcategory.id)
-          .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
+          .sort(compareByCode);
         if (templatesInSubcategory.length === 0) return;
 
         const subDetails = buildCategoryDetails(subcategory, templatesInSubcategory, false);
