@@ -1528,6 +1528,60 @@ Customer Support Team`,
     },
 
     {
+      id: "fegNaoReconheceComProdutoCancelaAssinaturaSolicitaRma",
+      category: "naoReconheceComAssinatura",
+      code: "NRA-01",
+      label: "Não reconhece a compra, está com o produto - Cancela a assinatura e solicita RMA",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente até a conclusão.
+
+Obrigado(a) por entrar em contato e compartilhar o que aconteceu. Lamentamos saber que você não reconhece essa compra.
+
+Localizei seu pedido:
+
+• Pedido: {{numeroPedido}}
+• Data da compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor: \${{valorTotal}}
+• Assinatura: Cancelada
+
+✅ Assinatura cancelada: informo que sua assinatura foi cancelada com sucesso. O cancelamento foi processado imediatamente, sem taxas e sem burocracia, e você não será cobrado(a) novamente. Importante: o cancelamento sempre vale para a próxima renovação, ou seja, envios já processados no ciclo atual não são afetados.
+
+📦 Reembolso: para prosseguirmos, já solicitei a Autorização de Devolução (RMA) ao departamento responsável. Assim que for liberada, enviarei o número do RMA com todas as instruções para a devolução.
+
+Qualquer dúvida, é só responder este e-mail. Ficarei feliz em ajudar.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+This is {{nomeAgente}}, from Customer Support. I'll be personally following your case until it's resolved.
+
+Thank you for reaching out and sharing what happened. We're sorry to hear you don't recognize this purchase.
+
+I located your order:
+
+• Order: {{numeroPedido}}
+• Purchase date: {{dataCompra}}
+• Product: {{produto}}
+• Amount: \${{valorTotal}}
+• Subscription: Cancelled
+
+✅ Subscription cancelled: I confirm your subscription has been cancelled successfully. The cancellation was processed immediately, with no fees and no red tape, and you won't be charged again. Important: the cancellation always applies from the next renewal onward, meaning shipments already processed in the current cycle aren't affected.
+
+📦 Refund: to proceed, I've already requested the Return Merchandise Authorization (RMA) from the responsible department. As soon as it's released, I'll send you the RMA number along with all the instructions for the return.
+
+If you have any questions, just reply to this email. I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegReembolsoRealizado",
       category: "reembolso",
       code: "RE-07",
@@ -2961,7 +3015,8 @@ Customer Support Team`,
    * Prefixo do código de cada categoria (campo "code" dos templates, ex:
    * "AS-03"). Ao criar um template novo, use o prefixo da categoria dele
    * e o próximo número livre nessa categoria (maior número existente + 1).
-   * G=Geral, LG=Logística, NR=Não reconhece a compra, CD=Cliente ameaçando
+   * G=Geral, LG=Logística, NR=Não reconhece a compra (sem assinatura),
+   * NRA=Não reconhece a compra (com assinatura), CD=Cliente ameaçando
    * disputa, AS=Assinatura, RE=Reembolso do Pedido, RC=Reembolso+Cancelar
    * Assinatura, REN=Recusou entrega, CE=Comprei por engano,
    * MA=Médico/Reação adversa (apenas pedido), MP=Médico/Reação adversa
@@ -2971,6 +3026,7 @@ Customer Support Team`,
     { id: "geral", label: "Geral", color: "#39ff14", featured: true },
     { id: "logistica", label: "Logística", color: "#14c8ff" },
     { id: "naoReconhece", label: "Cliente não reconhece a compra - Compra única sem assinatura", color: "#ff5050" },
+    { id: "naoReconheceComAssinatura", label: "Cliente não reconhece a compra - Com assinatura", color: "#d90429" },
     { id: "clienteAmeacandoDisputa", label: "Cliente Ameaçando disputa ou denunciar", color: "#ef476f" },
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
