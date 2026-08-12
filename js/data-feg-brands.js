@@ -1481,7 +1481,7 @@ Customer Support Team`,
 
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Lamentamos saber que você não reconhece essa compra. Vou analisar cuidadosamente seu pedido para que possamos encontrar a solução mais adequada para o seu caso.
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Lamentamos saber que você não reconhece essa compra.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1504,8 +1504,6 @@ Quando a entrega for realizada, pedimos, por gentileza, que recuse o recebimento
 
 Assim que a recusa for concluída, basta responder a este e-mail para que possamos acompanhar o retorno do pedido e dar continuidade ao seu reembolso.
 
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 Atenciosamente,
@@ -1515,7 +1513,7 @@ Equipe de Suporte ao Cliente`,
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. We're sorry to hear you don't recognize this purchase. I'll carefully review your order so we can find the best solution for your case.
+Thank you for reaching out to us and sharing what happened. We're sorry to hear you don't recognize this purchase.
 
 I located your order in our system:
 
@@ -1537,8 +1535,6 @@ Tracking Information
 When the delivery is attempted, please kindly refuse the package. This will cause it to be automatically returned to our company.
 
 Once the refusal is completed, just reply to this email so we can track the order's return and proceed with your refund.
-
-I'll keep following your case until it's fully resolved.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
