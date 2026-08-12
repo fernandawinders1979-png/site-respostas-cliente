@@ -1409,13 +1409,13 @@ Customer Support Team`,
       id: "fegNaoReconheceCompraComProduto",
       category: "naoReconhece",
       code: "NR-01",
-      label: "Não reconheço a compra, está com o produto. Solicita o RMA",
+      label: "Não reconheço a compra, compra única, solicitar RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
 Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
 
-Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Lamentamos saber que você não reconhece essa compra. Vou analisar cuidadosamente seu pedido e todas as informações compartilhadas para que possamos encontrar a solução mais adequada para o seu caso.
+Agradeço por entrar em contato conosco e por compartilhar o que aconteceu. Lamentamos saber que você não reconhece essa compra.
 
 Localizei seu pedido em nosso sistema:
 
@@ -1427,14 +1427,6 @@ Detalhes do Pedido
 
 Para prosseguirmos com o reembolso, já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que for liberada, enviarei o número do RMA junto com todas as instruções necessárias para a devolução.
 
-Após realizar o envio, por favor, responda a este e-mail anexando:
-
-• O comprovante de envio, com o número de rastreamento visível e legível.
-
-Assim que recebermos essas informações, processaremos o reembolso integral para o mesmo método de pagamento utilizado na compra.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
 Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
 
 Atenciosamente,
@@ -1444,7 +1436,7 @@ Equipe de Suporte ao Cliente`,
 
 My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
 
-Thank you for reaching out to us and sharing what happened. We're sorry to hear you don't recognize this purchase. I'll carefully review your order and all the information you've shared so we can find the best solution for your case.
+Thank you for reaching out to us and sharing what happened. We're sorry to hear you don't recognize this purchase.
 
 I located your order in our system:
 
@@ -1455,14 +1447,6 @@ Order Details
 • Total Amount: \${{valorTotal}}
 
 To proceed with the refund, I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as it's released, I'll send you the RMA number along with all the instructions needed for the return.
-
-After shipping the return, please reply to this email attaching:
-
-• Proof of shipment, with the tracking number clearly visible and legible.
-
-As soon as we receive this information, we'll process the full refund to the same payment method used for the purchase.
-
-I'll keep following your case until it's fully resolved.
 
 If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
 
