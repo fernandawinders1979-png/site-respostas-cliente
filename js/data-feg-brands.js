@@ -811,21 +811,13 @@ Customer Support Team`,
 
 Aqui é {{nomeAgente}}, do Suporte ao Cliente. Recebemos sua solicitação de cancelamento e estarei acompanhando seu caso pessoalmente.
 
-Antes de finalizarmos, poderia nos contar o motivo do cancelamento? Para facilitar, basta responder com o número da opção que mais se encaixa na sua situação:
+Antes de darmos andamento, você poderia nos contar, com suas palavras, o motivo do cancelamento? Essa informação é importante para direcionarmos sua solicitação da forma correta — e, dependendo do caso, pode haver algo que eu consiga resolver diretamente para você. Sua resposta também nos ajuda muito a melhorar a experiência de bem-estar que oferecemos.
 
-1. Dificuldade financeira / momento financeiro
-2. Produto não funcionou / não vi resultados
-3. Efeito colateral ou orientação médica (médico não autorizou)
-4. Não sabia que era assinatura recorrente
-5. Pedido feito por engano ou mudei de ideia
-6. Produto diferente do anunciado
-7. Não recebi o produto
-8. Apenas quero cancelar, sem motivo específico
-9. Outro motivo (se puder, conte brevemente)
+Enquanto isso, quero lembrar que você tem total flexibilidade com a sua assinatura: caso prefira, é possível pausar temporariamente ou pular uma entrega, sem custo algum. Assim, você não perde seu histórico e pode retomar quando o momento estiver mais favorável.
 
-Sua resposta nos ajuda muito a melhorar a experiência de bem-estar que oferecemos.
+🌿 E temos um cuidado especial para quem opta pela pausa: ao decidir retomar sua assinatura, você garante 15% de desconto no seu retorno. É a nossa forma de manter sua jornada de bem-estar acessível e de mostrar o quanto valorizamos ter você conosco — sem pressão e no seu tempo.
 
-Obrigado(a) por ter feito parte da sua jornada de bem-estar conosco. 💚
+Aguardo o seu retorno para seguirmos com a sua demanda. 💚
 
 Atenciosamente,
 {{nomeAgente}}
