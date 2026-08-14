@@ -1087,7 +1087,7 @@ Customer Support Team`,
     {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "reembolso",
-      code: "RE-05",
+      code: "RE-04",
       label: "Sem resultados",
       autoDetect: [
         "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
@@ -1753,74 +1753,6 @@ Customer Support Team`,
     },
 
     {
-      id: "fegCancelarPedidoEmTransito",
-      category: "reembolso",
-      code: "RE-03",
-      label: "Cancelar pedido – Pedido em trânsito",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
-
-Localizei seu pedido em nosso sistema:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-
-Entendo que você decidiu não prosseguir com a compra, e isso não é um problema. Gostaria apenas de pedir, se possível, que compartilhe o motivo do cancelamento. Seu feedback é muito importante para nos ajudar a melhorar nossos produtos e atendimento.
-
-Verifiquei que seu pedido já está em trânsito e, por esse motivo, não é mais possível interromper o envio.
-
-Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
-
-Informações de Rastreamento
-• Código de Rastreamento: {{codigoRastreio}}
-• Link de Rastreamento: {{linkRastreio}}
-
-Quando o produto chegar, pedimos, por gentileza, que recuse a entrega. Assim que a recusa for concluída, basta responder a este e-mail para que possamos dar continuidade ao processo de reembolso.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-
-I located your order in our system:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-
-I understand you've decided not to proceed with the purchase, and that's not a problem at all. I'd just like to ask, if possible, that you share the reason for the cancellation. Your feedback is very important to help us improve our products and service.
-
-I checked and your order is already in transit, so it's no longer possible to stop the shipment.
-
-You can track your order's delivery using the information below:
-
-Tracking Information
-• Tracking Code: {{codigoRastreio}}
-• Tracking Link: {{linkRastreio}}
-
-When the product arrives, please kindly refuse the delivery. Once the refusal is completed, just reply to this email so we can move forward with the refund process.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
       id: "fegCancelarPedidoAntesEnvio",
       category: "reembolso",
       code: "RE-01",
@@ -1923,7 +1855,7 @@ Customer Support Team`,
     {
       id: "fegNaoGostouSabor",
       category: "reembolso",
-      code: "RE-04",
+      code: "RE-03",
       label: "Não gostou do sabor",
       autoDetect: [
         "não gostei do sabor", "gosto ruim", "sabor horrível", "não gostei do gosto",
@@ -2350,7 +2282,7 @@ Customer Support Team`,
     {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
       category: "reembolso",
-      code: "RE-10",
+      code: "RE-09",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2404,7 +2336,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaProdutoTransito",
       category: "reembolso",
-      code: "RE-07",
+      code: "RE-06",
       label: "Justificativa enviada, Recusa entrega e Assinatura cancelada - Pedido em transito",
       autoDetect: null,
       pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
@@ -2434,7 +2366,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaComProduto",
       category: "reembolso",
-      code: "RE-08",
+      code: "RE-07",
       label: "Justificativo enviada - Processo de reembolos (solicitar RMA) e assinatura cancelada - está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2476,7 +2408,7 @@ Customer Support Team`,
     {
       id: "fegMotivoCriseFinanceiraAguardandoRMA",
       category: "reembolso",
-      code: "RE-09",
+      code: "RE-08",
       label: "Motivo crise financeira e aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2534,7 +2466,7 @@ Customer Support Team`,
     {
       id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
       category: "reembolso",
-      code: "RE-11",
+      code: "RE-10",
       label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2830,7 +2762,7 @@ Customer Support Team`,
     {
       id: "fegTenhoUsadoMasNaoSintoEfeito",
       category: "reembolso",
-      code: "RE-06",
+      code: "RE-05",
       label: "Tenho usado o seu produto, mas não sinto nenhum efeito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
