@@ -1087,7 +1087,7 @@ Customer Support Team`,
     {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "reembolso",
-      code: "RE-10",
+      code: "RE-08",
       label: "Sem resultados",
       autoDetect: [
         "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
@@ -1708,8 +1708,8 @@ Customer Support Team`,
 
     {
       id: "fegReembolsoRealizado",
-      category: "reembolso",
-      code: "RE-08",
+      category: "reembolsoRealizado",
+      code: "RR-02",
       label: "Reembolso realizado",
       autoDetect: [
         "já caiu meu reembolso", "quando recebo o reembolso", "meu reembolso ainda não caiu",
@@ -1825,8 +1825,8 @@ Customer Support Team`,
 
     {
       id: "fegReembolsoProcessadoEvidencias",
-      category: "reembolso",
-      code: "RE-07",
+      category: "reembolsoRealizado",
+      code: "RR-01",
       label: "Reembolso processado após envio das evidências",
       autoDetect: null,
       pt: `Agradeço por enviar as fotos. Recebemos todas as informações necessárias e está tudo em ordem.
@@ -2414,8 +2414,8 @@ Customer Support Team`,
 
     {
       id: "fegCancelarPedidoAssinaturaAntesEnvio",
-      category: "reembolsoCancelarAssinatura",
-      code: "RC-01",
+      category: "reembolso",
+      code: "RE-10",
       label: "Cancelar o pedido e a assinatura antes do envio do pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2468,8 +2468,8 @@ Customer Support Team`,
 
     {
       id: "fegCancelarPedidoAssinaturaEmTransito",
-      category: "reembolsoCancelarAssinatura",
-      code: "RC-02",
+      category: "reembolso",
+      code: "RE-11",
       label: "Cancelar o pedido e a assinatura, o pedido em trânsito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2589,8 +2589,8 @@ Customer Support Team`,
 
     {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
-      category: "reembolsoCancelarAssinatura",
-      code: "RC-06",
+      category: "reembolso",
+      code: "RE-15",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2643,8 +2643,8 @@ Customer Support Team`,
 
     {
       id: "fegJustificativaCanceladaProdutoTransito",
-      category: "reembolsoCancelarAssinatura",
-      code: "RC-03",
+      category: "reembolso",
+      code: "RE-12",
       label: "Justificativa enviada, Recusa entrega e Assinatura cancelada - Pedido em transito",
       autoDetect: null,
       pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
@@ -2673,8 +2673,8 @@ Customer Support Team`,
 
     {
       id: "fegJustificativaCanceladaComProduto",
-      category: "reembolsoCancelarAssinatura",
-      code: "RC-04",
+      category: "reembolso",
+      code: "RE-13",
       label: "Justificativo enviada - Processo de reembolos (solicitar RMA) e assinatura cancelada - está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2715,8 +2715,8 @@ Customer Support Team`,
 
     {
       id: "fegMotivoCriseFinanceiraAguardandoRMA",
-      category: "reembolsoCancelarAssinatura",
-      code: "RC-05",
+      category: "reembolso",
+      code: "RE-14",
       label: "Motivo crise financeira e aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2773,8 +2773,8 @@ Customer Support Team`,
 
     {
       id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
-      category: "reembolsoCancelarAssinatura",
-      code: "RC-07",
+      category: "reembolso",
+      code: "RE-16",
       label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -3070,7 +3070,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoSemResultadoAguardandoRMA",
       category: "reembolso",
-      code: "RE-09",
+      code: "RE-07",
       label: "Sem resultado, aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -3116,7 +3116,7 @@ Customer Support Team`,
     {
       id: "fegTenhoUsadoMasNaoSintoEfeito",
       category: "reembolso",
-      code: "RE-11",
+      code: "RE-09",
       label: "Tenho usado o seu produto, mas não sinto nenhum efeito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -3186,10 +3186,11 @@ Customer Support Team`,
    * e o próximo número livre nessa categoria (maior número existente + 1).
    * G=Geral, LG=Logística, NR=Não reconhece a compra (sem assinatura),
    * NRA=Não reconhece a compra (com assinatura), CD=Cliente ameaçando
-   * disputa, AS=Assinatura, RE=Reembolso do Pedido, RC=Reembolso+Cancelar
-   * Assinatura, REN=Recusou entrega, CE=Comprei por engano,
-   * MA=Médico/Reação adversa (apenas pedido), MP=Médico/Reação adversa
-   * (pedido+assinatura), GV=Garantia vencida, MU=Modo de uso, CB=Chargeback.
+   * disputa, AS=Assinatura, RE=Reembolso do Pedido (inclui cancelamento de
+   * assinatura), RR=Reembolso Realizado, REN=Recusou entrega, CE=Comprei
+   * por engano, MA=Médico/Reação adversa (apenas pedido), MP=Médico/Reação
+   * adversa (pedido+assinatura), GV=Garantia vencida, MU=Modo de uso,
+   * CB=Chargeback.
    */
   const CATEGORIES = [
     { id: "geral", label: "Geral", color: "#39ff14", featured: true },
@@ -3199,7 +3200,7 @@ Customer Support Team`,
     { id: "clienteAmeacandoDisputa", label: "Cliente Ameaçando disputa ou denunciar", color: "#ef476f" },
     { id: "assinatura", label: "Assinatura", color: "#b56bff" },
     { id: "reembolso", label: "Reembolso do Pedido", color: "#ffc814" },
-    { id: "reembolsoCancelarAssinatura", label: "Reembolso do Pedido e Cancelar Assinatura", color: "#4d7cff" },
+    { id: "reembolsoRealizado", label: "Reembolso Realizado", color: "#4d7cff" },
     { id: "recusouEntrega", label: "Recusou o pedido no ato da entrega", color: "#2ec4b6" },
     { id: "cancelarCompreiPorEngano", label: "Cancelar - Comprei por Engano", color: "#ffb700" },
     { id: "medoReacaoAdversa", label: "Médico e Reação Adversa - Apenas o Pedido", color: "#ff8c1a" },
