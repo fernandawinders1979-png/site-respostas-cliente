@@ -443,9 +443,8 @@ Customer Support Team`,
         "não chegou nada",
       ],
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
-Localizei seu pedido em nosso sistema:
+Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente. Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
@@ -455,13 +454,17 @@ Detalhes do Pedido
 • Endereço de Entrega: {{endereco}}
 • Status Atual: Entregue (conforme rastreio)
 
-Sei que é frustrante esperar por um produto e não recebê-lo — entendo sua preocupação, e vamos resolver isso juntos(as).
+Sei que é frustrante esperar por um produto e não recebê-lo — entendo totalmente sua preocupação. Verifiquei aqui e a plataforma de rastreio indica que o pedido foi entregue em [data/hora], conforme o código de rastreio {{codigoRastreio}} ({{linkRastreio}}).
 
-Verifiquei aqui e a plataforma de rastreio indica que o pedido foi entregue em [data/hora], conforme o código de rastreio {{codigoRastreio}} ({{linkRastreio}}). Às vezes isso acontece por detalhes simples — como o pacote ter sido deixado com um vizinho, na portaria, ou em um endereço próximo. Vale a pena conferir, caso ainda não tenha feito isso.
+Às vezes isso acontece por detalhes simples. Por isso, peço gentilmente que verifique as seguintes possibilidades:
 
-Para resolver isso rapidamente, vou solicitar o reenvio do seu pedido com prioridade, sem custo adicional. Para garantir que chegue corretamente dessa vez, você poderia confirmar seu endereço completo (rua, número, complemento, bairro, cidade, estado e CEP)?
+1. Com vizinhos — o pacote pode ter sido deixado com alguém próximo;
+2. Na portaria ou recepção — em prédios e condomínios, é comum a entrega ser recebida ali;
+3. Ao redor da residência — portões, garagens, quintais ou áreas cobertas onde o entregador possa ter deixado o pacote;
+4. Com outros moradores — alguém da casa pode ter recebido e esquecido de avisar;
+5. Endereço próximo — em raros casos, a entrega ocorre em um número vizinho.
 
-Assim que eu receber essa confirmação, já dou andamento imediatamente.
+Assim que fizer essa verificação, por favor, me responda por este mesmo email informando se localizou o pacote ou não. Caso não encontre, seguiremos imediatamente com os próximos passos para resolver a situação — seja abrindo uma investigação com a transportadora ou realizando um reenvio.
 
 Fico no aguardo do seu retorno!
 
@@ -469,9 +472,8 @@ Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, from the Customer Support team.
 
-I located your order in our system:
+My name is {{nomeAgente}}, from the Customer Support team. I located your order in our system:
 
 Order Details
 • Order Number: {{numeroPedido}}
@@ -481,13 +483,17 @@ Order Details
 • Shipping Address: {{endereco}}
 • Current Status: Delivered (per tracking)
 
-I know it's frustrating to wait for a product and not receive it — I understand your concern, and we'll sort this out together.
+I know it's frustrating to wait for a product and not receive it — I completely understand your concern. I checked here and the tracking platform shows the order was delivered on [date/time], under tracking code {{codigoRastreio}} ({{linkRastreio}}).
 
-I checked here and the tracking platform shows the order was delivered on [date/time], under tracking code {{codigoRastreio}} ({{linkRastreio}}). Sometimes this happens for simple reasons — like the package being left with a neighbor, at the front desk, or at a nearby address. It's worth double-checking, in case you haven't already.
+Sometimes this happens for simple reasons. So, I kindly ask you to check the following possibilities:
 
-To resolve this quickly, I'll request a priority reshipment of your order at no additional cost. To make sure it arrives correctly this time, could you confirm your full address (street, number, apartment/unit, neighborhood, city, state, and ZIP code)?
+1. With neighbors — the package may have been left with someone nearby;
+2. At the front desk or reception — in buildings and condos, it's common for deliveries to be received there;
+3. Around the property — gates, garages, yards, or covered areas where the carrier may have left the package;
+4. With other household members — someone at home may have received it and forgotten to mention it;
+5. Nearby address — in rare cases, delivery occurs at a neighboring address.
 
-As soon as I receive that confirmation, I'll move forward right away.
+Once you've checked, please reply to this same email letting me know whether you found the package or not. If you don't find it, we'll move forward right away with next steps to resolve the situation — either opening an investigation with the carrier or arranging a reshipment.
 
 I'll be looking forward to your reply!
 
