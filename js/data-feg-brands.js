@@ -371,61 +371,48 @@ Customer Support Team`,
       id: "fegNaoRecebeuQuerReembolsoEntregue",
       category: "logistica",
       code: "LG-09",
-      label: "Relata que não recebeu pedido e quer reembolso – Consta como entregue",
-      autoDetect: [
-        "não recebi meu pedido", "não recebi o pedido", "meu pedido não chegou",
-        "aparece como entregue mas não recebi", "diz que foi entregue mas não recebi",
-        "quero reembolso", "quero meu dinheiro de volta", "quero o dinheiro de volta",
-        "quero cancelar e reembolso", "exijo reembolso",
-      ],
+      label: "Continuação do LG-08 – Verificou e não encontrou o pedido – Solicita endereço correto e reenvio",
+      autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, da equipe de Suporte ao Cliente.
 
-Localizei seu pedido em nosso sistema:
+Agradeço pelo seu retorno e por ter verificado todas as possibilidades que indicamos. Lamento sinceramente pelo transtorno — sabemos o quanto é frustrante não receber um pedido aguardado, e estamos aqui para resolver isso para você.
 
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: Entregue (conforme rastreio)
+Diante do ocorrido, iremos solicitar o reenvio do seu pedido.
 
-Sei que é frustrante esperar por um produto e não recebê-lo — entendo sua preocupação. Verifiquei aqui e a plataforma de rastreio indica que o pedido foi entregue em [data/hora], conforme o código de rastreio {{codigoRastreio}} ({{linkRastreio}}). Às vezes isso acontece por detalhes simples — como o pacote ter sido deixado com um vizinho, na portaria, ou em um endereço próximo. Vale a pena conferir, caso ainda não tenha feito isso.
+Antes de darmos andamento, precisamos que você confirme o endereço correto de entrega. Essa confirmação é essencial para garantir que o novo envio chegue até você sem imprevistos. Por gentileza, informe:
 
-Para resolver isso rapidamente, posso:
-1. Reenviar o pedido com prioridade, sem custo adicional; ou
-2. Processar o reembolso diretamente.
+• Rua/Avenida e número;
+• Complemento (apartamento, bloco, casa dos fundos etc.);
+• Bairro, cidade e estado;
+• CEP;
+• Ponto de referência, se houver;
+• Telefone de contato para o entregador.
 
-É só me confirmar qual opção prefere. Se optar pelo reenvio, preciso que confirme seu endereço completo (rua, número, complemento, bairro, cidade, estado e CEP).
+Assim que você nos responder, daremos início imediato ao processo e enviaremos o novo código de rastreamento para acompanhamento.
 
-Fico no aguardo do seu retorno!
+Fico no aguardo da sua confirmação para prosseguir.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, from the Customer Support team.
 
-I located your order in our system:
+Thank you for getting back to us and for checking all the possibilities we mentioned. I sincerely apologize for the inconvenience — we know how frustrating it is not to receive an order you were expecting, and we're here to make this right for you.
 
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: Delivered (per tracking)
+Given what happened, we'll go ahead and request a reshipment of your order.
 
-I know it's frustrating to wait for a product and not receive it — I understand your concern. I checked here and the tracking platform shows the order was delivered on [date/time], under tracking code {{codigoRastreio}} ({{linkRastreio}}). Sometimes this happens for simple reasons — like the package being left with a neighbor, at the front desk, or at a nearby address. It's worth double-checking, in case you haven't already.
+Before we proceed, we need you to confirm the correct delivery address. This confirmation is essential to make sure the new shipment reaches you without any issues. Please provide:
 
-To resolve this quickly, I can:
-1. Reship your order as a priority, at no additional cost; or
-2. Process a refund directly.
+• Street/Avenue and number;
+• Apartment/unit, block, back house, etc.;
+• Neighborhood, city, and state;
+• ZIP code;
+• Reference point, if any;
+• Contact phone number for the courier.
 
-Just let me know which option you prefer. If you choose reshipment, I'll need you to confirm your full address (street, number, apartment/unit, neighborhood, city, state, and ZIP code).
+As soon as you reply, we'll start the process right away and send you the new tracking code to follow along.
 
-I'll be looking forward to your reply!
+I'll be looking forward to your confirmation to proceed.
 
 Best regards,
 {{nomeAgente}}
