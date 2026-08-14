@@ -1148,7 +1148,7 @@ Customer Support Team`,
     {
       id: "fegDevolverComProdutoSemMotivoSemRetencao",
       category: "reembolso",
-      code: "RE-03",
+      code: "RE-04",
       label: "Devolver e está com o produto, não fala o motivo",
       autoDetect: [
         "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
@@ -1709,7 +1709,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoRealizado",
       category: "reembolso",
-      code: "RE-07",
+      code: "RE-08",
       label: "Reembolso realizado",
       autoDetect: [
         "já caiu meu reembolso", "quando recebo o reembolso", "meu reembolso ainda não caiu",
@@ -1772,7 +1772,7 @@ Customer Support Team`,
     {
       id: "fegProdutoChegouDanificado",
       category: "reembolso",
-      code: "RE-05",
+      code: "RE-06",
       label: "Não gostou do sabor - pergunte se tem garrafas lacradas?",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1826,7 +1826,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoProcessadoEvidencias",
       category: "reembolso",
-      code: "RE-06",
+      code: "RE-07",
       label: "Reembolso processado após envio das evidências",
       autoDetect: null,
       pt: `Agradeço por enviar as fotos. Recebemos todas as informações necessárias e está tudo em ordem.
@@ -1874,7 +1874,7 @@ Customer Support Team`,
     {
       id: "fegCancelarPedidoEmTransito",
       category: "reembolso",
-      code: "RE-02",
+      code: "RE-03",
       label: "Cancelar pedido – Pedido em trânsito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1998,9 +1998,51 @@ Customer Support Team`,
     },
 
     {
+      id: "fegArrependeuLogoAposCompraOpcao2",
+      category: "reembolso",
+      code: "RE-02",
+      label: "Arrependeu logo após a compra - Opção 2",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Recebemos sua solicitação de reembolso e queremos te dar total transparência sobre a situação do seu pedido.
+
+Como o despacho é feito logo após a confirmação do pagamento, o seu {{produto}} já está em trânsito com a transportadora — e, nesta etapa, não é mais possível interromper o envio. Ele deve chegar até você em breve.
+
+E olha, talvez isso seja até uma boa oportunidade: já que o produto está a caminho, que tal recebê-lo e conhecer de perto antes de bater o martelo? Sua garantia de [X] dias começa a contar a partir da entrega, então você pode abrir, experimentar e decidir com calma — o direito ao reembolso continua valendo normalmente durante todo esse período, pela mesma forma de pagamento.
+
+Aquilo que te motivou a comprar há poucos dias provavelmente ainda faz sentido. Agora você pode decidir com o produto em mãos, e não só na dúvida.
+
+Se mesmo assim preferir manter o cancelamento, sem problema, quando seu produto chegar favor entrar em contato por esse email para darmos prosseguimento.
+
+Estamos à disposição para o que precisar.
+
+Com carinho,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+We received your refund request and want to give you full transparency about the status of your order.
+
+Since shipping happens right after payment is confirmed, your {{produto}} is already in transit with the carrier — and at this stage, it's no longer possible to stop the shipment. It should arrive to you soon.
+
+And here's the thing: this might actually be a good opportunity. Since the product is already on its way, why not receive it and get to know it up close before making a final call? Your [X]-day guarantee starts counting from delivery, so you can open it, try it, and decide with no rush — your right to a refund remains valid throughout that entire period, through the same payment method.
+
+Whatever motivated you to buy just a few days ago probably still makes sense. Now you can decide with the product in hand, not just based on doubt.
+
+If you'd still prefer to keep the cancellation, no problem — once your product arrives, please reach out to us at this same email so we can move forward.
+
+We're here for whatever you need.
+
+Warmly,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegNaoGostouSabor",
       category: "reembolso",
-      code: "RE-04",
+      code: "RE-05",
       label: "Não gostou do sabor",
       autoDetect: [
         "não gostei do sabor", "gosto ruim", "sabor horrível", "não gostei do gosto",
