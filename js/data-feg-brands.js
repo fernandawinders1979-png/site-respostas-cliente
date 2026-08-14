@@ -705,6 +705,58 @@ Customer Support Team`,
     },
 
     {
+      id: "fegNaoSabiaEraAssinaturaOpcao2",
+      category: "assinatura",
+      code: "AS-07",
+      label: "Não sabia que era assinatura - Opção 2 (caso não aceite a Opção 1)",
+      autoDetect: null,
+      pt: `Obrigada pelo seu retorno. Entendo que a opção anterior ainda não foi adequada para você.
+
+Antes de concluirmos o cancelamento, gostaria de oferecer uma última alternativa que reduz ainda mais o compromisso com a assinatura e, ao mesmo tempo, dá a você mais tempo para avaliar sua experiência com o {{produto}}.
+
+Podemos reduzir o valor da sua assinatura para US$ [X] por mês e também pausá-la pelos próximos 30 dias.
+
+Durante esses 30 dias:
+• você não será cobrado;
+• nenhum novo produto será enviado;
+• poderá continuar utilizando o produto que já possui e terá mais tempo para avaliar sua experiência e os resultados obtidos.
+
+Após a pausa, sua assinatura será retomada já com o novo valor reduzido de US$ [X] por mês, em vez de US$ [valor atual], conforme as condições confirmadas com você.
+
+Acreditamos que essa opção pode ser mais confortável porque você não terá nenhuma despesa com a assinatura neste mês e poderá avaliar o produto por mais tempo antes de assumir uma nova cobrança.
+
+Se essa alternativa fizer sentido para você, posso solicitar a redução do valor e a pausa de 30 dias.
+
+Caso ainda prefira cancelar, respeitaremos sua decisão e seguiremos com a solicitação.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Thank you for your reply. I understand the previous option wasn't quite right for you yet.
+
+Before we move forward with the cancellation, I'd like to offer one last alternative that further reduces your commitment to the subscription while also giving you more time to evaluate your experience with {{produto}}.
+
+We can reduce your subscription price to US$ [X] per month and also pause it for the next 30 days.
+
+During these 30 days:
+• you won't be charged;
+• no new product will be shipped;
+• you can keep using the product you already have and will have more time to evaluate your experience and results.
+
+After the pause, your subscription will resume already at the new reduced price of US$ [X] per month, instead of US$ [current amount], as confirmed with you.
+
+We believe this option may be more comfortable, since you won't have any subscription expense this month and will be able to evaluate the product for longer before taking on a new charge.
+
+If this alternative works for you, I can request the price reduction and the 30-day pause.
+
+If you'd still prefer to cancel, we'll respect your decision and proceed with the request.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegAssinaturaCanceladaMotivoSemResultados",
       category: "assinatura",
       code: "AS-03",
