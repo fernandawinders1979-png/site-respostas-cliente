@@ -1108,7 +1108,8 @@ test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   assert.equal(payload.endereco, "São Paulo, SP");
   assert.equal(payload.motivo, "Sol. Cancelamento - sem pedido ter sido entregue");
   assert.ok(payload.tags.includes("vip"));
-  assert.ok(payload.tags.some((t) => t.startsWith("Motivo:")));
+  // "Motivo" agora tem campo próprio no painel (ver acima) — não duplica mais como tag.
+  assert.ok(!payload.tags.some((t) => t.startsWith("Motivo:")));
   assert.match(payload.conversationText, /Cliente: Quero cancelar/);
   assert.match(payload.conversationText, /Atendente: Claro/);
   assert.doesNotMatch(payload.conversationText, /nota interna/);
@@ -1199,6 +1200,7 @@ test("busca com sucesso -> Tipo de Compra do ticket preenche Assinatura Sim/Não
   const payload = await res.json();
 
   assert.equal(payload.assinatura, "sim");
+  assert.equal(payload.tipoCompra, "Assinatura | [R]");
 });
 
 test("busca com sucesso -> Tipo de Compra 'One time' preenche Assinatura como Não", async () => {

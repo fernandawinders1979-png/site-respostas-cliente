@@ -229,9 +229,10 @@ const CONTACT_FIELD_CANDIDATES = {
 // Reconferidos ao vivo em 2026-08-14: cf_status_do_reembolso foi removido da
 // conta (ver REFUND_STATUS_FIELD) e virou dois campos novos, cf_resoluo e
 // cf_sobre_reverso_total_ou_parcial; os campos de reenvio (cf_motivo_do_reenvio
-// e companhia) são novos, criados junto com a reorganização.
+// e companhia) são novos, criados junto com a reorganização. cf_motivo_do_contato
+// não entra aqui — desde então tem campo próprio no painel (ver "motivo" em
+// buildPayload), então não precisa duplicar como tag.
 const CONTEXT_FIELD_LABELS = {
-  cf_motivo_do_contato: "Motivo",
   cf_resoluo: "Resolução",
   cf_sobre_reverso_total_ou_parcial: "Reversão do reembolso",
   cf_motivo_do_reenvio: "Motivo do reenvio",
@@ -444,6 +445,7 @@ function buildPayload(ticket, conversations, fullContact, agent) {
     status: pickCustomField(customFields, CUSTOM_FIELD_CANDIDATES.status),
     codigoRastreio: pickCustomField(customFields, CUSTOM_FIELD_CANDIDATES.codigoRastreio),
     motivo: pickCustomField(customFields, ["cf_motivo_do_contato"]),
+    tipoCompra: pickCustomField(customFields, [TIPO_COMPRA_FIELD]),
     assinatura: classifyTipoCompra(customFields[TIPO_COMPRA_FIELD]),
     tags: [...(ticket.tags || []), ...buildContextTags(customFields)],
     conversationText: buildConversationText(ticket, conversations),
