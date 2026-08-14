@@ -1087,7 +1087,7 @@ Customer Support Team`,
     {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "reembolso",
-      code: "RE-06",
+      code: "RE-05",
       label: "Sem resultados",
       autoDetect: [
         "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
@@ -2350,7 +2350,7 @@ Customer Support Team`,
     {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
       category: "reembolso",
-      code: "RE-11",
+      code: "RE-10",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2404,7 +2404,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaProdutoTransito",
       category: "reembolso",
-      code: "RE-08",
+      code: "RE-07",
       label: "Justificativa enviada, Recusa entrega e Assinatura cancelada - Pedido em transito",
       autoDetect: null,
       pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
@@ -2434,7 +2434,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaComProduto",
       category: "reembolso",
-      code: "RE-09",
+      code: "RE-08",
       label: "Justificativo enviada - Processo de reembolos (solicitar RMA) e assinatura cancelada - está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2476,7 +2476,7 @@ Customer Support Team`,
     {
       id: "fegMotivoCriseFinanceiraAguardandoRMA",
       category: "reembolso",
-      code: "RE-10",
+      code: "RE-09",
       label: "Motivo crise financeira e aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2534,7 +2534,7 @@ Customer Support Team`,
     {
       id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
       category: "reembolso",
-      code: "RE-12",
+      code: "RE-11",
       label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2828,55 +2828,9 @@ Customer Support Team`,
     },
 
     {
-      id: "fegReembolsoSemResultadoAguardandoRMA",
-      category: "reembolso",
-      code: "RE-05",
-      label: "Sem resultado, aguardando o RMA",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-
-Passando para te atualizar sobre o andamento do seu caso: já solicitamos internamente a Autorização de Devolução (RMA) referente ao seu pedido, e no momento estamos aguardando essa informação para poder te enviar o número do RMA, o endereço de devolução e as demais instruções necessárias para darmos continuidade ao seu reembolso.
-
-Agradeço muito pela sua paciência e compreensão enquanto resolvemos isso juntos.
-
-Qualquer dúvida, fico à disposição.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-
-I'm reaching out to update you on your case: we've already requested the Return Merchandise Authorization (RMA) for your order internally, and we're currently waiting to receive that information so we can send you the RMA number, the return address, and the remaining instructions to move forward with your refund.
-
-Thank you so much for your patience and understanding while we work this out together.
-
-If you have any questions, I'm here to help.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
       id: "fegTenhoUsadoMasNaoSintoEfeito",
       category: "reembolso",
-      code: "RE-07",
+      code: "RE-06",
       label: "Tenho usado o seu produto, mas não sinto nenhum efeito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
