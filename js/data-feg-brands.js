@@ -757,6 +757,64 @@ Customer Support Team`,
     },
 
     {
+      id: "fegNaoSabiaEraAssinaturaOpcao3",
+      category: "assinatura",
+      code: "AS-08",
+      label: "Não sabia que era assinatura - Opção 3",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}, tudo bem?
+
+Meu nome é {{nomeAgente}}, sou da equipe de Suporte ao Cliente e serei responsável por cuidar pessoalmente da sua solicitação.
+
+Recebemos seu pedido de cancelamento e, antes de tudo, peço desculpas se a modalidade de assinatura não ficou clara no momento da compra.
+
+Antes de prosseguirmos, quero lembrar que você tem total flexibilidade com a sua assinatura — ela foi pensada justamente para quem usa o produto de forma contínua, sem multa e sem fidelidade:
+• O frete é grátis em todas as entregas;
+• E você tem controle total: pode pausar temporariamente, pular uma entrega ou alterar a frequência a qualquer momento, sem custo algum — mantendo seu histórico e suas condições para retomar quando o momento estiver mais favorável.
+
+🌿 E temos um cuidado especial para quem opta pela pausa: ao decidir retomar sua assinatura, você garante 15% de desconto no seu retorno. É a nossa forma de manter sua jornada de bem-estar acessível — sem pressão e no seu tempo.
+
+Me diga o que prefere:
+1 - Alterar a frequência ou pular a próxima entrega
+2 - Cancelar
+
+Se a opção for o cancelamento, sem problema algum: basta responder este e-mail com "cancelar" que eu mesmo(a) processo imediatamente, sem taxas e sem burocracia — você não será cobrado(a) novamente. Importante: o cancelamento vale a partir da próxima renovação, ou seja, envios já processados no ciclo atual seguem o fluxo normal de entrega.
+
+De qualquer forma, agradeço sinceramente por você ter feito parte da sua jornada de bem-estar conosco até aqui. 💚
+
+Fico no aguardo do seu retorno para seguirmos com o que fizer mais sentido para você.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}, how are you?
+
+My name is {{nomeAgente}}, I'm from the Customer Support team and I'll be personally responsible for handling your request.
+
+We received your cancellation request, and first of all, I apologize if the subscription model wasn't clear at the time of purchase.
+
+Before we move forward, I want to remind you that you have full flexibility with your subscription — it was designed specifically for those who use the product continuously, with no penalty and no commitment:
+• Shipping is free on every delivery;
+• And you have full control: you can pause temporarily, skip a delivery, or change the frequency at any time, at no cost — keeping your history and terms so you can resume whenever it's a better time for you.
+
+🌿 And we have something special for anyone who chooses to pause: when you decide to resume your subscription, you get a 15% discount on your return. It's our way of keeping your wellness journey accessible — no pressure, on your own time.
+
+Let me know which you'd prefer:
+1 - Change the frequency or skip the next delivery
+2 - Cancel
+
+If you choose cancellation, no problem at all: just reply to this email with "cancel" and I'll process it myself right away, with no fees and no hassle — you won't be charged again. Important: the cancellation applies starting from the next renewal, meaning shipments already processed in the current cycle follow their normal delivery flow.
+
+Either way, I sincerely thank you for being part of your wellness journey with us so far. 💚
+
+I'll be looking forward to your reply so we can move forward with whatever makes the most sense for you.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegAssinaturaCanceladaMotivoSemResultados",
       category: "assinatura",
       code: "AS-03",
