@@ -2308,7 +2308,7 @@ Customer Support Team`,
     {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
       category: "reembolso",
-      code: "RE-09",
+      code: "RE-08",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2362,7 +2362,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaProdutoTransito",
       category: "reembolso",
-      code: "RE-06",
+      code: "RE-05",
       label: "Justificativa enviada, Recusa entrega e Assinatura cancelada - Pedido em transito",
       autoDetect: null,
       pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
@@ -2392,7 +2392,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaComProduto",
       category: "reembolso",
-      code: "RE-07",
+      code: "RE-06",
       label: "Justificativo enviada - Processo de reembolos (solicitar RMA) e assinatura cancelada - está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2434,7 +2434,7 @@ Customer Support Team`,
     {
       id: "fegMotivoCriseFinanceiraAguardandoRMA",
       category: "reembolso",
-      code: "RE-08",
+      code: "RE-07",
       label: "Motivo crise financeira e aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2492,7 +2492,7 @@ Customer Support Team`,
     {
       id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
       category: "reembolso",
-      code: "RE-10",
+      code: "RE-09",
       label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2781,72 +2781,6 @@ And please know that whenever you feel like giving us another chance, our doors 
 We're always here for whatever you need — just reply to this email, and we'll be glad to help.
 
 With care and attention,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
-      id: "fegTenhoUsadoMasNaoSintoEfeito",
-      category: "reembolso",
-      code: "RE-05",
-      label: "Tenho usado o seu produto, mas não sinto nenhum efeito",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}} e irei te ajudar a partir de agora. Recebi sua mensagem e fico feliz em poder te auxiliar a tirar o máximo proveito do produto.
-
-Localizei seu pedido em nosso sistema:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-
-Lamento saber que o produto não atendeu às suas expectativas até o momento.
-
-Para que eu possa te dar orientações realmente direcionadas ao seu caso, gostaria de entender um pouco melhor sua experiência de uso:
-
-Há quanto tempo você está utilizando o produto?
-Como tem sido o seu uso no dia a dia (frequência, horário, quantidade, etc.)?
-Você notou alguma mudança, mesmo que pequena, desde que começou a usar?
-Existe algo específico que você esperava sentir e ainda não sentiu?
-
-Os resultados costumam depender bastante da constância e de pequenos ajustes na forma de uso — e com essas informações, consigo te dar dicas bem direcionadas para o seu momento.
-
-Assim que você me responder, volto com algumas sugestões práticas para você aproveitar ainda mais os benefícios. 😊
-
-Fico no aguardo do seu retorno!
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}} and I'll be helping you from now on. I received your message and I'm happy to help you get the most out of the product.
-
-I located your order in our system:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-
-I'm sorry to hear the product hasn't met your expectations so far.
-
-So I can give you guidance that's truly tailored to your case, I'd like to understand your experience with the product a bit better:
-
-How long have you been using the product?
-What has your day-to-day use been like (frequency, time of day, amount, etc.)?
-Have you noticed any change, even a small one, since you started using it?
-Is there something specific you expected to feel that you haven't felt yet?
-
-Results tend to depend a lot on consistency and small adjustments to how the product is used — and with this information, I can give you tips that are truly tailored to your situation.
-
-As soon as you reply, I'll come back with some practical suggestions to help you get even more out of the benefits. 😊
-
-I'll be looking forward to your reply!
-
-Best regards,
 {{nomeAgente}}
 Customer Support Team`,
     },
