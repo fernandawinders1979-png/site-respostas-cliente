@@ -258,6 +258,32 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAguardandoRMA",
+      category: "geral",
+      code: "G-06",
+      label: "Informe ao cliente que estamos aguardando o RMA para enviar.",
+      autoDetect: null,
+      pt: `Passando para te atualizar sobre o andamento do seu caso: já solicitamos internamente a Autorização de Devolução (RMA) referente ao seu pedido, e no momento estamos aguardando essa informação para poder te enviar o número do RMA, o endereço de devolução e as demais instruções necessárias para darmos continuidade ao seu reembolso.
+
+Agradeço muito pela sua paciência e compreensão enquanto resolvemos isso juntos.
+
+Qualquer dúvida, fico à disposição.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Just following up to update you on your case: we've already requested the Return Merchandise Authorization (RMA) for your order internally, and we're currently waiting for that information so we can send you the RMA number, the return address, and the remaining instructions to move forward with your refund.
+
+Thank you so much for your patience and understanding while we sort this out together.
+
+If you have any questions, I'm here to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegDetalhesEntregaSemRastreio",
       category: "logistica",
       code: "LG-04",
