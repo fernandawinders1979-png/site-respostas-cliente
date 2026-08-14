@@ -2418,60 +2418,6 @@ Customer Support Team`,
     },
 
     {
-      id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
-      category: "reembolso",
-      code: "RE-10",
-      label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-• Assinatura: Ativa
-
-Verifiquei que seu pedido está dentro do período da nossa Garantia de Satisfação, portanto podemos prosseguir com a devolução e o reembolso.
-
-Antes de enviarmos as instruções, gostaria de entender o motivo tanto da devolução quanto do cancelamento da assinatura. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
-
-AGUARDO SEU RETORNO PARA PROSSEGUIR
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-• Subscription: Active
-
-I checked and your order is within our Satisfaction Guarantee period, so we can proceed with the return and the refund.
-
-Before sending the instructions, I'd like to understand the reason for both the return and the subscription cancellation. Your feedback is very important to help us improve our products and service.
-
-I'M WAITING TO HEAR BACK FROM YOU TO PROCEED
-
-I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
       id: "fegJustificativaCanceladaProdutoTransito",
       category: "reembolso",
       code: "RE-05",
@@ -2603,62 +2549,6 @@ We hope this period gives you a bit more flexibility to organize your priorities
 If this alternative helps at this time, I can request the [30/60]-day pause for you.
 
 If you'd still prefer to cancel, we'll respect your decision and proceed with the request.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
-      id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
-      category: "reembolso",
-      code: "RE-11",
-      label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-
-Aqui é {{nomeAgente}}, do Suporte ao Cliente. Serei responsável pelo seu caso até a conclusão.
-
-Localizei seu pedido:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Assinatura: Ativa
-
-Lamento que o produto não tenha atendido às suas expectativas. Como seu pedido está dentro do período da nossa Garantia de Satisfação, já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, em breve, enviarei as instruções de envio. Após postar o produto, basta responder este e-mail com o comprovante de envio e o número de rastreamento legível — assim que recebermos, processaremos o reembolso integral do seu primeiro pedido no mesmo método de pagamento utilizado na compra.
-
-✅ Confirmação de Cancelamento
-
-Confirmo que sua assinatura foi cancelada com sucesso, sem taxas e sem burocracia, e você não será cobrado(a) novamente. O cancelamento vale a partir da próxima renovação — envios já processados no ciclo atual não são afetados, mas o reembolso solicitado se aplica apenas a este primeiro pedido.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em ajudar.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-
-This is {{nomeAgente}}, from Customer Support. I'll be responsible for your case until it's resolved.
-
-I've located your order:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Subscription: Active
-
-I'm sorry the product didn't meet your expectations. Since your order is within our Satisfaction Guarantee period, I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and I'll send the shipping instructions shortly. After you ship the product, just reply to this email with the shipping receipt and a legible tracking number — once we receive it, we'll process the full refund for your first order using the same payment method used for the purchase.
-
-✅ Cancellation Confirmation
-
-I confirm that your subscription has been successfully canceled, with no fees and no hassle, and you won't be charged again. The cancellation takes effect from the next renewal onward — shipments already processed in the current cycle aren't affected, but the requested refund applies only to this first order.
-
-I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to help.
 
 Best regards,
 {{nomeAgente}}
