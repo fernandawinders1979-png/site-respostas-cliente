@@ -601,7 +601,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSucesso",
       category: "assinatura",
-      code: "AS-01",
+      code: "AS-06",
       label: "Assinatura cancelada - cliente respondeu falando o motivo",
       autoDetect: null,
       pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
@@ -631,7 +631,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
-      code: "AS-02",
+      code: "AS-01",
       label: "Não sabia que era assinatura - Opção 1",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -707,7 +707,7 @@ Customer Support Team`,
     {
       id: "fegNaoSabiaEraAssinaturaOpcao2",
       category: "assinatura",
-      code: "AS-03",
+      code: "AS-02",
       label: "Não sabia que era assinatura - Opção 2 (caso não aceite a Opção 1)",
       autoDetect: null,
       pt: `Obrigada pelo seu retorno. Entendo que a opção anterior ainda não foi adequada para você.
@@ -759,7 +759,7 @@ Customer Support Team`,
     {
       id: "fegNaoSabiaEraAssinaturaOpcao3",
       category: "assinatura",
-      code: "AS-04",
+      code: "AS-03",
       label: "Não sabia que era assinatura - Opção 3",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}, tudo bem?
@@ -817,7 +817,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaMotivoSemResultados",
       category: "assinatura",
-      code: "AS-05",
+      code: "AS-07",
       label: "Assinatura já foi cancelada - motivo sem resultados",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -855,7 +855,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSemMotivo",
       category: "assinatura",
-      code: "AS-06",
+      code: "AS-08",
       label: "Cancelada, cliente respondeu e não quis falar o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -885,7 +885,7 @@ Customer Support Team`,
     {
       id: "fegCancelarAssinaturaCompraUnica",
       category: "assinatura",
-      code: "AS-07",
+      code: "AS-04",
       label: "Cancelar assinatura mas foi compra única",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -937,7 +937,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCancelarSemMotivo",
       category: "assinatura",
-      code: "AS-08",
+      code: "AS-05",
       label: "Cancelar sem falar motivo - Pergunte o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
