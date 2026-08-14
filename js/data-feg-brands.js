@@ -1095,50 +1095,48 @@ Customer Support Team`,
         "quero devolver", "quero devolução", "quero reembolso", "quero meu dinheiro de volta",
         "quero o dinheiro de volta", "quero cancelar e reembolso",
       ],
-      pt: `Olá, {{nomeCliente}}!
+      pt: `Olá, {{nomeCliente}}, tudo bem?
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}}, sou da equipe de Suporte ao Cliente e serei responsável por cuidar pessoalmente da sua solicitação.
 
-Localizei seu pedido em nosso sistema:
+Recebemos seu pedido de cancelamento, e antes de tudo quero agradecer pela sinceridade sobre o motivo. Sabemos que quando investimos em um cuidado com a saúde, a expectativa de sentir a diferença é real — e é frustrante quando ela parece não chegar.
 
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
+Mas antes de processar, me permite compartilhar uma informação importante?
 
-Lamento saber que o produto não atendeu às suas expectativas.
+O {{produto}} age de forma gradual e cumulativa no organismo. Por isso, os primeiros resultados costumam aparecer a partir de 8 a 10 semanas de uso contínuo e diário — antes disso, o corpo ainda está em fase de adaptação, e é comum não perceber mudanças, mesmo que elas já estejam acontecendo internamente. É o motivo pelo qual muitos clientes que quase desistiram nas primeiras semanas hoje são os que mais recomendam o produto.
 
-Como seu pedido está dentro do período da nossa Garantia de Satisfação, podemos prosseguir com a devolução para realização do reembolso integral. Já solicitei a Autorização de Devolução (RMA) ao departamento responsável e, assim que eu tiver o retorno, enviarei todas as informações necessárias para a devolução.
+Pensando nisso, tenho uma proposta sem nenhum risco para você:
 
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
+🌿 Estendo sua garantia por mais [30] dias, a partir de hoje. Você continua o uso diário, na dose e horário recomendados, e dá ao produto o tempo que ele precisa para agir. Se ao final desse período você ainda não sentir diferença, o cancelamento segue garantido — é só me chamar neste mesmo e-mail.
 
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Ou seja: você não abre mão de nada. Só troca uma decisão tomada cedo demais por uma decisão tomada com o teste completo.
+
+Se ainda assim preferir seguir com o reembolso agora, sem problema algum: responda com "reembolso" que envio as instruções de devolução.
+
+Estou aqui para o que decidir. 💚
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
+      en: `Hello, {{nomeCliente}}, how are you?
 
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}}, I'm from the Customer Support team and I'll be personally responsible for handling your request.
 
-I located your order in our system:
+We received your cancellation request, and first of all I want to thank you for being honest about the reason. We know that when we invest in taking care of our health, the expectation of feeling a difference is real — and it's frustrating when it doesn't seem to show up.
 
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
+But before processing it, would you allow me to share some important information?
 
-I'm sorry to hear the product didn't meet your expectations.
+{{produto}} works gradually and cumulatively in the body. That's why the first results usually appear after 8 to 10 weeks of continuous, daily use — before that, the body is still in an adjustment phase, and it's common not to notice changes even though they're already happening internally. That's why many customers who almost gave up in the first few weeks are today the ones who recommend the product the most.
 
-Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund. I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you all the information needed for the return.
+With that in mind, I have a risk-free proposal for you:
 
-I'll keep following your case until it's fully resolved.
+🌿 I'll extend your guarantee by another [30] days, starting today. You keep up the daily use, at the recommended dose and time, and give the product the time it needs to work. If by the end of this period you still don't feel a difference, the cancellation is still guaranteed — just let me know at this same email.
 
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+In other words, you're not giving up anything. You're simply trading a decision made too early for a decision made after the full test.
+
+If you'd still prefer to go ahead with the refund now, no problem at all: just reply with "refund" and I'll send the return instructions.
+
+I'm here for whatever you decide. 💚
 
 Best regards,
 {{nomeAgente}}
