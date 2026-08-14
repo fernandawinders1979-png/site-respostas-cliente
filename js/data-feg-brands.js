@@ -1087,7 +1087,7 @@ Customer Support Team`,
     {
       id: "fegDevolverSemResultadoSemRetencao",
       category: "reembolso",
-      code: "RE-08",
+      code: "RE-06",
       label: "Sem resultados",
       autoDetect: [
         "não fez efeito", "não funcionou", "sem resultado", "não teve resultado",
@@ -1135,69 +1135,6 @@ Order Details
 I'm sorry to hear the product didn't meet your expectations.
 
 Since your order is within our Satisfaction Guarantee period, we can proceed with the return to process a full refund. I've already requested the Return Merchandise Authorization (RMA) from the responsible department, and as soon as I have it, I'll send you all the information needed for the return.
-
-I'll keep following your case until it's fully resolved.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
-      id: "fegDevolverComProdutoSemMotivoSemRetencao",
-      category: "reembolso",
-      code: "RE-04",
-      label: "Devolver e está com o produto, não fala o motivo",
-      autoDetect: [
-        "quero cancelar e devolver o produto", "cancelar assinatura e devolver",
-        "tenho o produto e quero cancelar", "quero devolver o produto e cancelar",
-        "já estou com o produto", "estou com o produto em mãos", "recebi o produto e quero devolver",
-        "como faço para devolver o produto que já recebi",
-      ],
-      pt: `Olá, {{nomeCliente}}!
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
-
-Localizei seu pedido em nosso sistema:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-
-Verifiquei que seu pedido está dentro do período da nossa Garantia de Satisfação, portanto podemos prosseguir com a devolução e o reembolso.
-
-Antes de enviarmos as instruções, gostaria apenas de entender o motivo da devolução. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
-
-Assim que receber sua resposta, enviarei a autorização de devolução (RMA), o endereço para envio e as demais orientações para que possamos dar continuidade ao seu reembolso.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-
-I located your order in our system:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-
-I checked and your order is within our Satisfaction Guarantee period, so we can proceed with the return and refund.
-
-Before sending the instructions, I'd just like to understand the reason for the return. Your feedback is very important to help us improve our products and service.
-
-As soon as I hear back from you, I'll send the return authorization (RMA), the shipping address, and the remaining instructions so we can proceed with your refund.
 
 I'll keep following your case until it's fully resolved.
 
@@ -1770,60 +1707,6 @@ Customer Support Team`,
     },
 
     {
-      id: "fegProdutoChegouDanificado",
-      category: "reembolso",
-      code: "RE-06",
-      label: "Não gostou do sabor - pergunte se tem garrafas lacradas?",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-
-Aqui é {{nomeAgente}}, do Suporte ao Cliente. Obrigado(a) por entrar em contato — estarei acompanhando seu caso pessoalmente até a conclusão.
-
-Localizei seu pedido:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-
-Lamento que o sabor não tenha agradado ao seu paladar — sabemos que essa é uma preferência muito pessoal. Uma dica que ajuda muitos clientes: experimente misturar o produto com sucos cítricos bem gelados, vitaminas ou chás gelados.
-
-Caso prefira seguir com o reembolso, poderia nos informar quantas garrafas lacradas você possui em mãos? Essa informação nos ajuda a organizar corretamente o processo de devolução.
-
-Obrigado(a) pelo seu feedback — ele é muito importante para continuarmos melhorando. Qualquer dúvida, é só responder este e-mail.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-
-This is {{nomeAgente}}, from Customer Support. Thank you for reaching out — I'll be personally following your case through to its conclusion.
-
-I've located your order:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-
-I'm sorry the taste wasn't to your liking — we know this is a very personal preference. A tip that helps many customers: try mixing the product with well-chilled citrus juices, smoothies, or iced teas.
-
-If you'd prefer to proceed with the refund, could you let us know how many sealed bottles you have on hand? This information helps us organize the return process correctly.
-
-Thank you for your feedback — it's very important for us to keep improving. If you have any questions, just reply to this email.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
       id: "fegReembolsoProcessadoEvidencias",
       category: "reembolsoRealizado",
       code: "RR-01",
@@ -2042,7 +1925,7 @@ Customer Support Team`,
     {
       id: "fegNaoGostouSabor",
       category: "reembolso",
-      code: "RE-05",
+      code: "RE-04",
       label: "Não gostou do sabor",
       autoDetect: [
         "não gostei do sabor", "gosto ruim", "sabor horrível", "não gostei do gosto",
@@ -2413,127 +2296,6 @@ Customer Support Team`,
     },
 
     {
-      id: "fegCancelarPedidoAssinaturaAntesEnvio",
-      category: "reembolso",
-      code: "RE-10",
-      label: "Cancelar o pedido e a assinatura antes do envio do pedido",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: Cancelado
-• Assinatura: Cancelada
-
-Consegui cancelar tanto o seu pedido quanto a sua assinatura, conforme solicitado. Como o pedido foi cancelado antes do envio, o reembolso integral já foi processado para o mesmo método de pagamento utilizado na compra, e você não receberá novos envios ou cobranças automáticas.
-
-Em anexo, segue o comprovante do reembolso para sua conferência. Dependendo da administradora do seu cartão ou da instituição financeira, o crédito poderá levar alguns dias para aparecer em sua conta ou fatura.
-
-Se não se importar em compartilhar, gostaria apenas de saber o motivo do cancelamento. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
-
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: Canceled
-• Subscription: Canceled
-
-I was able to cancel both your order and your subscription, as requested. Since the order was canceled before shipping, the full refund has already been processed to the same payment method used for the purchase, and you won't receive any further shipments or automatic charges.
-
-Attached, please find the refund receipt for your records. Depending on your card issuer or financial institution, the credit may take a few days to appear on your account or statement.
-
-If you don't mind sharing, I'd just like to know the reason for the cancellation. Your feedback is very important to help us improve our products and service.
-
-I'll keep following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
-      id: "fegCancelarPedidoAssinaturaEmTransito",
-      category: "reembolso",
-      code: "RE-11",
-      label: "Cancelar o pedido e a assinatura, o pedido em trânsito",
-      autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
-
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
-
-Localizei seu pedido em nosso sistema:
-
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Endereço de Entrega: {{endereco}}
-• Status Atual: {{status}}
-• Assinatura: Ativa
-
-Entendo sua decisão e isso não é problema algum. Verifiquei que seu pedido já está em trânsito e, por esse motivo, não é mais possível interromper o envio. Quando o produto chegar, pedimos, por gentileza, que recuse a entrega. Assim que a recusa for concluída, basta nos avisar para que possamos dar continuidade ao reembolso integral.
-
-Você pode acompanhar a entrega do seu pedido utilizando as informações abaixo:
-
-Informações de Rastreamento
-• Código de Rastreamento: {{codigoRastreio}}
-• Link de Rastreamento: {{linkRastreio}}
-
-Quanto à assinatura, antes de prosseguirmos com o cancelamento, gostaria de pedir, se possível, que compartilhe o motivo da sua decisão. Seu feedback é muito importante para nos ajudar a melhorar nossos produtos e atendimento, e assim que recebermos sua resposta, faremos o cancelamento imediatamente.
-
-Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail.
-
-Atenciosamente,
-{{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
-
-I located your order in our system:
-
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Shipping Address: {{endereco}}
-• Current Status: {{status}}
-• Subscription: Active
-
-I understand your decision, and that's not a problem at all. I checked and your order is already in transit, so it's no longer possible to stop the shipment. When the product arrives, please kindly refuse the delivery. Once the refusal is completed, just let us know so we can move forward with the full refund.
-
-You can track your order's delivery using the information below:
-
-Tracking Information
-• Tracking Code: {{codigoRastreio}}
-• Tracking Link: {{linkRastreio}}
-
-As for the subscription, before we proceed with the cancellation, I'd like to ask, if possible, that you share the reason for your decision. Your feedback is very important to help us improve our products and service, and as soon as we receive your reply, we'll cancel it right away.
-
-If you have any questions or need any additional information, don't hesitate to reply to this email.
-
-Best regards,
-{{nomeAgente}}
-Customer Support Team`,
-    },
-
-    {
       id: "fegRecusouPedidoReembolsoCancelamento",
       category: "recusouEntrega",
       code: "REN-01",
@@ -2590,7 +2352,7 @@ Customer Support Team`,
     {
       id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
       category: "reembolso",
-      code: "RE-15",
+      code: "RE-11",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2644,7 +2406,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaProdutoTransito",
       category: "reembolso",
-      code: "RE-12",
+      code: "RE-08",
       label: "Justificativa enviada, Recusa entrega e Assinatura cancelada - Pedido em transito",
       autoDetect: null,
       pt: `Obrigado por compartilhar as justificativas — seu feedback é muito importante para nós e vai nos ajudar a melhorar nossos produtos e atendimento.
@@ -2674,7 +2436,7 @@ Customer Support Team`,
     {
       id: "fegJustificativaCanceladaComProduto",
       category: "reembolso",
-      code: "RE-13",
+      code: "RE-09",
       label: "Justificativo enviada - Processo de reembolos (solicitar RMA) e assinatura cancelada - está com o produto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2716,7 +2478,7 @@ Customer Support Team`,
     {
       id: "fegMotivoCriseFinanceiraAguardandoRMA",
       category: "reembolso",
-      code: "RE-14",
+      code: "RE-10",
       label: "Motivo crise financeira e aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2774,7 +2536,7 @@ Customer Support Team`,
     {
       id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
       category: "reembolso",
-      code: "RE-16",
+      code: "RE-12",
       label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -3070,7 +2832,7 @@ Customer Support Team`,
     {
       id: "fegReembolsoSemResultadoAguardandoRMA",
       category: "reembolso",
-      code: "RE-07",
+      code: "RE-05",
       label: "Sem resultado, aguardando o RMA",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -3116,7 +2878,7 @@ Customer Support Team`,
     {
       id: "fegTenhoUsadoMasNaoSintoEfeito",
       category: "reembolso",
-      code: "RE-09",
+      code: "RE-07",
       label: "Tenho usado o seu produto, mas não sinto nenhum efeito",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
