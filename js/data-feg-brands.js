@@ -10,7 +10,7 @@
     {
       id: "fegClienteNaoLocalizado",
       category: "geral",
-      code: "G-05",
+      code: "G-06",
       label: "Não localizado",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -260,7 +260,7 @@ Customer Support Team`,
     {
       id: "fegAguardandoRMA",
       category: "geral",
-      code: "G-06",
+      code: "G-05",
       label: "Informe ao cliente que estamos aguardando o RMA para enviar.",
       autoDetect: null,
       pt: `Passando para te atualizar sobre o andamento do seu caso: já solicitamos internamente a Autorização de Devolução (RMA) referente ao seu pedido, e no momento estamos aguardando essa informação para poder te enviar o número do RMA, o endereço de devolução e as demais instruções necessárias para darmos continuidade ao seu reembolso.
