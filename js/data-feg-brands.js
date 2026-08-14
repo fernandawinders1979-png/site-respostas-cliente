@@ -632,42 +632,72 @@ Customer Support Team`,
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "assinatura",
       code: "AS-02",
-      label: "Cancelar assinatura - fale da flexibilidade da assinatura",
+      label: "Não sabia que era assinatura - Opção 1",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente, e a partir de agora estarei acompanhando seu caso pessoalmente.
+Localizei seu pedido em nosso sistema:
 
-Antes de prosseguirmos, quero lembrar que você tem total flexibilidade com a sua assinatura: caso prefira, é possível pausar temporariamente ou pular uma entrega, sem custo algum — assim você não perde seu histórico e pode retomar quando o momento estiver mais favorável.
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Valor Total: US$ {{valorTotal}}
+• Assinatura: Ativa
 
-🌿 E temos um cuidado especial para quem opta pela pausa: ao decidir retomar sua assinatura, você garante 15% de desconto no seu retorno. É a nossa forma de manter sua jornada de bem-estar acessível e de mostrar o quanto valorizamos ter você conosco — sem pressão e no seu tempo.
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente. A partir de agora, vou acompanhar pessoalmente o seu caso.
 
-Mas, claro, a decisão é totalmente sua, e o cancelamento também está disponível a qualquer momento.
+Obrigada por entrar em contato conosco. Entendo sua preocupação ao perceber que sua compra estava vinculada a uma assinatura, especialmente se você esperava que fosse uma compra única.
 
-Se preferir seguir com o cancelamento, sem problema algum: ele será processado imediatamente, sem taxas e sem burocracia, e você não será cobrado(a) novamente. Importante: o cancelamento sempre vale para a próxima renovação, ou seja, envios já processados no ciclo atual não são afetados.
+Antes de simplesmente cancelar, gostaria de oferecer uma alternativa que dê a você mais controle sobre as próximas remessas e, ao mesmo tempo, reduza o valor da sua assinatura.
 
-De qualquer forma, agradecemos sinceramente por ter feito parte da sua jornada de bem-estar até aqui. 💚
+Podemos reduzir a quantidade de frascos enviados em cada ciclo. Com essa alteração, sua assinatura passaria para [X frasco(s)] por mês, com um valor reduzido de US$ [X] por mês, em vez do valor atual de US$ [valor atual].
 
-Fico no aguardo do seu retorno para seguirmos com o que fizer mais sentido para você.
+Dessa forma, você recebe uma quantidade mais adequada à sua necessidade e reduz o compromisso financeiro mensal, mantendo o acesso ao produto caso ainda tenha interesse em continuar utilizando-o.
+
+A nova condição ficaria da seguinte forma:
+Quantidade: [X] frasco(s)
+Valor mensal: US$ [X]
+Economia mensal: US$ [X]
+Próxima cobrança: [Data]
+
+Se essa condição fizer sentido para você, posso solicitar o ajuste da sua assinatura. (RESSALTAR OS BENEFÍCIOS DO PRODUTO)
+
+Caso prefira não manter nenhuma renovação, respeitaremos sua decisão e seguiremos com o cancelamento.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case from now on.
+I located your order in our system:
 
-Before we move forward, I want to remind you that you have full flexibility with your subscription: if you prefer, you can temporarily pause it or skip a delivery, at no cost — that way you don't lose your history and can resume whenever it's a better time for you.
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Total Amount: US$ {{valorTotal}}
+• Subscription: Active
 
-🌿 And we have something special for anyone who chooses to pause: when you decide to resume your subscription, you get a 15% discount on your return. It's our way of keeping your wellness journey accessible and showing how much we value having you with us — no pressure, on your own time.
+My name is {{nomeAgente}} and I'm part of the Customer Support team. From now on, I'll be personally following your case.
 
-But of course, the decision is entirely yours, and cancellation is also available at any time.
+Thank you for reaching out to us. I understand your concern about realizing your purchase was linked to a subscription, especially if you were expecting a one-time purchase.
 
-If you'd still prefer to go ahead with the cancellation, no problem at all: it will be processed immediately, with no fees and no hassle, and you won't be charged again. Important: the cancellation always applies to the next renewal, meaning shipments already processed in the current cycle aren't affected.
+Before simply canceling, I'd like to offer an alternative that gives you more control over upcoming shipments while also reducing the cost of your subscription.
 
-Either way, we sincerely thank you for being part of your wellness journey with us so far. 💚
+We can reduce the number of bottles sent in each cycle. With this change, your subscription would move to [X bottle(s)] per month, with a reduced price of US$ [X] per month, instead of the current price of US$ [current amount].
 
-I'll be looking forward to your reply so we can move forward with whatever makes the most sense for you.
+This way, you receive an amount that better fits your needs and lower your monthly financial commitment, while still keeping access to the product if you're still interested in continuing to use it.
+
+The new terms would be as follows:
+Quantity: [X] bottle(s)
+Monthly amount: US$ [X]
+Monthly savings: US$ [X]
+Next billing date: [Date]
+
+If this works for you, I can request the adjustment to your subscription. (HIGHLIGHT THE PRODUCT'S BENEFITS)
+
+If you'd rather not keep any renewal, we'll respect your decision and proceed with the cancellation.
 
 Best regards,
 {{nomeAgente}}
