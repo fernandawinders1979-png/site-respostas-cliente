@@ -2368,9 +2368,59 @@ Customer Support Team`,
     },
 
     {
-      id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
+      id: "fegCriseFinanceiraOpcao3",
       category: "reembolso",
       code: "RE-09",
+      label: "Crise financeira - Opção 3",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}, tudo bem?
+
+Meu nome é {{nomeAgente}}, sou da equipe de Suporte ao Cliente e serei responsável por cuidar pessoalmente da sua solicitação.
+
+Recebemos seu pedido de cancelamento e entendemos perfeitamente — imprevistos no orçamento acontecem com todos nós, e a última coisa que queremos é que a assinatura pese no seu momento atual. Pode ficar tranquilo(a): vamos resolver do jeito que for melhor para você, sem burocracia.
+
+Antes de efetivar, quero te apresentar algumas alternativas que talvez se encaixem melhor do que o cancelamento definitivo:
+
+1. Pausar a assinatura por até [X] meses — nenhuma cobrança acontece durante a pausa, você mantém seu histórico e suas condições de assinante, e ainda garante 15% de desconto quando decidir retomar. Sem custo, sem compromisso.
+
+2. Espaçar as entregas — se hoje você recebe a cada [30] dias, podemos mudar para a cada [60/90] dias. O valor mensal do seu cuidado cai pela metade (ou mais), sem abrir mão da continuidade.
+
+3. Cancelar — também está disponível, claro. Basta responder com "cancelar" que processo imediatamente, sem taxas, e você não será cobrado(a) novamente. Importante: o cancelamento sempre vale para a próxima renovação, ou seja, envios já processados no ciclo atual não são afetados e seguem o fluxo normal de entrega.
+
+Seja qual for a sua escolha, quero que saiba: sua saúde e seu orçamento vêm primeiro, e as portas estarão sempre abertas para quando o momento melhorar. 💚
+
+Fico no aguardo do seu retorno.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}, how are you?
+
+My name is {{nomeAgente}}, I'm from the Customer Support team and I'll be personally responsible for handling your request.
+
+We received your cancellation request and completely understand — budget surprises happen to all of us, and the last thing we want is for the subscription to weigh on you right now. Don't worry: we'll sort this out in whatever way works best for you, with no hassle.
+
+Before finalizing it, I'd like to share a few alternatives that might fit better than canceling for good:
+
+1. Pause the subscription for up to [X] months — no charges happen during the pause, you keep your history and subscriber terms, and you still get a 15% discount when you decide to resume. No cost, no commitment.
+
+2. Space out deliveries — if you currently receive one every [30] days, we can change it to every [60/90] days. Your monthly cost drops by half (or more), without giving up continuity.
+
+3. Cancel — this is also available, of course. Just reply with "cancel" and I'll process it right away, with no fees, and you won't be charged again. Important: the cancellation always applies to the next renewal, meaning shipments already processed in the current cycle aren't affected and follow their normal delivery flow.
+
+Whatever you choose, please know: your health and your budget come first, and our doors will always be open for whenever things get better. 💚
+
+I'll be looking forward to your reply.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
+      id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
+      category: "reembolso",
+      code: "RE-10",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2562,7 +2612,7 @@ Customer Support Team`,
     {
       id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
       category: "reembolso",
-      code: "RE-10",
+      code: "RE-11",
       label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
