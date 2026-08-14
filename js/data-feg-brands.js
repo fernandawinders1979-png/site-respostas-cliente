@@ -578,7 +578,7 @@ Você pode usar esse número para acompanhar as últimas atualizações e a prev
 
 Vale lembrar que as informações de rastreamento podem levar um pouco de tempo para serem atualizadas assim que a encomenda entra no sistema da transportadora — isso é normal e não indica nenhum problema.
 
-Vou continuar acompanhando esse envio de perto para garantir que dessa vez tudo corra bem. Caso tenha qualquer dúvida ou precise de ajuda adicional em relação à sua entrega, não hesite em responder a este e-mail — terei o maior prazer em ajudar.
+Caso tenha qualquer dúvida ou precise de ajuda adicional em relação à sua entrega, não hesite em responder a este e-mail — terei o maior prazer em ajudar.
 
 Agradeço muito a sua paciência e compreensão durante esse processo.
 
@@ -596,7 +596,7 @@ You can use this number to check the latest updates and estimated delivery date 
 
 Please keep in mind that tracking information can take a little while to update once the package enters the carrier's system — this is normal and doesn't indicate any issue.
 
-I'll keep a close eye on this shipment to make sure everything goes smoothly this time. If you have any questions or need additional help with your delivery, don't hesitate to reply to this email — I'll be more than happy to help.
+If you have any questions or need additional help with your delivery, don't hesitate to reply to this email — I'll be more than happy to help.
 
 Thank you so much for your patience and understanding throughout this process.
 
