@@ -1943,52 +1943,54 @@ Customer Support Team`,
       id: "fegCancelarPedidoAntesEnvio",
       category: "reembolso",
       code: "RE-01",
-      label: "Cancelar o pedido antes do envio",
+      label: "Arrependeu logo após a compra - Opção 1",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e, a partir de agora, serei responsável por acompanhar seu caso.
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente. A partir de agora, vou acompanhar pessoalmente o seu caso.
 
-Localizei seu pedido em nosso sistema:
+Obrigada por explicar que reconsiderou sua compra. Entendo que, mesmo depois de tomar uma decisão, é natural surgir alguma dúvida ou arrependimento.
 
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: Cancelado
+Nós acreditamos muito na qualidade do {{produto}} e nos benefícios que ele pode oferecer quando utilizado de forma consistente e conforme as orientações recomendadas.
 
-O seu pedido FOI CANCELADO antes do envio e o reembolso integral já foi processado para o mesmo método de pagamento utilizado na compra.
+Durante o processo de compra, você teve a oportunidade de conhecer a proposta do produto e, de alguma forma, identificou nela algo que poderia fazer sentido para você. Por isso, antes de simplesmente cancelarmos seu pedido, gostaríamos de fazer valer tanto o tempo que você dedicou para conhecer nossa proposta quanto a confiança que depositou em nós ao realizar a compra.
 
-Dependendo da administradora do seu cartão ou da instituição financeira, o crédito poderá levar alguns dias para aparecer em sua conta ou fatura.
+Posso manter seu pedido ativo e oferecer, excepcionalmente para o seu caso, uma redução de 30% no valor da sua compra.
 
-Se não se importar em compartilhar, gostaria apenas de saber o motivo do cancelamento. Seu feedback é muito importante para nos ajudar a aprimorar nossos produtos e atendimento.
+Seu pedido, que originalmente seria de US$ [valor original], passaria para US$ [novo valor], representando uma economia de US$ [valor do desconto].
 
-Permanecerei acompanhando seu caso até que ele seja totalmente concluído. Se tiver qualquer dúvida ou precisar de qualquer informação adicional, não hesite em responder a este e-mail. Ficarei feliz em continuar ajudando.
+Estamos oferecendo essa condição porque confiamos no produto e gostaríamos que você tivesse a oportunidade de experimentá-lo de forma consistente antes de concluir que sua decisão de compra não valeu a pena.
+
+Você continuará recebendo o mesmo produto e a mesma quantidade adquirida, mas por um valor significativamente menor.
+
+Se aceitar essa condição especial, posso solicitar o ajuste de 30% no valor do seu pedido.
+
+Caso ainda prefira não continuar, respeitaremos sua decisão e seguiremos com sua solicitação.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-My name is {{nomeAgente}}, part of the Customer Support team, and from now on I'll be responsible for following your case.
+My name is {{nomeAgente}} and I'm part of the Customer Support team. From now on, I'll be personally following your case.
 
-I located your order in our system:
+Thank you for explaining that you reconsidered your purchase. I understand that, even after making a decision, it's natural for some doubt or second thoughts to come up.
 
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: Canceled
+We truly believe in the quality of {{produto}} and the benefits it can offer when used consistently and as recommended.
 
-Your order WAS CANCELED before shipping and the full refund has already been processed to the same payment method used for the purchase.
+During the purchase process, you had the opportunity to learn about our product and, in some way, found something in it that made sense to you. That's why, before simply canceling your order, we'd like to honor both the time you spent getting to know our offer and the trust you placed in us by making the purchase.
 
-Depending on your card issuer or financial institution, the credit may take a few days to appear on your account or statement.
+I can keep your order active and offer, as an exception for your case, a 30% reduction on the value of your purchase.
 
-If you don't mind sharing, I'd just like to know the reason for the cancellation. Your feedback is very important to help us improve our products and service.
+Your order, which would originally be US$ [original amount], would become US$ [new amount], representing a savings of US$ [discount amount].
 
-I'll continue following your case until it's fully resolved. If you have any questions or need any additional information, don't hesitate to reply to this email. I'll be happy to keep helping.
+We're offering this condition because we believe in the product and would like you to have the chance to try it consistently before concluding that your purchase decision wasn't worth it.
+
+You'll keep receiving the same product and the same quantity you purchased, just at a significantly lower price.
+
+If you accept this special condition, I can request the 30% adjustment to your order.
+
+If you'd still prefer not to continue, we'll respect your decision and proceed with your request.
 
 Best regards,
 {{nomeAgente}}
