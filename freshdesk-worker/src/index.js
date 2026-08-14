@@ -144,29 +144,26 @@ const DURATION_INITIAL_LOOKBACK_DAYS = 30;
 const RISK_CASE_PREFIX = "riskcase:";
 
 // Campo de contexto do CHAMADO (já listado em CONTEXT_FIELD_LABELS) que
-// registra o desfecho real de um reembolso/chargeback — conferido ao vivo
-// via GET /api/v2/ticket_fields na conta hebevi.freshdesk.com. As listas
-// abaixo vieram da dona do site classificando cada opção real do dropdown
-// (choices) num dos três baldes; qualquer opção fora dessas listas (campo
-// vazio, "Em atendimento", "Aguardando rastreio para reembolso", "Tratativa
-// Pagamerican") significa que o caso ainda está em andamento.
-const REFUND_STATUS_FIELD = "cf_status_do_reembolso";
-const REFUND_STATUS_CHARGEBACK = ["Chargeback"];
+// registra o desfecho real de um reembolso/chargeback. Reconferido ao vivo
+// via GET /api/v2/ticket_fields na conta hebevi.freshdesk.com em 2026-08-14:
+// o campo antigo (cf_status_do_reembolso) foi REMOVIDO da conta e substituído
+// por "Resolução" (cf_resoluo) — a dona do site confirmou que só a opção
+// "Virou Chargeback" conta como chargeback de verdade; qualquer outro
+// desfecho que resolveu o caso (reembolso do pedido, cancelamento de
+// assinatura, não envolveu reembolso/cancelamento, ou dúvida/problema
+// esclarecido) conta como evitado, na mesma lógica já usada antes. Opções
+// fora dessas listas (campo vazio, "Verificando - Ag. Cliente", "Cliente não
+// retornou", "Suporte ativo") significam que o caso ainda está em andamento
+// — "Cliente não retornou" fica como pendente de propósito, não como
+// evitado, já que o cliente sumir não é a mesma coisa que confirmar que não
+// vai abrir uma disputa com o banco.
+const REFUND_STATUS_FIELD = "cf_resoluo";
+const REFUND_STATUS_CHARGEBACK = ["Virou Chargeback"];
 const REFUND_STATUS_EVITADO = [
-  "Não envolve reembolso",
-  "Reembolso revertido",
-  "Reembolso revertido - Cliente sem o produto",
-  "Reembolso 15%",
-  "Reembolso 20%",
-  "Reembolso 25%",
-  "Reembolso 30%",
-  "Reembolso 35%",
-  "Reembolso 50%",
-  "Reembolso 70%",
-  "Reembolso 80%",
-  "Reembolso total [Retendo 15%]",
-  "Reembolso total [Sem retenção]",
-  "Não reembolsado [60d após a compra]",
+  "Reembolso do pedido",
+  "Cancelamento de assinatura",
+  "Não envolve Reemb. ou Cancel.",
+  "Dúvida ou Problema",
 ];
 // Ticket mesclado com outro ou identificado como spam — não é um caso de
 // risco de verdade, então só é descartado da lista de pendentes.
@@ -181,23 +178,35 @@ const DEFAULT_HISTORY_WEEKS = 8;
 const MAX_HISTORY_WEEKS = 26;
 const MAX_RANKING_LIMIT = 20;
 
-// Nomes técnicos reais dos campos personalizados do CHAMADO, conferidos via
-// API em GET /api/v2/ticket_fields na conta hebevi.freshdesk.com.
+// Nomes técnicos reais dos campos personalizados do CHAMADO, reconferidos ao
+// vivo em GET /api/v2/ticket_fields na conta hebevi.freshdesk.com em
+// 2026-08-14 (as propriedades do Freshdesk foram reorganizadas nessa data).
 //
-// "produto" usa cf_slug_da_loja_cartpanda (rótulo real: "#Slug [PAGAMERICAN
-// - PRODUTO]") como fallback: a empresa não usa mais CartPanda desde
-// 2026-07-18 (hoje é PagAmerican + Shopify, ~99% Shopify), então o campo do
-// CONTATO "loja_cartpanda" nunca mais é preenchido. Esse campo do ticket é
-// a única fonte de produto que resta, mas a qualidade é inconsistente (às
-// vezes vem "00" ou o nome do gateway em vez do produto) — combinado com a
-// dona do site usar mesmo assim e corrigir na mão quando vier errado.
+// "produto" agora usa cf_produto (rótulo "Nome do Produto", dropdown com
+// valores limpos: "Bedroom Bundle", "Bedroom Strip", "Beef Organ Complex",
+// "Prime Organ Complex"...) — substitui o antigo cf_slug_da_loja_cartpanda
+// (campo removido da conta, não existe mais em ticket_fields).
 const CUSTOM_FIELD_CANDIDATES = {
   numeroPedido: ["cf_pedido_cart", "cf_nmero_pedido_eagle_labs"],
-  produto: ["cf_slug_da_loja_cartpanda"],
-  status: ["cf_status_pedido_suporte_ativo", "cf_status_do_atendimento"],
+  produto: ["cf_produto"],
+  status: ["cf_status_pedido_suporte_ativo", "cf_status_do_atendimento_suporte_ativo"],
   codigoRastreio: ["cf_rastreio_17track", "cf_novo_nmero_de_rastreio"],
   endereco: ["cf_se_endereo_for_diferente_da_cp_informar_o_correto_aqui"],
 };
+
+// Campo do CHAMADO "Tipo de Compra" (cf_assinatura, dropdown com valores
+// "One time | [OT]" / "Assinatura | [R]"), reconferido ao vivo em
+// 2026-08-14 — permite preencher sozinho o campo Assinatura (Sim/Não) do
+// painel, sem precisar que o atendente marque na mão. Valores fora dessas
+// duas opções (ex: "Verificando - Ag. Cliente", "Cliente não retornou")
+// deixam o campo em branco — não são um "não" nem um "sim" confirmado.
+const TIPO_COMPRA_FIELD = "cf_assinatura";
+function classifyTipoCompra(rawValue) {
+  if (!rawValue) return "";
+  if (rawValue.startsWith("Assinatura")) return "sim";
+  if (rawValue.startsWith("One time")) return "nao";
+  return "";
+}
 
 // Nomes técnicos reais dos campos personalizados do CONTATO, conferidos via
 // API em GET /api/v2/contact_fields. Estes campos só eram preenchidos pela
@@ -217,9 +226,18 @@ const CONTACT_FIELD_CANDIDATES = {
 
 // Campos de contexto extra (dropdowns já usados pelo time para categorizar o
 // chamado), mostrados como tags de leitura no dashboard, quando preenchidos.
+// Reconferidos ao vivo em 2026-08-14: cf_status_do_reembolso foi removido da
+// conta (ver REFUND_STATUS_FIELD) e virou dois campos novos, cf_resoluo e
+// cf_sobre_reverso_total_ou_parcial; os campos de reenvio (cf_motivo_do_reenvio
+// e companhia) são novos, criados junto com a reorganização.
 const CONTEXT_FIELD_LABELS = {
   cf_motivo_do_contato: "Motivo",
-  cf_status_do_reembolso: "Status do reembolso",
+  cf_resoluo: "Resolução",
+  cf_sobre_reverso_total_ou_parcial: "Reversão do reembolso",
+  cf_motivo_do_reenvio: "Motivo do reenvio",
+  cf_quantidade_para_reenvio: "Qtd. para reenvio",
+  cf_produto_a_ser_reenviado: "Produto a reenviar",
+  cf_observao_em_caso_de_reenvio: "Obs. do reenvio",
 };
 
 const MAX_CONVERSATION_CHARS = 15000;
@@ -427,6 +445,7 @@ function buildPayload(ticket, conversations, fullContact, agent) {
     codigoRastreio: pickCustomField(customFields, CUSTOM_FIELD_CANDIDATES.codigoRastreio),
     idioma: (fullContact && fullContact.language) || "",
     motivo: pickCustomField(customFields, ["cf_motivo_do_contato"]),
+    assinatura: classifyTipoCompra(customFields[TIPO_COMPRA_FIELD]),
     tags: [...(ticket.tags || []), ...buildContextTags(customFields)],
     conversationText: buildConversationText(ticket, conversations),
   };
@@ -1150,18 +1169,19 @@ async function handleRiskCasesPending(env) {
 }
 
 /**
- * Classifica o valor do campo "Status do reembolso" (cf_status_do_reembolso)
- * de um ticket num resultado de prevenção. Confirmado ao vivo em GET
- * /api/v2/ticket_fields na conta hebevi.freshdesk.com — a dona do site
- * definiu quais das opções reais do dropdown contam como quê:
- * - "chargeback": só a opção "Chargeback" mesmo.
+ * Classifica o valor do campo "Resolução" (cf_resoluo) de um ticket num
+ * resultado de prevenção. Reconfirmado ao vivo em GET /api/v2/ticket_fields
+ * na conta hebevi.freshdesk.com em 2026-08-14 (o campo antigo,
+ * cf_status_do_reembolso, foi removido da conta) — a dona do site definiu
+ * quais das opções reais do dropdown novo contam como quê:
+ * - "chargeback": só a opção "Virou Chargeback" mesmo.
  * - "evitado": qualquer desfecho que resolveu o caso sem virar chargeback
- *   (não envolveu reembolso, reembolso revertido, qualquer % de reembolso,
- *   ou passou dos 60 dias sem reembolso).
+ *   (reembolso do pedido, cancelamento de assinatura, não envolveu
+ *   reembolso/cancelamento, ou dúvida/problema esclarecido).
  * - "ignorar": ticket mesclado ou spam — não é um caso de risco de verdade,
  *   só é descartado (não soma em nenhum dos dois números).
- * - null: ainda em andamento (campo vazio, "Em atendimento", "Aguardando
- *   rastreio para reembolso", "Tratativa Pagamerican", ou qualquer valor não
+ * - null: ainda em andamento (campo vazio, "Verificando - Ag. Cliente",
+ *   "Cliente não retornou" ou "Suporte ativo", ou qualquer valor não
  *   mapeado) — continua aguardando a próxima sincronização.
  * @param {string} rawValue
  * @returns {"chargeback"|"evitado"|"ignorar"|null}
@@ -1495,12 +1515,12 @@ export default {
       return new Response(null, { headers: corsHeaders() });
     }
 
+    const url = new URL(request.url);
+
     const token = request.headers.get("X-App-Token");
     if (!env.APP_TOKEN || token !== env.APP_TOKEN) {
       return jsonResponse({ error: "Senha de equipe inválida ou ausente." }, 401);
     }
-
-    const url = new URL(request.url);
 
     if (request.method === "POST" && url.pathname === "/risk-event") {
       return handleRiskEvent(request, env);

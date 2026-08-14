@@ -843,8 +843,8 @@ test("/risk-case-start chamado 2x pro mesmo ticket não duplica o caso", async (
   assert.equal(cases[0].valor, 10); // mantém o valor do primeiro registro
 });
 
-// Fetch simulado que responde /api/v2/tickets/{id} com o campo "Status do
-// reembolso" (cf_status_do_reembolso) igual ao mapa passado, por ticketId.
+// Fetch simulado que responde /api/v2/tickets/{id} com o campo "Resolução"
+// (cf_resoluo) igual ao mapa passado, por ticketId.
 function mockRefundStatusFetch(statusByTicketId) {
   return async (url) => {
     const { pathname } = new URL(url);
@@ -852,7 +852,7 @@ function mockRefundStatusFetch(statusByTicketId) {
     if (match) {
       return Response.json({
         id: Number(match[1]),
-        custom_fields: { cf_status_do_reembolso: statusByTicketId[match[1]] ?? null },
+        custom_fields: { cf_resoluo: statusByTicketId[match[1]] ?? null },
       });
     }
     throw new Error("URL inesperada: " + pathname);
@@ -864,7 +864,7 @@ test("/prevention-sync sem senha -> 401", async () => {
   assert.equal(res.status, 401);
 });
 
-test("/prevention-sync: campo 'Chargeback' confirma como chargeback e sai da lista de pendentes", async () => {
+test("/prevention-sync: campo 'Virou Chargeback' confirma como chargeback e sai da lista de pendentes", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
   await worker.fetch(
@@ -872,7 +872,7 @@ test("/prevention-sync: campo 'Chargeback' confirma como chargeback e sai da lis
     testEnv,
   );
 
-  globalThis.fetch = mockRefundStatusFetch({ "70005": "Chargeback" });
+  globalThis.fetch = mockRefundStatusFetch({ "70005": "Virou Chargeback" });
   const syncRes = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
   const syncBody = await syncRes.json();
   assert.equal(syncBody.confirmed, 1);
@@ -889,7 +889,7 @@ test("/prevention-sync: campo 'Chargeback' confirma como chargeback e sai da lis
   assert.equal(weeks.reduce((sum, w) => sum + w.chargeback, 0), 1);
 });
 
-test("/prevention-sync: qualquer opção de reembolso confirma como evitado e soma o valor", async () => {
+test("/prevention-sync: qualquer resolução que não virou chargeback confirma como evitado e soma o valor", async () => {
   const testEnv = { ...env, RISK_STATS: createMockKv() };
   globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
   await worker.fetch(
@@ -897,7 +897,7 @@ test("/prevention-sync: qualquer opção de reembolso confirma como evitado e so
     testEnv,
   );
 
-  globalThis.fetch = mockRefundStatusFetch({ "70004": "Reembolso 30%" });
+  globalThis.fetch = mockRefundStatusFetch({ "70004": "Reembolso do pedido" });
   await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
 
   const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
@@ -925,8 +925,8 @@ test("/prevention-sync: caso ainda em andamento (ou campo vazio) continua penden
     testEnv,
   );
 
-  // 70008 = "Em atendimento" (em andamento), 70009 = sem valor no campo (null)
-  globalThis.fetch = mockRefundStatusFetch({ "70008": "Em atendimento" });
+  // 70008 = "Verificando - Ag. Cliente" (em andamento), 70009 = sem valor no campo (null)
+  globalThis.fetch = mockRefundStatusFetch({ "70008": "Verificando - Ag. Cliente" });
   const syncRes = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
   const syncBody = await syncRes.json();
   assert.equal(syncBody.confirmed, 0);
@@ -934,6 +934,24 @@ test("/prevention-sync: caso ainda em andamento (ou campo vazio) continua penden
 
   const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
   assert.equal((await pendingRes.json()).cases.length, 2);
+});
+
+test("/prevention-sync: 'Cliente não retornou' fica pendente, não conta como evitado", async () => {
+  const testEnv = { ...env, RISK_STATS: createMockKv() };
+  globalThis.fetch = mockTicketGroupFetch(BADROCK_GROUP_ID);
+  await worker.fetch(
+    postReq("/risk-case-start", { ticketId: "70013", valor: 10 }, { "X-App-Token": "senha-correta" }),
+    testEnv,
+  );
+
+  globalThis.fetch = mockRefundStatusFetch({ "70013": "Cliente não retornou" });
+  const syncRes = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
+  const syncBody = await syncRes.json();
+  assert.equal(syncBody.confirmed, 0);
+  assert.equal(syncBody.pending, 1);
+
+  const pendingRes = await worker.fetch(req("/risk-cases-pending", { "X-App-Token": "senha-correta" }), testEnv);
+  assert.equal((await pendingRes.json()).cases.length, 1);
 });
 
 test("/prevention-sync: 'Mesclar'/'Spam' descarta o caso sem contar em nada", async () => {
@@ -990,7 +1008,7 @@ test("/prevention-sync chamado 2x não conta o mesmo caso de novo", async () => 
     testEnv,
   );
 
-  globalThis.fetch = mockRefundStatusFetch({ "70006": "Não envolve reembolso" });
+  globalThis.fetch = mockRefundStatusFetch({ "70006": "Não envolve Reemb. ou Cancel." });
   await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
   const second = await worker.fetch(postReq("/prevention-sync", {}, { "X-App-Token": "senha-correta" }), testEnv);
   assert.equal((await second.json()).confirmed, 0); // já tinha sido confirmado antes
@@ -1111,8 +1129,8 @@ test("busca com sucesso -> pedido sem CartPanda usa o produto do campo do ticket
         description_text: "Produto veio errado",
         custom_fields: {
           cf_pedido_cart: "86788",
-          cf_slug_da_loja_cartpanda: "BadBadRock - Beef Organ Complex",
-          cf_status_do_atendimento: "Respondido [Aguardando cliente]",
+          cf_produto: "Beef Organ Complex",
+          cf_status_do_atendimento_suporte_ativo: "Respondido [Aguardando cliente]",
         },
       });
     }
@@ -1142,6 +1160,112 @@ test("busca com sucesso -> pedido sem CartPanda usa o produto do campo do ticket
   const payload = await res.json();
 
   assert.equal(payload.numeroPedido, "86788");
-  assert.equal(payload.produto, "BadBadRock - Beef Organ Complex");
+  assert.equal(payload.produto, "Beef Organ Complex");
   assert.equal(payload.valorTotal, ""); // sem fonte nenhuma no Freshdesk hoje — fica em branco de propósito
+});
+
+test("busca com sucesso -> Tipo de Compra do ticket preenche Assinatura Sim/Não sozinho", async () => {
+  globalThis.fetch = async (url) => {
+    const { pathname } = new URL(url);
+
+    if (pathname === "/api/v2/tickets/73447") {
+      return Response.json({
+        id: 73447,
+        requester_id: 556,
+        responder_id: null,
+        tags: [],
+        created_at: "2026-08-07T04:33:07Z",
+        description_text: "Comprei sem saber que era assinatura",
+        custom_fields: {
+          cf_pedido_cart: "1335",
+          cf_produto: "Bedroom Bundle",
+          cf_assinatura: "Assinatura | [R]",
+        },
+      });
+    }
+
+    if (pathname === "/api/v2/tickets/73447/conversations") {
+      return Response.json([]);
+    }
+
+    if (pathname === "/api/v2/contacts/556") {
+      return Response.json({ name: "Blaise Accumanno", email: "baccumanno@yahoo.com", custom_fields: {} });
+    }
+
+    throw new Error("URL inesperada: " + pathname);
+  };
+
+  const res = await worker.fetch(req("/ticket/73447", { "X-App-Token": "senha-correta" }), env);
+  assert.equal(res.status, 200);
+  const payload = await res.json();
+
+  assert.equal(payload.assinatura, "sim");
+});
+
+test("busca com sucesso -> Tipo de Compra 'One time' preenche Assinatura como Não", async () => {
+  globalThis.fetch = async (url) => {
+    const { pathname } = new URL(url);
+
+    if (pathname === "/api/v2/tickets/73448") {
+      return Response.json({
+        id: 73448,
+        requester_id: 557,
+        responder_id: null,
+        tags: [],
+        created_at: "2026-08-07T04:33:07Z",
+        description_text: "Pedido único",
+        custom_fields: { cf_pedido_cart: "1336", cf_assinatura: "One time | [OT]" },
+      });
+    }
+
+    if (pathname === "/api/v2/tickets/73448/conversations") {
+      return Response.json([]);
+    }
+
+    if (pathname === "/api/v2/contacts/557") {
+      return Response.json({ name: "Fulano", email: "fulano@exemplo.com", custom_fields: {} });
+    }
+
+    throw new Error("URL inesperada: " + pathname);
+  };
+
+  const res = await worker.fetch(req("/ticket/73448", { "X-App-Token": "senha-correta" }), env);
+  assert.equal(res.status, 200);
+  const payload = await res.json();
+
+  assert.equal(payload.assinatura, "nao");
+});
+
+test("busca com sucesso -> Tipo de Compra ainda em verificação deixa Assinatura em branco", async () => {
+  globalThis.fetch = async (url) => {
+    const { pathname } = new URL(url);
+
+    if (pathname === "/api/v2/tickets/73449") {
+      return Response.json({
+        id: 73449,
+        requester_id: 558,
+        responder_id: null,
+        tags: [],
+        created_at: "2026-08-07T04:33:07Z",
+        description_text: "Caso novo",
+        custom_fields: { cf_pedido_cart: "1337", cf_assinatura: "Verificando - Ag. Cliente" },
+      });
+    }
+
+    if (pathname === "/api/v2/tickets/73449/conversations") {
+      return Response.json([]);
+    }
+
+    if (pathname === "/api/v2/contacts/558") {
+      return Response.json({ name: "Ciclana", email: "ciclana@exemplo.com", custom_fields: {} });
+    }
+
+    throw new Error("URL inesperada: " + pathname);
+  };
+
+  const res = await worker.fetch(req("/ticket/73449", { "X-App-Token": "senha-correta" }), env);
+  assert.equal(res.status, 200);
+  const payload = await res.json();
+
+  assert.equal(payload.assinatura, "");
 });
