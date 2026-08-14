@@ -183,20 +183,23 @@
     pt: { sim: "Sim", nao: "Não" },
     en: { sim: "Yes", nao: "No" },
   };
-  const ASSINATURA_FALLBACK = { pt: "[SIM/NÃO]", en: "[YES/NO]" };
 
   /**
    * Insere a linha "Assinatura: Sim/Não" (ou "Subscription: Yes/No") logo
    * após a última linha "•" do bloco de Detalhes do Pedido/Assinatura,
    * usando o valor selecionado no campo Assinatura do painel de dados do
-   * pedido. Se o texto não tiver nenhum desses blocos (ex: um template sem
-   * dados de pedido), devolve o texto sem alterar.
+   * pedido. Se o campo Assinatura estiver em branco, ou se o texto não
+   * tiver nenhum desses blocos (ex: um template sem dados de pedido),
+   * devolve o texto sem alterar — campos não preenchidos não entram na
+   * mensagem.
    * @param {string} text
    * @param {Object} data
    * @param {"pt"|"en"} lang
    * @returns {string}
    */
   function insertAssinaturaLine(text, data, lang) {
+    if (!data.assinatura) return text;
+
     const lines = text.split("\n");
     const headerIndex = lines.findIndex((line) => ORDER_DETAILS_HEADERS[lang].includes(line.trim()));
     if (headerIndex === -1) return text;
@@ -211,17 +214,55 @@
       insertAt++;
     }
 
-    const label = ASSINATURA_VALUE_LABELS[lang][data.assinatura] || ASSINATURA_FALLBACK[lang];
+    const label = ASSINATURA_VALUE_LABELS[lang][data.assinatura];
     lines.splice(insertAt, 0, `${assinaturaPrefix} ${label}`);
 
     return lines.join("\n");
   }
 
   /**
+   * Remove, dentro do bloco de Detalhes do Pedido/Assinatura, qualquer
+   * linha "•" cujo único conteúdo seja um placeholder {{campo}} ainda não
+   * preenchido no painel de dados do pedido. Linhas com texto fixo (sem
+   * placeholder, ex: "• Assinatura: Ativa") nunca são removidas. Se depois
+   * da limpeza não sobrar nenhuma linha "•", o próprio cabeçalho do bloco
+   * também é removido.
+   * @param {string} text
+   * @param {Object} data
+   * @param {"pt"|"en"} lang
+   * @returns {string}
+   */
+  function stripEmptyOrderDetailLines(text, data, lang) {
+    const lines = text.split("\n");
+    const headerIndex = lines.findIndex((line) => ORDER_DETAILS_HEADERS[lang].includes(line.trim()));
+    if (headerIndex === -1) return text;
+
+    let i = headerIndex + 1;
+    const kept = [];
+    let removedAny = false;
+    while (i < lines.length && lines[i].trim().startsWith("•")) {
+      const keys = [...lines[i].matchAll(/{{(\w+)}}/g)].map((m) => m[1]);
+      const isEmptyField = keys.length > 0 && keys.every((key) => !data[key]);
+      if (isEmptyField) {
+        removedAny = true;
+      } else {
+        kept.push(lines[i]);
+      }
+      i++;
+    }
+    if (!removedAny) return text;
+
+    const before = kept.length === 0 ? lines.slice(0, headerIndex) : lines.slice(0, headerIndex + 1);
+    return [...before, ...kept, ...lines.slice(i)].join("\n");
+  }
+
+  /**
    * Substitui os placeholders {{campo}} de um texto pelos valores do
-   * pedido. Quando o campo está vazio, usa o texto entre colchetes
-   * (ex: [NOME DO CLIENTE]) como indicação para o atendente preencher.
-   * Também insere a linha de Assinatura no bloco de Detalhes do Pedido,
+   * pedido. No bloco de Detalhes do Pedido/Assinatura, campos ainda não
+   * preenchidos não entram na mensagem (a linha inteira é omitida, ver
+   * stripEmptyOrderDetailLines); fora desse bloco, campo vazio usa o texto
+   * entre colchetes (ex: [NOME DO CLIENTE]) como indicação para o
+   * atendente preencher. Também insere a linha de Assinatura no bloco,
    * quando esse bloco existir no template (ver insertAssinaturaLine).
    * @param {string} text
    * @param {Object} data
@@ -230,10 +271,12 @@
    * @returns {string}
    */
   function fillPlaceholders(text, data, fallbacks, lang = "pt") {
-    const filled = text.replace(/{{(\w+)}}/g, (match, key) => {
+    const withoutEmptyLines = stripEmptyOrderDetailLines(text, data, lang);
+    const filled = withoutEmptyLines.replace(/{{(\w+)}}/g, (match, key) => {
       return data[key] || fallbacks[key] || match;
     });
-    return insertAssinaturaLine(filled, data, lang);
+    const withAssinatura = insertAssinaturaLine(filled, data, lang);
+    return withAssinatura.replace(/\n{3,}/g, "\n\n");
   }
 
   const MONTH_NAMES = [
