@@ -2306,9 +2306,71 @@ Customer Support Team`,
     },
 
     {
-      id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
+      id: "fegCriseFinanceiraOpcao2",
       category: "reembolso",
       code: "RE-08",
+      label: "Crise financeira - Opção 2",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Obrigada por compartilhar sua situação conosco. Entendo que, mesmo quando queremos continuar com um produto, algumas despesas precisam ser reorganizadas quando surgem outras prioridades financeiras.
+
+Por isso, antes de cancelar definitivamente sua assinatura, gostaria de oferecer uma alternativa diferente.
+
+Em vez de reduzir o valor do produto, podemos simplesmente retirar essa despesa do seu orçamento pelos próximos [30/60] dias.
+
+Durante esse período, sua assinatura ficará completamente pausada:
+• nenhuma cobrança será realizada;
+• nenhuma nova remessa será enviada;
+• você poderá continuar utilizando os produtos que já possui;
+• sua assinatura permanecerá reservada para quando for um momento mais confortável para você.
+
+Dessa forma, você não precisa escolher entre comprometer seu orçamento agora ou abrir mão definitivamente do produto.
+
+Ao final da pausa, sua assinatura poderá ser retomada em [data]. Antes disso, informaremos as condições da próxima renovação para que você saiba exatamente quando uma nova cobrança ocorrerá.
+
+Esperamos que esse período proporcione um pouco mais de flexibilidade para você organizar suas prioridades sem precisar encerrar sua experiência conosco.
+
+Se essa alternativa ajudar neste momento, posso solicitar a pausa de [30/60] dias para você.
+
+Caso ainda prefira cancelar, respeitaremos sua decisão e seguiremos com a solicitação.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+Thank you for sharing your situation with us. I understand that, even when we want to keep using a product, some expenses need to be reorganized when other financial priorities come up.
+
+That's why, before canceling your subscription for good, I'd like to offer a different alternative.
+
+Instead of reducing the product's price, we can simply remove this expense from your budget for the next [30/60] days.
+
+During this period, your subscription will be fully paused:
+• no charges will be made;
+• no new shipment will be sent;
+• you can keep using the products you already have;
+• your subscription will stay reserved for whenever it's a more comfortable time for you.
+
+This way, you don't have to choose between committing your budget right now or giving up the product for good.
+
+At the end of the pause, your subscription can be resumed on [date]. Before that, we'll let you know the terms of the next renewal so you know exactly when a new charge will happen.
+
+We hope this period gives you a bit more flexibility to organize your priorities without having to end your experience with us.
+
+If this alternative helps at this time, I can request the [30/60]-day pause for you.
+
+If you'd still prefer to cancel, we'll respect your decision and proceed with the request.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
+      id: "fegDevolverCancelarAssinaturaComProdutoSemMotivo",
+      category: "reembolso",
+      code: "RE-09",
       label: "Reembolse o pedido e cancela a assinatura - está com o produto e não fala o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -2500,7 +2562,7 @@ Customer Support Team`,
     {
       id: "fegPrimeiroContatoAssinaturaCanceladaReembolsoPrimeiroPedido",
       category: "reembolso",
-      code: "RE-09",
+      code: "RE-10",
       label: "Quer cancelar, primeiro contato - Assinatura cancelada e Reembolse apenas o primeiro pedido",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
