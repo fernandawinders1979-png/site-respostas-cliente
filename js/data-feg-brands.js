@@ -2435,54 +2435,62 @@ Customer Support Team`,
       id: "fegMotivoCriseFinanceiraAguardandoRMA",
       category: "reembolso",
       code: "RE-07",
-      label: "Motivo crise financeira e aguardando o RMA",
+      label: "Crise financeira - Opção 1",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
 
-Aqui é {{nomeAgente}}, do Suporte ao Cliente. Estarei acompanhando seu caso pessoalmente até a conclusão.
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente. A partir de agora, vou acompanhar pessoalmente o seu caso.
 
-Obrigado(a) por compartilhar sua situação. Sabemos que momentos de reorganização financeira exigem decisões importantes, e queremos tornar esse processo o mais simples possível para você. 💚
+Obrigada por compartilhar sua situação conosco. Entendo que, mesmo quando queremos continuar com um produto, algumas despesas precisam ser reorganizadas quando surgem outras prioridades financeiras.
 
-Detalhes do Pedido
-• Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
-• Produto: {{produto}}
-• Valor Total: \${{valorTotal}}
-• Status Atual: {{status}}
-• Assinatura: Cancelada
+Por isso, antes de cancelar definitivamente sua assinatura, gostaria de oferecer uma alternativa diferente.
 
-✅ Cancelamento confirmado: sua assinatura foi cancelada com sucesso na data de hoje. Você não receberá novas cobranças.
+Em vez de reduzir o valor do produto, podemos simplesmente retirar essa despesa do seu orçamento pelos próximos [30/60] dias.
 
-📦 Devolução e reembolso: já solicitei a Autorização de Devolução (RMA) do seu pedido. Assim que o número for liberado, entrarei em contato com o endereço de devolução e todas as instruções para o envio dos frascos.
+Durante esse período, sua assinatura ficará completamente pausada:
+• nenhuma cobrança será realizada;
+• nenhuma nova remessa será enviada;
+• você poderá continuar utilizando os produtos que já possui;
+• sua assinatura permanecerá reservada para quando for um momento mais confortável para você.
 
-Obrigado(a) pela paciência enquanto resolvemos isso juntos. E saiba que nossas portas estarão sempre abertas — quando sentir que é o momento de retomar sua jornada de bem-estar, será uma alegria recebê-lo(a) de volta. 🌿
+Dessa forma, você não precisa escolher entre comprometer seu orçamento agora ou abrir mão definitivamente do produto.
 
-Qualquer dúvida, é só responder este e-mail.
+Ao final da pausa, sua assinatura poderá ser retomada em [data]. Antes disso, informaremos as condições da próxima renovação para que você saiba exatamente quando uma nova cobrança ocorrerá.
+
+Esperamos que esse período proporcione um pouco mais de flexibilidade para você organizar suas prioridades sem precisar encerrar sua experiência conosco.
+
+Se essa alternativa ajudar neste momento, posso solicitar a pausa de [30/60] dias para você.
+
+Caso ainda prefira cancelar, respeitaremos sua decisão e seguiremos com a solicitação.
 
 Atenciosamente,
 {{nomeAgente}}
 Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
-This is {{nomeAgente}}, from Customer Support. I'll be personally following your case through to its conclusion.
+My name is {{nomeAgente}} and I'm part of the Customer Support team. From now on, I'll be personally following your case.
 
-Thank you for sharing your situation. We know that times of financial reorganization call for important decisions, and we want to make this process as simple as possible for you. 💚
+Thank you for sharing your situation with us. I understand that, even when we want to keep using a product, some expenses need to be reorganized when other financial priorities come up.
 
-Order Details
-• Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
-• Product: {{produto}}
-• Total Amount: \${{valorTotal}}
-• Current Status: {{status}}
-• Subscription: Canceled
+That's why, before canceling your subscription for good, I'd like to offer a different alternative.
 
-✅ Cancellation confirmed: your subscription was successfully canceled as of today. You won't receive any further charges.
+Instead of reducing the product's price, we can simply remove this expense from your budget for the next [30/60] days.
 
-📦 Return and refund: I've already requested the Return Merchandise Authorization (RMA) for your order. As soon as the number is released, I'll reach out with the return address and all the instructions for shipping the bottles.
+During this period, your subscription will be fully paused:
+• no charges will be made;
+• no new shipment will be sent;
+• you can keep using the products you already have;
+• your subscription will stay reserved for whenever it's a more comfortable time for you.
 
-Thank you for your patience while we work this out together. And know that our doors will always be open — whenever you feel it's the right time to resume your wellness journey, it will be a joy to welcome you back. 🌿
+This way, you don't have to choose between committing your budget right now or giving up the product for good.
 
-If you have any questions, just reply to this email.
+At the end of the pause, your subscription can be resumed on [date]. Before that, we'll let you know the terms of the next renewal so you know exactly when a new charge will happen.
+
+We hope this period gives you a bit more flexibility to organize your priorities without having to end your experience with us.
+
+If this alternative helps at this time, I can request the [30/60]-day pause for you.
+
+If you'd still prefer to cancel, we'll respect your decision and proceed with the request.
 
 Best regards,
 {{nomeAgente}}
