@@ -25,7 +25,6 @@
     valorTotal: document.getElementById("order-valor-total"),
     endereco: document.getElementById("order-endereco"),
     status: document.getElementById("order-status"),
-    idioma: document.getElementById("order-idioma"),
     codigoRastreio: document.getElementById("order-codigo-rastreio"),
     linkRastreio: document.getElementById("order-link-rastreio"),
     percentualOferta: document.getElementById("order-percentual-oferta"),

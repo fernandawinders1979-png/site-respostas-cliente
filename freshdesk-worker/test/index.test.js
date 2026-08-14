@@ -1105,7 +1105,6 @@ test("busca com sucesso -> monta payload certo para o dashboard", async () => {
   assert.equal(payload.valorTotal, "49.90");
   assert.equal(payload.codigoRastreio, "BR123456789");
   assert.equal(payload.status, "Pedido retornou");
-  assert.equal(payload.idioma, "pt-BR");
   assert.equal(payload.endereco, "São Paulo, SP");
   assert.equal(payload.motivo, "Sol. Cancelamento - sem pedido ter sido entregue");
   assert.ok(payload.tags.includes("vip"));

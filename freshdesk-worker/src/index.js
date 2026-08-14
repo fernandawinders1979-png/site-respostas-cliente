@@ -443,7 +443,6 @@ function buildPayload(ticket, conversations, fullContact, agent) {
       "",
     status: pickCustomField(customFields, CUSTOM_FIELD_CANDIDATES.status),
     codigoRastreio: pickCustomField(customFields, CUSTOM_FIELD_CANDIDATES.codigoRastreio),
-    idioma: (fullContact && fullContact.language) || "",
     motivo: pickCustomField(customFields, ["cf_motivo_do_contato"]),
     assinatura: classifyTipoCompra(customFields[TIPO_COMPRA_FIELD]),
     tags: [...(ticket.tags || []), ...buildContextTags(customFields)],
