@@ -888,6 +888,8 @@ Customer Support Team`,
 
 Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
 
+Importante: o cancelamento vale a partir da próxima renovação, ou seja, envios já processados no ciclo atual seguem o fluxo normal de entrega e chegarão conforme previsto.
+
 Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — estaremos sempre à disposição para quando desejar adquirir os produtos da nossa empresa, e será um prazer recebê-lo(a) de volta sempre que for o momento certo para você. 💚
 
 Se tiver qualquer dúvida ou precisar de algo mais, estou à disposição — basta responder a este e-mail.
@@ -898,6 +900,8 @@ Equipe de Suporte ao Cliente`,
       en: `Hello, {{nomeCliente}}!
 
 I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+
+Important: the cancellation takes effect starting from the next renewal, meaning any shipments already processed in the current cycle will follow their normal delivery flow and arrive as scheduled.
 
 We hope to have the opportunity to serve you again soon — we'll always be available whenever you wish to purchase our products again, and it will be a pleasure to have you back whenever the time feels right for you. 💚
 
