@@ -503,8 +503,10 @@
    * @param {string} langpair
    * @returns {Promise<string>}
    */
+  const MYMEMORY_CONTACT_EMAIL = "fernandawinders1979@gmail.com";
+
   async function translateChunk(text, langpair = "pt|en") {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langpair}`;
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langpair}&de=${encodeURIComponent(MYMEMORY_CONTACT_EMAIL)}`;
     const response = await fetch(url);
     if (!response.ok) throw new Error("Falha na tradução");
 
