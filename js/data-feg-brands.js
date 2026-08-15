@@ -632,7 +632,7 @@ Customer Support Team`,
       autoDetect: null,
       pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
 
-Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora.
+Confirmo que sua assinatura foi cancelada com sucesso. Você não receberá novos envios ou cobranças automáticas a partir de agora. O cancelamento vale a partir da próxima renovação, ou seja, envios já processados no ciclo atual seguem o fluxo normal de entrega e chegarão conforme previsto.
 
 Esperamos ter a oportunidade de atendê-lo(a) novamente em breve — será um prazer recebê-lo(a) de volta sempre que for o momento certo para você.
 
@@ -643,7 +643,7 @@ Atenciosamente,
 Equipe de Suporte ao Cliente`,
       en: `Thank you for sharing the reason for the cancellation — your feedback is very important to us.
 
-I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on.
+I confirm that your subscription has been successfully canceled. You won't receive any further shipments or automatic charges from now on. The cancellation takes effect starting from the next renewal, meaning any shipments already processed in the current cycle will follow their normal delivery flow and arrive as scheduled.
 
 We hope to have the opportunity to serve you again soon — it will be a pleasure to have you back whenever the time feels right for you.
 
