@@ -989,21 +989,13 @@ Equipe de Suporte ao Cliente`,
 
 This is {{nomeAgente}}, from Customer Support. We received your cancellation request and I'll be personally following your case.
 
-Before we finalize it, could you tell us the reason for the cancellation? To make it easier, just reply with the number of the option that best fits your situation:
+Before we move forward, could you tell us, in your own words, the reason for the cancellation? This information is important so we can direct your request the right way — and, depending on the case, there may be something I can resolve directly for you. Your answer also helps us a lot to improve the wellness experience we offer.
 
-1. Financial difficulty / financial situation
-2. Product didn't work / didn't see results
-3. Side effect or medical advice (doctor didn't approve)
-4. Didn't know it was a recurring subscription
-5. Order placed by mistake or changed my mind
-6. Product different from what was advertised
-7. Didn't receive the product
-8. Just want to cancel, no specific reason
-9. Other reason (please briefly explain if you can)
+In the meantime, I want to remind you that you have full flexibility with your subscription: if you prefer, you can temporarily pause or skip a delivery at no cost. This way, you don't lose your history and can resume whenever the timing is better for you.
 
-Your answer helps us a lot to improve the wellness experience we offer.
+🌿 And we have something special for those who choose to pause: when you decide to resume your subscription, you're guaranteed a 15% discount on your return. It's our way of keeping your wellness journey accessible and showing how much we value having you with us — no pressure, on your own time.
 
-Thank you for being part of your wellness journey with us. 💚
+I'll be looking forward to your reply so we can move forward with your request. 💚
 
 Best regards,
 {{nomeAgente}}
