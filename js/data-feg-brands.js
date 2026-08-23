@@ -1119,23 +1119,29 @@ Customer Support Team`,
       ],
       pt: `Olá, {{nomeCliente}}, tudo bem?
 
-Meu nome é {{nomeAgente}}, sou da equipe de Suporte ao Cliente e serei responsável por cuidar pessoalmente da sua solicitação.
+Meu nome é {{nomeAgente}}, sou da equipe de Suporte ao Cliente e serei responsável por acompanhar pessoalmente a sua solicitação.
 
-Recebemos seu pedido de cancelamento, e antes de tudo quero agradecer pela sinceridade sobre o motivo. Sabemos que quando investimos em um cuidado com a saúde, a expectativa de sentir a diferença é real — e é frustrante quando ela parece não chegar.
+Recebemos seu pedido de cancelamento e, antes de tudo, gostaria de agradecer pela sinceridade ao compartilhar o motivo da sua decisão. Sabemos que, quando investimos em um cuidado com a saúde, a expectativa de sentir uma diferença é real — e pode ser frustrante quando os resultados parecem não aparecer no tempo esperado.
 
-Mas antes de processar, me permite compartilhar uma informação importante?
+Mas antes de processarmos o cancelamento, gostaria de compartilhar uma informação importante com você.
 
-O {{produto}} age de forma gradual e cumulativa no organismo. Por isso, os primeiros resultados costumam aparecer a partir de 8 a 10 semanas de uso contínuo e diário — antes disso, o corpo ainda está em fase de adaptação, e é comum não perceber mudanças, mesmo que elas já estejam acontecendo internamente. É o motivo pelo qual muitos clientes que quase desistiram nas primeiras semanas hoje são os que mais recomendam o produto.
+O Bedroom Bundle atua de forma gradual e cumulativa no organismo. Por isso, os primeiros resultados costumam aparecer a partir de 8 a 10 semanas de uso contínuo e diário. Antes desse período, o corpo ainda pode estar passando pela fase de adaptação, e é comum que algumas pessoas ainda não percebam mudanças, mesmo que o processo já esteja acontecendo internamente.
 
-Pensando nisso, tenho uma proposta sem nenhum risco para você:
+Esse é justamente o motivo pelo qual muitos clientes que pensaram em desistir nas primeiras semanas decidiram continuar e, posteriormente, passaram a recomendar o produto.
 
-🌿 Estendo sua garantia por mais [30] dias, a partir de hoje. Você continua o uso diário, na dose e horário recomendados, e dá ao produto o tempo que ele precisa para agir. Se ao final desse período você ainda não sentir diferença, o cancelamento segue garantido — é só me chamar neste mesmo e-mail.
+Pensando nisso, gostaria de oferecer uma alternativa sem nenhum risco para você:
 
-Ou seja: você não abre mão de nada. Só troca uma decisão tomada cedo demais por uma decisão tomada com o teste completo.
+🌿 Posso estender sua garantia por mais [30] dias a partir de hoje. Você poderá continuar utilizando o produto diariamente, seguindo a dose e o horário recomendados, dando ao seu organismo o tempo necessário para aproveitar melhor os benefícios.
 
-Se ainda assim preferir seguir com o reembolso agora, sem problema algum: responda com "reembolso" que envio as instruções de devolução.
+Caso, ao final desse período adicional, você ainda não perceba diferença, o cancelamento continuará garantido — basta entrar em contato conosco respondendo a este mesmo e-mail.
 
-Estou aqui para o que decidir. 💚
+Ou seja: você não perde nenhum direito. Apenas substitui uma decisão tomada em uma fase inicial por uma decisão baseada em uma experiência mais completa com o produto.
+
+Caso ainda prefira seguir com o cancelamento neste momento, não há problema algum. Respeitamos totalmente sua decisão.
+
+Aguardo o seu retorno para saber como deseja prosseguir.
+
+Estou à disposição para ajudar no que for necessário. 💚
 
 Atenciosamente,
 {{nomeAgente}}
