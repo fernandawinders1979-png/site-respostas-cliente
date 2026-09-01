@@ -340,6 +340,70 @@ Customer Support Team`,
     },
 
     {
+      id: "fegPedidoDanificadoSolicitaFoto",
+      category: "logistica",
+      code: "LG-10",
+      label: "Pedido danificado/quebrado - solicita foto do produto",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Meu nome é {{nomeAgente}}, faço parte da equipe de Suporte ao Cliente e estarei acompanhando seu caso pessoalmente até a conclusão.
+
+Lamento sinceramente saber que seu pedido chegou danificado. Entendo perfeitamente a frustração de aguardar um produto e recebê-lo nessas condições — peço desculpas pelo transtorno.
+
+Localizei seu pedido:
+
+Detalhes do Pedido
+• Número do Pedido: {{numeroPedido}}
+• Data da Compra: {{dataCompra}}
+• Produto: {{produto}}
+• Endereço de Entrega: {{endereco}}
+
+Quero tranquilizá-lo(a): iremos solicitar o reenvio do seu pedido, sem nenhum custo adicional para você.
+
+Para darmos andamento e registrarmos o ocorrido em seu caso, pedimos apenas, por gentileza, que responda a este e-mail anexando:
+
+• Fotos dos produtos danificados;
+• Se possível, uma foto da embalagem/caixa como ela chegou.
+
+Assim que recebermos as fotos, arquivarei tudo no seu caso e solicitarei imediatamente o reenvio, enviando em seguida a confirmação com as novas informações de rastreamento.
+
+Agradecemos pela compreensão e pela oportunidade de corrigir isso. Qualquer dúvida, é só responder este e-mail — ficarei feliz em ajudar.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente`,
+      en: `Hello, {{nomeCliente}}!
+
+My name is {{nomeAgente}}, part of the Customer Support team, and I'll be personally following your case until it's resolved.
+
+I'm truly sorry to hear that your order arrived damaged. I completely understand the frustration of waiting for a product and receiving it in this condition — please accept my apologies for the inconvenience.
+
+I located your order:
+
+Order Details
+• Order Number: {{numeroPedido}}
+• Purchase Date: {{dataCompra}}
+• Product: {{produto}}
+• Shipping Address: {{endereco}}
+
+I want to reassure you: we will request a reshipment of your order, at no additional cost to you.
+
+To move forward and register what happened in your case, we kindly ask that you reply to this email attaching:
+
+• Photos of the damaged products;
+• If possible, a photo of the packaging/box as it arrived.
+
+As soon as we receive the photos, I'll file everything in your case and immediately request the reshipment, then send you the confirmation with the new tracking information.
+
+Thank you for your understanding and for the opportunity to make this right. If you have any questions, just reply to this email — I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+Customer Support Team`,
+    },
+
+    {
       id: "fegEnderecoInsuficiente",
       category: "logistica",
       code: "LG-05",
