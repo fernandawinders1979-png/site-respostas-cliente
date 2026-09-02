@@ -730,10 +730,8 @@ Localizei seu pedido em nosso sistema:
 
 Detalhes do Pedido
 • Número do Pedido: {{numeroPedido}}
-• Data da Compra: {{dataCompra}}
 • Produto: {{produto}}
-• Valor Total: US$ {{valorTotal}}
-• Assinatura: Ativa
+• Assinatura: Ativa ([mensal/bimestral/trimestral])
 
 Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente. A partir de agora, vou acompanhar pessoalmente o seu caso.
 
@@ -741,14 +739,13 @@ Obrigada por entrar em contato conosco. Entendo sua preocupação ao perceber qu
 
 Antes de simplesmente cancelar, gostaria de oferecer uma alternativa que dê a você mais controle sobre as próximas remessas e, ao mesmo tempo, reduza o valor da sua assinatura.
 
-Podemos reduzir a quantidade de frascos enviados em cada ciclo. Com essa alteração, sua assinatura passaria para [X frasco(s)] por mês, com um valor reduzido de US$ [X] por mês, em vez do valor atual de US$ [valor atual].
+Podemos reduzir a quantidade de frascos enviados em cada ciclo. Com essa alteração, sua assinatura passaria para [X frasco(s)] de {{produto}} por [mensal/bimestral/trimestral], com um valor reduzido de US$ [X] a cada [mensal/bimestral/trimestral], em vez do valor atual de US$ [valor atual].
 
-Dessa forma, você recebe uma quantidade mais adequada à sua necessidade e reduz o compromisso financeiro mensal, mantendo o acesso ao produto caso ainda tenha interesse em continuar utilizando-o.
+Dessa forma, você recebe uma quantidade mais adequada à sua necessidade e reduz o compromisso financeiro [mensal/bimestral/trimestral], mantendo o acesso ao produto caso ainda tenha interesse em continuar utilizando-o.
 
 A nova condição ficaria da seguinte forma:
 Quantidade: [X] frasco(s)
-Valor mensal: US$ [X]
-Economia mensal: US$ [X]
+Valor [mensal/bimestral/trimestral]: US$ [X]
 Próxima cobrança: [Data]
 
 Se essa condição fizer sentido para você, posso solicitar o ajuste da sua assinatura. (RESSALTAR OS BENEFÍCIOS DO PRODUTO)
@@ -764,10 +761,8 @@ I located your order in our system:
 
 Order Details
 • Order Number: {{numeroPedido}}
-• Purchase Date: {{dataCompra}}
 • Product: {{produto}}
-• Total Amount: US$ {{valorTotal}}
-• Subscription: Active
+• Subscription: Active ([monthly/bimonthly/quarterly])
 
 My name is {{nomeAgente}} and I'm part of the Customer Support team. From now on, I'll be personally following your case.
 
@@ -775,14 +770,13 @@ Thank you for reaching out to us. I understand your concern about realizing your
 
 Before simply canceling, I'd like to offer an alternative that gives you more control over upcoming shipments while also reducing the cost of your subscription.
 
-We can reduce the number of bottles sent in each cycle. With this change, your subscription would move to [X bottle(s)] per month, with a reduced price of US$ [X] per month, instead of the current price of US$ [current amount].
+We can reduce the number of bottles sent in each cycle. With this change, your subscription would move to [X bottle(s)] of {{produto}} per [monthly/bimonthly/quarterly] cycle, with a reduced price of US$ [X] per [monthly/bimonthly/quarterly] cycle, instead of the current price of US$ [current amount].
 
-This way, you receive an amount that better fits your needs and lower your monthly financial commitment, while still keeping access to the product if you're still interested in continuing to use it.
+This way, you receive an amount that better fits your needs and lower your [monthly/bimonthly/quarterly] financial commitment, while still keeping access to the product if you're still interested in continuing to use it.
 
 The new terms would be as follows:
 Quantity: [X] bottle(s)
-Monthly amount: US$ [X]
-Monthly savings: US$ [X]
+[Monthly/Bimonthly/Quarterly] amount: US$ [X]
 Next billing date: [Date]
 
 If this works for you, I can request the adjustment to your subscription. (HIGHLIGHT THE PRODUCT'S BENEFITS)
