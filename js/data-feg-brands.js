@@ -56,6 +56,56 @@ Customer Support Team`,
     },
 
     {
+      id: "fegClienteNaoRecebeuEbooks",
+      category: "geral",
+      code: "G-07",
+      label: "Cliente não recebeu os ebooks",
+      autoDetect: [
+        "não recebi os ebooks", "não recebi o ebook", "não recebi os e-books",
+        "não recebi o e-book", "itens gratuitos", "bônus não chegou",
+        "não recebi os bônus", "não recebi os itens gratuitos",
+      ],
+      pt: `Olá, {{nomeCliente}},
+
+Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente da BadRock. Estarei acompanhando pessoalmente sua solicitação.
+
+Peço desculpas pelo transtorno em relação aos cinco itens gratuitos. Verifiquei as informações e o e-mail de acesso aos produtos foi enviado no mesmo dia em que sua compra foi realizada.
+
+Por gentileza, verifique também a sua caixa de spam ou lixo eletrônico, pois é possível que a mensagem tenha sido direcionada para uma dessas pastas.
+
+Para facilitar o acesso, estou enviando o link abaixo. Basta acessar utilizando o mesmo endereço de e-mail utilizado para realizar a compra:
+
+[LINK DE ACESSO AOS ITENS GRATUITOS]
+
+Em relação à sua solicitação sobre futuras cobranças, entendemos sua preocupação e estamos à disposição para auxiliá-la.
+
+Caso tenha qualquer dificuldade para acessar os materiais, basta responder a este e-mail e terei prazer em ajudá-la.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente BadRock`,
+      en: `Hello, {{nomeCliente}},
+
+My name is {{nomeAgente}} and I'm part of the BadRock Customer Support Team. I'll be personally following up on your request.
+
+I apologize for the inconvenience regarding the five free items. I checked the information and the access email for the products was sent on the same day your purchase was made.
+
+Please also check your spam or junk folder, as the message may have been directed to one of these folders.
+
+To make access easier, I'm sending the link below. Just access it using the same email address used to make your purchase:
+
+[LINK TO ACCESS THE FREE ITEMS]
+
+Regarding your inquiry about future charges, we understand your concern and are available to help.
+
+If you have any difficulty accessing the materials, just reply to this email and I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+BadRock Customer Support Team`,
+    },
+
+    {
       id: "fegComoPossoAjudar",
       category: "geral",
       code: "G-01",
