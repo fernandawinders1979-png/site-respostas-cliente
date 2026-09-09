@@ -770,7 +770,7 @@ Customer Support Team`,
 
     {
       id: "fegAssinaturaCanceladaPrimeiroContato",
-      category: "assinatura",
+      category: "naoUtilizadosNoMomento",
       code: "AS-01",
       label: "Não sabia que era assinatura - Opção 1",
       autoDetect: null,
@@ -840,7 +840,7 @@ Customer Support Team`,
 
     {
       id: "fegNaoSabiaEraAssinaturaOpcao2",
-      category: "assinatura",
+      category: "naoUtilizadosNoMomento",
       code: "AS-02",
       label: "Não sabia que era assinatura - Opção 2 (caso não aceite a Opção 1)",
       autoDetect: null,
@@ -892,7 +892,7 @@ Customer Support Team`,
 
     {
       id: "fegNaoSabiaEraAssinaturaOpcao3",
-      category: "assinatura",
+      category: "naoUtilizadosNoMomento",
       code: "AS-03",
       label: "Não sabia que era assinatura - Opção 3",
       autoDetect: null,
@@ -2934,6 +2934,7 @@ Customer Support Team`,
     { id: "garantiaVencida", label: "Garantia vencida", color: "#ff2e88" },
     { id: "modoDeUso", label: "Modo de Uso", color: "#00e0c6" },
     { id: "chargeback", label: "Chargeback", color: "#e100ff" },
+    { id: "naoUtilizadosNoMomento", label: "Templates Não Utilizados no Momento", color: "#888888" },
   ];
 
   const CATEGORY_GROUPS = [];
