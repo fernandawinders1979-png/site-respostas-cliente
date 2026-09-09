@@ -739,6 +739,272 @@ Customer Support Team`,
     },
 
     {
+      id: "fegAssinaturaPedidoNaoEnviadoPerguntaMotivo",
+      category: "assinatura",
+      code: "AS-09",
+      label: "Cancelar assinatura, pedido não enviado e pergunte o motivo",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Obrigada por entrar em contato. Meu nome é {{nomeAgente}}, da Equipe de Suporte ao Cliente da BadRock, e eu mesma(o) irei ajudá-lo(a) com sua solicitação para garantir que tudo seja resolvido da maneira correta.
+
+Primeiramente, quero assegurar-lhe que sua assinatura já foi pausada, impedindo quaisquer renovações automáticas adicionais enquanto analisamos sua solicitação.
+
+Analisei seu histórico de pedidos e constatei que sua compra original foi o pedido nº {{numeroPedido}}, realizado em {{dataCompra}}, no valor de US$ {{valorTotal}}, referente ao {{produto}}. Este pedido foi incluído em uma assinatura com renovação [mensal/bimestral/trimestral].
+
+Por esse motivo, após o ciclo inicial de [X] [meses/bimestres/trimestres], o sistema gerou automaticamente o pedido nº [Número do Novo Pedido] em [Data do Novo Pedido], também no valor de US$ {{valorTotal}}. Este pedido já está marcado como pago e aguarda processamento/envio.
+
+Fique tranquilo(a). Analisaremos cuidadosamente sua solicitação e o(a) ajudaremos a resolver essa situação.
+
+Antes de finalizarmos tudo, gostaria de entender melhor sua experiência: o que te levou a querer cancelar a assinatura? Você conseguiu usar os produtos do seu primeiro pedido? Se sim, como foi sua experiência e o que achou dos resultados?
+
+Essas informações nos ajudarão a entender melhor o que aconteceu e a determinar a solução mais adequada para o seu caso.
+
+Continuarei acompanhando pessoalmente sua solicitação até que ela seja resolvida. Você pode simplesmente responder a este mesmo e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente da BadRock`,
+      en: `Hello, {{nomeCliente}}!
+
+Thank you for reaching out. My name is {{nomeAgente}}, from BadRock's Customer Support Team, and I'll personally be helping you with your request to make sure everything is handled correctly.
+
+First of all, I want to assure you that your subscription has already been paused, preventing any further automatic renewals while we review your request.
+
+I checked your order history and found that your original purchase was order #{{numeroPedido}}, placed on {{dataCompra}}, for US$ {{valorTotal}}, for {{produto}}. This order was included in a subscription with a [monthly/bimonthly/quarterly] renewal.
+
+Because of this, after the initial [X] [month/bimonthly/quarterly] cycle, the system automatically generated order #[New Order Number] on [New Order Date], also for US$ {{valorTotal}}. This order is already marked as paid and awaiting processing/shipment.
+
+Please be assured that we'll carefully review your request and help you resolve this situation.
+
+Before we finalize everything, I'd like to better understand your experience: what led you to want to cancel the subscription? Were you able to use the products from your first order? If so, how was your experience and what did you think of the results?
+
+This information will help us better understand what happened and determine the best solution for your case.
+
+I'll continue personally following up on your request until it's resolved. You can simply reply to this same email.
+
+Best regards,
+{{nomeAgente}}
+BadRock Customer Support Team`,
+    },
+
+    {
+      id: "fegAssinaturaMotivoFinanceiroDesconto",
+      category: "assinatura",
+      code: "AS-10",
+      label: "Cancelar assinatura por motivo financeiro - primeiro contato - oferece desconto",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}},
+
+Obrigada por entrar em contato. Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente da BadRock. Vou acompanhar pessoalmente sua solicitação.
+
+Entendo que o custo da assinatura pode não caber mais no seu orçamento e agradeço por explicar o motivo do cancelamento.
+
+Analisei seu histórico de pedidos e encontrei sua compra original, pedido nº {{numeroPedido}}, realizada em {{dataCompra}}, referente ao {{produto}}, no valor total de US$ {{valorTotal}}. Este pedido foi entregue pela UPS em [Data de Entrega].
+
+A compra foi incluída em uma assinatura que se renova a cada [mensal/bimestral/trimestral]. Por esse motivo, o sistema gerou automaticamente o pedido nº [Número do Novo Pedido] em [Data de Renovação], também no valor de US$ {{valorTotal}}.
+
+Como o principal motivo do seu pedido de cancelamento é financeiro, antes de finalizarmos a sua solicitação, gostaria de lhe oferecer uma alternativa: posso aplicar um desconto de 20% na sua assinatura, reduzindo o custo de US$ {{valorTotal}} para US$ [Valor com Desconto] a cada [mensal/bimestral/trimestral], mantendo a mesma quantidade de produtos e o frete grátis.
+
+Isso permitiria que você continuasse usando o BADROCK™ a um custo menor.
+
+Se este novo preço for mais conveniente para você, basta me avisar e eu prosseguirei com essa opção. Caso ainda prefira cancelar, por favor, me avise também para que possamos dar prosseguimento à sua solicitação.
+
+Além disso, você conseguiu usar os produtos do seu primeiro pedido? Se sim, eu gostaria muito de saber sobre sua experiência e o que você achou dos resultados até agora.
+
+Continuarei acompanhando pessoalmente o seu caso até que seja resolvido. Basta responder a este mesmo e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente da BadRock`,
+      en: `Hello, {{nomeCliente}},
+
+Thank you for reaching out. My name is {{nomeAgente}} and I'm part of BadRock's Customer Support Team. I'll be personally following up on your request.
+
+I understand that the subscription cost may no longer fit your budget, and I appreciate you explaining the reason for the cancellation.
+
+I checked your order history and found your original purchase, order #{{numeroPedido}}, placed on {{dataCompra}}, for {{produto}}, with a total value of US$ {{valorTotal}}. This order was delivered by UPS on [Delivery Date].
+
+The purchase was included in a subscription that renews every [month/two months/quarter]. Because of this, the system automatically generated order #[New Order Number] on [Renewal Date], also for US$ {{valorTotal}}.
+
+Since the main reason for your cancellation request is financial, before we finalize your request, I'd like to offer you an alternative: I can apply a 20% discount to your subscription, reducing the cost from US$ {{valorTotal}} to US$ [Discounted Value] every [month/two months/quarter], while keeping the same product quantity and free shipping.
+
+This would allow you to keep using BADROCK™ at a lower cost.
+
+If this new price works better for you, just let me know and I'll proceed with this option. If you'd still prefer to cancel, please let me know as well so we can move forward with your request.
+
+Also, were you able to use the products from your first order? If so, I'd love to hear about your experience and what you thought of the results so far.
+
+I'll continue personally following up on your case until it's resolved. Just reply to this same email.
+
+Best regards,
+{{nomeAgente}}
+BadRock Customer Support Team`,
+    },
+
+    {
+      id: "fegAssinaturaPrimeiroPedidoSemRastreioDescontoMotivo",
+      category: "assinatura",
+      code: "AS-11",
+      label: "Cancelar assinatura, primeiro pedido e sem o código de rastreio, oferece desconto e pergunte o motivo",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}},
+
+Obrigada por entrar em contato. Meu nome é {{nomeAgente}}, faço parte da Equipe de Suporte ao Cliente da BadRock e estarei acompanhando pessoalmente sua solicitação.
+
+Primeiramente, gostaria de tranquilizá-lo(a) de que sua assinatura já foi pausada, impedindo novas renovações automáticas enquanto analisamos sua solicitação.
+
+Verifiquei seu histórico e confirmei que sua compra original foi o Pedido nº {{numeroPedido}}, realizado em {{dataCompra}}, no valor de US$ {{valorTotal}}, referente ao {{produto}}, incluído em uma assinatura com renovação [mensal/bimestral/trimestral].
+
+Seu pedido já está em processo de envio. Por isso, gostaria de sugerir que aguarde o recebimento, experimente o produto e avalie sua experiência. Caso ainda queira cancelar depois, basta entrar em contato conosco por e-mail e iremos auxiliá-lo(a).
+
+Para que possamos entender melhor sua situação, o que levou você a querer cancelar sua assinatura?
+
+Além disso, para que você não perca essa oportunidade, também posso oferecer um desconto de 20% na sua assinatura, reduzindo o valor de US$ {{valorTotal}} para US$ [Valor com Desconto] a cada [mensal/bimestral/trimestral], mantendo a mesma quantidade de produtos e o frete grátis.
+
+Além disso, você conta com uma garantia de satisfação de 90 dias, permitindo que experimente o produto com calma e avalie se ele é adequado para você.
+
+Se essa condição for conveniente, basta me informar e farei o ajuste. Caso ainda prefira cancelar, respeitaremos sua decisão e daremos continuidade à solicitação.
+
+Aguardo seu retorno.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente BadRock`,
+      en: `Hello, {{nomeCliente}},
+
+Thank you for reaching out. My name is {{nomeAgente}}, I'm part of BadRock's Customer Support Team, and I'll be personally following up on your request.
+
+First of all, I'd like to reassure you that your subscription has already been paused, preventing any new automatic renewals while we review your request.
+
+I checked your history and confirmed that your original purchase was order #{{numeroPedido}}, placed on {{dataCompra}}, for US$ {{valorTotal}}, for {{produto}}, included in a subscription with a [monthly/bimonthly/quarterly] renewal.
+
+Your order is already in the shipping process. Because of this, I'd like to suggest that you wait to receive it, try the product, and evaluate your experience. If you'd still like to cancel afterward, just reach out to us by email and we'll be glad to help.
+
+To help us better understand your situation, what led you to want to cancel your subscription?
+
+Also, so you don't miss this opportunity, I can also offer a 20% discount on your subscription, reducing the price from US$ {{valorTotal}} to US$ [Discounted Value] every [month/two months/quarter], while keeping the same product quantity and free shipping.
+
+In addition, you have a 90-day satisfaction guarantee, so you can try the product at your own pace and decide if it's right for you.
+
+If this works for you, just let me know and I'll make the adjustment. If you'd still prefer to cancel, we'll respect your decision and move forward with the request.
+
+I'll be looking forward to your reply.
+
+Best regards,
+{{nomeAgente}}
+BadRock Customer Support Team`,
+    },
+
+    {
+      id: "fegAssinaturaNaoRecebeuEbooks",
+      category: "assinatura",
+      code: "AS-12",
+      label: "Cancelar assinatura pois não recebeu os ebooks",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}. Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente da BadRock. Estarei acompanhando pessoalmente sua solicitação.
+
+Peço desculpas pelo transtorno em relação aos cinco itens gratuitos. Verifiquei as informações e o e-mail de acesso foi enviado no mesmo dia em que sua compra foi realizada.
+
+Por gentileza, verifique também sua pasta de Spam/Lixo Eletrônico, pois é possível que o e-mail tenha sido direcionado para lá.
+
+Para facilitar, também estou disponibilizando o link de acesso abaixo. Basta utilizar o mesmo endereço de e-mail utilizado no momento da compra:
+
+Acessar seus itens gratuitos: [LINK DE ACESSO AOS ITENS GRATUITOS]
+
+Em relação à sua solicitação sobre futuras cobranças, entendemos sua preocupação e teremos prazer em ajudá-lo(a) com sua conta.
+
+Caso tenha qualquer dificuldade para acessar os materiais, basta responder a este e-mail e ficarei feliz em ajudá-lo(a).
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente BadRock`,
+      en: `Hello, {{nomeCliente}}. My name is {{nomeAgente}} and I'm part of BadRock's Customer Support Team. I'll be personally following up on your request.
+
+I apologize for the inconvenience regarding the five free items. I checked the information and the access email was sent on the same day your purchase was made.
+
+Please also check your Spam/Junk folder, as the email may have been directed there.
+
+To make things easier, I'm also providing the access link below. Just use the same email address used at the time of purchase:
+
+Access your free items: [LINK TO ACCESS THE FREE ITEMS]
+
+Regarding your inquiry about future charges, we understand your concern and will be happy to help you with your account.
+
+If you have any difficulty accessing the materials, just reply to this email and I'll be happy to help.
+
+Best regards,
+{{nomeAgente}}
+BadRock Customer Support Team`,
+    },
+
+    {
+      id: "fegAssinaturaComRastreioSemMotivo",
+      category: "assinatura",
+      code: "AS-13",
+      label: "Cancelar a assinatura sem falar o motivo, o pedido da assinatura com código de rastreio",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}},
+
+Obrigada por entrar em contato. Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente da BadRock. Estarei acompanhando pessoalmente sua solicitação para garantir que tudo seja tratado da melhor maneira possível.
+
+Primeiramente, gostaria de tranquilizá-lo(a) de que sua assinatura já foi pausada, impedindo quaisquer novas renovações automáticas enquanto analisamos sua solicitação.
+
+Verifiquei seu histórico de pedidos e confirmei que sua compra original foi o Pedido nº {{numeroPedido}}, realizado em {{dataCompra}}, no valor de US$ {{valorTotal}}, referente ao {{produto}}. Esse pedido foi incluído em uma assinatura com renovação [mensal/bimestral/trimestral].
+
+Por esse motivo, após o ciclo inicial de [X] [meses/bimestres/trimestres], o sistema gerou automaticamente o Pedido nº [Número do Novo Pedido] em [Data do Novo Pedido], também no valor de US$ {{valorTotal}}. Esse pedido já está marcado como pago.
+
+As informações de rastreamento do seu envio são:
+
+Código de rastreio: {{codigoRastreio}}
+
+Link para rastreamento: {{linkRastreio}}
+
+Você pode utilizar essas informações para acompanhar o andamento da sua entrega.
+
+Fique tranquilo(a). Analisaremos cuidadosamente sua solicitação e faremos o possível para ajudá-lo(a) a resolver essa situação.
+
+Antes de finalizarmos tudo, gostaria de entender melhor sua experiência: o que levou você a querer cancelar sua assinatura? Você conseguiu utilizar os produtos do seu primeiro pedido? Se sim, como foi sua experiência e o que achou dos resultados?
+
+Essas informações nos ajudarão a compreender melhor o que aconteceu e a determinar a solução mais adequada para o seu caso.
+
+Continuarei acompanhando pessoalmente sua solicitação até que ela seja resolvida. Você pode simplesmente responder a este mesmo e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente BadRock`,
+      en: `Hello, {{nomeCliente}},
+
+Thank you for reaching out. My name is {{nomeAgente}} and I'm part of BadRock's Customer Support Team. I'll be personally following up on your request to make sure everything is handled in the best possible way.
+
+First of all, I'd like to reassure you that your subscription has already been paused, preventing any new automatic renewals while we review your request.
+
+I checked your order history and confirmed that your original purchase was order #{{numeroPedido}}, placed on {{dataCompra}}, for US$ {{valorTotal}}, for {{produto}}. This order was included in a subscription with a [monthly/bimonthly/quarterly] renewal.
+
+Because of this, after the initial [X] [month/bimonthly/quarterly] cycle, the system automatically generated order #[New Order Number] on [New Order Date], also for US$ {{valorTotal}}. This order is already marked as paid.
+
+Your shipment's tracking information is:
+
+Tracking number: {{codigoRastreio}}
+
+Tracking link: {{linkRastreio}}
+
+You can use this information to follow the progress of your delivery.
+
+Please be assured that we'll carefully review your request and do everything possible to help you resolve this situation.
+
+Before we finalize everything, I'd like to better understand your experience: what led you to want to cancel your subscription? Were you able to use the products from your first order? If so, how was your experience and what did you think of the results?
+
+This information will help us better understand what happened and determine the best solution for your case.
+
+I'll continue personally following up on your request until it's resolved. You can simply reply to this same email.
+
+Best regards,
+{{nomeAgente}}
+BadRock Customer Support Team`,
+    },
+
+    {
       id: "fegAssinaturaCanceladaSucesso",
       category: "assinatura",
       code: "AS-06",
