@@ -741,7 +741,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaPedidoNaoEnviadoPerguntaMotivo",
       category: "assinatura",
-      code: "AS-09",
+      code: "AS-07",
       label: "Cancelar assinatura, pedido não enviado e pergunte o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -791,7 +791,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaMotivoFinanceiroDesconto",
       category: "assinatura",
-      code: "AS-10",
+      code: "AS-08",
       label: "Cancelar assinatura por motivo financeiro - primeiro contato - oferece desconto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}},
@@ -845,7 +845,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaPrimeiroPedidoSemRastreioDescontoMotivo",
       category: "assinatura",
-      code: "AS-11",
+      code: "AS-09",
       label: "Cancelar assinatura, primeiro pedido e sem o código de rastreio, oferece desconto e pergunte o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}},
@@ -899,7 +899,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaNaoRecebeuEbooks",
       category: "assinatura",
-      code: "AS-12",
+      code: "AS-10",
       label: "Cancelar assinatura pois não recebeu os ebooks",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}. Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente da BadRock. Estarei acompanhando pessoalmente sua solicitação.
@@ -941,7 +941,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaComRastreioSemMotivo",
       category: "assinatura",
-      code: "AS-13",
+      code: "AS-11",
       label: "Cancelar a assinatura sem falar o motivo, o pedido da assinatura com código de rastreio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}},
@@ -1007,7 +1007,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSucesso",
       category: "assinatura",
-      code: "AS-06",
+      code: "AS-12",
       label: "Assinatura cancelada - cliente respondeu falando o motivo",
       autoDetect: null,
       pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
@@ -1217,7 +1217,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaMotivoSemResultados",
       category: "assinatura",
-      code: "AS-07",
+      code: "AS-13",
       label: "Assinatura já foi cancelada - motivo sem resultados",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1255,7 +1255,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSemMotivo",
       category: "assinatura",
-      code: "AS-08",
+      code: "AS-14",
       label: "Cancelada, cliente respondeu e não quis falar o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1374,6 +1374,52 @@ I'll be looking forward to your reply so we can move forward with your request. 
 Best regards,
 {{nomeAgente}}
 Customer Support Team`,
+    },
+
+    {
+      id: "fegCancelarAssinaturaPausadaPerguntaMotivo",
+      category: "assinatura",
+      code: "AS-06",
+      label: "Cancelar Assinatura",
+      autoDetect: null,
+      pt: `Olá, {{nomeCliente}}!
+
+Obrigada por entrar em contato. Meu nome é {{nomeAgente}}, e faço parte da Equipe de Suporte ao Cliente da BadRock. Estarei acompanhando pessoalmente sua solicitação para garantir que tudo seja tratado da maneira correta.
+
+Primeiramente, gostaria de tranquilizá-lo(a) de que sua assinatura já foi pausada, impedindo quaisquer renovações automáticas adicionais enquanto analisamos sua solicitação.
+
+Analisei seu histórico de pedidos e confirmei que sua compra original foi o Pedido nº {{numeroPedido}}, realizado em {{dataCompra}}, no valor de US$ {{valorTotal}}, referente ao {{produto}}. Este pedido foi incluído em uma assinatura com renovação [frequência da assinatura].
+
+Fique tranquilo(a). Analisaremos cuidadosamente sua solicitação e o(a) ajudaremos a resolver essa situação.
+
+Antes de finalizarmos tudo, gostaria de entender melhor sua experiência: o que levou você a querer cancelar sua assinatura? Você conseguiu utilizar os produtos do seu primeiro pedido? Se sim, como foi sua experiência e o que achou dos resultados?
+
+Essas informações nos ajudarão a entender melhor o que aconteceu e a determinar a solução mais adequada para o seu caso.
+
+Continuarei acompanhando pessoalmente sua solicitação até que ela seja resolvida. Você pode simplesmente responder a este mesmo e-mail.
+
+Atenciosamente,
+{{nomeAgente}}
+Equipe de Suporte ao Cliente da BadRock`,
+      en: `Hello, {{nomeCliente}}!
+
+Thank you for reaching out. My name is {{nomeAgente}}, and I'm part of BadRock's Customer Support Team. I'll be personally following your request to make sure everything is handled the right way.
+
+First, I'd like to reassure you that your subscription has already been paused, preventing any additional automatic renewals while we review your request.
+
+I reviewed your order history and confirmed that your original purchase was Order #{{numeroPedido}}, placed on {{dataCompra}}, in the amount of US$ {{valorTotal}}, for {{produto}}. This order was included in a subscription with a [subscription renewal frequency] renewal.
+
+Rest assured, we'll carefully review your request and help you resolve this situation.
+
+Before we finalize everything, I'd like to better understand your experience: what led you to want to cancel your subscription? Were you able to use the products from your first order? If so, how was your experience and what did you think of the results?
+
+This information will help us better understand what happened and determine the most suitable solution for your case.
+
+I'll continue personally following your request until it's resolved. You can simply reply to this same email.
+
+Best regards,
+{{nomeAgente}}
+BadRock Customer Support Team`,
     },
 
     {
