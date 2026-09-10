@@ -741,7 +741,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaPedidoNaoEnviadoPerguntaMotivo",
       category: "assinatura",
-      code: "AS-07",
+      code: "AS-04",
       label: "Cancelar assinatura, pedido não enviado e pergunte o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -791,7 +791,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaMotivoFinanceiroDesconto",
       category: "assinatura",
-      code: "AS-08",
+      code: "AS-05",
       label: "Cancelar assinatura por motivo financeiro - primeiro contato - oferece desconto",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}},
@@ -845,7 +845,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaPrimeiroPedidoSemRastreioDescontoMotivo",
       category: "assinatura",
-      code: "AS-09",
+      code: "AS-06",
       label: "Cancelar assinatura, primeiro pedido e sem o código de rastreio, oferece desconto e pergunte o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}},
@@ -899,7 +899,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaNaoRecebeuEbooks",
       category: "assinatura",
-      code: "AS-10",
+      code: "AS-07",
       label: "Cancelar assinatura pois não recebeu os ebooks",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}. Meu nome é {{nomeAgente}} e faço parte da Equipe de Suporte ao Cliente da BadRock. Estarei acompanhando pessoalmente sua solicitação.
@@ -941,7 +941,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaComRastreioSemMotivo",
       category: "assinatura",
-      code: "AS-11",
+      code: "AS-08",
       label: "Cancelar a assinatura sem falar o motivo, o pedido da assinatura com código de rastreio",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}},
@@ -1007,7 +1007,7 @@ BadRock Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSucesso",
       category: "assinatura",
-      code: "AS-12",
+      code: "AS-09",
       label: "Assinatura cancelada - cliente respondeu falando o motivo",
       autoDetect: null,
       pt: `Obrigado por compartilhar o motivo do cancelamento — sua opinião é muito importante para nós.
@@ -1217,7 +1217,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaMotivoSemResultados",
       category: "assinatura",
-      code: "AS-13",
+      code: "AS-10",
       label: "Assinatura já foi cancelada - motivo sem resultados",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1255,7 +1255,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaSemMotivo",
       category: "assinatura",
-      code: "AS-14",
+      code: "AS-11",
       label: "Cancelada, cliente respondeu e não quis falar o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1289,7 +1289,7 @@ Customer Support Team`,
     {
       id: "fegCancelarAssinaturaCompraUnica",
       category: "assinatura",
-      code: "AS-04",
+      code: "AS-01",
       label: "Cancelar assinatura mas foi compra única",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1341,7 +1341,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCancelarSemMotivo",
       category: "assinatura",
-      code: "AS-05",
+      code: "AS-02",
       label: "Cancelar sem falar motivo - Pergunte o motivo",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1379,7 +1379,7 @@ Customer Support Team`,
     {
       id: "fegCancelarAssinaturaPausadaPerguntaMotivo",
       category: "assinatura",
-      code: "AS-06",
+      code: "AS-03",
       label: "Cancelar Assinatura",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
