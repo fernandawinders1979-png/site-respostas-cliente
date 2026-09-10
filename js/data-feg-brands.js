@@ -1037,7 +1037,7 @@ Customer Support Team`,
     {
       id: "fegAssinaturaCanceladaPrimeiroContato",
       category: "naoUtilizadosNoMomento",
-      code: "AS-01",
+      code: "NU-01",
       label: "Não sabia que era assinatura - Opção 1",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}!
@@ -1107,7 +1107,7 @@ Customer Support Team`,
     {
       id: "fegNaoSabiaEraAssinaturaOpcao2",
       category: "naoUtilizadosNoMomento",
-      code: "AS-02",
+      code: "NU-02",
       label: "Não sabia que era assinatura - Opção 2 (caso não aceite a Opção 1)",
       autoDetect: null,
       pt: `Obrigada pelo seu retorno. Entendo que a opção anterior ainda não foi adequada para você.
@@ -1159,7 +1159,7 @@ Customer Support Team`,
     {
       id: "fegNaoSabiaEraAssinaturaOpcao3",
       category: "naoUtilizadosNoMomento",
-      code: "AS-03",
+      code: "NU-03",
       label: "Não sabia que era assinatura - Opção 3",
       autoDetect: null,
       pt: `Olá, {{nomeCliente}}, tudo bem?
@@ -3228,7 +3228,7 @@ Customer Support Team`,
    * assinatura), RR=Reembolso Realizado, REN=Recusou entrega, CE=Comprei
    * por engano, MA=Médico/Reação adversa (apenas pedido), MP=Médico/Reação
    * adversa (pedido+assinatura), GV=Garantia vencida, MU=Modo de uso,
-   * CB=Chargeback.
+   * CB=Chargeback, NU=Templates Não Utilizados no Momento.
    */
   const CATEGORIES = [
     { id: "geral", label: "Geral", color: "#39ff14", featured: true },
