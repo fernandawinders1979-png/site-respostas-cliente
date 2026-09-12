@@ -1342,38 +1342,58 @@ Customer Support Team`,
       id: "fegAssinaturaCancelarSemMotivo",
       category: "assinatura",
       code: "AS-02",
-      label: "Cancelar sem falar motivo - Pergunte o motivo",
+      label: "Cancelar assinatura sem falar motivo - A transação falhou",
       autoDetect: null,
-      pt: `Olá, {{nomeCliente}}!
+      pt: `Olá, {{nomeCliente}},
 
-Aqui é {{nomeAgente}}, do Suporte ao Cliente. Recebemos sua solicitação de cancelamento e estarei acompanhando seu caso pessoalmente.
+Obrigada por entrar em contato. Meu nome é {{nomeAgente}}, faço parte da Equipe de Suporte ao Cliente da BadRock e estarei acompanhando pessoalmente sua solicitação.
 
-Antes de darmos andamento, você poderia nos contar, com suas palavras, o motivo do cancelamento? Essa informação é importante para direcionarmos sua solicitação da forma correta — e, dependendo do caso, pode haver algo que eu consiga resolver diretamente para você. Sua resposta também nos ajuda muito a melhorar a experiência de bem-estar que oferecemos.
+Verifiquei seu histórico e identifiquei que sua assinatura está ativa, porém não conseguimos concluir a cobrança referente ao próximo ciclo. Por esse motivo, o novo pedido ainda não pôde ser processado para envio.
 
-Enquanto isso, quero lembrar que você tem total flexibilidade com a sua assinatura: caso prefira, é possível pausar temporariamente ou pular uma entrega, sem custo algum. Assim, você não perde seu histórico e pode retomar quando o momento estiver mais favorável.
+Para sua segurança, sua assinatura foi pausada temporariamente, impedindo novas tentativas automáticas de cobrança enquanto analisamos a situação.
 
-🌿 E temos um cuidado especial para quem opta pela pausa: ao decidir retomar sua assinatura, você garante 15% de desconto no seu retorno. É a nossa forma de manter sua jornada de bem-estar acessível e de mostrar o quanto valorizamos ter você conosco — sem pressão e no seu tempo.
+Sua compra original foi o Pedido nº {{numeroPedido}}, realizado em {{dataCompra}}, no valor de US$ {{valorTotal}}, referente ao {{produto}}, e estava vinculada a uma assinatura com renovação [frequência da assinatura].
 
-Aguardo o seu retorno para seguirmos com a sua demanda. 💚
+Antes de encerrarmos sua assinatura, gostaria de entender melhor sua experiência: você conseguiu utilizar os produtos do seu primeiro pedido? Como foi sua experiência e o que achou dos resultados?
+
+Se você ainda tiver interesse em continuar recebendo o produto, gostaria de oferecer uma condição especial para facilitar sua continuidade. Posso aplicar um desconto de 20% na sua assinatura, reduzindo o valor de US$ {{valorTotal}} para US$ [valor com desconto] a cada [mensal/bimestral/trimestral], mantendo a mesma quantidade de produtos e o frete grátis.
+
+Dessa forma, você poderá continuar recebendo o BADROCK™ por um valor mais acessível, sem alterar a quantidade de produtos incluídos no seu pedido e sem custos adicionais de envio.
+
+Caso tenha ocorrido algum problema com o pagamento ou queira atualizar sua forma de pagamento, basta me informar. Posso ajudá-lo a regularizar a cobrança e solicitar o envio do próximo pedido.
+
+Se essa condição for interessante para você, basta responder a este e-mail e cuidarei pessoalmente dos próximos passos.
+
+Aguardo seu retorno para saber como prefere prosseguir.
 
 Atenciosamente,
 {{nomeAgente}}
-Equipe de Suporte ao Cliente`,
-      en: `Hello, {{nomeCliente}}!
+Equipe de Suporte ao Cliente BadRock`,
+      en: `Hello, {{nomeCliente}},
 
-This is {{nomeAgente}}, from Customer Support. We received your cancellation request and I'll be personally following your case.
+Thank you for reaching out. My name is {{nomeAgente}}, I'm part of BadRock's Customer Support Team, and I'll be personally following your request.
 
-Before we move forward, could you tell us, in your own words, the reason for the cancellation? This information is important so we can direct your request the right way — and, depending on the case, there may be something I can resolve directly for you. Your answer also helps us a lot to improve the wellness experience we offer.
+I checked your history and found that your subscription is active, but we were unable to complete the charge for the next cycle. For this reason, the new order could not yet be processed for shipment.
 
-In the meantime, I want to remind you that you have full flexibility with your subscription: if you prefer, you can temporarily pause or skip a delivery at no cost. This way, you don't lose your history and can resume whenever the timing is better for you.
+For your security, your subscription has been temporarily paused, preventing any new automatic billing attempts while we look into the situation.
 
-🌿 And we have something special for those who choose to pause: when you decide to resume your subscription, you're guaranteed a 15% discount on your return. It's our way of keeping your wellness journey accessible and showing how much we value having you with us — no pressure, on your own time.
+Your original purchase was Order #{{numeroPedido}}, placed on {{dataCompra}}, in the amount of US$ {{valorTotal}}, for {{produto}}, and it was linked to a subscription with a [subscription renewal frequency] renewal.
 
-I'll be looking forward to your reply so we can move forward with your request. 💚
+Before we cancel your subscription, I'd like to better understand your experience: were you able to use the products from your first order? How was your experience and what did you think of the results?
+
+If you're still interested in continuing to receive the product, I'd like to offer a special condition to make it easier for you to continue. I can apply a 20% discount to your subscription, reducing the price from US$ {{valorTotal}} to US$ [discounted value] every [monthly/bimonthly/quarterly], keeping the same quantity of products and free shipping.
+
+This way, you'll be able to keep receiving BADROCK™ at a more affordable price, without changing the quantity of products included in your order and with no additional shipping costs.
+
+If there was an issue with the payment, or if you'd like to update your payment method, just let me know. I can help you settle the charge and request the shipment of your next order.
+
+If this offer sounds good to you, just reply to this email and I'll personally take care of the next steps.
+
+I'll be looking forward to your reply to know how you'd prefer to proceed.
 
 Best regards,
 {{nomeAgente}}
-Customer Support Team`,
+BadRock Customer Support Team`,
     },
 
     {
